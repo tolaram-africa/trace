@@ -1,0 +1,47 @@
+version: "3.4"
+
+################################################################################
+# SERVICES
+################################################################################
+services:
+  # ------------------------------------------------------------
+  # Backend API (NestJs Server)
+  # ------------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    user: "node"
+    working_dir: /bhnadapt
+    env_file: ./.env.dev
+    volumes:
+      - ./data/backend/content:/adapt/uploads:z
+      - ./data/backend/logs:/adapt/logs:z
+    ports:
+      - 3333:3333
+
+  # ------------------------------------------------------------
+  # Frontend SSR (NuxtJS)
+  # ------------------------------------------------------------
+  client:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    user: "node"
+    working_dir: /adapt
+    env_file: ./.env.dev
+    ports:
+      - 4444:4444
+
+  # ------------------------------------------------------------
+  # Cache server (Redis Server)
+  # ------------------------------------------------------------
+  redis:
+    image: redis:5.0-alpine
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+
+  # ------------------------------------------------------------
+  # Limited use DB (Postgres Server)
+  # ------------------------------------------------------------
