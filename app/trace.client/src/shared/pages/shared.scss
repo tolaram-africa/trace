@@ -1,0 +1,11 @@
+/** Shared between page wrappers */
+.page-visual {
+  margin-top: -85px;
+  min-width: 500px;
+  max-width: 600px;
+  @media screen and (max-width: 900px) {
+    margin-top: 25px;
+    min-width: 340px;
+    min-width: 350px;
+  }
+}

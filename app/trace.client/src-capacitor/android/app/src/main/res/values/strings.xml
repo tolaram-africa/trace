@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Adapt</string>
+    <string name="title_activity_main">Adapt</string>
+    <string name="package_name">ng.bhn.adapt</string>
+    <string name="custom_url_scheme">ng.bhn.adapt</string>
+</resources>

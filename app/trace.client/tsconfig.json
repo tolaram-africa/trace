@@ -6,17 +6,14 @@
       "src/*": [
         "src/*"
       ],
+      "@/*": [
+        "src/*"
+      ],
+      "~/*": [
+        "src/*"
+      ],
       "app/*": [
         "*"
-      ],
-      "components/*": [
-        "src/components/*"
-      ],
-      "layouts/*": [
-        "src/layouts/*"
-      ],
-      "pages/*": [
-        "src/pages/*"
       ],
       "assets/*": [
         "src/assets/*"
@@ -26,6 +23,12 @@
       ],
       "stores/*": [
         "src/stores/*"
+      ],
+      "modules/*": [
+        "src/modules/*"
+      ],
+      "shared/*": [
+        "src/shared/*"
       ]
     }
   },
@@ -33,6 +36,8 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "src/**/*.json",
+    "components.d.ts"
   ]
 }

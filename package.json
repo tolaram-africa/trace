@@ -39,6 +39,7 @@
     "dotenv": "^16.0.0"
   },
   "devDependencies": {
+    "@trace/app": "workspace:*",
     "@trace/client": "workspace:*",
     "@trace/common": "workspace:*",
     "@trace/docs": "workspace:*",
