@@ -46,6 +46,33 @@
       "compilerOptions": {
         "tsConfigPath": "apps/vector/tsconfig.app.json"
       }
+    },
+    "easy": {
+      "type": "application",
+      "root": "apps/easy",
+      "entryFile": "main",
+      "sourceRoot": "apps/easy/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/easy/tsconfig.app.json"
+      }
+    },
+    "core": {
+      "type": "application",
+      "root": "apps/core",
+      "entryFile": "main",
+      "sourceRoot": "apps/core/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/core/tsconfig.app.json"
+      }
+    },
+    "management": {
+      "type": "application",
+      "root": "apps/management",
+      "entryFile": "main",
+      "sourceRoot": "apps/management/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/management/tsconfig.app.json"
+      }
     }
   }
 }
