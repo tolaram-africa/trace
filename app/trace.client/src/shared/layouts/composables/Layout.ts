@@ -14,7 +14,7 @@ export interface IModuleContext {
 }
 
 export const layoutState = reactive({
-  moduleItems: [],
+  moduleItems: [] as Array<IModule>,
   showHeader: true,
 });
 

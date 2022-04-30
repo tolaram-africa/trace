@@ -1,4 +1,4 @@
-## Adapt common
+## Trace common
 
 []: # Language: markdown
-[]: # Path: packages/adapt.common/adapt.common.js
+[]: # Path: app/trace.common

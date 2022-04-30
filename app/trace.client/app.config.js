@@ -28,8 +28,8 @@ module.exports = {
   APP_NAME: env.APP_NAME || 'Trace',
   APP_ID: env.APP_ID || 'ng.trace.vector',
   APP_DESCRIPTION: env.APP_DESCRIPTION || 'Trace',
-  APP_THEME_COLOR: env.APP_THEME_COLOR || '#3F51B5',
-  PAGE_TITLE: env.PAGE_TITLE || 'Trace',
+  APP_THEME_COLOR: env.APP_THEME_COLOR || '#3949ab',
+  APP_PAGE_TITLE: env.APP_PAGE_TITLE || 'Trace',
 
   /* API access tokens */
   GOOGLE_API_KEY: env.GOOGLE_API_KEY || 'secret',

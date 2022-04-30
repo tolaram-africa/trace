@@ -1,5 +1,5 @@
 {
-  "appId": "ng.bhn.trace",
+  "appId": "ng.trace.vector",
   "appName": "Trace",
   "bundledWebRuntime": false,
   "npmClient": "pnpm",

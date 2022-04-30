@@ -1,4 +1,4 @@
 /* Application shared constants */
 
-export const Title = 'Adapt'
-export const urlSiteRoot = 'dashboard/'
+export const Title = 'Trace';
+export const urlSiteRoot = 'dashboard/';

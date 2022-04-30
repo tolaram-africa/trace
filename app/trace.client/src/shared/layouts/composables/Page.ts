@@ -37,7 +37,7 @@ export const setupPage = (options: IContext) => {
   );
 
   onBeforeMount(() => {
-    const rootTitle = 'Adapt';
+    const rootTitle = process.env.APP_PAGE_TITLE;
 
     if (page.title !== undefined) title.value = page.title;
     if (page.description !== undefined) description.value = title.value;

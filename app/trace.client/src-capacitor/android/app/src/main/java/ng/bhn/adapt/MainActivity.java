@@ -1,4 +1,4 @@
-package ng.bhn.adapt;
+package ng.trace.vector;
 
 import com.getcapacitor.BridgeActivity;
 

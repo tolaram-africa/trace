@@ -1,8 +1,8 @@
 {
-  "name": "@trace/app",
+  "name": "Trace",
   "version": "0.0.1",
-  "description": "Adapt",
-  "productName": "Adapt",
+  "description": "Trace navigation system",
+  "productName": "Trace",
   "author": "radioActive DROID <me@godwin.dev>",
   "private": true,
   "scripts": {
