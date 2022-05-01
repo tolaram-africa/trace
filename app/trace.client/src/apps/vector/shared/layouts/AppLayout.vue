@@ -3,8 +3,8 @@ import { toRefs } from 'vue';
 import { useQuasar } from 'quasar';
 import { layoutState } from 'src/shared/layouts/composables/Layout';
 import { Fragment } from '@yunzhe35p/vue-fragment';
-import DesktopLayout from 'src/shared/layouts/DesktopLayout.vue';
-import MobileLayout from 'src/shared/layouts/MobileLayout.vue';
+import DesktopLayout from './DesktopLayout.vue';
+import MobileLayout from './MobileLayout.vue';
 import HeaderLarge from 'src/shared/layouts/header/HeaderLarge.vue';
 
 const $q = useQuasar();
@@ -13,7 +13,7 @@ const { showHeader } = toRefs(layoutState);
 
 <script lang="ts">
 export default {
-  name: 'MainLayout',
+  name: 'AppLayout',
 };
 </script>
 
@@ -26,9 +26,7 @@ export default {
     </mobile-layout>
 
     <desktop-layout v-else>
-      <!--
-        <template #module-drawer></template>
-      -->
+      <!-- <template #module-drawer></template> -->
       <template #header>
         <header-large v-show="showHeader"></header-large>
       </template>
