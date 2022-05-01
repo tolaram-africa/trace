@@ -16,7 +16,7 @@ export default {
   children: [
     {
       path: 'm',
-      component: () => import('src/shared/layouts/MainLayout.vue'),
+      component: () => import('./shared/layouts/AppLayout.vue'),
       children: [
         BillingRoutes,
         DriverRoutes,
