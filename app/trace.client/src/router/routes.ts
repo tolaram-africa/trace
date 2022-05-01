@@ -18,12 +18,21 @@ import ShipmentRoutes from 'src/modules/Shipment';
 import ShortageRoutes from 'src/modules/Shortage';
 import TrackRoutes from 'src/modules/Track';
 
+// TODO: New apps based routes
+import VectorAppRoutes from 'src/apps/vector/routes';
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () =>
       import('src/shared/layouts/components/LoadingIndicator.vue'),
     children: [
+      {
+        path: 'app',
+        component: () => import('src/shared/components/Empty.vue'),
+        children: [VectorAppRoutes],
+      },
+
       /** System root path */
       rootRoute,
       IdentityRoutes,

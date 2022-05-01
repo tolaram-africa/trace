@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     CorePageWrapper: typeof import('./src/shared/components/CorePageWrapper.vue')['default']
+    Empty: typeof import('./src/shared/components/Empty.vue')['default']
     ErrorPageWrapper: typeof import('./src/shared/pages/ErrorPageWrapper.vue')['default']
     LayoutWrapper: typeof import('./src/shared/layouts/components/LayoutWrapper.vue')['default']
     LoadingIndicator: typeof import('./src/shared/layouts/components/LoadingIndicator.vue')['default']
