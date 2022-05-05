@@ -1,8 +1,8 @@
 export const rootRoute = {
   path: '',
-  name: 'root',
+  name: 'app.root',
   // TODO: Temporarily redirect to the first module
-  redirect: { name: 'overview.dashboard' },
+  redirect: { name: 'vec.overview.dashboard' },
   component: () => import('./pages/RootPage.vue'),
 };
 
@@ -12,7 +12,12 @@ export const NotificationRoute = {
   children: [
     {
       path: '',
-      name: 'notifications',
+      name: 'app.notifications',
+      component: () => import('./pages/NotificationPage.vue'),
+    },
+    {
+      path: ':id',
+      name: 'app.notifications.item',
       component: () => import('./pages/NotificationPage.vue'),
     },
   ],
@@ -24,7 +29,7 @@ export const catchAllRoute = {
   children: [
     {
       path: '',
-      name: 'error',
+      name: 'app.error',
       component: () => import('./pages/ErrorPage.vue'),
     },
   ],

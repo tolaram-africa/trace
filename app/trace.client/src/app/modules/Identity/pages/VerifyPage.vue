@@ -10,15 +10,16 @@ const contextOptions = {
 const router = useRouter();
 const otpInput = ref([]);
 const otpInputValue = ref(['', '', '', '']);
+// const otpValues = computed(() => otpInputValue.value.join(''));
 
 const verifyToken = () => {
   router.push({
-    name: 'identity.sign-in',
+    name: 'app.identity.sign-in',
   });
 };
 
 const handleKey = (index: number) => {
-  let element = otpInput.value;
+  let element: Array<HTMLDivElement> = otpInput.value;
   let value = otpInputValue.value;
   if (typeof Number(value[index]) !== 'number') return;
   if (value[index].length > 1) value[index] = value[index].slice(0, 1);
@@ -55,7 +56,7 @@ export default {
           <q-input
             v-for="(verifyItem, verifyIndex) in 4"
             :ref="
-              (el) => {
+              (el: any) => {
                 otpInput[verifyIndex] = el;
               }
             "
@@ -88,7 +89,7 @@ export default {
             Didn't recieve a code?
             <router-link
               class="identity-link identity-text font-weight-regular"
-              :to="{ name: 'identity.sign-in' }"
+              :to="{ name: 'app.identity.sign-in' }"
               >Resend</router-link
             >
           </p>

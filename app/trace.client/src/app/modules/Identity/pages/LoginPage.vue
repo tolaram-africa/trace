@@ -6,20 +6,20 @@ const contextOptions = {
     title: 'Sign In',
   },
 };
-
+const usernameState = ref(null);
 const passwordState = reactive({
-  password: '',
+  value: '',
+  active: true,
+  show: false,
 });
 
-const remember = ref(true);
-const passwordView = ref(false);
-const passwordShow = ref(false);
-
 const next = () => {
-  passwordView.value = true;
+  passwordState.active = true;
 };
 
-const signIn = () => {};
+const signIn = () => {
+  // TODO: sign in
+};
 </script>
 
 <script lang="ts">
@@ -42,7 +42,8 @@ export default {
           Sign In
         </h4>
         <q-input
-          v-if="!passwordView"
+          v-if="!passwordState.active"
+          v-model="usernameState"
           standout
           no-error-icon
           type="text"
@@ -55,9 +56,10 @@ export default {
         </q-input>
         <q-input
           standout
-          v-if="passwordView"
+          v-if="passwordState.active"
+          v-model="passwordState.value"
           no-error-icon
-          :type="passwordShow ? 'text' : 'password'"
+          :type="passwordState.show ? 'text' : 'password'"
           label="Password"
           class="border-radius-sm q-my-xl"
         >
@@ -66,9 +68,9 @@ export default {
           </template>
           <template #append>
             <q-btn
-              :icon="passwordShow ? 'bi-eye-fill' : 'bi-eye'"
+              :icon="passwordState.show ? 'bi-eye-fill' : 'bi-eye'"
               color="accent"
-              @click="passwordShow = !passwordShow"
+              @click="passwordState.show = !passwordState.show"
               round
               dense
               flat
@@ -78,18 +80,18 @@ export default {
 
         <div class="q-my-md">
           <q-btn
-            :label="passwordView ? 'Sign In' : 'Next'"
+            :label="passwordState.active ? 'Sign In' : 'Next'"
             color="action"
             size="lg"
             no-caps
-            @click="passwordView ? signIn() : next()"
+            @click="passwordState.active ? signIn() : next()"
             class="full-width border-radius-sm font-weight-thin"
           />
         </div>
         <div class="full-width row items-center justify-end q-py-xs q-px-xs">
           <router-link
             class="identity-link identity-text"
-            :to="{ name: 'identity.password' }"
+            :to="{ name: 'app.identity.password' }"
             >Forgot password?</router-link
           >
         </div>

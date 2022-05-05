@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { MobileMenu, MobileMenuExtended } from 'src/shared/libs/constants/Menu';
+import {
+  /* MobileMenu, */ MobileMenuExtended,
+} from 'src/shared/libs/constants/Menu';
 import { useQuasar } from 'quasar';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
@@ -7,18 +9,18 @@ import { useLayoutStore } from 'src/shared/layouts/stores';
 import ModuleDialog from 'src/shared/layouts/navigation/ModuleDialog.vue';
 
 const $q = useQuasar();
-const mobileMenu = MobileMenu();
+// const mobileMenu = MobileMenu();
 
 const layoutStore = useLayoutStore();
 const { setModuleDialogState } = layoutStore;
 const { moduleDialogState } = storeToRefs(layoutStore);
 
-const notificationsCounts = ref({
-  overview: 0,
-  shipment: 0,
-  task: 0,
-  notifications: 2,
-});
+// const notificationsCounts = ref({
+//   overview: 0,
+//   shipment: 0,
+//   task: 0,
+//   notifications: 2,
+// });
 
 const moduleItems = ref(MobileMenuExtended());
 
@@ -45,7 +47,7 @@ const showModule = () => {
 <template>
   <q-footer class="footer q-mx-xs">
     <q-toolbar class="q-my-xs">
-      <router-link
+      <!-- <router-link
         v-for="(appMenuItem, appMenuIndex) in mobileMenu"
         :key="appMenuIndex"
         :to="{ name: appMenuItem.name }"
@@ -61,7 +63,7 @@ const showModule = () => {
             rounded
           />
         </q-icon>
-      </router-link>
+      </router-link> -->
       <q-icon
         flat
         color="space"

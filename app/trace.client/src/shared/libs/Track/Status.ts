@@ -3,7 +3,8 @@ export interface IStatusTypes {
   color: string;
   count: number;
 }
-const StatusTypes: Array<IStatusTypes> = [
+
+export const StatusTypes: Array<IStatusTypes> = [
   {
     name: 'Moving',
     color: '#7ec27f',
@@ -25,5 +26,3 @@ const StatusTypes: Array<IStatusTypes> = [
     count: 2,
   },
 ];
-
-export default StatusTypes;

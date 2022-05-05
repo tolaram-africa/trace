@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { profileDetails } from 'src/shared/libs/demo/User';
+import { sampleUserProfile } from 'src/shared/libs/Account/Profile';
 import { AppMenu, IdentityMenu } from 'src/shared/libs/constants/Menu';
 import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
@@ -89,14 +89,14 @@ export default {
             <menu-user
               v-show="miniDrawer"
               :mini="true"
-              :profile="profileDetails"
+              :profile="sampleUserProfile"
               class="q-mb-md"
             />
             <div @click="showIdentityMenu = !showIdentityMenu">
               <menu-user
                 v-show="!miniDrawer"
                 :mini="false"
-                :profile="profileDetails"
+                :profile="sampleUserProfile"
                 class="q-mb-sm"
               />
             </div>

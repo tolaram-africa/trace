@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const contextOptions = {
@@ -7,9 +8,11 @@ const contextOptions = {
   },
 };
 const router = useRouter();
+
+const usernameState = ref(null);
 const selectOtpOption = () => {
   router.push({
-    name: 'identity.password-otp',
+    name: 'app.identity.password-otp',
   });
 };
 </script>
@@ -37,6 +40,7 @@ export default {
         </div>
 
         <q-input
+          v-model="usernameState"
           standout
           no-error-icon
           type="text"
@@ -61,7 +65,7 @@ export default {
         <div class="full-width row items-center justify-center q-pa-xs q-px-md">
           <router-link
             class="identity-link identity-text"
-            :to="{ name: 'identity.sign-in' }"
+            :to="{ name: 'app.identity.sign-in' }"
             >Back to Sign In</router-link
           >
         </div>

@@ -9,6 +9,7 @@ const contextOptions = {
   },
 };
 
+const selectedOption = ref(0);
 const resetOptions = ref([
   {
     type: 'email',
@@ -25,14 +26,13 @@ const resetOptions = ref([
     icon: 'bi-telephone',
   },
 ]);
-const selectedOption = ref(0);
 
 const setOption = (index: number) => {
   selectedOption.value = index;
 };
 const verifyOtp = () => {
   router.push({
-    name: 'identity.verify-otp',
+    name: 'app.identity.verify-otp',
   });
 };
 </script>
@@ -61,8 +61,6 @@ export default {
             Please select option to send OTP to reset password
           </p>
         </div>
-        <!-- List selection -->
-
         <q-list
           v-for="(resetOption, resetIndex) in resetOptions"
           :key="resetIndex"
@@ -72,7 +70,6 @@ export default {
             @click="setOption(resetIndex)"
             class="text-left identity-list-item q-px-sm q-py-md"
             clickable
-            v-ripple
           >
             <q-item-section top avatar>
               <q-avatar
@@ -116,7 +113,7 @@ export default {
         <div class="full-width row items-center justify-center q-pa-xs q-px-md">
           <router-link
             class="identity-link identity-text"
-            :to="{ name: 'identity.sign-in' }"
+            :to="{ name: 'app.identity.sign-in' }"
             >Back to Sign In</router-link
           >
         </div>

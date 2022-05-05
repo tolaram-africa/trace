@@ -3,33 +3,25 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "src/*": [
-        "src/*"
-      ],
-      "@/*": [
-        "src/*"
-      ],
-      "~/*": [
-        "src/*"
-      ],
-      "app/*": [
-        "*"
-      ],
-      "assets/*": [
-        "src/assets/*"
-      ],
-      "boot/*": [
-        "src/boot/*"
-      ],
-      "stores/*": [
-        "src/stores/*"
-      ],
-      "modules/*": [
-        "src/modules/*"
-      ],
-      "shared/*": [
-        "src/shared/*"
-      ]
+      "src/*": ["src/*"],
+      "@/*": ["src/*"],
+      "~/*": ["src/*"],
+      "app/*": ["*"],
+      "assets/*": ["src/assets/*"],
+      "boot/*": ["src/boot/*"],
+      "stores/*": ["src/stores/*"],
+      "modules/*": ["src/modules/*"],
+      "shared/*": ["src/shared/*"],
+      "@shared/*": ["src/shared/*"],
+      "@stores/*": ["src/stores/*"],
+      "@libs/*": ["src/shared/libs/*"],
+      "@layouts/*": ["src/shared/layouts/*"],
+      "@components/*": ["src/shared/components/*"],
+      "@composables/*": ["src/shared/composables/*"],
+      "@direct/*": ["src/apps/direct/*"],
+      "@easy/*": ["src/apps/easy/*"],
+      "@manager/*": ["src/apps/manager/*"],
+      "@vector/*": ["src/apps/vector/*"]
     }
   },
   "include": [

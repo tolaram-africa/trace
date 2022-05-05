@@ -1,11 +1,4 @@
 import { RouteRecordRaw } from 'vue-router';
-import {
-  rootRoute,
-  NotificationRoute,
-  catchAllRoute,
-} from 'src/modules/System';
-import IdentityRoutes from 'src/modules/Identity';
-import AccountRoutes from 'src/modules/Account';
 import AdministrationRoutes from 'src/modules/Administration';
 import BillingRoutes from 'src/modules/Billing';
 import DriverRoutes from 'src/modules/Driver';
@@ -19,6 +12,7 @@ import ShortageRoutes from 'src/modules/Shortage';
 import TrackRoutes from 'src/modules/Track';
 
 // TODO: New apps based routes
+import { catchAllRoute, rootRoute } from 'src/app/routes';
 import VectorAppRoutes from 'src/apps/vector/routes';
 
 const routes: RouteRecordRaw[] = [
@@ -27,25 +21,21 @@ const routes: RouteRecordRaw[] = [
     component: () =>
       import('src/shared/layouts/components/LoadingIndicator.vue'),
     children: [
+      /** System root path */
+      rootRoute,
       {
         path: 'app',
         component: () => import('src/shared/components/Empty.vue'),
         children: [VectorAppRoutes],
       },
 
-      /** System root path */
-      rootRoute,
-      IdentityRoutes,
-      NotificationRoute,
-
-      /** App modules routes */
+      // TODO: Delete this
       {
         path: 'module',
         component: () => import('src/shared/layouts/MainLayout.vue'),
         children: [
           /** Root module path redirect */
           { path: '', redirect: { name: 'root' } },
-          AccountRoutes,
           AdministrationRoutes,
           BillingRoutes,
           DriverRoutes,

@@ -4,22 +4,22 @@ export default {
   children: [
     {
       path: '',
-      name: 'account',
-      redirect: { name: 'account.profile' },
+      name: 'app.account',
+      redirect: { name: 'app.account.profile' },
     },
     {
       path: 'profile',
-      name: 'account.profile',
+      name: 'app.account.profile',
       component: () => import('./pages/ProfilePage.vue'),
     },
     {
       path: 'settings',
-      name: 'account.settings',
+      name: 'app.account.settings',
       component: () => import('./pages/SettingsPage.vue'),
     },
     {
       path: 'reset-password',
-      name: 'account.password',
+      name: 'app.account.password',
       component: () => import('./pages/PasswordPage.vue'),
     },
   ],

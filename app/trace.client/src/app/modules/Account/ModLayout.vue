@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const moduleItems = [];
+import { IModule } from 'src/shared/layouts/composables/Layout';
+const moduleItems: Array<IModule> = [];
 </script>
 
 <template>
