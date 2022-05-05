@@ -1,12 +1,5 @@
+import { IModule } from 'src/shared/libs/Menu';
 import { reactive, toRefs, onBeforeMount } from 'vue';
-
-export interface IModule {
-  label: string;
-  icon: string;
-  color: string;
-  name: string;
-  class: string;
-}
 
 export interface IModuleContext {
   moduleItems?: Array<IModule>;

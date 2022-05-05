@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { profileDetails } from 'src/shared/libs/demo/User';
-import { IdentityMenu } from 'src/shared/libs/constants/Menu';
+import { sampleUserProfile } from 'src/shared/libs/Account/Profile';
+import { identityMenu } from 'src/shared/libs/Menu';
 import { useLayoutStore } from 'src/shared/layouts/stores';
 import HeaderMobile from 'src/shared/layouts/header/HeaderMobile.vue';
 import TabSwitcherMobile from 'src/shared/layouts/navigation/TabSwitcherMobile.vue';
@@ -31,10 +31,10 @@ export default {
       >
         <q-scroll-area class="fit q-px-sm column items-center">
           <div class="q-mb-sm q-mt-lg q-mx-sm">
-            <menu-user :mini="false" :profile="profileDetails" />
+            <menu-user :mini="false" :profile="sampleUserProfile" />
           </div>
           <div class="q-pt-lg">
-            <menu-list :mini="false" :items="IdentityMenu"></menu-list>
+            <menu-list :mini="false" :items="identityMenu"></menu-list>
           </div>
 
           <div class="fixed-bottom column items-center q-mb-lg q-px-lg">

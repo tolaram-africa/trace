@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { mobileMenuNames } from 'src/shared/libs/constants/Menu';
+import { appMobileMenuString } from 'src/apps/vector/Menu';
 import { toRefs, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useQuasar } from 'quasar';
@@ -30,7 +30,7 @@ const headerVisibility = computed(() => {
 });
 
 const isFocusModule = computed(() => {
-  return mobileMenuNames.includes(String(route.name));
+  return appMobileMenuString.includes(String(route.name));
 });
 
 const showModule = () => {

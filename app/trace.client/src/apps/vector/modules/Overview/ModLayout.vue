@@ -1,14 +1,14 @@
 <script setup lang="ts">
 const moduleItems = [
   {
-    label: 'Overview',
+    title: 'Overview',
     icon: 'bi-columns-gap',
     color: 'accent',
     name: 'overview.dashboard',
     class: '',
   },
   {
-    label: 'Trends',
+    title: 'Trends',
     icon: 'bi-graph-up-arrow',
     color: 'accent',
     name: 'overview.trends',

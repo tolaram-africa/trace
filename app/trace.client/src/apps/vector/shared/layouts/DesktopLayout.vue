@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { profileDetails } from 'src/shared/libs/demo/User';
-import { AppMenu, IdentityMenu } from 'src/shared/libs/constants/Menu';
+import { sampleUserProfile } from 'src/shared/libs/Account/Profile';
+import { identityMenu } from 'src/shared/libs/Menu';
+import { overviewMenu, appModuleMenu } from 'src/apps/vector/Menu';
 import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useLayoutStore } from 'src/shared/layouts/stores';
@@ -18,14 +19,6 @@ watch(miniDrawer, () => {
   setTimeout(() => {
     if (miniDrawer.value) showIdentityMenu.value = false;
   }, 500);
-});
-
-const overviewMenu = computed(() => {
-  return AppMenu.filter((e) => e.name === 'overview' || e.name === 'shipment');
-});
-
-const moduleMenu = computed(() => {
-  return AppMenu.filter((e) => e.name !== 'overview' && e.name !== 'shipment');
 });
 </script>
 
@@ -58,12 +51,12 @@ export default {
           <div v-show="!showIdentityMenu" class="q-mt-lg">
             <menu-list :mini="true" :items="overviewMenu"></menu-list>
             <q-separator class="q-my-xs q-mx-sm" />
-            <menu-list :mini="true" :items="moduleMenu"></menu-list>
+            <menu-list :mini="true" :items="appModuleMenu"></menu-list>
           </div>
           <div v-show="showIdentityMenu" class="q-mt-xl">
             <menu-list
               :mini="true"
-              :items="IdentityMenu"
+              :items="identityMenu"
               class="q-mt-xl"
             ></menu-list>
           </div>
@@ -89,14 +82,14 @@ export default {
             <menu-user
               v-show="miniDrawer"
               :mini="true"
-              :profile="profileDetails"
+              :profile="sampleUserProfile"
               class="q-mb-md"
             />
             <div @click="showIdentityMenu = !showIdentityMenu">
               <menu-user
                 v-show="!miniDrawer"
                 :mini="false"
-                :profile="profileDetails"
+                :profile="sampleUserProfile"
                 class="q-mb-sm"
               />
             </div>

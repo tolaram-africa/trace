@@ -1,4 +1,4 @@
-export interface IMenu {
+export interface IModule {
   name: string;
   title: string;
   icon: string;
@@ -6,7 +6,7 @@ export interface IMenu {
   class?: string;
 }
 
-export const identityMenu: Array<IMenu> = [
+export const identityMenu: Array<IModule> = [
   { title: 'Account', icon: 'bi-person', name: 'account.profile' },
   {
     title: 'Settings',
@@ -18,11 +18,11 @@ export const identityMenu: Array<IMenu> = [
   { title: 'Help', icon: 'bi-question-circle', name: 'help' },
 ];
 
-export const mobileMenu = (
-  items: Array<IMenu>,
-  includedItems: Array<string>
-): Array<IMenu> => {
-  const mobileMenu: Array<IMenu> = items.filter((e) => {
+export const filterMobileMenu = (
+  items: Array<IModule>,
+  includedItems: Array<string> = []
+): Array<IModule> => {
+  const mobileMenu: Array<IModule> = items.filter((e) => {
     return includedItems.includes(e.name);
   });
   mobileMenu.push({
@@ -33,15 +33,13 @@ export const mobileMenu = (
   return mobileMenu;
 };
 
-export const mobileMenuExtended = (
-  items: Array<IMenu>,
-  excludedItems: Array<IMenu>
-): Array<IMenu> => {
-  const focusMenu = excludedItems.map((k) => k.name);
-
+export const filterExtendedMenu = (
+  items: Array<IModule>,
+  excludedItems: Array<IModule> = []
+): Array<IModule> => {
   return items
     .filter((e) => {
-      return !focusMenu.includes(e.name);
+      return !excludedItems.map((k) => k.name).includes(e.name);
     })
     .map((e) => {
       e.color = 'primary';
