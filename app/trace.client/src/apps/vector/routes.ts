@@ -1,13 +1,13 @@
-import BillingRoutes from './modules/Billing';
-import DriverRoutes from './modules/Driver';
-import InvoiceRoutes from './modules/Invoice';
-import OverviewRoutes from './modules/Overview';
-import TaskRoutes from './modules/Task';
-import PaymentRoutes from './modules/Payment';
-import ResourceRoutes from './modules/Resource';
-import SettingsRoutes from './modules/Settings';
-import ShortageRoutes from './modules/Shortage';
-import TrackRoutes from './modules/Track';
+import BillingModule from './modules/Billing';
+import DriverModule from './modules/Driver';
+import InvoiceModule from './modules/Invoice';
+import OverviewModule from './modules/Overview';
+import TaskModule from './modules/Task';
+import PaymentModule from './modules/Payment';
+import ResourceModule from './modules/Resource';
+import SettingsModule from './modules/Settings';
+import ShortageModule from './modules/Shortage';
+import TrackModule from './modules/Track';
 
 export default {
   path: 'vector',
@@ -18,16 +18,16 @@ export default {
       path: 'm',
       component: () => import('./shared/layouts/AppLayout.vue'),
       children: [
-        BillingRoutes,
-        DriverRoutes,
-        InvoiceRoutes,
-        OverviewRoutes,
-        TaskRoutes,
-        PaymentRoutes,
-        ResourceRoutes,
-        SettingsRoutes,
-        ShortageRoutes,
-        TrackRoutes,
+        BillingModule,
+        DriverModule,
+        InvoiceModule,
+        OverviewModule,
+        TaskModule,
+        PaymentModule,
+        ResourceModule,
+        SettingsModule,
+        ShortageModule,
+        TrackModule,
       ],
     },
   ],
