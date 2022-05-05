@@ -65,13 +65,22 @@
         "tsConfigPath": "apps/core/tsconfig.app.json"
       }
     },
-    "management": {
-      "type": "application",
-      "root": "apps/management",
-      "entryFile": "main",
-      "sourceRoot": "apps/management/src",
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/management/tsconfig.app.json"
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
+    "manager": {
+      "type": "application",
+      "root": "apps/manager",
+      "entryFile": "main",
+      "sourceRoot": "apps/manager/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/manager/tsconfig.app.json"
       }
     }
   }
