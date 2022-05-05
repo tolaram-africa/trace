@@ -1,4 +1,4 @@
-import { IObject } from 'src/shared/libs/types/resources/IObjects';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface ITileLayer {
   id: string;
@@ -38,13 +38,15 @@ export interface IMapState {
   mapOptions: IMapOptions;
   onInitialize: () => void;
   onMapReady(event: any): void;
-  onCenterUpdate(center: Array<Number>): void;
+  onCenterUpdate(center: Array<number>): void;
   onZoomUpdate(zoom: number): void;
   onMarkerActions(): void;
   onMapZoomStart(event: any): void;
   onMapZoomEnd(event: any): void;
 }
 
+// TODO: Define markers satete based on modules
+/*
 export interface IUseMarkerState {
   markerDataLive: Array<IObject>;
   markerDataEvent: Array<any>;
@@ -66,3 +68,4 @@ export interface IUseMarkerState {
   getMarkerIndex: (object: IObject) => number;
   actCloseLivePopup: (object: IObject) => void;
 }
+*/

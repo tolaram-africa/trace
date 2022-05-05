@@ -1,5 +1,8 @@
-import { IStatusTypes } from 'src/shared/libs/types/resources/IObjects';
-
+export interface IStatusTypes {
+  name: string;
+  color: string;
+  count: number;
+}
 const StatusTypes: Array<IStatusTypes> = [
   {
     name: 'Moving',

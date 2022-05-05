@@ -1,6 +1,6 @@
-import { IObject } from 'src/shared/libs/types/resources/IObjects';
+import { ITaskSate } from './TaskState';
 
-export const SampleObjectList: Array<IObject> = [
+export const SampleObjectList: Array<ITaskSate> = [
   {
     uniqueId: 'fa5403e6-fbf2-4112-a4ac-e16aab30ad8c',
     lastUpdated: '1 hour ago',

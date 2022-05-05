@@ -1,6 +1,9 @@
-import { IPeriodItem } from 'src/shared/libs/types/resources/ITrack';
+export type IPeriod = {
+  text: string;
+  value: string;
+};
 
-export const periodItems: Array<IPeriodItem> = [
+export const periodTypes: Array<IPeriod> = [
   { text: 'Last Hour', value: 'hour-1' },
   { text: 'Custom', value: 'custom' },
   { text: '24 Hour', value: 'hour-24' },

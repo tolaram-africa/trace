@@ -1,9 +1,13 @@
-import {
-  IObject,
-  IStatusTypes,
-} from 'src/shared/libs/types/resources/IObjects';
+import { IPeriod } from 'src/shared/libs/Common/Time';
+import { IStatusTypes } from 'src/shared/libs/Track/Status';
+import { ITaskItem } from './Objects';
 
-export interface IuseTrackState {
+export interface IActionItems {
+  title: string;
+  icon: string;
+}
+
+export interface ITrackState {
   windowVisibility: boolean;
   windowOverlay: boolean;
   currentWindow: number;
@@ -18,14 +22,9 @@ export interface IuseTrackState {
   toggleDialogDrawer(): void;
 }
 
-export interface IActionItems {
-  title: string;
-  icon: string;
-}
-
-export interface IUseObject {
-  objectListItems: Array<IObject>;
-  visibleObjects: Array<IObject>;
+export interface ITaskState {
+  objectListItems: Array<ITaskItem>;
+  visibleObjects: Array<ITaskItem>;
   filterCurrent?: string;
   statusBarTypes: Array<IStatusTypes>;
   actionItems: Array<IActionItems>;
@@ -33,19 +32,18 @@ export interface IUseObject {
   filterStatus(status: string): void;
   getFilterCurrent(value: string): boolean;
   getFilterColor(status: string): string;
-  getObjectEventColor(objectItem: IObject): string;
+  getObjectEventColor(objectItem: ITaskItem): string;
   getFilterCount(value: string): number;
 }
 
-export type IPeriodItem = {
-  text: string;
-  value: string;
-};
-
-export interface IUseHistory {
-  selectedObject?: IObject;
-  tempObjectList: Array<IObject>;
-  periodItems: Array<IPeriodItem>;
-  selectedPeriod: IPeriodItem;
+export interface IHistoryState {
+  selectedObject?: ITaskItem;
+  tempObjectList: Array<ITaskItem>;
+  periodItems: Array<IPeriod>;
+  selectedPeriod: IPeriod;
   showCustomPeriod: boolean;
+}
+
+export interface IEventState {
+  selectedObject: ITaskItem;
 }

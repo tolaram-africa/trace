@@ -1,4 +1,4 @@
-import { ITileLayer } from 'src/shared/libs/types/resources/IMap';
+import { ITileLayer } from './Map';
 
 const mapboxAccessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
