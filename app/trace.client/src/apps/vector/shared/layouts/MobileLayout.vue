@@ -4,7 +4,7 @@ import { sampleUserProfile } from 'src/shared/libs/Account/Profile';
 import { identityMenu } from 'src/shared/libs/Menu';
 import { useLayoutStore } from 'src/shared/layouts/stores';
 import HeaderMobile from 'src/shared/layouts/header/HeaderMobile.vue';
-import TabSwitcherMobile from 'src/shared/layouts/navigation/TabSwitcherMobile.vue';
+import MobileTab from 'src/shared/layouts/navigation/MobileTab.vue';
 import MenuList from 'src/shared/layouts/navigation/MenuList.vue';
 import MenuUser from 'src/shared/layouts/navigation/MenuUser.vue';
 import ThemeSwitcher from 'src/shared/layouts/navigation/ThemeSwitcher.vue';
@@ -62,6 +62,6 @@ export default {
       </slot>
     </q-page-container>
 
-    <tab-switcher-mobile></tab-switcher-mobile>
+    <mobile-tab></mobile-tab>
   </q-layout>
 </template>
