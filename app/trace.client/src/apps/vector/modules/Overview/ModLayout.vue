@@ -4,14 +4,14 @@ const moduleItems = [
     title: 'Overview',
     icon: 'bi-columns-gap',
     color: 'accent',
-    name: 'overview.dashboard',
+    name: 'vec.overview.dashboard',
     class: '',
   },
   {
     title: 'Trends',
     icon: 'bi-graph-up-arrow',
     color: 'accent',
-    name: 'overview.trends',
+    name: 'vec.overview.trends',
     class: '',
   },
 ];
