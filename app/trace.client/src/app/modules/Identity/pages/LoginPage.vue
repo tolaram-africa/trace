@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
+import IdentityForm from '../components/IdentityForm.vue';
 
 const contextOptions = {
   page: {
@@ -9,7 +10,7 @@ const contextOptions = {
 const usernameState = ref(null);
 const passwordState = reactive({
   value: '',
-  active: true,
+  active: false,
   show: false,
 });
 
@@ -30,17 +31,12 @@ export default {
 
 <template>
   <page-wrapper :options="contextOptions">
-    <div class="identity-form">
-      <q-form
-        autocorrect="off"
-        autocapitalize="off"
-        autocomplete="off"
-        spellcheck="false"
-        class="q-pa-lg border-radius-md bg-app-plain"
-      >
-        <h4 class="title text-primary q-my-none q-mb-lg font-weight-regular">
-          Sign In
-        </h4>
+    <identity-form>
+      <template #title>
+        <div class="text-left">Sign In</div>
+      </template>
+
+      <div class="full-width">
         <q-input
           v-if="!passwordState.active"
           v-model="usernameState"
@@ -52,6 +48,9 @@ export default {
         >
           <template #prepend>
             <q-icon name="bi-person" color="accent" />
+          </template>
+          <template #append>
+            <q-btn icon="bi-arrow-repeat" color="accent" round dense flat />
           </template>
         </q-input>
         <q-input
@@ -77,26 +76,40 @@ export default {
             />
           </template>
         </q-input>
+      </div>
 
-        <div class="q-my-md">
-          <q-btn
-            :label="passwordState.active ? 'Sign In' : 'Next'"
-            color="action"
-            size="lg"
-            no-caps
-            @click="passwordState.active ? signIn() : next()"
-            class="full-width border-radius-sm font-weight-thin"
-          />
-        </div>
-        <div class="full-width row items-center justify-end q-py-xs q-px-xs">
+      <div class="q-my-md">
+        <q-btn
+          :label="passwordState.active ? 'Sign In' : 'Next'"
+          color="action"
+          size="lg"
+          no-caps
+          @click="passwordState.active ? signIn() : next()"
+          class="full-width border-radius-sm text-weight-medium"
+        />
+      </div>
+
+      <template #footer>
+        <div
+          class="full-width row items-center q-py-xs q-px-xs justify-between"
+        >
+          <div
+            v-show="passwordState.active"
+            @click="passwordState.active = false"
+            class="identity-link identity-text"
+          >
+            <q-icon name="bi-chevron-left" color="action" size="1.2em" />
+            <span class="q-ml-xs">Back</span>
+          </div>
+          <div v-show="!passwordState.active">&nbsp;</div>
           <router-link
             class="identity-link identity-text"
             :to="{ name: 'app.identity.password' }"
             >Forgot password?</router-link
           >
         </div>
-      </q-form>
-    </div>
+      </template>
+    </identity-form>
   </page-wrapper>
 </template>
 

@@ -34,7 +34,7 @@ export default {
       class="module-icon q-mb-sm"
       :name="sectionItem.icon"
     />
-    <div class="module-text font-weight-thin">
+    <div class="module-text text-weight-thin">
       {{ sectionItem.label }}
     </div>
   </router-link>

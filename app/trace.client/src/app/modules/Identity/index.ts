@@ -14,6 +14,11 @@ export default {
       component: () => import('./pages/PasswordPage.vue'),
     },
     {
+      path: 'password-update',
+      name: 'app.identity.password-update',
+      component: () => import('./pages/PasswordUpdatePage.vue'),
+    },
+    {
       path: 'password-otp',
       name: 'app.identity.password-otp',
       component: () => import('./pages/PasswordOtpPage.vue'),

@@ -41,13 +41,13 @@ const props = withDefaults(defineProps<IProps>(), {
     }
   }
   :hover {
-    background-color: var(--q-app-highlight);
+    background-color: var(--q-app-background);
   }
 }
 .q-item {
   border-radius: $border-radius-sm;
   :hover {
-    background-color: var(--q-app-highlight);
+    background-color: var(--q-app-background);
   }
   .q-icon,
   .q-item__label {

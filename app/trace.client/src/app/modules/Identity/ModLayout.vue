@@ -7,16 +7,14 @@ import AppLogo from 'src/assets/vectors/logo.svg';
 
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-page-container
-      class="non-selectable hide-scrollbar bg-app-container-darker"
-    >
+    <q-page-container class="non-selectable hide-scrollbar bg-app-white">
       <q-page class="identity-container">
         <div class="container-left">
           <section class="text-primary-inverted">
             <app-logo class="app-logo" />
           </section>
         </div>
-        <div class="container-right bg-app-container-darker">
+        <div class="container-right bg-app-white">
           <section class="extra">
             <!-- <router-view v-slot="{ Component, route }">
               <transition

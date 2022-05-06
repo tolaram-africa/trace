@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import IdentityForm from '../components/IdentityForm.vue';
 
+const router = useRouter();
 const contextOptions = {
   page: {
     title: 'Password Reset',
   },
 };
-const router = useRouter();
 
 const usernameState = ref(null);
 const selectOtpOption = () => {
@@ -25,52 +26,40 @@ export default {
 
 <template>
   <page-wrapper :options="contextOptions">
-    <div class="identity-form">
-      <q-form
-        autocorrect="off"
-        autocapitalize="off"
-        autocomplete="off"
-        spellcheck="false"
-        class="q-pa-lg border-radius-md bg-app-plain"
+    <identity-form>
+      <template #title>Forgot Password?</template>
+      <template #sub-title
+        ><div>
+          Don't worry it happens!. please enter then
+          <span class="text-body2">Email or Username</span> associated with your
+          account.
+        </div>
+      </template>
+
+      <q-input
+        v-model="usernameState"
+        standout
+        no-error-icon
+        type="text"
+        label="Username or Email"
+        class="border-radius-sm q-my-xl"
       >
-        <div class="q-my-none q-mb-lg">
-          <h4 class="title text-primary font-weight-regular q-my-sm">
-            Forgot Password?
-          </h4>
-        </div>
+        <template #append>
+          <q-icon name="bi-person" color="accent" />
+        </template>
+      </q-input>
 
-        <q-input
-          v-model="usernameState"
-          standout
-          no-error-icon
-          type="text"
-          label="Username or Email"
-          class="border-radius-sm q-my-xl"
-        >
-          <template #append>
-            <q-icon name="bi-person" color="accent" />
-          </template>
-        </q-input>
-
-        <div class="q-my-md">
-          <q-btn
-            label="Next"
-            color="action"
-            size="lg"
-            no-caps
-            class="full-width border-radius-sm font-weight-thin"
-            @click="selectOtpOption"
-          />
-        </div>
-        <div class="full-width row items-center justify-center q-pa-xs q-px-md">
-          <router-link
-            class="identity-link identity-text"
-            :to="{ name: 'app.identity.sign-in' }"
-            >Back to Sign In</router-link
-          >
-        </div>
-      </q-form>
-    </div>
+      <div class="q-my-md">
+        <q-btn
+          label="Next"
+          color="action"
+          size="lg"
+          no-caps
+          class="full-width border-radius-sm text-weight-medium"
+          @click="selectOtpOption"
+        />
+      </div>
+    </identity-form>
   </page-wrapper>
 </template>
 

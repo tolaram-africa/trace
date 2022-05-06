@@ -17,7 +17,6 @@
   @include named-color('deep-light', $indigo-1, $indigo-0);
   @include named-color('app-container', $indigo-0, transparent);
   @include named-color('app-container-darker', $indigo-1, transparent);
-  @include named-color('app-highlight', $indigo-1, $grey-9);
 
   /*
     @include bg-text-color('app-active', var(--q-app-active));

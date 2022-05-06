@@ -79,7 +79,7 @@ export default {
                 text-color="primary-inverted"
                 icon="bi-box-arrow-in-right"
                 label="Sign Out"
-                class="full-width font-weight-thin border-radius-sm q-mx-md"
+                class="full-width text-weight-thin border-radius-sm q-mx-md"
               ></q-btn>
 
               <theme-switcher v-show="!showIdentityMenu" />

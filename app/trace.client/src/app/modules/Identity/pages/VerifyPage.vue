@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import IdentityForm from '../components/IdentityForm.vue';
 
 const contextOptions = {
   page: {
@@ -14,7 +15,7 @@ const otpInputValue = ref(['', '', '', '']);
 
 const verifyToken = () => {
   router.push({
-    name: 'app.identity.sign-in',
+    name: 'app.identity.password-update',
   });
 };
 
@@ -38,64 +39,59 @@ export default {
 
 <template>
   <page-wrapper :options="contextOptions">
-    <div class="identity-form">
-      <q-form
-        autocorrect="off"
-        autocapitalize="off"
-        autocomplete="off"
-        spellcheck="false"
-        class="q-pa-lg border-radius-md bg-app-plain"
-      >
-        <div class="q-my-none q-mb-lg">
-          <h4 class="title text-primary font-weight-regular q-my-sm">
-            Verify OTP
-          </h4>
-        </div>
+    <identity-form>
+      <template #title>Enter OTP</template>
+      <template #sub-title
+        >A 4 digit OTP has been sent to
+        <span class="text-overline">+234XXX123XXXX</span>
+      </template>
 
-        <div class="full-width q-my-xl row justify-center">
-          <q-input
-            v-for="(verifyItem, verifyIndex) in 4"
-            :ref="
+      <div class="full-width q-my-lg row justify-center">
+        <q-input
+          v-for="(verifyItem, verifyIndex) in 4"
+          :ref="
               (el: any) => {
                 otpInput[verifyIndex] = el;
               }
             "
-            maxlength="1"
-            v-model="otpInputValue[verifyIndex]"
-            :key="verifyIndex"
-            :rules="[(val) => val.length <= 1]"
-            type="number"
-            standout
-            no-error-icon
-            class="border-radius-sm q-mx-sm verify-input"
-            @keyup="handleKey(verifyIndex)"
-          />
-        </div>
+          maxlength="1"
+          v-model="otpInputValue[verifyIndex]"
+          :key="verifyIndex"
+          :rules="[(val) => val.length <= 1]"
+          type="number"
+          standout
+          no-error-icon
+          class="border-radius-sm q-mx-sm verify-input"
+          @keyup="handleKey(verifyIndex)"
+        />
+      </div>
 
-        <q-separator class="q-mb-xl q-mx-lg" />
+      <q-separator class="q-mb-lg q-mx-lg" />
 
-        <div class="q-my-md">
-          <q-btn
-            label="Verify"
-            color="action"
-            size="lg"
-            no-caps
-            class="full-width border-radius-sm font-weight-thin"
-            @click="verifyToken"
-          />
-        </div>
+      <div class="q-my-md">
+        <q-btn
+          label="Verify"
+          color="action"
+          size="lg"
+          no-caps
+          class="full-width border-radius-sm text-weight-medium"
+          @click="verifyToken"
+        />
+      </div>
+
+      <template #footer>
         <div class="full-width row items-center justify-center q-pa-xs q-px-md">
-          <p>
-            Didn't recieve a code?
+          <div>
+            <span class="q-mx-sm">Didn't recieve a code?</span>
             <router-link
-              class="identity-link identity-text font-weight-regular"
+              class="identity-link identity-text text-weight-regular"
               :to="{ name: 'app.identity.sign-in' }"
               >Resend</router-link
             >
-          </p>
+          </div>
         </div>
-      </q-form>
-    </div>
+      </template>
+    </identity-form>
   </page-wrapper>
 </template>
 
