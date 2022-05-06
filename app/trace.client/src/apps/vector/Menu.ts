@@ -50,5 +50,5 @@ export const appMobileMenuString: Array<string> = appMobileMenu.map(
 
 export const appMobileMenuExtended: Array<IModule> = filterExtendedMenu(
   mainModules,
-  appModuleMenu
+  appMobileMenu
 );
