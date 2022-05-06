@@ -1,5 +1,5 @@
 {
-  "name": "Trace",
+  "name": "@trace/app",
   "version": "0.0.1",
   "description": "Trace navigation system",
   "productName": "Trace",
