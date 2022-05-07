@@ -1,38 +1,13 @@
 <script setup lang="ts">
 import { appMobileMenu, appMobileMenuExtended } from 'src/apps/vector/Menu';
 import { ref } from 'vue';
-import { useQuasar } from 'quasar';
-import { storeToRefs } from 'pinia';
-import { useLayoutStore } from 'src/shared/layouts/stores';
-import ModuleDialog from 'src/shared/layouts/navigation/ModuleDialog.vue';
 import BottomSheet from './BottomSheet.vue';
 import BottomSheetList from './BottomSheetList.vue';
 
-const $q = useQuasar();
 const swipeModalState = ref(false);
-const layoutStore = useLayoutStore();
-const { setModuleDialogState } = layoutStore;
-const { moduleDialogState } = storeToRefs(layoutStore);
-
 const showModule = () => {
   swipeModalState.value = !swipeModalState.value;
   return;
-  if (!moduleDialogState.value) {
-    setModuleDialogState(true);
-    $q.dialog({
-      component: ModuleDialog,
-      componentProps: {
-        position: 'bottom',
-        seamless: false,
-        persistent: false,
-        mobile: true,
-        marginClass: 'q-dialog-margin',
-        moduleItems: appMobileMenuExtended,
-      },
-    }).onDismiss(() => {
-      setModuleDialogState(false);
-    });
-  }
 };
 </script>
 
@@ -65,9 +40,10 @@ export default {
           v-show="appMenuItem.name === 'app.notifications'"
           floating
           color="red-7"
-          class="badge"
           rounded
-        />
+        >
+          {{ '23+' }}
+        </q-badge>
       </q-route-tab>
       <q-route-tab name="more" icon="bi-grid-3x3-gap" @click="showModule" />
     </q-tabs>

@@ -3,7 +3,7 @@ import { ref, toRefs } from 'vue';
 import { storeToRefs } from 'pinia';
 import { usePageStore } from 'src/shared/layouts/stores';
 import { layoutState } from 'src/shared/layouts/composables/Layout';
-import SwitcherButtonRoute from 'src/shared/layouts/navigation/SwitcherButtonRoute.vue';
+import SwitcherButton from 'src/shared/layouts/navigation/SwitcherButton.vue';
 import CommandList from '../navigation/CommandList.vue';
 import { quickNewItems } from 'src/apps/vector/Menu';
 import NotificationList from './NotificationList.vue';
@@ -30,9 +30,10 @@ export default {
           >
             {{ showTitle ? title : '' }}
           </div>
-          <switcher-button-route
+          <switcher-button
             v-show="moduleItems.length > 0"
             :items="moduleItems"
+            route
           />
         </div>
       </q-toolbar-title>

@@ -4,10 +4,16 @@ import { ref } from 'vue';
 
 interface IProps {
   items: Array<IModule>;
-  modelValue: string;
+  dense?: boolean;
+  route?: boolean;
+  modelValue?: string;
 }
 
-const props = defineProps<IProps>();
+const props = withDefaults(defineProps<IProps>(), {
+  dense: true,
+  route: false,
+  modelValue: '',
+});
 const placeHolderState = ref(props.modelValue);
 const emits = defineEmits(['update:modelValue']);
 const updateValue = (value: string) => {
@@ -23,7 +29,7 @@ export default {
 
 <template>
   <q-tabs
-    dense
+    :dense="props.dense"
     no-caps
     inline-label
     v-model="placeHolderState"
@@ -35,7 +41,19 @@ export default {
     v-bind="$attrs"
     @update:model-value="updateValue"
   >
+    <template v-if="props.route">
+      <q-route-tab
+        v-for="(moduleItem, moduleIndex) in props.items"
+        :key="moduleIndex"
+        :name="moduleItem.name"
+        :to="{ name: moduleItem.name }"
+        class="border-radius-sm q-ma-xs q-px-none"
+      >
+        {{ moduleItem.title }}
+      </q-route-tab>
+    </template>
     <q-tab
+      v-else
       v-for="(moduleItem, moduleIndex) in props.items"
       :key="moduleIndex"
       :name="moduleItem.name"

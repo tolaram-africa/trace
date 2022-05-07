@@ -7,10 +7,12 @@
   @include named-color('primary', $primary, $primary-darkend);
   @include named-color('secondary', $secondary, $secondary-darkend);
   @include named-color('accent', $accent, $accent-darkend);
+  @include named-color('accent-more', $accent, $grey-5);
   @include named-color('space', $space, $accent-darkend);
   @include named-color('action', $primary, $accent);
   @include named-color('action-accent', $accent, $accent);
   @include named-color('app-background', $indigo-1, $grey-9);
+  @include named-color('app-background-more', $indigo-2, $grey-9);
   @include named-color('app-background-shift', $indigo-0, $grey-9);
   @include named-color('deep-background', $indigo-7, transparent);
   @include named-color('app-white', white, transparent);
