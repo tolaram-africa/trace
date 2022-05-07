@@ -1,4 +1,22 @@
 body {
+  /** !!Very important! */
+  .app-module-drawer {
+    .q-drawer {
+      background-color: var(--q-app-background);
+    }
+  }
+  /** !!Very important! */
+  .app-main-drawer {
+    .q-drawer {
+      @media screen and (max-width: 960px) {
+        border-radius: $border-radius-md !important;
+        margin: 15px 0 15px 15px !important;
+        min-width: 68vw;
+        max-width: 92vw;
+      }
+    }
+  }
+
   /** Added identity module inner form input styles */
   .identity-form .q-field__inner {
     .q-field__control {

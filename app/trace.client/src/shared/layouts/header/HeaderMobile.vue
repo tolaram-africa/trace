@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia';
 import { usePageStore } from 'src/shared/layouts/stores';
 import { useLayoutStore } from 'src/shared/layouts/stores';
 import { layoutState } from 'src/shared/layouts/composables/Layout';
-import ModuleDialog from 'src/shared/layouts/navigation/ModuleDialog.vue';
+import DialogSheetList from '../navigation/DialogSheetList.vue';
 import BottomSheet from '../navigation/BottomSheet.vue';
 import CommandList from '../navigation/CommandList.vue';
 import { quickNewItems } from 'src/apps/vector/Menu';
@@ -41,7 +41,7 @@ const showModule = () => {
   if (!moduleDialogState.value) {
     setModuleDialogState(true);
     $q.dialog({
-      component: ModuleDialog,
+      component: DialogSheetList,
       componentProps: {
         position: 'standard',
         seamless: false,
@@ -94,7 +94,15 @@ export default {
         class="text-primary text-h5 text-weight-bold text-center"
         >{{ titleVisibility ? title : '' }}</q-toolbar-title
       >
-
+      <q-btn
+        dense
+        flat
+        round
+        size="lg"
+        icon="bi-plus-lg"
+        color="primary"
+        @click="swipeModalState = !swipeModalState"
+      />
       <q-btn
         v-show="moduleItems.length > 0"
         dense
@@ -106,15 +114,6 @@ export default {
         "
         color="primary"
         @click="showModule"
-      />
-      <q-btn
-        dense
-        flat
-        round
-        size="lg"
-        icon="bi-plus-lg"
-        color="primary"
-        @click="swipeModalState = !swipeModalState"
       />
     </q-toolbar>
     <bottom-sheet v-model:visible="swipeModalState" :threshold="150">

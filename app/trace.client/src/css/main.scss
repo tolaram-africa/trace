@@ -55,26 +55,6 @@ body {
   @include add-border-radius(xl, $border-radius-xl);
   @include add-border-radius(xxl, $border-radius-xxl);
 
-  /** !!!Very important! */
-  .app-module-drawer {
-    .q-drawer {
-      border-radius: $border-radius-sm 0 0 0 !important;
-      background-color: var(--q-app-background);
-    }
-  }
-  /** !!!Very important! */
-  .app-main-drawer {
-    .q-drawer {
-      border-radius: 0 $border-radius-lg $border-radius-lg 0 !important;
-      @media screen and (max-width: 900px) {
-        border-radius: $border-radius-lg !important;
-        margin: 15px 0 15px 15px !important;
-        min-width: 68vw;
-        max-width: 92vw;
-      }
-    }
-  }
-
   --q-header-height: #{$header-height};
   --q-page-container-height: calc(100vh - var(--q-header-height));
   --q-page-content-height: calc(var(--q-page-container-height) * 0.9);
