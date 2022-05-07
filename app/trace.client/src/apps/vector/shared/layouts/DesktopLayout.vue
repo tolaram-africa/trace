@@ -12,8 +12,8 @@ import ThemeSwitcher from 'src/shared/layouts/navigation/ThemeSwitcher.vue';
 
 const layoutStore = useLayoutStore();
 const { drawerState, drawerMiniState } = storeToRefs(layoutStore);
-const miniDrawer = computed(() => drawerMiniState.value);
 const showIdentityMenu = ref(false);
+const miniDrawer = computed(() => drawerMiniState.value);
 
 watch(miniDrawer, () => {
   setTimeout(() => {
