@@ -45,7 +45,25 @@ export default {
       >
         <q-scroll-area class="fit">
           <q-toolbar class="q-mt-lg q-mb-mb q-ma-none q-pa-none">
-            <app-logo class="app-logo q-mx-auto" />
+            <app-logo
+              v-show="drawerMiniState"
+              class="app-logo self-start col-1 q-mx-auto"
+            />
+            <div
+              class="full-width row cursor-pointer q-px-md"
+              v-show="!drawerMiniState"
+            >
+              <app-logo class="app-logo self-start col-3" />
+              <div class="col-7 text-no-wrap q-pl-md">
+                <div class="text-h5 text-weight-medium text-primary">
+                  Trace Vector
+                </div>
+                <div class="text-accent-more">Workspace</div>
+              </div>
+              <div class="col-1 column justify-center">
+                <q-icon size="1.3em" name="bi-chevron-expand" />
+              </div>
+            </div>
           </q-toolbar>
 
           <div v-show="!showIdentityMenu" class="q-mt-lg">
