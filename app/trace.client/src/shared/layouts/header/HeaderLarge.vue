@@ -6,6 +6,7 @@ import { layoutState } from 'src/shared/layouts/composables/Layout';
 import SwitcherButtonRoute from 'src/shared/layouts/navigation/SwitcherButtonRoute.vue';
 import CommandList from '../navigation/CommandList.vue';
 import { quickNewItems } from 'src/apps/vector/Menu';
+import NotificationList from './NotificationList.vue';
 
 const { title, showHeader, showTitle } = storeToRefs(usePageStore());
 const { moduleItems } = toRefs(layoutState);
@@ -47,19 +48,9 @@ export default {
             transition-show="scale"
             transition-hide="scale"
             self="top middle"
-            class="border-radius-sm q-pa-sm"
+            class="border-radius-sm q-pa-none"
           >
-            <div
-              class="text-center"
-              style="min-width: 300px; min-height: 400px"
-            >
-              <q-icon
-                class="q-mt-md"
-                color="primary"
-                name="bi-bell"
-                size="4em"
-              ></q-icon>
-            </div>
+            <notification-list></notification-list>
           </q-menu>
         </q-icon>
         <q-btn

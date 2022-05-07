@@ -51,3 +51,21 @@ export const filterExtendedMenu = (
       return e;
     });
 };
+
+export const notificationMenu: Array<IModule> = [
+  {
+    name: 'all',
+    icon: '',
+    title: 'View All',
+  },
+  {
+    name: 'task',
+    icon: '',
+    title: 'Task',
+  },
+  {
+    name: 'unread',
+    icon: '',
+    title: 'Unread',
+  },
+];

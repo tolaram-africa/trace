@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { IModule } from 'src/shared/libs/Menu';
+import { ref } from 'vue';
 
 interface IProps {
   items: Array<IModule>;
   modelValue: string;
 }
+
 const props = defineProps<IProps>();
+const placeHolderState = ref(props.modelValue);
 const emits = defineEmits(['update:modelValue']);
-const updateValue = (value: boolean) => {
+const updateValue = (value: string) => {
+  placeHolderState.value = value;
   emits('update:modelValue', value);
 };
 </script>
@@ -22,12 +26,13 @@ export default {
     dense
     no-caps
     inline-label
-    v-model="modelValue"
+    v-model="placeHolderState"
     align="center"
     indicator-color="transparent"
-    class="bg-app-background q-mx-md border-radius-sm text-accent"
+    class="bg-app-background q-mx-xs border-radius-sm text-accent"
     active-class="shadow-2 bg-app-plainer text-action"
     content-class="text-body1 text-weight-medium"
+    v-bind="$attrs"
     @update:model-value="updateValue"
   >
     <q-tab

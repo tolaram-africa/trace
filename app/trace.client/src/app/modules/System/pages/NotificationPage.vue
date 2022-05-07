@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NotificationList from 'src/shared/layouts/header/NotificationList.vue';
 const contextOptions = {
   page: {
     title: 'Notifications',
@@ -7,5 +8,10 @@ const contextOptions = {
 </script>
 
 <template>
-  <page-wrapper :options="contextOptions"></page-wrapper>
+  <page-wrapper
+    class="column justify-start items-start"
+    :options="contextOptions"
+  >
+    <notification-list></notification-list>
+  </page-wrapper>
 </template>

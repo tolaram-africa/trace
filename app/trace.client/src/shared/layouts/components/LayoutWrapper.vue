@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { setupLayout, IModule } from 'src/shared/layouts/composables/Layout';
+import { setupLayout } from 'src/shared/layouts/composables/Layout';
+import { IModule } from 'src/shared/libs/Menu';
 
 export interface IProps {
   moduleItems: Array<IModule>;

@@ -27,6 +27,7 @@ export default {
     :page="props.options.page"
     :animate-enter="props.options.animateEnter"
     :animate-leave="props.options.animateLeave"
+    v-bind="$attrs"
   >
     <slot>
       <q-img

@@ -67,7 +67,6 @@ export default {
   >
     <q-toolbar class="bg-transparent q-mt-xs q-px-none">
       <q-btn
-        v-show="isFocusModule"
         dense
         flat
         round
@@ -77,7 +76,7 @@ export default {
         @click="toggleDrawer"
       />
       <q-btn
-        v-show="!isFocusModule"
+        v-show="false"
         dense
         flat
         round

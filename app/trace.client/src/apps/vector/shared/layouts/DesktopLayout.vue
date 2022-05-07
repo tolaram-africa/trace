@@ -101,7 +101,7 @@ export default {
     <!-- Module grid drawer -->
     <slot name="module-drawer"></slot>
     <slot name="header"></slot>
-    <q-page-container class="bg-app-container q-ma-none q-pa-none">
+    <q-page-container class="bg-app-container">
       <slot>
         <router-view />
       </slot>

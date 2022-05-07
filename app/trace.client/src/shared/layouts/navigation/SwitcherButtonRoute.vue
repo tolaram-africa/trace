@@ -19,9 +19,10 @@ export default {
     inline-label
     align="center"
     indicator-color="transparent"
-    class="bg-app-background q-mx-md border-radius-sm text-accent"
+    class="bg-app-background q-mx-xs border-radius-sm text-accent"
     active-class="shadow-2 bg-app-plainer text-action"
     content-class="text-body1 text-weight-medium"
+    v-bind="$attrs"
   >
     <q-route-tab
       v-for="(moduleItem, moduleIndex) in props.items"

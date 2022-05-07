@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import MainLayout from 'src/shared/layouts/MainLayout.vue';
+import { IModule } from 'src/shared/libs/Menu';
 
-const moduleItems = [];
+const moduleItems: Array<IModule> = [];
 </script>
 
 <template>
   <layout-wrapper :module-items="moduleItems">
-    <main-layout>
-      <q-page class="row items-center justify-evenly">
-        <router-view />
-      </q-page>
-    </main-layout>
+    <q-page class="row items-start justify-center">
+      <router-view />
+    </q-page>
   </layout-wrapper>
 </template>
