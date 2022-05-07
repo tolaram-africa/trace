@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDialogPluginComponent } from 'quasar';
-import { IModule } from 'src/shared/layouts/composables/Layout';
 import ModuleDialogItems from 'src/shared/layouts/navigation/ModuleDialogItems.vue';
+import { IModule } from 'src/shared/libs/Menu';
 
 interface IProps {
   position: 'left' | 'right' | 'top' | 'bottom' | 'standard';

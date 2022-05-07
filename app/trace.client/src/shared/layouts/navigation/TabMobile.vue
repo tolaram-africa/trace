@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { appMobileMenu, appMobileMenuExtended } from 'src/apps/vector/Menu';
+import { ref } from 'vue';
 import { useQuasar } from 'quasar';
 import { storeToRefs } from 'pinia';
 import { useLayoutStore } from 'src/shared/layouts/stores';
 import ModuleDialog from 'src/shared/layouts/navigation/ModuleDialog.vue';
+import BottomSheet from './BottomSheet.vue';
 
 const $q = useQuasar();
+const swipeState = ref(false);
 const layoutStore = useLayoutStore();
 const { setModuleDialogState } = layoutStore;
 const { moduleDialogState } = storeToRefs(layoutStore);
 
 const showModule = () => {
+  swipeState.value = !swipeState.value;
+  return;
+  // Temp
   if (!moduleDialogState.value) {
     setModuleDialogState(true);
     $q.dialog({
@@ -30,14 +36,23 @@ const showModule = () => {
 };
 </script>
 
+<script lang="ts">
+export default {
+  name: 'TabMobile',
+};
+</script>
+
 <template>
-  <q-footer class="footer q-px-xs">
+  <q-footer class="app-footer q-px-xs">
+    <q-no-ssr>
+      <bottom-sheet v-model:visible="swipeState"></bottom-sheet>
+    </q-no-ssr>
     <q-tabs
-      active-color="primary"
+      active-color="action"
       align="justify"
       no-caps
       switch-indicator
-      indicator-color="primary"
+      indicator-color="action"
       content-class="mobile-footer-item"
       class="text-space"
     >
@@ -62,7 +77,7 @@ const showModule = () => {
 </template>
 
 <style lang="scss" scoped>
-.footer {
+.app-footer {
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
   border-radius: $border-radius-lg $border-radius-lg 0 0;
@@ -70,8 +85,8 @@ const showModule = () => {
 
   .badge {
     font-size: unset;
-    top: 0.2rem;
-    right: 0.2rem;
+    top: 0.4rem;
+    right: 0.3rem;
   }
 }
 </style>
