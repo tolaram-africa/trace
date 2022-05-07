@@ -5,6 +5,10 @@ interface IProps {
   items: Array<IModuleCommands>;
 }
 const props = defineProps<IProps>();
+const emits = defineEmits(['update:visible']);
+const closeModal = (value: boolean) => {
+  emits('update:visible', value);
+};
 </script>
 <script lang="ts">
 export default {
@@ -20,6 +24,7 @@ export default {
       :to="{ name: quickCreateItem.name }"
       active-class="bg-primary"
       class="border-radius-sm"
+      @click="closeModal(false)"
       clickable
     >
       <q-item-section class="no-margin no-padding" avatar>

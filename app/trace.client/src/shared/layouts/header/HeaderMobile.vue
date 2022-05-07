@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { appMobileMenuString } from 'src/apps/vector/Menu';
-import { toRefs, computed } from 'vue';
+import { ref, toRefs, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useQuasar } from 'quasar';
 import { storeToRefs } from 'pinia';
@@ -8,6 +8,9 @@ import { usePageStore } from 'src/shared/layouts/stores';
 import { useLayoutStore } from 'src/shared/layouts/stores';
 import { layoutState } from 'src/shared/layouts/composables/Layout';
 import ModuleDialog from 'src/shared/layouts/navigation/ModuleDialog.vue';
+import BottomSheet from '../navigation/BottomSheet.vue';
+import CommandList from '../navigation/CommandList.vue';
+import { quickNewItems } from 'src/apps/vector/Menu';
 
 const layoutStore = useLayoutStore();
 const { toggleDrawer, setModuleDialogState } = layoutStore;
@@ -21,6 +24,7 @@ const route = useRoute();
 const router = useRouter();
 const $q = useQuasar();
 
+const swipeModalState = ref(false);
 const titleVisibility = computed(() => {
   return showTitle.value || !withMobile.value;
 });
@@ -103,8 +107,22 @@ export default {
         color="primary"
         @click="showModule"
       />
-      <q-btn dense flat round size="lg" icon="bi-plus-lg" color="primary" />
+      <q-btn
+        dense
+        flat
+        round
+        size="lg"
+        icon="bi-plus-lg"
+        color="primary"
+        @click="swipeModalState = !swipeModalState"
+      />
     </q-toolbar>
+    <bottom-sheet v-model:visible="swipeModalState" :threshold="150">
+      <command-list
+        @update:visible="swipeModalState = false"
+        :items="quickNewItems"
+      />
+    </bottom-sheet>
   </q-header>
 </template>
 
