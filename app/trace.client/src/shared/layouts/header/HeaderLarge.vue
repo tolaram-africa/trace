@@ -24,7 +24,10 @@ export default {
     <q-toolbar>
       <q-toolbar-title class="q-ml-md">
         <div class="row justify-start items-center">
-          <div class="text-primary text-h5 text-weight-bold q-mx-md">
+          <div
+            class="text-primary text-h5 text-weight-bold text-no-wrap q-mx-md overflow-hidden"
+            style="width: 240px; text-overflow: ellipsis"
+          >
             {{ showTitle ? title : '' }}
           </div>
           <switcher-button-route
