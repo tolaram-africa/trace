@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useQuasar } from 'quasar';
 import { notificationMenu } from 'src/shared/libs/Menu';
 import SwitcherButton from '../navigation/SwitcherButton.vue';
 
+const $q = useQuasar();
 const notifyValue = ref('all');
 </script>
 
@@ -13,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <div v-bind="$attrs">
+  <div v-bind="$attrs" :class="$q.platform.is.mobile ? 'window-width' : ''">
     <switcher-button
       v-model="notifyValue"
       :items="notificationMenu"
