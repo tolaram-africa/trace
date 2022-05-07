@@ -32,6 +32,7 @@ module.exports = configure(function (/* ctx */) {
       'mixins.scss',
       'colors.scss',
       'main.scss',
+      'qusar-mod.scss',
       'leaflet.scss',
     ],
 
