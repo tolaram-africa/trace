@@ -99,37 +99,4 @@ body {
       justify-content: flex-start;
     }
   }
-
-  /** Added identity module inner form input styles */
-  .identity-form .q-field__inner {
-    .q-field__control {
-      padding: 0 14px !important;
-      background-color: var(--q-app-background-shift);
-      border-radius: $border-radius-sm !important;
-      height: 58px;
-      .q-field__label {
-        color: var(--q-accent);
-      }
-
-      .q-field__native {
-        color: var(--q-primary);
-        font-size: 1.2rem;
-      }
-    }
-  }
-
-  /** Added OTP form input styles */
-  .verify-input .q-field__inner {
-    .q-field__control .q-field__native {
-      text-align: center !important;
-    }
-  }
-
-  .mobile-footer-item {
-    .q-icon {
-      font-size: 2.2rem;
-      width: 2.2rem;
-      height: 2.2rem;
-    }
-  }
 }

@@ -16,6 +16,9 @@
   @include named-color('app-plain', white, $grey-9);
   @include named-color('deep-light', $indigo-1, $indigo-0);
   @include named-color('app-container', $indigo-0, transparent);
+  @include named-color('app-shade', $app-shade, $app-shade-darkened);
+  @include named-color('app-surface', $accent, #000);
+  @include named-color('app-sheet', $indigo-0, rgb(44, 44, 44));
   @include named-color('app-container-darker', $indigo-1, transparent);
 
   /*
