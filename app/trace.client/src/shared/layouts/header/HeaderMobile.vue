@@ -87,9 +87,10 @@ export default {
         @click="router.back()"
       />
 
-      <q-toolbar-title class="text-primary text-center">{{
-        titleVisibility ? title : ''
-      }}</q-toolbar-title>
+      <q-toolbar-title
+        class="text-primary text-h5 text-weight-bold text-center"
+        >{{ titleVisibility ? title : '' }}</q-toolbar-title
+      >
 
       <q-btn
         v-show="moduleItems.length > 0"

@@ -18,7 +18,7 @@ interface IBottomSheetDefault extends IBottomSheetTheme {
 
 const bottomSheetDefault = reactive<IBottomSheetDefault>({
   radius: '16px',
-  height: '40%',
+  height: '30%',
   sliderIconColor: 'var(--q-app-surface)',
   sheetColor: 'var(--q-app-sheet)',
   containerColor: 'var(--q-app-shade)',

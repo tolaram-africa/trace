@@ -5,7 +5,7 @@ import { useQuasar } from 'quasar';
 import { storeToRefs } from 'pinia';
 import { useLayoutStore } from 'src/shared/layouts/stores';
 import ModuleDialog from 'src/shared/layouts/navigation/ModuleDialog.vue';
-import BottomSheet from './BottomSheet.vue';
+import BottomSheetList from './BottomSheetList.vue';
 
 const $q = useQuasar();
 const swipeState = ref(false);
@@ -16,7 +16,6 @@ const { moduleDialogState } = storeToRefs(layoutStore);
 const showModule = () => {
   swipeState.value = !swipeState.value;
   return;
-  // Temp
   if (!moduleDialogState.value) {
     setModuleDialogState(true);
     $q.dialog({
@@ -44,9 +43,6 @@ export default {
 
 <template>
   <q-footer class="app-footer q-px-xs">
-    <q-no-ssr>
-      <bottom-sheet v-model:visible="swipeState"></bottom-sheet>
-    </q-no-ssr>
     <q-tabs
       active-color="action"
       align="justify"
@@ -73,6 +69,11 @@ export default {
       </q-route-tab>
       <q-route-tab name="more" icon="bi-grid-3x3-gap" @click="showModule" />
     </q-tabs>
+    <bottom-sheet-list
+      v-model:visible="swipeState"
+      :items="appMobileMenuExtended"
+      :threshold="150"
+    />
   </q-footer>
 </template>
 
