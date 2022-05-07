@@ -22,9 +22,9 @@ export default {
 
 <template>
   <core-page-wrapper
-    :page="options.page"
-    :animate-enter="options.animateEnter"
-    :animate-leave="options.animateLeave"
+    :page="props.options.page"
+    :animate-enter="props.options.animateEnter"
+    :animate-leave="props.options.animateLeave"
   >
     <slot>
       <q-img class="q-my-xl page-visual" src="./assets/not-found.svg" />

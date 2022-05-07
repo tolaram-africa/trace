@@ -2,6 +2,7 @@ import {
   IModule,
   filterMobileMenu,
   filterExtendedMenu,
+  IModuleCommands,
 } from 'src/shared/libs/Menu';
 
 export const Prefix = 'vec.';
@@ -52,3 +53,36 @@ export const appMobileMenuExtended: Array<IModule> = filterExtendedMenu(
   mainModules,
   appMobileMenu
 );
+
+export const quickNewItems: Array<IModuleCommands> = [
+  {
+    name: 'vec.task.create',
+    title: 'Task',
+    icon: 'bi-check-circle',
+    command: 'T',
+  },
+  {
+    name: 'vec.billing.document.create',
+    title: 'Document',
+    icon: 'bi-file-earmark-text',
+    command: 'D',
+  },
+  {
+    name: 'vec.task.event.create',
+    title: 'Event',
+    icon: 'bi-calendar2',
+    command: 'H',
+  },
+  {
+    name: 'vec.location.create',
+    title: 'Location',
+    icon: 'bi-geo-alt',
+    command: 'L',
+  },
+  {
+    name: 'vec.location.route.create',
+    title: 'Route',
+    icon: 'bi-compass',
+    command: 'R',
+  },
+];

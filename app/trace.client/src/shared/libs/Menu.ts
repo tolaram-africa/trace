@@ -6,6 +6,10 @@ export interface IModule {
   class?: string;
 }
 
+export interface IModuleCommands extends IModule {
+  command: string;
+}
+
 export const identityMenu: Array<IModule> = [
   { title: 'Account', icon: 'bi-person', name: 'account.profile' },
   {
