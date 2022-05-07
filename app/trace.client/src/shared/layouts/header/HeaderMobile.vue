@@ -90,6 +90,7 @@ export default {
       <q-toolbar-title class="text-primary text-center">{{
         titleVisibility ? title : ''
       }}</q-toolbar-title>
+
       <q-btn
         v-show="moduleItems.length > 0"
         dense
@@ -102,6 +103,7 @@ export default {
         color="primary"
         @click="showModule"
       />
+      <q-btn dense flat round size="lg" icon="bi-plus-lg" color="primary" />
     </q-toolbar>
   </q-header>
 </template>

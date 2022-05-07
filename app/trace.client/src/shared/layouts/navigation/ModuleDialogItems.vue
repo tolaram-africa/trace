@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IModule } from 'src/shared/layouts/composables/Layout';
+import { IModule } from 'src/shared/libs/Menu';
 
 interface IProps {
   moduleItems: Array<IModule>;
@@ -35,7 +35,7 @@ export default {
       :name="sectionItem.icon"
     />
     <div class="module-text text-weight-thin">
-      {{ sectionItem.label }}
+      {{ sectionItem.title }}
     </div>
   </router-link>
 </template>

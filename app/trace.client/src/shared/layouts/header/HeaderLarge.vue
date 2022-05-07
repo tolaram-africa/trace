@@ -117,13 +117,15 @@ export default {
             :offset="[-5, 10]"
             transition-show="scale"
             transition-hide="scale"
-            class="border-radius-sm q-pa-sm"
+            class="border-radius-sm q-pa-sm quick-create-menu"
           >
-            <q-list style="min-width: 250px">
+            <q-list style="min-width: 235px">
               <q-item
                 v-for="(quickCreateItem, quickCreateIndex) in quickCreateItems"
                 :key="quickCreateIndex"
-                class="border-radius-sm quick-create-menu"
+                :to="{ name: quickCreateItem.name }"
+                active-class="bg-primary"
+                class="border-radius-sm"
                 clickable
               >
                 <q-item-section class="no-margin no-padding" avatar>
@@ -172,6 +174,12 @@ export default {
 }
 
 .quick-create-menu {
+  .q-list {
+    :hover {
+      background-color: var(--q-app-background);
+    }
+  }
+
   .list-span-pill {
     border: 0.05rem solid var(--q-space);
     border-radius: $border-radius-xs;
