@@ -73,16 +73,16 @@ export const sampleRootApps: Array<IModule> = [
   {
     name: 'vec.overview',
     title: 'Vector',
-    icon: 'bi-dash-circle',
+    icon: 'bi-signpost-2',
   },
   {
     name: 'vec.track',
     title: 'Direct',
-    icon: 'bi-dash-circle',
+    icon: 'bi-compass',
   },
   {
     name: 'vec.task',
     title: 'Manager',
-    icon: 'bi-dash-circle',
+    icon: 'bi-sliders',
   },
 ];
