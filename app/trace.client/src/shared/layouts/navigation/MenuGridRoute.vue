@@ -59,14 +59,12 @@ export default {
     font-size: 2.3rem;
     padding: 0.9rem;
     border-radius: $border-radius-sm;
+    color: var(--q-accent-more);
     background-color: var(--q-app-background);
-    :hover {
-      background-color: var(--q-accent) !important;
-    }
   }
   .grid-text {
     font-size: 1.05rem;
-    color: var(--q-primary);
+    color: var(--q-accent-more);
     word-wrap: break-word;
   }
 }
