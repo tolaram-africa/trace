@@ -6,6 +6,7 @@
       "src/*": ["src/*"],
       "@/*": ["src/*"],
       "~/*": ["src/*"],
+      "~assets/*": ["src/assets/*"],
       "app/*": ["*"],
       "assets/*": ["src/assets/*"],
       "boot/*": ["src/boot/*"],
