@@ -50,22 +50,25 @@ export default {
         @mouseout="setMiniDrawer(true)"
       >
         <q-scroll-area class="fit">
-          <q-toolbar class="q-mt-lg q-mb-xl q-pa-none">
-            <app-logo
-              v-show="drawerMiniState"
-              class="app-logo self-start col-1 q-mx-auto"
-            />
+          <q-toolbar class="q-mt-lg q-mb-xl q-pa-none" style="min-height: 72px">
+            <div class="q-mx-auto" style="height: 55px">
+              <app-logo
+                v-show="drawerMiniState"
+                class="app-logo self-start col-1 q-mx-auto"
+              />
+            </div>
             <div
               class="full-width row cursor-pointer q-px-md"
               v-show="!drawerMiniState"
+              style="height: 55px"
             >
               <app-logo class="app-logo self-start col-3" />
               <div class="col-9 row">
                 <div class="col-10 text-no-wrap q-pl-md">
                   <div class="text-h5 text-weight-medium text-primary">
-                    Trace Vector
+                    {{ 'Trace Vector' }}
                   </div>
-                  <div class="text-accent-more">Workspace</div>
+                  <div class="text-accent-more">{{ 'Workspace' }}</div>
                 </div>
                 <div class="col-2 column justify-center">
                   <icon-unfold-more class="icon-unfold-more"></icon-unfold-more>

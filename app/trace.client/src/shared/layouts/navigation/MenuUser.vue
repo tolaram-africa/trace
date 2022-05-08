@@ -65,7 +65,10 @@ const iconTextChar = computed(
           >
             {{ userFullName }}
           </div>
-          <div class="caption text-accent-more" style="margin-top: -0.4rem">
+          <div
+            class="caption text-accent-more q-ml-xs"
+            style="margin-top: -0.4rem"
+          >
             {{ userEmail }}
           </div>
         </div>
