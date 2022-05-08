@@ -29,77 +29,62 @@ const iconTextChar = computed(
 </script>
 
 <template>
-  <div :class="mini ? '' : 'q-mx-none user-state'">
+  <div v-bind="$attrs">
     <q-avatar
       v-if="mini"
       rounded
       color="red-5"
       class="user-state-avatar"
-      size="3.4em"
+      size="3.5em"
       text-color="white"
     >
       {{ iconTextChar }}
       <q-badge floating color="green-9" rounded />
     </q-avatar>
-    <q-item v-else clickable class="q-pa-md">
-      <q-item-section class="user-state-side" avatar>
+    <div
+      v-else
+      class="user-state row cursor-pointer q-pa-sm bg-app-background full-width"
+    >
+      <div class="self-start col-2">
         <q-avatar
           rounded
           color="red-5"
           class="user-state-avatar"
-          size="3.4em"
+          size="3.5em"
           text-color="white"
         >
           {{ iconTextChar }}
           <q-badge floating color="green-9" rounded />
         </q-avatar>
-      </q-item-section>
-      <q-item-section>
-        <q-item-label class="user-state-header">
-          {{ userFullName }}
-        </q-item-label>
-        <q-item-label caption>{{ userEmail }}</q-item-label>
-      </q-item-section>
-      <!-- <q-item-section side>
-        <q-icon name="bi-chevron-up"></q-icon>
-      </q-item-section> -->
-    </q-item>
+      </div>
+      <div class="col-10 row">
+        <div class="col-12 text-no-wrap q-pl-md">
+          <div
+            class="text-weight-medium text-primary"
+            style="font-size: 1.65rem; margin-top: -0.2rem"
+          >
+            {{ userFullName }}
+          </div>
+          <div class="caption text-accent-more" style="margin-top: -0.4rem">
+            {{ userEmail }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <slot></slot>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .user-state,
-.user-state-avatar,
-.q-item {
+.user-state-avatar {
   border-radius: $border-radius-sm;
 }
 
-.user-state {
-  background-color: var(--q-app-background);
-
-  .user-state-header,
-  .q-item__label--caption {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    resize: none;
-  }
-  .user-state-header {
-    color: var(--q-primary);
-    font-size: 1.6rem !important;
-    font-weight: 400;
-  }
-  .q-item__label--caption {
-    color: var(--q-secondary);
-  }
-
-  @media screen and (max-width: 900px) {
-    .user-state-header {
-      font-size: 1.6rem;
-    }
-    .q-item__label--caption {
-      font-size: 0.9rem;
-    }
-  }
+.user-state-header {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  resize: none;
 }
 </style>

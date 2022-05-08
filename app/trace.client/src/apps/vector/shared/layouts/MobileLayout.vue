@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { sampleUserProfile } from 'src/shared/libs/Account/Profile';
-import { identityMenu } from 'src/shared/libs/Menu';
+import { identityMenu, sampleRootApps } from 'src/shared/libs/Menu';
 import { useLayoutStore } from 'src/shared/layouts/stores';
 import HeaderMobile from 'src/shared/layouts/header/HeaderMobile.vue';
 import TabMobile from 'src/shared/layouts/navigation/TabMobile.vue';
 import MenuList from 'src/shared/layouts/navigation/MenuList.vue';
 import MenuUser from 'src/shared/layouts/navigation/MenuUser.vue';
 import ThemeSwitcher from 'src/shared/layouts/navigation/ThemeSwitcher.vue';
+import MenuGridRoute from 'src/shared/layouts/navigation/MenuGridRoute.vue';
 
 const layoutStore = useLayoutStore();
 const { drawerState } = storeToRefs(layoutStore);
@@ -30,8 +31,20 @@ export default {
         side="left"
       >
         <q-scroll-area class="fit q-px-sm column items-center">
-          <div class="q-mb-sm q-mt-lg q-mx-sm">
-            <menu-user :mini="false" :profile="sampleUserProfile" />
+          <div class="full-width q-mb-sm q-mt-lg q-mx-sm">
+            <menu-user :mini="false" :profile="sampleUserProfile">
+              <q-menu
+                transition-show="scale"
+                transition-hide="scale"
+                anchor="center middle"
+                self="center middle"
+                class="shadow-0"
+                @mouseover="drawerState = true"
+                fit
+              >
+                <menu-grid-route :items="sampleRootApps" />
+              </q-menu>
+            </menu-user>
           </div>
           <div class="q-pt-lg">
             <menu-list :mini="false" :items="identityMenu"></menu-list>

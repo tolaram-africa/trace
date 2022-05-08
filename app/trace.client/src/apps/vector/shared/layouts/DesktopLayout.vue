@@ -123,7 +123,10 @@ export default {
               :profile="sampleUserProfile"
               class="q-mb-md"
             />
-            <div @click="showIdentityMenu = !showIdentityMenu">
+            <div
+              @click="showIdentityMenu = !showIdentityMenu"
+              class="full-width q-px-sm"
+            >
               <menu-user
                 v-show="!miniDrawer"
                 :mini="false"
