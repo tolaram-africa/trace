@@ -18,6 +18,12 @@ setupLayout({
 });
 </script>
 
+<script lang="ts">
+export default {
+  name: 'LayoutWrapper',
+};
+</script>
+
 <template>
   <slot>
     <router-view></router-view>

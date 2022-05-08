@@ -31,6 +31,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.json",
-    "components.d.ts"
+    "components.d.ts",
+    "types.d.ts"
   ]
 }
