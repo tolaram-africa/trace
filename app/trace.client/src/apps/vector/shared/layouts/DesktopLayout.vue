@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { sampleUserProfile } from 'src/shared/libs/Account/Profile';
-import { identityMenu } from 'src/shared/libs/Menu';
+import { identityMenu, sampleRootApps } from 'src/shared/libs/Menu';
 import { overviewMenu, appModuleMenu } from 'src/apps/vector/Menu';
 import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useLayoutStore } from 'src/shared/layouts/stores';
 import AppLogo from 'src/assets/vectors/logo.svg';
+import IconUnfoldMore from 'src/assets/vectors/icon/google-font-unfold-more.svg';
 import MenuList from 'src/shared/layouts/navigation/MenuList.vue';
 import MenuUser from 'src/shared/layouts/navigation/MenuUser.vue';
 import ThemeSwitcher from 'src/shared/layouts/navigation/ThemeSwitcher.vue';
+import MenuGridRoute from 'src/shared/layouts/navigation/MenuGridRoute.vue';
 
 const layoutStore = useLayoutStore();
 const { drawerState, drawerMiniState } = storeToRefs(layoutStore);
@@ -20,6 +22,10 @@ watch(miniDrawer, () => {
     if (miniDrawer.value) showIdentityMenu.value = false;
   }, 500);
 });
+
+const setMiniDrawer = (value: boolean) => {
+  drawerMiniState.value = value;
+};
 </script>
 
 <script lang="ts">
@@ -40,11 +46,11 @@ export default {
         side="left"
         :mini="miniDrawer"
         mini-to-overlay
-        @mouseover="drawerMiniState = false"
-        @mouseout="drawerMiniState = true"
+        @mouseover="setMiniDrawer(false)"
+        @mouseout="setMiniDrawer(true)"
       >
         <q-scroll-area class="fit">
-          <q-toolbar class="q-mt-lg q-mb-mb q-ma-none q-pa-none">
+          <q-toolbar class="q-mt-lg q-mb-xl q-pa-none">
             <app-logo
               v-show="drawerMiniState"
               class="app-logo self-start col-1 q-mx-auto"
@@ -54,15 +60,29 @@ export default {
               v-show="!drawerMiniState"
             >
               <app-logo class="app-logo self-start col-3" />
-              <div class="col-7 text-no-wrap q-pl-md">
-                <div class="text-h5 text-weight-medium text-primary">
-                  Trace Vector
+              <div class="col-9 row">
+                <div class="col-10 text-no-wrap q-pl-md">
+                  <div class="text-h5 text-weight-medium text-primary">
+                    Trace Vector
+                  </div>
+                  <div class="text-accent-more">Workspace</div>
                 </div>
-                <div class="text-accent-more">Workspace</div>
+                <div class="col-2 column justify-center">
+                  <icon-unfold-more class="icon-unfold-more"></icon-unfold-more>
+                </div>
               </div>
-              <div class="col-1 column justify-center">
-                <q-icon size="1.3em" name="bi-chevron-expand" />
-              </div>
+              <q-menu
+                v-show="!drawerMiniState"
+                transition-show="scale"
+                transition-hide="scale"
+                anchor="center middle"
+                self="center middle"
+                :class="drawerMiniState ? 'shadow-2' : 'shadow-0'"
+                @mouseover="setMiniDrawer(false)"
+                fit
+              >
+                <menu-grid-route :items="sampleRootApps" />
+              </q-menu>
             </div>
           </q-toolbar>
 
@@ -133,6 +153,11 @@ export default {
   height: 54px;
   fill: var(--q-primary);
   border-radius: $border-radius-sm;
+}
+
+.icon-unfold-more {
+  transform: scale(0.7);
+  fill: var(--q-accent-more);
 }
 
 .q-drawer {

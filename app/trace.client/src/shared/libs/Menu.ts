@@ -69,3 +69,21 @@ export const notificationMenu: Array<IModule> = [
     title: 'Unread',
   },
 ];
+
+export const sampleRootApps: Array<IModule> = [
+  {
+    name: 'vec.overview',
+    title: 'Vector',
+    icon: 'bi-dash-circle',
+  },
+  {
+    name: 'vec.track',
+    title: 'Direct',
+    icon: 'bi-dash-circle',
+  },
+  {
+    name: 'vec.task',
+    title: 'Manager',
+    icon: 'bi-dash-circle',
+  },
+];
