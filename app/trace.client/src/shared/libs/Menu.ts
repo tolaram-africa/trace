@@ -18,7 +18,6 @@ export const identityMenu: Array<IModule> = [
     name: 'account.settings',
   },
   { title: 'Admin Space', icon: 'bi-nut', name: 'administration' },
-  { title: 'Resources', icon: 'bi-hdd-stack', name: 'resource' },
   { title: 'Help', icon: 'bi-question-circle', name: 'help' },
 ];
 

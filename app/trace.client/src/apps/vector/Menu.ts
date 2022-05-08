@@ -29,6 +29,7 @@ export const mainModules: Array<IModule> = [
   },
   { title: 'Payments', icon: 'bi-cash-stack', name: Routes.PAYMENT },
   { title: 'Drivers', icon: 'bi-person-workspace', name: Routes.DRIVER },
+  { title: 'Resources', icon: 'bi-hdd-stack', name: 'vec.resource' },
 ];
 
 export const overviewMenu: Array<IModule> = mainModules.filter(
