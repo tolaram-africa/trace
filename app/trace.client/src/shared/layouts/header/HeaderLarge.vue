@@ -5,9 +5,14 @@ import { usePageStore } from '@/layouts/stores';
 import { layoutState } from '@/layouts/composables/Layout';
 import SwitcherButton from '@/layouts/navigation/SwitcherButton.vue';
 import CommandList from '../navigation/CommandList.vue';
-import { quickNewItems } from 'src/apps/vector/Menu';
 import NotificationList from './NotificationList.vue';
+import { IModuleCommands } from '@/libs/Menu';
 
+interface IProps {
+  qucikCommands: Array<IModuleCommands>;
+}
+
+const props = defineProps<IProps>();
 const { title, showHeader, showTitle } = storeToRefs(usePageStore());
 const { moduleItems } = toRefs(layoutState);
 const bellIconFill = ref(false);
@@ -72,7 +77,7 @@ export default {
             transition-hide="scale"
             class="border-radius-sm q-pa-sm"
           >
-            <command-list :items="quickNewItems" />
+            <command-list :items="props.qucikCommands" />
           </q-menu>
         </q-btn>
       </div>

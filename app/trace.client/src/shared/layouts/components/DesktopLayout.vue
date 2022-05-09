@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import { sampleUserProfile } from '@/libs/Account/Profile';
-import { identityMenu, sampleRootApps } from '@/libs/Menu';
-import { overviewMenu, appModuleMenu } from '@/vector/Menu';
+import { IProfile } from '@/libs/Account/Profile';
+import { IModule } from '@/libs/Menu';
 import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useLayoutStore } from '@/layouts/stores';
-import AppLogo from '@/assets/vectors/logo.svg';
-import IconUnfoldMore from '@/assets/vectors/icon/google-font-unfold-more.svg';
-import MenuList from '@/layouts/navigation/MenuList.vue';
 import MenuUser from '@/layouts/navigation/MenuUser.vue';
 import ThemeSwitcher from '@/layouts/navigation/ThemeSwitcher.vue';
-import MenuGridRoute from '@/layouts/navigation/MenuGridRoute.vue';
+import ModuleNavigation from 'src/shared/layouts/navigation/ModuleNavigation.vue';
+
+interface IProps {
+  overviewItems: Array<IModule>;
+  moduleItems: Array<IModule>;
+  identityItems: Array<IModule>;
+  userProfile: IProfile;
+  rootAppItems: Array<IModule>;
+}
+
+const props = defineProps<IProps>();
 
 const layoutStore = useLayoutStore();
 const { drawerState, drawerMiniState } = storeToRefs(layoutStore);
@@ -50,58 +56,17 @@ export default {
         @mouseout="setMiniDrawer(true)"
       >
         <q-scroll-area class="fit">
-          <q-toolbar class="q-mt-lg q-mb-xl q-pa-none" style="min-height: 72px">
-            <div class="q-mx-auto" style="height: 55px">
-              <app-logo
-                v-show="drawerMiniState"
-                class="app-logo self-start col-1 q-mx-auto"
-              />
-            </div>
-            <div
-              class="full-width row cursor-pointer q-px-md"
-              v-show="!drawerMiniState"
-              style="height: 55px"
-            >
-              <app-logo class="app-logo self-start col-3" />
-              <div class="col-9 row">
-                <div class="col-10 text-no-wrap q-pl-md">
-                  <div class="text-h5 text-weight-medium text-primary">
-                    {{ 'Trace Vector' }}
-                  </div>
-                  <div class="text-accent-more">{{ 'Workspace' }}</div>
-                </div>
-                <div class="col-2 column justify-center">
-                  <icon-unfold-more class="icon-unfold-more"></icon-unfold-more>
-                </div>
-              </div>
-              <q-menu
-                v-show="!drawerMiniState"
-                transition-show="scale"
-                transition-hide="scale"
-                anchor="center middle"
-                self="center middle"
-                :class="drawerMiniState ? 'shadow-2' : 'shadow-0'"
-                @mouseover="setMiniDrawer(false)"
-                fit
-              >
-                <menu-grid-route :items="sampleRootApps" />
-              </q-menu>
-            </div>
-          </q-toolbar>
-
-          <div v-show="!showIdentityMenu" class="q-mt-lg">
-            <menu-list :mini="true" :items="overviewMenu"></menu-list>
-            <q-separator class="q-my-xs q-mx-sm" />
-            <menu-list :mini="true" :items="appModuleMenu"></menu-list>
-          </div>
-          <div v-show="showIdentityMenu" class="q-mt-xl">
-            <menu-list
-              :mini="true"
-              :items="identityMenu"
-              class="q-mt-xl"
-            ></menu-list>
-          </div>
-
+          <sidebar-desktop-header
+            v-model="drawerMiniState"
+            name="Trace Vector"
+            :root-items="props.rootAppItems"
+          ></sidebar-desktop-header>
+          <module-navigation
+            v-model="showIdentityMenu"
+            :overview-items="props.overviewItems"
+            :module-items="props.moduleItems"
+            :identity-items="props.identityItems"
+          ></module-navigation>
           <!-- Fixed navigation action -->
           <div class="fixed-bottom full-width column items-center q-mb-sm">
             <div v-show="!miniDrawer" class="q-mb-md">
@@ -123,7 +88,7 @@ export default {
             <menu-user
               v-show="miniDrawer"
               :mini="true"
-              :profile="sampleUserProfile"
+              :profile="props.userProfile"
               class="q-mb-md"
             />
             <div
@@ -133,7 +98,7 @@ export default {
               <menu-user
                 v-show="!miniDrawer"
                 :mini="false"
-                :profile="sampleUserProfile"
+                :profile="props.userProfile"
                 class="q-mb-sm"
               />
             </div>
@@ -154,18 +119,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.app-logo {
-  width: 54px;
-  height: 54px;
-  fill: var(--q-primary);
-  border-radius: $border-radius-sm;
-}
-
-.icon-unfold-more {
-  transform: scale(0.7);
-  fill: var(--q-accent-more);
-}
-
 .q-drawer {
   border-radius: $border-radius-sm !important;
 }

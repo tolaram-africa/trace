@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { appMobileMenu, appMobileMenuExtended } from 'src/apps/vector/Menu';
+import { IModule } from '@/libs/Menu';
 import { ref } from 'vue';
 import BottomSheet from './BottomSheet.vue';
 import BottomSheetList from './BottomSheetList.vue';
 
+interface IProps {
+  tabItems: Array<IModule>;
+  tabExtendedItems: Array<IModule>;
+}
+
+const props = defineProps<IProps>();
 const swipeModalState = ref(false);
 const showModule = () => {
   swipeModalState.value = !swipeModalState.value;
@@ -30,7 +36,7 @@ export default {
       class="text-space"
     >
       <q-route-tab
-        v-for="(appMenuItem, appMenuIndex) in appMobileMenu"
+        v-for="(appMenuItem, appMenuIndex) in props.tabItems"
         :key="appMenuIndex"
         :name="appMenuItem.name"
         :to="{ name: appMenuItem.name }"
@@ -50,7 +56,7 @@ export default {
     <bottom-sheet v-model:visible="swipeModalState" :threshold="150">
       <bottom-sheet-list
         @update:visible="swipeModalState = false"
-        :items="appMobileMenuExtended"
+        :items="props.tabExtendedItems"
       />
     </bottom-sheet>
   </q-footer>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { appMobileMenuString } from 'src/apps/vector/Menu';
+import { IModuleCommands } from '@/libs/Menu';
 import { ref, toRefs, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useQuasar } from 'quasar';
@@ -10,8 +10,13 @@ import { layoutState } from '@/layouts/composables/Layout';
 import DialogSheetList from '../navigation/DialogSheetList.vue';
 import BottomSheet from '../navigation/BottomSheet.vue';
 import CommandList from '../navigation/CommandList.vue';
-import { quickNewItems } from 'src/apps/vector/Menu';
 
+interface IProps {
+  qucikCommands: Array<IModuleCommands>;
+  moduleList: Array<string>;
+}
+
+const props = defineProps<IProps>();
 const layoutStore = useLayoutStore();
 const { toggleDrawer, setModuleDialogState } = layoutStore;
 const { moduleDialogState } = storeToRefs(layoutStore);
@@ -34,7 +39,7 @@ const headerVisibility = computed(() => {
 });
 
 const isFocusModule = computed(() => {
-  return appMobileMenuString.includes(String(route.name));
+  return props.moduleList.includes(String(route.name));
 });
 
 const showModule = () => {
@@ -119,7 +124,7 @@ export default {
     <bottom-sheet v-model:visible="swipeModalState" :threshold="150">
       <command-list
         @update:visible="swipeModalState = false"
-        :items="quickNewItems"
+        :items="props.qucikCommands"
       />
     </bottom-sheet>
   </q-header>
