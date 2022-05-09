@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { IModule } from 'src/shared/libs/Menu';
-import SwitcherTab from 'src/shared/layouts/navigation/SwitcherTab.vue';
+import { IModule } from '@/libs/Menu';
+import SwitcherTab from '@/layouts/navigation/SwitcherTab.vue';
 import { Fragment } from '@yunzhe35p/vue-fragment';
 
 export interface IProps {
@@ -20,6 +20,7 @@ export default {
 
 <template>
   <fragment>
+    <!-- TODO: Implement mobile option -->
     <q-separator class="q-my-md"></q-separator>
     <switcher-tab :items="props.items" align="left" route></switcher-tab>
     <slot>
