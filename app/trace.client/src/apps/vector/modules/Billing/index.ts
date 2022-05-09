@@ -1,21 +1,25 @@
+import vectorPaths from '@/vector/paths';
+import InvoiceModule from '@/vector/modules/Invoice';
+
 export default {
-  path: 'billing',
+  path: vectorPaths.billing.root.path,
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: 'vec.billing',
-      redirect: { name: 'vec.billing.recent' },
+      name: vectorPaths.billing.root.name,
+      redirect: { name: vectorPaths.billing.recent.name },
     },
     {
-      path: 'recent',
-      name: 'vec.billing.recent',
+      path: vectorPaths.billing.recent.path,
+      name: vectorPaths.billing.recent.name,
       component: () => import('./pages/RecentPage.vue'),
     },
     {
-      path: 'watch-list',
-      name: 'vec.billing.watch-list',
+      path: vectorPaths.billing.watchList.path,
+      name: vectorPaths.billing.watchList.name,
       component: () => import('./pages/WatchListPage.vue'),
     },
+    InvoiceModule,
   ],
 };

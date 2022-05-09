@@ -21,36 +21,6 @@ export const identityMenu: Array<IModule> = [
   { title: 'Help', icon: 'bi-question-circle', name: 'help' },
 ];
 
-export const filterMobileMenu = (
-  items: Array<IModule>,
-  includedItems: Array<string> = []
-): Array<IModule> => {
-  const mobileMenu: Array<IModule> = items.filter((e) => {
-    return includedItems.includes(e.name);
-  });
-  mobileMenu.push({
-    name: 'app.notifications',
-    title: 'Notifications',
-    icon: 'bi-bell',
-  });
-  return mobileMenu;
-};
-
-export const filterExtendedMenu = (
-  items: Array<IModule>,
-  excludedItems: Array<IModule> = []
-): Array<IModule> => {
-  return items
-    .filter((e) => {
-      return !excludedItems.map((k) => k.name).includes(e.name);
-    })
-    .map((e) => {
-      e.color = 'primary';
-      e.class = 'app-menu-item';
-      return e;
-    });
-};
-
 export const notificationMenu: Array<IModule> = [
   {
     name: 'all',
@@ -86,3 +56,44 @@ export const sampleRootApps: Array<IModule> = [
     icon: 'bi-sliders',
   },
 ];
+
+export const filterModule = (
+  items: Array<IModule>,
+  filter: Array<string>,
+  include = true
+): Array<IModule> => {
+  return items.filter((e) => {
+    const addOrRemove = filter.includes(e.name);
+    return include ? addOrRemove : !addOrRemove;
+  });
+};
+
+export const filterMobileMenu = (
+  items: Array<IModule>,
+  includedItems: Array<string> = []
+): Array<IModule> => {
+  const mobileMenu: Array<IModule> = items.filter((e) => {
+    return includedItems.includes(e.name);
+  });
+  mobileMenu.push({
+    name: 'app.notifications',
+    title: 'Notifications',
+    icon: 'bi-bell',
+  });
+  return mobileMenu;
+};
+
+export const filterExtendedMenu = (
+  items: Array<IModule>,
+  excludedItems: Array<IModule> = []
+): Array<IModule> => {
+  return items
+    .filter((e) => {
+      return !excludedItems.map((k) => k.name).includes(e.name);
+    })
+    .map((e) => {
+      e.color = 'primary';
+      e.class = 'app-menu-item';
+      return e;
+    });
+};

@@ -5,12 +5,16 @@
 declare module 'vue' {
   export interface GlobalComponents {
     CorePageWrapper: typeof import('./src/shared/components/CorePageWrapper.vue')['default']
+    DesktopLayout: typeof import('./src/shared/layouts/components/DesktopLayout.vue')['default']
+    DialogWrapper: typeof import('./src/shared/components/DialogWrapper.vue')['default']
     Empty: typeof import('./src/shared/components/Empty.vue')['default']
     ErrorPageWrapper: typeof import('./src/shared/pages/ErrorPageWrapper.vue')['default']
     LayoutSubWrapper: typeof import('./src/shared/layouts/components/LayoutSubWrapper.vue')['default']
     LayoutWrapper: typeof import('./src/shared/layouts/components/LayoutWrapper.vue')['default']
     LoadingIndicator: typeof import('./src/shared/layouts/components/LoadingIndicator.vue')['default']
+    MobileLayout: typeof import('./src/shared/layouts/components/MobileLayout.vue')['default']
     PageWrapper: typeof import('./src/shared/pages/PageWrapper.vue')['default']
+    SidebarDesktopHeader: typeof import('./src/shared/components/SidebarDesktopHeader.vue')['default']
   }
 }
 

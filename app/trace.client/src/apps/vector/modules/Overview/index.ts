@@ -1,20 +1,22 @@
+import vectorPaths from '@/vector/paths';
+
 export default {
-  path: 'overview',
+  path: vectorPaths.overview.root.path,
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: 'vec.overview',
-      redirect: { name: 'vec.overview.dashboard' },
+      name: vectorPaths.overview.root.name,
+      redirect: { name: vectorPaths.overview.dashboard.name },
     },
     {
-      path: 'dashboard',
-      name: 'vec.overview.dashboard',
+      path: vectorPaths.overview.dashboard.path,
+      name: vectorPaths.overview.dashboard.name,
       component: () => import('./pages/DashboardPage.vue'),
     },
     {
-      path: 'trends',
-      name: 'vec.overview.trends',
+      path: vectorPaths.overview.trends.path,
+      name: vectorPaths.overview.trends.name,
       component: () => import('./pages/TrendPage.vue'),
     },
   ],

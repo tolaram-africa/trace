@@ -1,11 +1,7 @@
 <script setup lang="ts">
-const moduleItems = [];
+// const moduleItems = [];
 </script>
 
 <template>
-  <layout-wrapper :module-items="moduleItems">
-    <q-page class="row items-center justify-evenly">
-      <router-view />
-    </q-page>
-  </layout-wrapper>
+  <router-view />
 </template>

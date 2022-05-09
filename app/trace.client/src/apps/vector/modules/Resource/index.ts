@@ -1,15 +1,17 @@
+import vectorPaths from '@/vector/paths';
+
 export default {
-  path: 'resource',
+  path: vectorPaths.resource.root.path,
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: 'vec.resource',
-      redirect: { name: 'vec.resource.summary' },
+      name: vectorPaths.resource.root.name,
+      redirect: { name: vectorPaths.resource.summary.name },
     },
     {
-      path: 'summary',
-      name: 'vec.resource.summary',
+      path: vectorPaths.resource.summary.path,
+      name: vectorPaths.resource.summary.name,
       component: () => import('./pages/SummaryPage.vue'),
     },
   ],

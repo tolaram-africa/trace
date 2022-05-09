@@ -3,7 +3,6 @@ import IdentityRoutes from '@/app/modules/Identity';
 import { NotificationRoute } from '@/app/modules/System';
 import BillingModule from './modules/Billing';
 import DriverModule from './modules/Driver';
-import InvoiceModule from './modules/Invoice';
 import OverviewModule from './modules/Overview';
 import TaskModule from './modules/Task';
 import PaymentModule from './modules/Payment';
@@ -27,7 +26,6 @@ export default {
         ...appRoutes,
         BillingModule,
         DriverModule,
-        InvoiceModule,
         OverviewModule,
         TaskModule,
         PaymentModule,

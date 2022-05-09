@@ -1,25 +1,27 @@
+import vectorPaths from '@/vector/paths';
+
 export default {
-  path: 'track',
+  path: vectorPaths.track.root.path,
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: 'vec.track',
-      redirect: { name: 'vec.track.monitor' },
+      name: vectorPaths.track.root.name,
+      redirect: { name: vectorPaths.track.monitor.name },
     },
     {
-      path: 'monitor',
-      name: 'vec.track.monitor',
+      path: vectorPaths.track.monitor.path,
+      name: vectorPaths.track.monitor.name,
       component: () => import('./pages/MonitorPage.vue'),
     },
     {
-      path: 'monitor/id/:id',
-      name: 'vec.track.monitor.id',
+      path: vectorPaths.track.monitorId.path,
+      name: vectorPaths.track.monitorId.name,
       component: () => import('./pages/InstacePage.vue'),
     },
     {
-      path: 'objects',
-      name: 'vec.track.objects',
+      path: vectorPaths.track.objects.name,
+      name: vectorPaths.track.objects.path,
       component: () => import('./pages/ObjectPage.vue'),
     },
   ],
