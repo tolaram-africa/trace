@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, toRefs } from 'vue';
 import { storeToRefs } from 'pinia';
-import { usePageStore } from 'src/shared/layouts/stores';
-import { layoutState } from 'src/shared/layouts/composables/Layout';
-import SwitcherButton from 'src/shared/layouts/navigation/SwitcherButton.vue';
+import { usePageStore } from '@/layouts/stores';
+import { layoutState } from '@/layouts/composables/Layout';
+import SwitcherButton from '@/layouts/navigation/SwitcherButton.vue';
 import CommandList from '../navigation/CommandList.vue';
 import { quickNewItems } from 'src/apps/vector/Menu';
 import NotificationList from './NotificationList.vue';

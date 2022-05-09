@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IMenu } from 'src/shared/libs/constants/Menu';
+import { IMenu } from '@/libs/constants/Menu';
 
 interface IProps {
   items: Array<IMenu>;

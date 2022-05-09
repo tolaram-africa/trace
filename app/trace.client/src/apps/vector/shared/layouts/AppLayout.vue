@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { toRefs } from 'vue';
 import { useQuasar } from 'quasar';
-import { layoutState } from 'src/shared/layouts/composables/Layout';
+import { layoutState } from '@/layouts/composables/Layout';
 import { Fragment } from '@yunzhe35p/vue-fragment';
 import DesktopLayout from './DesktopLayout.vue';
 import MobileLayout from './MobileLayout.vue';
-import HeaderLarge from 'src/shared/layouts/header/HeaderLarge.vue';
+import HeaderLarge from '@/layouts/header/HeaderLarge.vue';
 
 const $q = useQuasar();
 const { showHeader } = toRefs(layoutState);

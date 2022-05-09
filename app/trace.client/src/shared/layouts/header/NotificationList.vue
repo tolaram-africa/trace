@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useQuasar } from 'quasar';
-import { notificationMenu } from 'src/shared/libs/Menu';
+import { notificationMenu } from '@/libs/Menu';
 import SwitcherButton from '../navigation/SwitcherButton.vue';
 
 const $q = useQuasar();

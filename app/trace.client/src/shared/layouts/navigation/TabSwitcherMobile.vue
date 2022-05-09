@@ -3,8 +3,8 @@ import { appMobileMenu, appMobileMenuExtended } from 'src/apps/vector/Menu';
 import { useQuasar } from 'quasar';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
-import { useLayoutStore } from 'src/shared/layouts/stores';
-import ModuleDialog from 'src/shared/layouts/navigation/ModuleDialog.vue';
+import { useLayoutStore } from '@/layouts/stores';
+import ModuleDialog from '@/layouts/navigation/ModuleDialog.vue';
 
 const $q = useQuasar();
 const layoutStore = useLayoutStore();

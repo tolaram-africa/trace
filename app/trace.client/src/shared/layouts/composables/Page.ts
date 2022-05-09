@@ -1,7 +1,7 @@
 import { onBeforeMount } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useMeta } from 'quasar';
-import { usePageStore, usePageAnimation } from 'src/shared/layouts/stores';
+import { usePageStore, usePageAnimation } from '@/layouts/stores';
 
 export interface IPageContext {
   title: string;

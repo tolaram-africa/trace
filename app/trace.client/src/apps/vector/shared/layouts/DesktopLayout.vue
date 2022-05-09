@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { sampleUserProfile } from 'src/shared/libs/Account/Profile';
-import { identityMenu, sampleRootApps } from 'src/shared/libs/Menu';
-import { overviewMenu, appModuleMenu } from 'src/apps/vector/Menu';
+import { sampleUserProfile } from '@/libs/Account/Profile';
+import { identityMenu, sampleRootApps } from '@/libs/Menu';
+import { overviewMenu, appModuleMenu } from '@/vector/Menu';
 import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useLayoutStore } from 'src/shared/layouts/stores';
-import AppLogo from 'src/assets/vectors/logo.svg';
-import IconUnfoldMore from 'src/assets/vectors/icon/google-font-unfold-more.svg';
-import MenuList from 'src/shared/layouts/navigation/MenuList.vue';
-import MenuUser from 'src/shared/layouts/navigation/MenuUser.vue';
-import ThemeSwitcher from 'src/shared/layouts/navigation/ThemeSwitcher.vue';
-import MenuGridRoute from 'src/shared/layouts/navigation/MenuGridRoute.vue';
+import { useLayoutStore } from '@/layouts/stores';
+import AppLogo from '@/assets/vectors/logo.svg';
+import IconUnfoldMore from '@/assets/vectors/icon/google-font-unfold-more.svg';
+import MenuList from '@/layouts/navigation/MenuList.vue';
+import MenuUser from '@/layouts/navigation/MenuUser.vue';
+import ThemeSwitcher from '@/layouts/navigation/ThemeSwitcher.vue';
+import MenuGridRoute from '@/layouts/navigation/MenuGridRoute.vue';
 
 const layoutStore = useLayoutStore();
 const { drawerState, drawerMiniState } = storeToRefs(layoutStore);

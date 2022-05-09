@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { sampleUserProfile } from 'src/shared/libs/Account/Profile';
-import { identityMenu, sampleRootApps } from 'src/shared/libs/Menu';
-import { useLayoutStore } from 'src/shared/layouts/stores';
-import HeaderMobile from 'src/shared/layouts/header/HeaderMobile.vue';
-import TabMobile from 'src/shared/layouts/navigation/TabMobile.vue';
-import MenuList from 'src/shared/layouts/navigation/MenuList.vue';
-import MenuUser from 'src/shared/layouts/navigation/MenuUser.vue';
-import ThemeSwitcher from 'src/shared/layouts/navigation/ThemeSwitcher.vue';
-import MenuGridRoute from 'src/shared/layouts/navigation/MenuGridRoute.vue';
+import { sampleUserProfile } from '@/libs/Account/Profile';
+import { identityMenu, sampleRootApps } from '@/libs/Menu';
+import { useLayoutStore } from '@/layouts/stores';
+import HeaderMobile from '@/layouts/header/HeaderMobile.vue';
+import TabMobile from '@/layouts/navigation/TabMobile.vue';
+import MenuList from '@/layouts/navigation/MenuList.vue';
+import MenuUser from '@/layouts/navigation/MenuUser.vue';
+import ThemeSwitcher from '@/layouts/navigation/ThemeSwitcher.vue';
+import MenuGridRoute from '@/layouts/navigation/MenuGridRoute.vue';
 
 const layoutStore = useLayoutStore();
 const { drawerState } = storeToRefs(layoutStore);

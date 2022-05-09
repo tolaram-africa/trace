@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
-import { IPageContext } from 'src/shared/layouts/composables/Page';
-import CorePageWrapper from 'src/shared/components/CorePageWrapper.vue';
+import { IPageContext } from '@/layouts/composables/Page';
+import CorePageWrapper from '@/components/CorePageWrapper.vue';
 
 interface IProps {
   options: {

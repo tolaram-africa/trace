@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NotificationList from 'src/shared/layouts/header/NotificationList.vue';
+import NotificationList from '@layouts/header/NotificationList.vue';
 const contextOptions = {
   page: {
     title: 'Notifications',

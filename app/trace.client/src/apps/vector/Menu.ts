@@ -3,7 +3,7 @@ import {
   filterMobileMenu,
   filterExtendedMenu,
   IModuleCommands,
-} from 'src/shared/libs/Menu';
+} from '@/libs/Menu';
 
 export const Prefix = 'vec.';
 

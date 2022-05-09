@@ -1,18 +1,17 @@
 import { RouteRecordRaw } from 'vue-router';
 import { catchAllRoute, rootRoute } from 'src/app/routes';
-import VectorAppRoutes from 'src/apps/vector/routes';
+import VectorAppRoutes from '@/vector/routes';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () =>
-      import('src/shared/layouts/components/LoadingIndicator.vue'),
+    component: () => import('@/layouts/components/LoadingIndicator.vue'),
     children: [
       /** Root path */
       rootRoute,
       {
         path: 'app',
-        component: () => import('src/shared/components/Empty.vue'),
+        component: () => import('@/components/Empty.vue'),
         children: [VectorAppRoutes],
       },
       /** Catch all path */

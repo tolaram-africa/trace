@@ -1,4 +1,4 @@
-import { IModule } from 'src/shared/libs/Menu';
+import { IModule } from '@/libs/Menu';
 import { reactive, toRefs, onBeforeMount } from 'vue';
 
 export interface IModuleContext {

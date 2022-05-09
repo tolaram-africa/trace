@@ -1,5 +1,5 @@
 /** Sample user profile and permission data */
-import { IProfile } from 'src/shared/libs/constants/Menu';
+import { IProfile } from '@/libs/constants/Menu';
 
 export const permissions = [
   { name: 'default.hide', value: 0 },

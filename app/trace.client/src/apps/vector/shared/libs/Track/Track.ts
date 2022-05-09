@@ -1,5 +1,5 @@
-import { IPeriod } from 'src/shared/libs/Common/Time';
-import { IStatusTypes } from 'src/shared/libs/Track/Status';
+import { IPeriod } from '@/libs/Common/Time';
+import { IStatusTypes } from '@/libs/Track/Status';
 import { ITaskItem } from './Objects';
 
 export interface IActionItems {

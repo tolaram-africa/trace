@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import { useQuasar } from 'quasar';
-import AppLogo from 'src/assets/vectors/logo.svg';
+import AppLogo from '@/assets/vectors/logo.svg';
 
 // const $q = useQuasar();
 </script>

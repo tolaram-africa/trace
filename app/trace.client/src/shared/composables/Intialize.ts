@@ -1,4 +1,4 @@
-import { useThemeStore } from 'src/shared/layouts/stores';
+import { useThemeStore } from '@/layouts/stores';
 
 export const appIntializer = () => {
   const themeStore = useThemeStore();

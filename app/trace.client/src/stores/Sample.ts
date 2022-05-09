@@ -19,7 +19,7 @@ export const useCounterStore = defineStore(
   }
 );
 
-// import { useCounterStore } from 'src/shared/layouts/stores';
+// import { useCounterStore } from '@/layouts/stores';
 // import { storeToRefs } from 'pinia';
 // const counterStore = useCounterStore();
 // const { count } = storeToRefs(counterStore);

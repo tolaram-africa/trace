@@ -3,6 +3,7 @@ const config = require('./app.config');
 const { configure } = require('quasar/wrappers');
 const path = require('path');
 const Components = require('unplugin-vue-components/vite');
+const tsconfigPaths = require('vite-tsconfig-paths').default;
 const svgLoader = require('vite-svg-loader');
 
 module.exports = configure(function (/* ctx */) {
@@ -77,6 +78,7 @@ module.exports = configure(function (/* ctx */) {
           directoryAsNamespace: false,
           exclude: [/node_modules/, /\.git/, /\.quasar/, /\.dist/],
         }),
+        tsconfigPaths(),
       ]
     },
 

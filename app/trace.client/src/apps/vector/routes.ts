@@ -1,6 +1,6 @@
-import AccountRoutes from 'src/app/modules/Account';
-import IdentityRoutes from 'src/app/modules/Identity';
-import { NotificationRoute } from 'src/app/modules/System';
+import AccountRoutes from '@/app/modules/Account';
+import IdentityRoutes from '@/app/modules/Identity';
+import { NotificationRoute } from '@/app/modules/System';
 import BillingModule from './modules/Billing';
 import DriverModule from './modules/Driver';
 import InvoiceModule from './modules/Invoice';

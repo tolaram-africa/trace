@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IProfile } from 'src/shared/libs/Account/Profile';
+import { IProfile } from '@/libs/Account/Profile';
 import { computed } from 'vue';
 
 interface IProps {

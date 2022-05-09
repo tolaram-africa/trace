@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 /* eslint-disable vue/require-default-prop */
-import { setupPage, IPageContext } from 'src/shared/layouts/composables/Page';
+import { setupPage, IPageContext } from '@/layouts/composables/Page';
 
 export interface IProps {
   page: IPageContext;
