@@ -115,7 +115,7 @@ export default {
           <bottom-sheet-list v-show="subDialogState" :items="moduleSubItems" />
           <q-btn
             fab
-            color="primary"
+            color="action"
             icon="bi-three-dots-vertical"
             class="absolute"
             @click="subDialogState = !subDialogState"

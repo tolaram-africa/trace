@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <q-footer class="app-footer q-px-xs">
+  <q-footer class="app-footer q-pa-xs q-mb-sm q-mx-sm">
     <q-tabs
       active-color="action"
       align="justify"
@@ -41,6 +41,7 @@ export default {
         :name="appMenuItem.name"
         :to="{ name: appMenuItem.name }"
         :icon="appMenuItem.icon"
+        class="border-radius-md"
       >
         <q-badge
           v-show="appMenuItem.name === 'app.notifications'"
@@ -64,8 +65,9 @@ export default {
 
 <style lang="scss" scoped>
 .app-footer {
-  border-radius: $border-radius-lg $border-radius-lg 0 0;
+  border-radius: $border-radius-md;
   background-color: var(--q-app-plain);
+  border: 1px solid var(--q-app-background-more);
 
   .badge {
     font-size: unset;
