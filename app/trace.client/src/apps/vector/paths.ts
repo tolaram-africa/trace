@@ -5,7 +5,7 @@ export default {
       title: 'Overview',
       name: 'vec.overview',
       icon: 'bi-grid',
-      path: '',
+      path: 'overview',
     },
     dashboard: {
       title: 'Dashboard',
@@ -92,7 +92,7 @@ export default {
       title: 'Summary',
       icon: 'bi-upc-scan',
       name: 'vec.billing.summary',
-      path: '',
+      path: 'summary',
     },
     recent: {
       title: 'Recent',
@@ -110,6 +110,7 @@ export default {
       name: 'vec.billing.document.create',
       title: 'Document',
       icon: 'bi-file-earmark-text',
+      path: 'document-create',
       command: 'D',
     },
   },
@@ -222,6 +223,33 @@ export default {
       title: 'Route',
       icon: 'bi-compass',
       command: 'R',
+    },
+  },
+  // Settings
+  settings: {
+    root: {
+      title: 'Settings',
+      icon: 'bi-dash-circle',
+      name: 'vec.settings',
+      path: 'settings',
+    },
+    notification: {
+      title: 'Notification',
+      icon: 'bi-dash-circle',
+      name: 'vec.settings.notification',
+      path: 'notification',
+    },
+    interface: {
+      title: 'Interface',
+      icon: 'bi-dash-circle',
+      name: 'vec.settings.interface',
+      path: 'interface',
+    },
+    status: {
+      title: 'Status',
+      icon: 'bi-dash-circle',
+      name: 'vec.settings.status',
+      path: 'status',
     },
   },
 };

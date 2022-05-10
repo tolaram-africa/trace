@@ -23,17 +23,17 @@ export const identityMenu: Array<IModule> = [
 
 export const notificationMenu: Array<IModule> = [
   {
-    name: 'all',
+    name: '0',
     icon: '',
     title: 'View All',
   },
   {
-    name: 'task',
+    name: '1',
     icon: '',
     title: 'Task',
   },
   {
-    name: 'unread',
+    name: '2',
     icon: '',
     title: 'Unread',
   },

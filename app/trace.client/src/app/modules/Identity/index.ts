@@ -1,31 +1,33 @@
+import vectorPaths from '@/libs/paths';
+
 export default {
-  path: 'auth',
-  redirect: { name: 'app.identity.sign-in' },
+  path: vectorPaths.identity.root.path,
+  redirect: { name: vectorPaths.identity.signIn.name },
   component: () => import('./ModLayout.vue'),
   children: [
     {
-      path: 'sign-in',
-      name: 'app.identity.sign-in',
+      path: vectorPaths.identity.signIn.path,
+      name: vectorPaths.identity.signIn.name,
       component: () => import('./pages/LoginPage.vue'),
     },
     {
-      path: 'password-reset',
-      name: 'app.identity.password',
+      path: vectorPaths.identity.passwordReset.path,
+      name: vectorPaths.identity.passwordReset.name,
       component: () => import('./pages/PasswordPage.vue'),
     },
     {
-      path: 'password-update',
-      name: 'app.identity.password-update',
+      path: vectorPaths.identity.passwordUpdate.path,
+      name: vectorPaths.identity.passwordUpdate.name,
       component: () => import('./pages/PasswordUpdatePage.vue'),
     },
     {
-      path: 'password-otp',
-      name: 'app.identity.password-otp',
+      path: vectorPaths.identity.passwordOtp.path,
+      name: vectorPaths.identity.passwordOtp.name,
       component: () => import('./pages/PasswordOtpPage.vue'),
     },
     {
-      path: 'verify-otp',
-      name: 'app.identity.verify-otp',
+      path: vectorPaths.identity.verifyOtp.path,
+      name: vectorPaths.identity.verifyOtp.name,
       component: () => import('./pages/VerifyPage.vue'),
     },
   ],

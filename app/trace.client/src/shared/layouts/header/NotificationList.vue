@@ -5,7 +5,7 @@ import { notificationMenu } from '@/libs/Menu';
 import SwitcherButton from '../navigation/SwitcherButton.vue';
 
 const $q = useQuasar();
-const notifyValue = ref('all');
+const notifyValue = ref('0');
 </script>
 
 <script lang="ts">

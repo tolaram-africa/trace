@@ -104,7 +104,7 @@ export default {
           <div v-show="!passwordState.active">&nbsp;</div>
           <router-link
             class="identity-link identity-text"
-            :to="{ name: 'app.identity.password' }"
+            :to="{ name: 'app.identity.password-reset' }"
             >Forgot password?</router-link
           >
         </div>

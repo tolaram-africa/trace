@@ -1,23 +1,25 @@
+import vectorPaths from '@/libs/paths';
+
+// TODO: Temporarily redirect to the first module
 export const rootRoute = {
   path: '',
-  name: 'app.root',
-  // TODO: Temporarily redirect to the first module
-  redirect: { name: 'vec.overview.dashboard' },
+  name: vectorPaths.root.name,
+  redirect: { name: vectorPaths.root.redirect },
   component: () => import('./pages/RootPage.vue'),
 };
 
 export const NotificationRoute = {
-  path: 'notifications',
+  path: vectorPaths.notification.root.path,
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: 'app.notifications',
+      name: vectorPaths.notification.root.name,
       component: () => import('./pages/NotificationPage.vue'),
     },
     {
-      path: ':id',
-      name: 'app.notifications.item',
+      path: vectorPaths.notification.view.path,
+      name: vectorPaths.notification.view.name,
       component: () => import('./pages/NotificationPage.vue'),
     },
   ],

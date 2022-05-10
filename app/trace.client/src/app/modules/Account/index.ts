@@ -1,25 +1,27 @@
+import vectorPaths from '@/libs/paths';
+
 export default {
-  path: 'account',
+  path: vectorPaths.account.root.path,
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: 'app.account',
-      redirect: { name: 'app.account.profile' },
+      name: vectorPaths.account.root.name,
+      redirect: { name: vectorPaths.account.profile.name },
     },
     {
-      path: 'profile',
-      name: 'app.account.profile',
+      path: vectorPaths.account.profile.path,
+      name: vectorPaths.account.profile.name,
       component: () => import('./pages/ProfilePage.vue'),
     },
     {
-      path: 'settings',
-      name: 'app.account.settings',
+      path: vectorPaths.account.settings.path,
+      name: vectorPaths.account.settings.name,
       component: () => import('./pages/SettingsPage.vue'),
     },
     {
-      path: 'reset-password',
-      name: 'app.account.password',
+      path: vectorPaths.account.passwordReset.path,
+      name: vectorPaths.account.passwordReset.name,
       component: () => import('./pages/PasswordPage.vue'),
     },
   ],
