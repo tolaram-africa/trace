@@ -58,7 +58,7 @@ export default {
           v-model="otpInputValue[verifyIndex]"
           :key="verifyIndex"
           :rules="[(val) => val.length <= 1]"
-          type="number"
+          type="text"
           standout
           no-error-icon
           class="border-radius-sm q-mx-sm verify-input"
