@@ -24,11 +24,7 @@ export default {
 </Script>
 
 <template>
-  <q-toolbar
-    class="q-mt-lg q-mb-xl q-pa-none"
-    style="min-height: 72px"
-    @update:model-value="setModelValue"
-  >
+  <q-toolbar class="q-mt-lg q-mb-xl q-pa-none" style="min-height: 72px">
     <div v-show="props.modelValue" class="q-mx-auto" style="height: 55px">
       <app-logo class="app-logo self-start col-1 q-mx-auto" />
     </div>
@@ -50,7 +46,6 @@ export default {
         </div>
       </div>
       <q-menu
-        v-show="!props.modelValue"
         transition-show="scale"
         transition-hide="scale"
         anchor="center middle"
