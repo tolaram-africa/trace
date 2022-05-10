@@ -1,27 +1,30 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, watch } from 'vue';
 import { Sheet } from 'bottom-sheet-vue3';
 import 'bottom-sheet-vue3/css/style.css';
 
-const isopen = ref(false);
+const isOpen = ref(false);
 
-interface IBottomSheetTheme {
-  sliderIconColor: string;
-  sheetColor: string;
-  containerColor: string;
+interface IProps {
+  sliderIconColor?: string;
+  sheetColor?: string;
+  containerColor?: string;
+  radius?: string;
+  height?: string;
 }
 
-interface IBottomSheetDefault extends IBottomSheetTheme {
-  radius: string;
-  height: string;
-}
-
-const bottomSheetDefault = reactive<IBottomSheetDefault>({
+const props = withDefaults(defineProps<IProps>(), {
   radius: '16px',
   height: '30%',
   sliderIconColor: 'var(--q-app-surface)',
   sheetColor: 'var(--q-app-sheet)',
   containerColor: 'var(--q-app-shade)',
+});
+
+const emits = defineEmits(['update:modelValue:visible']);
+
+watch(isOpen, () => {
+  emits('update:modelValue:visible', isOpen.value);
 });
 </script>
 
@@ -34,12 +37,12 @@ export default {
 <template>
   <sheet
     v-bind="$attrs"
-    v-model:visible="isopen"
-    :radius="bottomSheetDefault.radius"
-    :height="bottomSheetDefault.height"
-    :slider-icon-color="bottomSheetDefault.sliderIconColor"
-    :sheet-color="bottomSheetDefault.sheetColor"
-    :container-color="bottomSheetDefault.containerColor"
+    v-model:visible="isOpen"
+    :radius="props.radius"
+    :height="props.height"
+    :slider-icon-color="props.sliderIconColor"
+    :sheet-color="props.sheetColor"
+    :container-color="props.containerColor"
   >
     <slot>
       <h6 class="text-center">Bottom Sheet</h6>
