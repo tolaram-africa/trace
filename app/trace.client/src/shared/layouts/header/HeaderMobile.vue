@@ -2,12 +2,11 @@
 import { IModuleCommands } from '@/libs/Menu';
 import { ref, toRefs, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { useQuasar } from 'quasar';
 import { storeToRefs } from 'pinia';
 import { usePageStore } from '@/layouts/stores';
 import { useLayoutStore } from '@/layouts/stores';
 import { layoutState } from '@/layouts/composables/Layout';
-import DialogSheetList from '../navigation/DialogSheetList.vue';
+import BottomSheetList from '../navigation/BottomSheetList.vue';
 import BottomSheet from '../navigation/BottomSheet.vue';
 import CommandList from '../navigation/CommandList.vue';
 
@@ -18,18 +17,18 @@ interface IProps {
 
 const props = defineProps<IProps>();
 const layoutStore = useLayoutStore();
-const { toggleDrawer, setModuleDialogState } = layoutStore;
+const { toggleDrawer } = layoutStore;
 const { moduleDialogState } = storeToRefs(layoutStore);
 const { title, showHeader, showTitle, withMobile } = storeToRefs(
   usePageStore()
 );
-const { moduleItems } = toRefs(layoutState);
+const { moduleItems, moduleSubItems } = toRefs(layoutState);
 
 const route = useRoute();
 const router = useRouter();
-const $q = useQuasar();
 
 const swipeModalState = ref(false);
+const subDialogState = ref(false);
 const titleVisibility = computed(() => {
   return showTitle.value || !withMobile.value;
 });
@@ -41,24 +40,6 @@ const headerVisibility = computed(() => {
 const isFocusModule = computed(() => {
   return props.moduleList.includes(String(route.name));
 });
-
-const showModule = () => {
-  if (!moduleDialogState.value) {
-    setModuleDialogState(true);
-    $q.dialog({
-      component: DialogSheetList,
-      componentProps: {
-        position: 'standard',
-        seamless: false,
-        persistent: false,
-        mobile: true,
-        moduleItems: moduleItems.value,
-      },
-    }).onDismiss(() => {
-      setModuleDialogState(false);
-    });
-  }
-};
 </script>
 
 <script lang="ts">
@@ -118,7 +99,7 @@ export default {
           isFocusModule ? 'bi-three-dots-vertical' : 'bi-grid-3x2-gap-fill'
         "
         color="primary"
-        @click="showModule"
+        @click="moduleDialogState = !moduleDialogState"
       />
     </q-toolbar>
     <bottom-sheet v-model:visible="swipeModalState" :threshold="150">
@@ -127,6 +108,22 @@ export default {
         :items="props.qucikCommands"
       />
     </bottom-sheet>
+    <q-dialog class="shadow-0" v-model="moduleDialogState">
+      <div class="full-width shadow-0 q-pt-xl">
+        <q-card class="full-width q-pt-lg q-pb-xs border-radius-sm">
+          <bottom-sheet-list v-show="!subDialogState" :items="moduleItems" />
+          <bottom-sheet-list v-show="subDialogState" :items="moduleSubItems" />
+          <q-btn
+            fab
+            color="primary"
+            icon="bi-three-dots-vertical"
+            class="absolute"
+            @click="subDialogState = !subDialogState"
+            style="top: 0; right: 5%; transform: translateY(-50%)"
+          />
+        </q-card>
+      </div>
+    </q-dialog>
   </q-header>
 </template>
 

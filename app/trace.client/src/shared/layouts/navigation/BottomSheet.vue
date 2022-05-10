@@ -37,9 +37,9 @@ export default {
     v-model:visible="isopen"
     :radius="bottomSheetDefault.radius"
     :height="bottomSheetDefault.height"
-    :sliderIconColor="bottomSheetDefault.sliderIconColor"
-    :sheetColor="bottomSheetDefault.sheetColor"
-    :containerColor="bottomSheetDefault.containerColor"
+    :slider-icon-color="bottomSheetDefault.sliderIconColor"
+    :sheet-color="bottomSheetDefault.sheetColor"
+    :container-color="bottomSheetDefault.containerColor"
   >
     <slot>
       <h6 class="text-center">Bottom Sheet</h6>

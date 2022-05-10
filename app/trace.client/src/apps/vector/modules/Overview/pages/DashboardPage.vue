@@ -5,5 +5,5 @@ const contextOptions = {
 </script>
 
 <template>
-  <page-wrapper :options="contextOptions"> </page-wrapper>
+  <page-wrapper :options="contextOptions"></page-wrapper>
 </template>
