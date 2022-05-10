@@ -33,13 +33,17 @@ export default {
 <template>
   <fragment>
     <!-- TODO: Implement mobile option -->
-    <q-separator v-show="showView" class="q-my-md"></q-separator>
-    <switcher-tab
-      v-show="showView"
-      :items="moduleSubItems"
-      align="left"
-      route
-    ></switcher-tab>
+    <q-page-sticky expand position="top" :offset="[0, 0]">
+      <div class="full-width">
+        <q-separator v-show="showView" class="q-my-md"></q-separator>
+        <switcher-tab
+          v-show="showView"
+          :items="moduleSubItems"
+          align="left"
+          route
+        ></switcher-tab>
+      </div>
+    </q-page-sticky>
     <slot>
       <router-view></router-view>
     </slot>
