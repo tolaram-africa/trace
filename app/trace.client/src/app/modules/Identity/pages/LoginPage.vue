@@ -87,6 +87,20 @@ export default {
           @click="passwordState.active ? signIn() : next()"
           class="full-width border-radius-sm text-weight-medium"
         />
+
+        <div v-show="!passwordState.active">
+          <q-separator color="app-background" class="q-my-lg" />
+
+          <q-btn
+            label="Sign In with Google"
+            icon="bi-google"
+            color="app-background-more"
+            size="lg"
+            outline
+            no-caps
+            class="full-width border-radius-sm text-weight-regular"
+          />
+        </div>
       </div>
 
       <template #footer>
