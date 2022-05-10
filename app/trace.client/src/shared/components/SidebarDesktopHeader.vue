@@ -17,7 +17,11 @@ const setModelValue = (value: boolean) => {
 };
 </script>
 
-<Script lang="ts"></Script>
+<Script lang="ts">
+export default {
+  name: 'SidebarDesktopHeader',
+};
+</Script>
 
 <template>
   <q-toolbar
