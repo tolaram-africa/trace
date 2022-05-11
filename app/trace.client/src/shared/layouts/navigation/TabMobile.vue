@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IModule } from '@/libs/Menu';
-import { ref } from 'vue';
+import { ref, computed, watch, onBeforeMount } from 'vue';
+import { useRoute } from 'vue-router';
 import BottomSheet from './BottomSheet.vue';
 import BottomSheetList from './BottomSheetList.vue';
 
@@ -10,11 +11,38 @@ interface IProps {
 }
 
 const props = defineProps<IProps>();
+const route = useRoute();
 const swipeModalState = ref(false);
+const tabState = ref<string>('more');
+const extendedTabItems = ref<Array<IModule>>([]);
+
+onBeforeMount(() => {
+  extendedTabItems.value = props.tabExtendedItems;
+});
+
+const activeExtendedTab = computed<boolean>(() => {
+  const extendedModules: Array<string> = extendedTabItems.value
+    .map((item) => item.name)
+    .filter((item) => {
+      if (String(route.name).includes(item)) return true;
+    });
+  return extendedModules.length > 0;
+});
+
+const updateActiveTab = () => {
+  if (activeExtendedTab.value) tabState.value = 'more';
+};
+const delayedActiveTabUpdate = () => {
+  setTimeout(() => {
+    updateActiveTab();
+  }, 50);
+};
 const showModule = () => {
   swipeModalState.value = !swipeModalState.value;
-  return;
+  updateActiveTab();
 };
+watch(activeExtendedTab, () => delayedActiveTabUpdate());
+watch(swipeModalState, () => delayedActiveTabUpdate());
 </script>
 
 <script lang="ts">
@@ -26,6 +54,7 @@ export default {
 <template>
   <q-footer class="app-footer q-pa-xs q-mb-sm q-mx-sm">
     <q-tabs
+      v-model="tabState"
       active-color="action"
       align="justify"
       no-caps
