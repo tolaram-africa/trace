@@ -4,7 +4,7 @@ import { useMeta } from 'quasar';
 import { usePageStore, usePageAnimation } from '@/layouts/stores';
 
 export interface IPageContext {
-  title: string;
+  title?: string;
   description?: string;
   showTitle?: boolean;
   showHeader?: boolean;
