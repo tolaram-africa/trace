@@ -22,14 +22,14 @@ export default {
       <q-item
         :to="{ name: item.name }"
         @click="closeModal(false)"
-        class="border-radius-sm text-accent"
+        class="border-radius-sm text-accent-more"
         active-class="text-action"
         clickable
       >
         <q-item-section avatar>
-          <q-icon size="2em" :name="item.icon" />
+          <q-icon size="1.7em" color="primary" :name="item.icon" />
         </q-item-section>
-        <q-item-section class="text-h6" no-wrap
+        <q-item-section class="text-h6 text-weight-regular" no-wrap
           >{{ item.title }}
         </q-item-section>
       </q-item>
