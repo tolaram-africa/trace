@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IProfile } from '@/libs/Account/Profile';
 import { IModule } from '@/libs/Menu';
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, onUnmounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useLayoutStore } from '@/layouts/stores';
 import MenuUser from '@/layouts/navigation/MenuUser.vue';
@@ -22,9 +22,10 @@ const layoutStore = useLayoutStore();
 const { drawerState, drawerMiniState } = storeToRefs(layoutStore);
 const showIdentityMenu = ref(false);
 const miniDrawer = computed(() => drawerMiniState.value);
+const timeout = ref();
 
 watch(miniDrawer, () => {
-  setTimeout(() => {
+  timeout.value = setTimeout(() => {
     if (miniDrawer.value) showIdentityMenu.value = false;
   }, 500);
 });
@@ -32,6 +33,10 @@ watch(miniDrawer, () => {
 const setMiniDrawer = (value: boolean) => {
   drawerMiniState.value = value;
 };
+
+onUnmounted(() => {
+  clearTimeout(timeout.value);
+});
 </script>
 
 <script lang="ts">
@@ -110,7 +115,7 @@ export default {
     <!-- Module grid drawer -->
     <slot name="module-drawer"></slot>
     <slot name="header"></slot>
-    <q-page-container class="bg-app-container">
+    <q-page-container class="bg-app-container hide-scrollbar">
       <slot>
         <router-view />
       </slot>

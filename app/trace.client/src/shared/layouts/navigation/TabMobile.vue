@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IModule } from '@/libs/Menu';
-import { ref, computed, watch, onBeforeMount } from 'vue';
+import { ref, computed, watch, onBeforeMount, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
 import BottomSheet from './BottomSheet.vue';
 import BottomSheetList from './BottomSheetList.vue';
@@ -14,6 +14,7 @@ const props = defineProps<IProps>();
 const route = useRoute();
 const swipeModalState = ref(false);
 const tabState = ref<string>('more');
+const timeout = ref();
 const extendedTabItems = ref<Array<IModule>>([]);
 
 onBeforeMount(() => {
@@ -33,7 +34,7 @@ const updateActiveTab = () => {
   if (activeExtendedTab.value) tabState.value = 'more';
 };
 const delayedActiveTabUpdate = () => {
-  setTimeout(() => {
+  timeout.value = setTimeout(() => {
     updateActiveTab();
   }, 50);
 };
@@ -43,6 +44,10 @@ const showModule = () => {
 };
 watch(activeExtendedTab, () => delayedActiveTabUpdate());
 watch(swipeModalState, () => delayedActiveTabUpdate());
+
+onUnmounted(() => {
+  clearTimeout(timeout.value);
+});
 </script>
 
 <script lang="ts">

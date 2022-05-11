@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { Fragment } from '@yunzhe35p/vue-fragment';
-import { ref, onMounted, onBeforeMount } from 'vue';
+import { ref, onMounted, onBeforeMount, onUnmounted } from 'vue';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
 const loadingState = ref(true);
+const timeout = ref();
 
 onBeforeMount(() => {
   if (
@@ -22,10 +23,14 @@ onMounted(() => {
     !$q.platform.is.electron ||
     !$q.platform.is.cordova
   ) {
-    setTimeout(() => {
+    timeout.value = setTimeout(() => {
       loadingState.value = false;
     }, 500);
   }
+});
+
+onUnmounted(() => {
+  clearTimeout(timeout.value);
 });
 </script>
 <script lang="ts">
