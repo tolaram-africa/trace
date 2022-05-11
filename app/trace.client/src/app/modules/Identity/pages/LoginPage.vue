@@ -92,9 +92,10 @@ export default {
           <q-separator color="app-background" class="q-my-lg" />
 
           <q-btn
-            label="Sign In with Google"
+            label="Sign in with Google"
             icon="bi-google"
             color="app-background-more"
+            text-color="accent"
             size="lg"
             outline
             no-caps
