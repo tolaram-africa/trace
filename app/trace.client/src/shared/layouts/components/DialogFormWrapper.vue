@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onUnmounted } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { Fragment } from '@yunzhe35p/vue-fragment';
 import { useQuasar } from 'quasar';
@@ -22,38 +22,29 @@ const props = withDefaults(defineProps<IProps>(), {
 
 const showView = ref(true);
 const overlay = ref();
-const timeout = ref();
-const emits = defineEmits([
-  'dialogForm:loading',
-  'dialogForm:saved',
-  'dialogForm:hide',
-]);
+const emits = defineEmits(['form:loading', 'form:save', 'form:hide']);
 
-const triggerLoading = (value: boolean) => {
+const setLoadingState = (value: boolean) => {
   overlay.value.setModelValue(value);
   overlay.value.setLoading(value);
-  emits('dialogForm:loading', value);
+  emits('form:loading', value);
 };
 
-const dialogCloseHandler = () => {
+const triggerHide = () => {
   showView.value = false;
-  emits('dialogForm:hide', showView.value);
+  emits('form:hide', showView.value);
 };
 
-const dialogSaveHandler = () => {
-  triggerLoading(true);
-  timeout.value = setTimeout(() => {
-    triggerLoading(false);
-  }, 3000);
+const triggerSaving = () => {
+  setLoadingState(true);
+  emits('form:save');
 };
 
 watch(showView, () => {
   !showView.value ? router.back() : null;
 });
 
-onUnmounted(() => {
-  clearTimeout(timeout.value);
-});
+defineExpose({ setLoadingState, triggerHide, triggerSaving });
 </script>
 
 <script lang="ts">
@@ -64,8 +55,56 @@ export default {
 
 <template>
   <fragment>
+    <!-- Start dessktop form dialog card -->
+    <q-dialog
+      v-if="$q.platform.is.desktop"
+      :persistent="props.persistent"
+      :seamless="props.seamless"
+      :position="props.position"
+      v-model="showView"
+      class="hide-scrollbar"
+    >
+      <q-card class="dialog-card border-radius-md no-scroll">
+        <overlay-loading ref="overlay">
+          <q-card-actions align="right" class="q-pa-md card-item-button">
+            <slot name="actions">
+              <q-btn
+                size="lg"
+                label="Cancel"
+                no-caps
+                flat
+                color="primary"
+                class="border-radius-sm q-mx-xs dialog-button-cancel"
+                v-close-popup
+                @click="triggerHide"
+              />
+              <q-btn
+                size="lg"
+                label="Save"
+                no-caps
+                color="primary"
+                text-color="primary-inverted"
+                class="border-radius-sm q-mx-xs dialog-button-save"
+                @click="triggerSaving"
+              />
+            </slot>
+          </q-card-actions>
+          <q-card-section
+            class="q-pt-none scroll child q-pb-xl hide-scrollbar overflow-y-auto card-item-content"
+          >
+            <slot>
+              <router-view></router-view>
+            </slot>
+          </q-card-section>
+          <q-space />
+        </overlay-loading>
+      </q-card>
+    </q-dialog>
+    <!-- End dessktop form dialog card -->
+
+    <!-- Start mobile form bottom sheet -->
     <bottom-sheet
-      v-if="$q.platform.is.mobile"
+      v-else
       v-model:visible="showView"
       :click-outside="!props.persistent"
       :threshold="90"
@@ -87,7 +126,7 @@ export default {
                 color="primary"
                 text-color="primary-inverted"
                 class="full-width border-radius-sm"
-                @click="dialogSaveHandler"
+                @click="triggerSaving"
               />
               <q-btn
                 size="lg"
@@ -97,57 +136,14 @@ export default {
                 flat
                 color="primary"
                 class="full-width border-radius-sm"
-                @click="dialogCloseHandler"
+                @click="triggerHide"
               />
             </slot>
           </q-card-actions>
         </overlay-loading>
       </q-card>
     </bottom-sheet>
-    <q-dialog
-      v-else
-      :persistent="props.persistent"
-      :seamless="props.seamless"
-      :position="props.position"
-      v-model="showView"
-      class="hide-scrollbar"
-    >
-      <q-card class="dialog-card border-radius-md no-scroll">
-        <overlay-loading ref="overlay">
-          <q-card-actions align="right" class="q-pa-md card-item-button">
-            <slot name="actions">
-              <q-btn
-                size="lg"
-                label="Cancel"
-                no-caps
-                flat
-                color="primary"
-                class="border-radius-sm q-mx-xs dialog-button-cancel"
-                v-close-popup
-                @click="dialogCloseHandler"
-              />
-              <q-btn
-                size="lg"
-                label="Save"
-                no-caps
-                color="primary"
-                text-color="primary-inverted"
-                class="border-radius-sm q-mx-xs dialog-button-save"
-                @click="dialogSaveHandler"
-              />
-            </slot>
-          </q-card-actions>
-          <q-card-section
-            class="q-pt-none scroll child q-pb-xl hide-scrollbar overflow-y-auto card-item-content"
-          >
-            <slot>
-              <router-view></router-view>
-            </slot>
-          </q-card-section>
-          <q-space />
-        </overlay-loading>
-      </q-card>
-    </q-dialog>
+    <!-- End mobile form bottom sheet -->
   </fragment>
 </template>
 
