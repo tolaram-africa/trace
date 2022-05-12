@@ -42,7 +42,8 @@ body {
       border-radius: inherit;
       .q-field__native {
         color: var(--q-primary-1);
-        font-size: 0.92rem;
+        font-size: 1.05rem;
+        margin-bottom: 10px;
       }
       .q-field__append {
         color: var(--q-accent);
@@ -50,6 +51,13 @@ body {
     }
     .q-field__control:before {
       border: none;
+    }
+  }
+
+  .q-field--labeled.q-field--focused.q-field--highlighted,
+  .q-field--float.q-field--labeled {
+    .q-field__label {
+      margin-top: -8px;
     }
   }
 
