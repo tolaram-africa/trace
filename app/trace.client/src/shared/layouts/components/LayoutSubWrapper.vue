@@ -30,8 +30,8 @@ export default {
 </script>
 
 <template>
-  <q-page v-bind="$attrs" class="row items-center justify-center">
-    <div class="full-width">
+  <q-page v-bind="$attrs" class="row justify-center items-start">
+    <div class="full-width q-mt-xs">
       <q-separator
         v-show="showView"
         class="q-my-sm"

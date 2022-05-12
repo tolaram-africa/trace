@@ -1,9 +1,8 @@
 /** Shared between page wrappers */
 .page-visual {
-  margin-top: -105px;
-  transform: scale(0.5);
+  width: 550px;
   @media screen and (max-width: 900px) {
     margin-top: 25px;
-    transform: scale(0.3);
+    width: 355px;
   }
 }

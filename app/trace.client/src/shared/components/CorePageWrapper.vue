@@ -24,7 +24,5 @@ export default {
 </script>
 
 <template>
-  <div class="text-wrap text-center column items-center" v-bind="$attrs">
-    <slot></slot>
-  </div>
+  <slot></slot>
 </template>

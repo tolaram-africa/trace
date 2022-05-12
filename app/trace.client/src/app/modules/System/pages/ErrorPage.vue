@@ -15,5 +15,11 @@ export default {
 </script>
 
 <template>
-  <error-page-wrapper :options="contextOptions"></error-page-wrapper>
+  <q-layout view="hHh lpR fFf">
+    <q-page-container>
+      <q-page class="column items-center justify-center">
+        <error-page-wrapper :options="contextOptions"></error-page-wrapper>
+      </q-page>
+    </q-page-container>
+  </q-layout>
 </template>

@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router';
 import { IPageContext } from '@/layouts/composables/Page';
 import CorePageWrapper from '@/components/CorePageWrapper.vue';
-import NotFound from './assets/not-found.svg';
+import NotFound from './assets/not-found.svg?url';
 
 interface IProps {
   options: {
@@ -28,23 +28,31 @@ export default {
     :animate-leave="props.options.animateLeave"
   >
     <slot>
-      <not-found class="q-my-xl page-visual"></not-found>
-      <transition
-        appear
-        enter-active-class="animated backInUp"
-        leave-active-class="animated backInDown"
-      >
-        <q-btn
-          color="primary"
-          class="q-mt-sm border-radius-sm"
-          size="lg"
-          no-caps
-          @click="router.back"
-          outline
-          style="width: 200px"
-          >Go Back</q-btn
+      <q-img
+        no-native-menu
+        no-spinner
+        :src="NotFound"
+        class="q-my-xs page-visual q-mb-lg"
+        alt="Under Construction"
+      />
+      <div class="text-center q-mt-lg">
+        <transition
+          appear
+          enter-active-class="animated backInUp"
+          leave-active-class="animated backInDown"
         >
-      </transition>
+          <q-btn
+            color="primary"
+            class="q-mt-sm border-radius-sm"
+            size="lg"
+            no-caps
+            @click="router.back"
+            outline
+            style="width: 200px"
+            >Go Back</q-btn
+          >
+        </transition>
+      </div>
     </slot>
   </core-page-wrapper>
 </template>

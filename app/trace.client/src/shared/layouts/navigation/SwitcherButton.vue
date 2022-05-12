@@ -48,6 +48,7 @@ export default {
         :name="moduleItem.name"
         :to="{ name: moduleItem.name }"
         class="border-radius-sm q-ma-xs q-px-none"
+        content-class="q-px-lg"
       >
         {{ moduleItem.title }}
       </q-route-tab>
@@ -58,6 +59,7 @@ export default {
       :key="moduleIndex"
       :name="moduleItem.name"
       class="border-radius-sm q-ma-xs q-px-none"
+      content-class="q-px-sm"
     >
       {{ moduleItem.title }}
     </q-tab>
