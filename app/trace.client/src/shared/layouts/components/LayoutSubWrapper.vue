@@ -37,12 +37,14 @@ export default {
         class="q-my-sm"
         color="app-background-more"
       ></q-separator>
-      <switcher-tab
-        v-show="showView"
-        :items="moduleSubItems"
-        align="left"
-        route
-      ></switcher-tab>
+      <q-no-ssr>
+        <switcher-tab
+          v-show="showView"
+          :items="moduleSubItems"
+          align="left"
+          route
+        ></switcher-tab>
+      </q-no-ssr>
     </div>
     <slot>
       <router-view></router-view>

@@ -18,13 +18,6 @@ const moduleItems = [
 
 const moduleSubItems = [
   {
-    title: 'Sample 0',
-    icon: 'bi-columns-gap',
-    color: 'accent',
-    name: 'vec.task',
-    class: '',
-  },
-  {
     title: 'Sample 1',
     icon: 'bi-graph-up-arrow',
     color: 'accent',

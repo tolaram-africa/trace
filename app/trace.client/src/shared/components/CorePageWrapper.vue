@@ -24,5 +24,7 @@ export default {
 </script>
 
 <template>
-  <slot></slot>
+  <div v-bind="$attrs">
+    <slot></slot>
+  </div>
 </template>
