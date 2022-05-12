@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Fragment } from '@yunzhe35p/vue-fragment';
 import { ref, onMounted, onBeforeMount, onUnmounted } from 'vue';
 import { useQuasar } from 'quasar';
 

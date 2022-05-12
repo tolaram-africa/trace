@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
 import { IPageContext } from '@/layouts/composables/Page';
 import CorePageWrapper from '@/components/CorePageWrapper.vue';
+import UnderConstruction from './assets/under-construction.svg';
 
 interface IProps {
   options: {
@@ -12,7 +12,6 @@ interface IProps {
   };
 }
 const props = defineProps<IProps>();
-const router = useRouter();
 const $q = useQuasar();
 </script>
 
@@ -30,12 +29,7 @@ export default {
     v-bind="$attrs"
   >
     <slot>
-      <q-img
-        no-native-menu
-        no-spinner
-        class="q-my-xl page-visual"
-        src="./assets/under-construction.svg"
-      />
+      <under-construction class="q-my-xl page-visual"></under-construction>
       <transition
         v-show="$q.platform.is.desktop"
         appear
@@ -47,7 +41,7 @@ export default {
           class="q-mt-sm border-radius-sm"
           size="lg"
           no-caps
-          @click="router.push({ name: 'root' })"
+          :to="{ name: 'app.root' }"
           outline
           style="width: 200px"
           >Home</q-btn

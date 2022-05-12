@@ -1,11 +1,9 @@
 /** Shared between page wrappers */
 .page-visual {
-  margin-top: -85px;
-  min-width: 500px;
-  max-width: 600px;
+  margin-top: -105px;
+  transform: scale(0.5);
   @media screen and (max-width: 900px) {
     margin-top: 25px;
-    min-width: 340px;
-    min-width: 350px;
+    transform: scale(0.3);
   }
 }

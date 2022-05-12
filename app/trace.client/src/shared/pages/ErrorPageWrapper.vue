@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router';
 import { IPageContext } from '@/layouts/composables/Page';
 import CorePageWrapper from '@/components/CorePageWrapper.vue';
+import NotFound from './assets/not-found.svg';
 
 interface IProps {
   options: {
@@ -27,7 +28,7 @@ export default {
     :animate-leave="props.options.animateLeave"
   >
     <slot>
-      <q-img class="q-my-xl page-visual" src="./assets/not-found.svg" />
+      <not-found class="q-my-xl page-visual"></not-found>
       <transition
         appear
         enter-active-class="animated backInUp"

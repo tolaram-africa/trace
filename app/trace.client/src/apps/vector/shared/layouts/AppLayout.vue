@@ -12,7 +12,6 @@ import {
   appMobileMenuString,
 } from '@/vector/Menu';
 import { layoutState } from '@/layouts/composables/Layout';
-import { Fragment } from '@yunzhe35p/vue-fragment';
 import DesktopLayout from '@/layouts/components/DesktopLayout.vue';
 import MobileLayout from '@/layouts/components/MobileLayout.vue';
 import HeaderLarge from '@/layouts/header/HeaderLarge.vue';

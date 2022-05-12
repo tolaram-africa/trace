@@ -1,6 +1,6 @@
 import vectorPaths from '@/libs/paths';
 
-// TODO: Temporarily redirect to the first module
+// TODO: Remove temporary redirection to first module
 export const rootRoute = {
   path: '',
   name: vectorPaths.root.name,
@@ -27,12 +27,6 @@ export const NotificationRoute = {
 
 export const catchAllRoute = {
   path: ':catchAll(.*)*',
-  component: () => import('./ModLayout.vue'),
-  children: [
-    {
-      path: '',
-      name: 'app.error',
-      component: () => import('./pages/ErrorPage.vue'),
-    },
-  ],
+  name: 'app.error',
+  component: () => import('./pages/ErrorPage.vue'),
 };

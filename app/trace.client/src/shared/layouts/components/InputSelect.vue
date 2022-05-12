@@ -28,6 +28,8 @@ export default {
     label-color="accent"
     bg-color="app-background-shift2"
     standout="bg-app-background text-accent"
+    transition-show="scale"
+    transition-hide="scale"
     v-model="model"
     :options="options"
     label="Inout Select"

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { Fragment } from '@yunzhe35p/vue-fragment';
 import { useQuasar } from 'quasar';
 import BottomSheet from '@/layouts/navigation/BottomSheet.vue';
 import OverlayLoading from './OverlayLoading.vue';

@@ -9,6 +9,7 @@ declare module 'vue' {
     DialogFormWrapper: typeof import('./src/shared/layouts/components/DialogFormWrapper.vue')['default']
     Empty: typeof import('./src/shared/components/Empty.vue')['default']
     ErrorPageWrapper: typeof import('./src/shared/pages/ErrorPageWrapper.vue')['default']
+    Fragment: typeof import('./src/shared/layouts/components/Fragment.vue')['default']
     InputDateTime: typeof import('./src/shared/layouts/components/InputDateTime.vue')['default']
     InputSelect: typeof import('./src/shared/layouts/components/InputSelect.vue')['default']
     InputText: typeof import('./src/shared/layouts/components/InputText.vue')['default']

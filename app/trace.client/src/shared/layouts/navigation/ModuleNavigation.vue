@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { IModule } from '@/libs/Menu';
 import MenuList from './MenuList.vue';
-import { Fragment } from '@yunzhe35p/vue-fragment';
 
 interface IProps {
   modelValue: boolean;
