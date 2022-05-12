@@ -50,12 +50,10 @@ const moduleSubItems = [
 
 <template>
   <layout-wrapper :module-items="moduleItems">
-    <!-- Sub layout wrapper sample or QPage -->
-    <layout-sub-wrapper
-      :items="moduleSubItems"
-      class="row items-center justify-center"
-    >
-      <router-view />
+    <layout-sub-wrapper :items="moduleSubItems">
+      <div class="row justify-center items-start">
+        <router-view />
+      </div>
     </layout-sub-wrapper>
   </layout-wrapper>
 </template>
