@@ -4,8 +4,10 @@ import { ref } from 'vue';
 
 const overlayState = ref(false);
 const loadingState = ref(false);
-const emits = defineEmits(['update:modelValue', 'update:loading']);
-
+const emits = defineEmits<{
+  (eventName: 'update:modelValue', value: boolean): void;
+  (eventName: 'update:loading', value: boolean): void;
+}>();
 const setModelValue = (value: boolean) => {
   emits('update:modelValue', value);
   overlayState.value = value;

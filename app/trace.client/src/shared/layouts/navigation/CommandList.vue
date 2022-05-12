@@ -5,7 +5,9 @@ interface IProps {
   items: Array<IModuleCommands>;
 }
 const props = defineProps<IProps>();
-const emits = defineEmits(['update:visible']);
+const emits = defineEmits<{
+  (eventName: 'update:visible', value: boolean): void;
+}>();
 const closeModal = (value: boolean) => {
   emits('update:visible', value);
 };

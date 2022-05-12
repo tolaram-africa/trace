@@ -10,7 +10,9 @@ interface IProps {
 }
 
 const props = defineProps<IProps>();
-defineEmits(['update:modelValue']);
+defineEmits<{
+  (eventName: 'update:modelValue', value: boolean): void;
+}>();
 </script>
 
 <script lang="ts">

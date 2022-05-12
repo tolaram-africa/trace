@@ -21,7 +21,11 @@ const props = withDefaults(defineProps<IProps>(), {
 
 const showView = ref(true);
 const overlay = ref();
-const emits = defineEmits(['form:loading', 'form:save', 'form:hide']);
+const emits = defineEmits<{
+  (eventName: 'form:loading', value: boolean): void;
+  (eventName: 'form:hide', value: boolean): void;
+  (eventName: 'form:save'): void;
+}>();
 
 const setLoadingState = (value: boolean) => {
   overlay.value.setModelValue(value);
@@ -31,7 +35,8 @@ const setLoadingState = (value: boolean) => {
 
 const triggerHide = () => {
   showView.value = false;
-  emits('form:hide', showView.value);
+  const value: boolean = showView.value;
+  emits('form:hide', value);
 };
 
 const triggerSaving = () => {

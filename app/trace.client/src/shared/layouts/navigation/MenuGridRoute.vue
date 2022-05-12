@@ -6,7 +6,9 @@ interface IProps {
 }
 
 const props = defineProps<IProps>();
-const emits = defineEmits(['gridAction']);
+const emits = defineEmits<{
+  (eventName: 'gridAction'): void;
+}>();
 const gridAction = () => {
   emits('gridAction');
 };

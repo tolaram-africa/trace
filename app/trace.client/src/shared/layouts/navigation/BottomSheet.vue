@@ -21,7 +21,9 @@ const props = withDefaults(defineProps<IProps>(), {
   containerColor: 'var(--q-app-shade)',
 });
 
-const emits = defineEmits(['update:modelValue:visible']);
+const emits = defineEmits<{
+  (eventName: 'update:modelValue:visible', value: boolean): void;
+}>();
 
 watch(isOpen, () => {
   emits('update:modelValue:visible', isOpen.value);

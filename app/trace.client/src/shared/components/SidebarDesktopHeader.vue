@@ -11,7 +11,9 @@ interface IProps {
 }
 
 const props = defineProps<IProps>();
-const emits = defineEmits(['update:modelValue', 'update:name']);
+const emits = defineEmits<{
+  (eventName: 'update:modelValue', value: boolean): void;
+}>();
 const setModelValue = (value: boolean) => {
   emits('update:modelValue', value);
 };

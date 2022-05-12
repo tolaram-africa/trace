@@ -7,7 +7,9 @@ interface IProps {
 const model = ref('');
 const mask = ref('YYYY-MM-DD HH:mm');
 const props = defineProps<IProps>();
-const emits = defineEmits(['update:modelValue']);
+const emits = defineEmits<{
+  (eventName: 'update:modelValue', value: string): void;
+}>();
 onBeforeMount(() => {
   model.value = props.modelValue;
 });

@@ -16,7 +16,9 @@ const props = withDefaults(defineProps<IProps>(), {
 });
 
 const placeHolderState = ref(props.modelValue);
-const emits = defineEmits(['update:modelValue']);
+const emits = defineEmits<{
+  (eventName: 'update:modelValue', value: string): void;
+}>();
 const updateValue = (value: string) => {
   placeHolderState.value = value;
   emits('update:modelValue', value);
