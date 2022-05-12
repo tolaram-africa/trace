@@ -15,12 +15,47 @@ const moduleItems = [
     class: '',
   },
 ];
+
+const moduleSubItems = [
+  {
+    title: 'Sample 0',
+    icon: 'bi-columns-gap',
+    color: 'accent',
+    name: 'vec.task',
+    class: '',
+  },
+  {
+    title: 'Sample 1',
+    icon: 'bi-graph-up-arrow',
+    color: 'accent',
+    name: 'vec.overview.trends',
+    class: '',
+  },
+  {
+    title: 'Sample 3',
+    icon: 'bi-graph-up-arrow',
+    color: 'accent',
+    name: 'vec.track',
+    class: '',
+  },
+  {
+    title: 'Sample 4',
+    icon: 'bi-graph-up-arrow',
+    color: 'accent',
+    name: 'vec.overview',
+    class: '',
+  },
+];
 </script>
 
 <template>
   <layout-wrapper :module-items="moduleItems">
-    <q-page class="row items-center justify-evenly">
+    <!-- Sub layout wrapper sample or QPage -->
+    <layout-sub-wrapper
+      :items="moduleSubItems"
+      class="row items-center justify-center"
+    >
       <router-view />
-    </q-page>
+    </layout-sub-wrapper>
   </layout-wrapper>
 </template>
