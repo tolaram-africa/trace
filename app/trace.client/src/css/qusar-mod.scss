@@ -35,6 +35,24 @@ body {
     }
   }
 
+  .app-form .q-field__inner {
+    border-radius: $border-radius-sm;
+
+    .q-field__control {
+      border-radius: inherit;
+      .q-field__native {
+        color: var(--q-primary-1);
+        font-size: 0.92rem;
+      }
+      .q-field__append {
+        color: var(--q-accent);
+      }
+    }
+    .q-field__control:before {
+      border: none;
+    }
+  }
+
   /** Added OTP form input styles */
   .verify-input .q-field__inner {
     .q-field__control .q-field__native {

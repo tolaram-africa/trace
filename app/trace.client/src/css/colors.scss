@@ -5,6 +5,7 @@
   /** color-name, light-mode-color, dark-mode-color */
 
   @include named-color('primary', $primary, $primary-darkend);
+  @include named-color('primary-1', $primary-1, $primary-1-darkend);
   @include named-color('secondary', $secondary, $secondary-darkend);
   @include named-color('accent', $accent, $accent-darkend);
   @include named-color('accent-more', $accent, $grey-5);
@@ -14,6 +15,7 @@
   @include named-color('app-background', $indigo-1, $grey-9);
   @include named-color('app-background-more', $indigo-2, $grey-9);
   @include named-color('app-background-shift', $indigo-0, $grey-9);
+  @include named-color('app-background-shift2', $indigo-01, $grey-10);
   @include named-color('deep-background', $indigo-7, transparent);
   @include named-color('app-white', white, transparent);
   @include named-color('app-plain', white, $grey-9);

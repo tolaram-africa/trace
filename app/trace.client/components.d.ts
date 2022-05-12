@@ -6,13 +6,17 @@ declare module 'vue' {
   export interface GlobalComponents {
     CorePageWrapper: typeof import('./src/shared/components/CorePageWrapper.vue')['default']
     DesktopLayout: typeof import('./src/shared/layouts/components/DesktopLayout.vue')['default']
-    DialogWrapper: typeof import('./src/shared/components/DialogWrapper.vue')['default']
+    DialogFormWrapper: typeof import('./src/shared/layouts/components/DialogFormWrapper.vue')['default']
     Empty: typeof import('./src/shared/components/Empty.vue')['default']
     ErrorPageWrapper: typeof import('./src/shared/pages/ErrorPageWrapper.vue')['default']
+    InputDateTime: typeof import('./src/shared/layouts/components/InputDateTime.vue')['default']
+    InputSelect: typeof import('./src/shared/layouts/components/InputSelect.vue')['default']
+    InputText: typeof import('./src/shared/layouts/components/InputText.vue')['default']
     LayoutSubWrapper: typeof import('./src/shared/layouts/components/LayoutSubWrapper.vue')['default']
     LayoutWrapper: typeof import('./src/shared/layouts/components/LayoutWrapper.vue')['default']
     LoadingIndicator: typeof import('./src/shared/layouts/components/LoadingIndicator.vue')['default']
     MobileLayout: typeof import('./src/shared/layouts/components/MobileLayout.vue')['default']
+    OverlayLoading: typeof import('./src/shared/layouts/components/OverlayLoading.vue')['default']
     PageWrapper: typeof import('./src/shared/pages/PageWrapper.vue')['default']
     SidebarDesktopHeader: typeof import('./src/shared/components/SidebarDesktopHeader.vue')['default']
   }
