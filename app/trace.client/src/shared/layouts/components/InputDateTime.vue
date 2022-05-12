@@ -36,8 +36,18 @@ export default {
           <q-date
             v-model="model"
             :mask="mask"
+            class="border-radius-sm"
             @update:model-value="emits('update:modelValue', model)"
           >
+            <div class="row items-center justify-center">
+              <q-btn
+                v-close-popup
+                outline
+                label="Close"
+                color="primary"
+                class="border-radius-sm full-width"
+              />
+            </div>
           </q-date>
         </q-popup-proxy>
       </q-icon>
@@ -50,8 +60,18 @@ export default {
             v-model="model"
             :mask="mask"
             format24h
+            class="border-radius-sm"
             @update:model-value="emits('update:modelValue', model)"
           >
+            <div class="row items-center justify-center">
+              <q-btn
+                v-close-popup
+                outline
+                label="Close"
+                color="primary"
+                class="border-radius-sm full-width"
+              />
+            </div>
           </q-time>
         </q-popup-proxy>
       </q-icon>
