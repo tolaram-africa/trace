@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const moduleItems = [];
+import { IModule } from 'src/shared/libs/Menu';
+
+const moduleItems: Array<IModule> = [];
 </script>
 
 <script lang="ts">

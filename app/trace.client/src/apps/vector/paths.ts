@@ -8,7 +8,7 @@ export default {
       path: 'overview',
     },
     dashboard: {
-      title: 'Dashboard',
+      title: 'Overview',
       name: 'vec.overview.dashboard',
       icon: 'bi-grid',
       path: 'dashboard',

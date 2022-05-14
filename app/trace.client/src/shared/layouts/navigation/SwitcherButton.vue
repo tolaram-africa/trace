@@ -7,12 +7,14 @@ interface IProps {
   dense?: boolean;
   route?: boolean;
   modelValue?: string;
+  flat?: boolean;
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  dense: true,
+  dense: false,
   route: false,
   modelValue: '',
+  flat: false,
 });
 const placeHolderState = ref(props.modelValue);
 const emits = defineEmits<{
@@ -38,7 +40,11 @@ export default {
     align="center"
     indicator-color="transparent"
     class="bg-app-background q-mx-xs border-radius-sm text-accent"
-    active-class="shadow-2 bg-app-plainer text-action"
+    :active-class="
+      props.flat
+        ? 'shadow-0 bg-app-plainer text-action'
+        : 'shadow-2 bg-app-plainer text-action'
+    "
     content-class="text-body1 text-weight-medium"
     v-bind="$attrs"
     @update:model-value="updateValue"

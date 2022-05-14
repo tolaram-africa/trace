@@ -38,6 +38,7 @@ export default {
           <switcher-button
             v-show="moduleItems.length > 0"
             :items="moduleItems"
+            dense
             route
           />
         </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const contextOptions = {
-  page: { title: 'Quick Overview' },
+  page: { title: 'General Overview' },
 };
 </script>
 

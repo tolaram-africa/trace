@@ -13,13 +13,6 @@ export default {
       path: vectorPaths.task.activities.path,
       name: vectorPaths.task.activities.name,
       component: () => import('./pages/ActivityPage.vue'),
-      children: [
-        {
-          path: 'sample',
-          name: 'vec.task.activities.sample',
-          component: () => import('./pages/SamplePage.vue'),
-        },
-      ],
     },
     {
       path: vectorPaths.task.timeline.path,
