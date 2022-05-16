@@ -225,10 +225,40 @@ export default {
       path: 'resource',
     },
     summary: {
-      title: 'Resources',
+      title: 'Summary',
       icon: 'bi-hdd-stack',
       name: 'vec.resource.summary',
       path: 'summary',
+    },
+    asset: {
+      title: 'Assets',
+      icon: 'bi-hdd-stack',
+      name: 'vec.resource.asset',
+      path: 'asset',
+    },
+    location: {
+      title: 'Locations',
+      icon: 'bi-hdd-stack',
+      name: 'vec.resource.location',
+      path: 'location',
+    },
+    product: {
+      title: 'Product',
+      icon: 'bi-hdd-stack',
+      name: 'vec.resource.product',
+      path: 'product',
+    },
+    route: {
+      title: 'Routes',
+      icon: 'bi-hdd-stack',
+      name: 'vec.resource.route',
+      path: 'route',
+    },
+    expense: {
+      title: 'Expense',
+      icon: 'bi-hdd-stack',
+      name: 'vec.resource.expense',
+      path: 'expense',
     },
     resourceLocationCreate: {
       name: 'vec.resorce.location.create',
