@@ -243,7 +243,7 @@ export default {
       path: 'location',
     },
     product: {
-      title: 'Product',
+      title: 'Products',
       icon: 'bi-hdd-stack',
       name: 'vec.resource.product',
       path: 'product',

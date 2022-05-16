@@ -19,10 +19,10 @@ export default {
     <switcher-button
       v-model="notifyValue"
       :items="notificationMenu"
-      style="min-width: 260px"
+      dense
       class="q-mt-sm q-mx-sm"
     ></switcher-button>
-    <div class="text-center" style="min-height: 360px; min-width: 300px">
+    <div class="text-center" style="min-height: 400px; min-width: 320px">
       <q-icon
         class="q-ma-xl"
         color="primary"

@@ -26,15 +26,14 @@ export default {
 
 <template>
   <q-header v-show="showHeader" reveal :elevated="false" class="bg-transparent">
-    <q-toolbar>
+    <q-toolbar class="row q-mt-xs">
       <div
-        class="text-primary text-h5 text-weight-bold text-no-wrap overflow-hidden ellipsis q-ml-md q-mr-lg"
-        style="min-width: 235px; max-width: 235px"
+        class="text-primary text-h5 text-weight-bold text-no-wrap overflow-hidden ellipsis q-pl-md col-2"
       >
         {{ showTitle ? title : '' }}
       </div>
-      <q-toolbar-title class="q-ml-sm">
-        <div class="row justify-start items-center">
+      <q-toolbar-title class="q-px-sm col-7">
+        <div class="row items-center">
           <switcher-button
             class="gt-sm"
             v-show="moduleItems.length > 0"
@@ -46,12 +45,12 @@ export default {
         </div>
       </q-toolbar-title>
 
-      <div class="row justify-start items-center q-mt-xs header-icon-button">
+      <div class="header-icon-button col-3 row justify-end items-center">
         <q-icon
           @mouseover="bellIconFill = true"
           @mouseout="bellIconFill = false"
           color="primary"
-          class="q-mr-md cursor-pointer button-icon"
+          class="cursor-pointer button-icon"
           :name="bellIconFill ? 'bi-bell-fill' : 'bi-bell'"
         >
           <q-badge floating color="red-7" class="badge" rounded />
@@ -65,6 +64,22 @@ export default {
             <notification-list></notification-list>
           </q-menu>
         </q-icon>
+        <!-- Quick new items triggers-->
+        <q-icon
+          color="primary"
+          name="bi-plus"
+          size="lg"
+          class="cursor-pointer lt-lg q-mx-lg"
+        >
+          <q-menu
+            :offset="[-5, 10]"
+            transition-show="scale"
+            transition-hide="scale"
+            class="border-radius-sm q-pa-sm"
+          >
+            <command-list :items="props.qucikCommands" />
+          </q-menu>
+        </q-icon>
         <q-btn
           no-caps
           size="lg"
@@ -72,7 +87,7 @@ export default {
           text-color="primary-inverted"
           icon="bi-plus"
           label="Create New"
-          class="gt-md text-weight-medium border-radius-sm q-ml-md q-mr-sm"
+          class="gt-md text-weight-medium border-radius-sm q-mx-lg"
         >
           <q-menu
             :offset="[-5, 10]"

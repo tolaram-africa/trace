@@ -69,7 +69,7 @@ export default {
       v-for="(moduleItem, moduleIndex) in props.items"
       :key="moduleIndex"
       :name="moduleItem.name"
-      class="border-radius-sm q-ma-xs q-px-none"
+      class="border-radius-sm q-ma-xs"
       content-class="q-px-sm"
     >
       {{ moduleItem.title }}
