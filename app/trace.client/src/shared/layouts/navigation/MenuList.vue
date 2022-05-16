@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<IProps>(), {
 .q-list {
   .q-icon {
     font-size: 2rem;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: $breakpoint-md-min) {
       font-size: 2.4rem;
     }
   }
@@ -70,7 +70,7 @@ const props = withDefaults(defineProps<IProps>(), {
 .app-list-item-text {
   font-size: 0.91rem;
   font-weight: 100;
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: $breakpoint-md-min) {
     font-size: 1.2rem;
   }
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const contextOptions = {
   page: {
-    title: 'Watch List',
+    title: 'Task Analytics',
   },
 };
 </script>

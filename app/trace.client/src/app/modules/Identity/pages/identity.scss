@@ -2,20 +2,20 @@
   min-width: 35vw;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $breakpoint-sm-min) {
   .identity-form {
     min-width: 86vw;
   }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: $breakpoint-md-min) {
   .identity-form {
     min-width: 55vw;
     margin-top: 120px;
   }
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: $breakpoint-md-min) {
   .identity-form {
     min-width: 485px;
     max-width: 540px !important;

@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { IModule } from '@/libs/Menu';
+import vectorPaths from '@/vector/paths';
 
-const moduleItems: Array<IModule> = [];
+const moduleItems: Array<IModule> = [
+  vectorPaths.billing.summary,
+  vectorPaths.billing.trip,
+  vectorPaths.invoice.root,
+  vectorPaths.billing.override,
+  vectorPaths.billing.manifest,
+];
 </script>
 
 <template>

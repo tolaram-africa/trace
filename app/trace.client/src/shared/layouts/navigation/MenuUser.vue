@@ -83,11 +83,4 @@ const iconTextChar = computed(
 .user-state-avatar {
   border-radius: $border-radius-sm;
 }
-
-.user-state-header {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  resize: none;
-}
 </style>

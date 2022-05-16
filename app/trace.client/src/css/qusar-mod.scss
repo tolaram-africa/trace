@@ -8,7 +8,7 @@ body {
   /** !!Very important! */
   .app-main-drawer {
     .q-drawer {
-      @media screen and (max-width: 960px) {
+      @media screen and (max-width: $breakpoint-md-min) {
         border-radius: $border-radius-md !important;
         margin: 15px 0 15px 15px !important;
         min-width: 68vw;

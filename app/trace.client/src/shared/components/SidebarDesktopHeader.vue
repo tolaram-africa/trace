@@ -26,7 +26,7 @@ export default {
 </Script>
 
 <template>
-  <q-toolbar class="q-mt-lg q-mb-xl q-pa-none" style="min-height: 72px">
+  <q-toolbar class="q-mt-sm q-mb-xl q-pa-none" style="min-height: 72px">
     <div v-show="props.modelValue" class="q-mx-auto" style="height: 55px">
       <app-logo class="app-logo self-start col-1 q-mx-auto" />
     </div>

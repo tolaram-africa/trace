@@ -7,7 +7,5 @@ const contextOptions = {
 </script>
 
 <template>
-  <page-wrapper :options="contextOptions">
-    <router-view></router-view>
-  </page-wrapper>
+  <page-wrapper :options="contextOptions"></page-wrapper>
 </template>

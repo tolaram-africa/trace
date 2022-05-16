@@ -40,6 +40,18 @@ export default {
       icon: 'bi-list-check',
       path: 'timeline',
     },
+    history: {
+      name: 'vec.task.history',
+      title: 'History',
+      icon: 'bi-list-check',
+      path: 'history',
+    },
+    request: {
+      name: 'vec.task.request',
+      title: 'Request',
+      icon: 'bi-list-check',
+      path: 'request',
+    },
     taskCreate: {
       name: 'vec.task.create',
       title: 'Task',
@@ -94,17 +106,23 @@ export default {
       name: 'vec.billing.summary',
       path: 'summary',
     },
-    recent: {
-      title: 'Recent',
+    override: {
+      title: 'Overrides',
       icon: 'bi-upc-scan',
-      name: 'vec.billing.recent',
-      path: 'recent',
+      name: 'vec.billing.override',
+      path: 'override',
     },
-    watchList: {
-      title: 'Watch List',
+    trip: {
+      title: 'Trips',
       icon: 'bi-upc-scan',
-      name: 'vec.billing.watch-list',
-      path: 'watch-list',
+      name: 'vec.billing.trip',
+      path: 'trip',
+    },
+    manifest: {
+      title: 'Manifest',
+      icon: 'bi-upc-scan',
+      name: 'vec.billing.manifest',
+      path: 'manifest',
     },
     billingDocumentCreate: {
       name: 'vec.billing.document.create',

@@ -1,8 +1,5 @@
 <script setup lang="ts">
-// import { useQuasar } from 'quasar';
 import AppLogo from '@/assets/vectors/logo.svg';
-
-// const $q = useQuasar();
 </script>
 
 <template>
@@ -75,7 +72,7 @@ import AppLogo from '@/assets/vectors/logo.svg';
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: $breakpoint-md-min) {
   .identity-container {
     flex-direction: row;
     height: 100vh;
@@ -88,7 +85,7 @@ import AppLogo from '@/assets/vectors/logo.svg';
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: $breakpoint-md-min) {
   .identity-container {
     .container-left {
       border-radius: 0 0 $border-radius-xl $border-radius-xl;
@@ -96,7 +93,7 @@ import AppLogo from '@/assets/vectors/logo.svg';
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $breakpoint-sm-min) {
   .app-logo {
     border-radius: $border-radius-lg;
   }

@@ -27,24 +27,26 @@ export default {
 <template>
   <q-header v-show="showHeader" reveal :elevated="false" class="bg-transparent">
     <q-toolbar>
-      <q-toolbar-title class="q-ml-md">
+      <div
+        class="text-primary text-h5 text-weight-bold text-no-wrap overflow-hidden ellipsis q-ml-md q-mr-lg"
+        style="min-width: 235px; max-width: 235px"
+      >
+        {{ showTitle ? title : '' }}
+      </div>
+      <q-toolbar-title class="q-ml-sm">
         <div class="row justify-start items-center">
-          <div
-            class="text-primary text-h5 text-weight-bold text-no-wrap q-mx-md overflow-hidden"
-            style="width: 240px; text-overflow: ellipsis"
-          >
-            {{ showTitle ? title : '' }}
-          </div>
           <switcher-button
+            class="gt-sm"
             v-show="moduleItems.length > 0"
             :items="moduleItems"
             dense
             route
-          />
+          ></switcher-button>
+          &nbsp;
         </div>
       </q-toolbar-title>
 
-      <div class="q-mt-xs header-icon-button">
+      <div class="row justify-start items-center q-mt-xs header-icon-button">
         <q-icon
           @mouseover="bellIconFill = true"
           @mouseout="bellIconFill = false"
@@ -70,7 +72,7 @@ export default {
           text-color="primary-inverted"
           icon="bi-plus"
           label="Create New"
-          class="text-weight-medium border-radius-sm q-ml-md q-mr-sm"
+          class="gt-md text-weight-medium border-radius-sm q-ml-md q-mr-sm"
         >
           <q-menu
             :offset="[-5, 10]"

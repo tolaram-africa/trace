@@ -8,6 +8,7 @@ interface IProps {
   route?: boolean;
   modelValue?: string;
   flat?: boolean;
+  outsideArrows?: boolean;
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -15,6 +16,7 @@ const props = withDefaults(defineProps<IProps>(), {
   route: false,
   modelValue: '',
   flat: false,
+  outsideArrows: true,
 });
 const placeHolderState = ref(props.modelValue);
 const emits = defineEmits<{
@@ -36,6 +38,7 @@ export default {
     :dense="props.dense"
     no-caps
     inline-label
+    :outside-arrows="props.outsideArrows"
     v-model="placeHolderState"
     align="center"
     indicator-color="transparent"
@@ -45,7 +48,7 @@ export default {
         ? 'shadow-0 bg-app-plainer text-action'
         : 'shadow-2 bg-app-plainer text-action'
     "
-    content-class="text-body1 text-weight-medium"
+    content-class="text-body1 text-weight-regular"
     v-bind="$attrs"
     @update:model-value="updateValue"
   >
@@ -56,7 +59,7 @@ export default {
         :name="moduleItem.name"
         :to="{ name: moduleItem.name }"
         class="border-radius-sm q-ma-xs q-px-none"
-        content-class="q-px-lg"
+        content-class="q-px-md"
       >
         {{ moduleItem.title }}
       </q-route-tab>

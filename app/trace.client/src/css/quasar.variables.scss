@@ -2,6 +2,15 @@
 // --------------------------------------------------
 @import '../node_modules/quasar/src/css/variables.sass';
 
+$breakpoint-xs-max: 599px;
+$breakpoint-sm-min: 600px;
+$breakpoint-sm-max: 959px;
+$breakpoint-md-min: 960px;
+$breakpoint-md-max: 1264px;
+$breakpoint-lg-min: 1265px;
+$breakpoint-lg-max: 1904px;
+$breakpoint-xl-min: 1905px;
+
 $dark: #1d1d1d;
 
 $positive: #21ba45;

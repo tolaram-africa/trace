@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import { IModule } from 'src/shared/libs/Menu';
+import { IModule } from '@/libs/Menu';
+import vectorPaths from '@/vector/paths';
 
-const moduleItems: Array<IModule> = [];
+const moduleItems: Array<IModule> = [
+  vectorPaths.task.activities,
+  vectorPaths.task.timeline,
+  vectorPaths.task.history,
+  vectorPaths.task.request,
+];
 </script>
 
 <template>

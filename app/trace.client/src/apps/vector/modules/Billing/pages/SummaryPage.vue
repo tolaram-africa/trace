@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const contextOptions = {
   page: {
-    title: 'Recent Activity',
+    title: 'Billing Summary',
   },
 };
 </script>
