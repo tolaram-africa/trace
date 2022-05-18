@@ -12,13 +12,22 @@ export default {
     {
       path: vectorPaths.task.activities.path,
       name: vectorPaths.task.activities.name,
-      redirect: { name: vectorPaths.task.activities.name + '.index' },
-      component: () => import('./pages/LayoutDefault.vue'),
+      component: () => import('./pages/Activities/IndexPage.vue'),
       children: [
         {
-          path: '',
-          name: vectorPaths.task.activities.name + '.index',
-          component: () => import('./pages/Activities/IndexPage.vue'),
+          path: 'summary',
+          name: vectorPaths.task.activities.name + '.summary',
+          component: () => import('./pages/Activities/SummaryPage.vue'),
+        },
+        {
+          path: 'timeline',
+          name: vectorPaths.task.activities.name + '.timeline',
+          component: () => import('./pages/Activities/TimelinePage.vue'),
+        },
+        {
+          path: 'track',
+          name: vectorPaths.task.activities.name + '.track',
+          component: () => import('./pages/Activities/TrackPage.vue'),
         },
       ],
     },

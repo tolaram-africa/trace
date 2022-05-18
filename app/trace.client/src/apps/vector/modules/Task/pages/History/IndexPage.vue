@@ -7,5 +7,7 @@ const contextOptions = {
 </script>
 
 <template>
-  <page-wrapper :options="contextOptions"></page-wrapper>
+  <page-wrapper :options="contextOptions">
+    <q-page class="row items-start justify-start"></q-page>
+  </page-wrapper>
 </template>

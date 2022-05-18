@@ -42,7 +42,7 @@ export default {
     v-model="placeHolderState"
     align="center"
     indicator-color="transparent"
-    class="bg-app-background q-mx-xs border-radius-sm text-accent"
+    class="bg-app-background border-radius-sm text-accent"
     :active-class="
       props.flat
         ? 'shadow-0 bg-app-plainer text-action'

@@ -12,8 +12,6 @@ const moduleItems: Array<IModule> = [
 
 <template>
   <layout-wrapper :module-items="moduleItems">
-    <q-page class="row items-center justify-evenly">
-      <router-view />
-    </q-page>
+    <router-view />
   </layout-wrapper>
 </template>

@@ -2,18 +2,18 @@
 /* eslint-disable vue/no-unused-vars */
 import { ref } from 'vue';
 const model = ref('');
-const slotNames = [
-  'default',
-  'prepend',
-  'append',
-  // 'before',
-  // 'after',
-  // 'label',
-  // 'error',
-  // 'selected',
-  // 'counter',
-  // 'loading',
-] as const;
+// const slotNames = [
+//   'default',
+//   'prepend',
+//   'append',
+//   // 'before',
+//   // 'after',
+//   // 'label',
+//   // 'error',
+//   // 'selected',
+//   // 'counter',
+//   // 'loading',
+// ] as const;
 </script>
 <script lang="ts">
 export default {
@@ -31,8 +31,17 @@ export default {
     standout="bg-app-background text-accent"
     label="Sample Label"
   >
+    <!--
     <template v-for="slot in slotNames" #[slot]="slotProps">
       <slot :name="slot"></slot>
+    </template>
+    -->
+    <template #prepend>
+      <slot name="prepend"></slot>
+    </template>
+
+    <template #append>
+      <slot name="append"></slot>
     </template>
   </q-input>
 </template>
