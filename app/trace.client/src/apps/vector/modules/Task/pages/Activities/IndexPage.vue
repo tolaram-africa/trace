@@ -69,17 +69,50 @@ onBeforeUnmount(() => {
 
           <q-card flat class="border-radius-sm q-pa-xs full-height">
             <q-item clickable>
-              <q-item-section avatar top>
-                <q-avatar icon="bi-folder" color="primary" text-color="white" />
-              </q-item-section>
-
               <q-item-section>
-                <q-item-label lines="1">Holder - 1</q-item-label>
-                <q-item-label caption>holder - 2</q-item-label>
+                <q-item-label caption>
+                  <span>
+                    <q-icon
+                      size="1.2em"
+                      name="bi-clock"
+                      color="accent"
+                      class="q-mr-xs"
+                    />
+                    <span>{{ '7 Mins ago' }}</span>
+                  </span>
+                  <span
+                    class="bg-green text-white border-radius-xs q-ml-md"
+                    style="padding: 0.1em 0.5em"
+                  >
+                    {{ 'Moving' }}</span
+                  >
+                  <span
+                    class="bg-secondary text-white border-radius-xs q-ml-sm"
+                    style="padding: 0.1em 0.5em"
+                  >
+                    {{ 'Transit' }}</span
+                  >
+                </q-item-label>
+                <q-item-label
+                  class="text-weight-medium text-body1 text-primary q-py-sm"
+                  lines="1"
+                  >{{ 'LND 100 XG' }}</q-item-label
+                >
+                <q-item-label class="text-accent" caption>
+                  <span>
+                    <q-icon
+                      size="1.2em"
+                      name="bi-geo-alt"
+                      color="accent"
+                      class="q-mr-xs"
+                    />
+                    {{ 'Lagos-Ibadan Expressway, Shagamu, Ogun, NG' }}
+                  </span>
+                </q-item-label>
               </q-item-section>
 
               <q-item-section side>
-                <q-icon name="bi-info" color="green" />
+                <q-icon name="bi-three-dots-vertical" color="accent" />
               </q-item-section>
             </q-item>
           </q-card>
