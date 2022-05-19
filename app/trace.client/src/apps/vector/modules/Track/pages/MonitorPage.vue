@@ -9,8 +9,8 @@ const contextOptions = {
 
 <template>
   <page-wrapper :options="contextOptions">
-    <q-page>
-      <map-core class="full" style="height: 100vh"></map-core>
+    <q-page class="row">
+      <map-core class="col" style="height: 100vh"></map-core>
     </q-page>
   </page-wrapper>
 </template>
