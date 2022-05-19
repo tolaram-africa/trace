@@ -65,26 +65,38 @@ onBeforeUnmount(() => {
     <q-page class="q-pa-sm q-pt-md column">
       <div
         class="row q-col-gutter-x-md q-col-gutter-y-lg"
-        style="flex: 1 1 auto; max-height: 85vh"
+        style="flex: 1 1 auto; max-height: calc(100vh - 105px)"
       >
         <!-- List items objects -->
-        <div v-if="objectListVisible" class="col-12 col-md-4">
-          <div class="app-form q-mb-sm">
-            <input-text
-              type="search"
-              v-model="search"
-              label="Search.."
-              class="border-radius-sm"
-            >
-              <template #append>
-                <q-icon
-                  name="bi-search"
-                  class="q-mr-sm"
-                  size="16"
-                  color="accent"
-                ></q-icon>
-              </template>
-            </input-text>
+        <div
+          v-if="objectListVisible"
+          class="col-12 col-md-4"
+          style="max-height: calc(100vh - 155px)"
+        >
+          <div class="row q-mb-sm">
+            <div class="col app-form">
+              <input-text
+                type="search"
+                v-model="search"
+                label="Search.."
+                class="border-radius-sm"
+              >
+                <template #append>
+                  <q-icon
+                    name="bi-search"
+                    class="q-mr-sm"
+                    size="16"
+                    color="accent"
+                  ></q-icon>
+                </template>
+              </input-text>
+            </div>
+            <q-btn
+              unelevated
+              icon="bi-funnel"
+              color="accent"
+              class="border-radius-sm q-ml-sm"
+            ></q-btn>
           </div>
 
           <q-card flat class="border-radius-sm q-pa-xs full-height">
@@ -147,6 +159,7 @@ onBeforeUnmount(() => {
           v-if="!$q.platform.is.mobile"
           :module-items="ActivitiesMenu"
           class="desktop-only"
+          style="max-height: calc(100vh - 155px)"
         >
           <router-view></router-view>
         </activity-container>

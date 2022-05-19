@@ -79,4 +79,17 @@ body {
       justify-content: flex-start;
     }
   }
+
+  .bordered-section-1 {
+    border: 1px solid var(--q-app-background);
+    border-radius: $border-radius-sm;
+  }
+
+  .dot {
+    height: 12px;
+    width: 12px;
+    background-color: dodgerblue;
+    border-radius: 50%;
+    display: inline-block;
+  }
 }

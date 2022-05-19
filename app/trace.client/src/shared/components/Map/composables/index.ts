@@ -82,8 +82,8 @@ export const useMapState = defineStore('app.map', () => {
             currentCenterValue.value,
             currentZoomValue.value
           );
-        }, 300);
-      }, 200);
+        }, 50);
+      }, 20);
 
       /** Events hooks for google layers font fix */
       // mapInstance.value.on('load', googleLayerFix);
