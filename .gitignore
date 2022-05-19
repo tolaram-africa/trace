@@ -123,3 +123,4 @@ uploads
 .output
 
 pnpm-lock.yaml
+app/trace.client/.env

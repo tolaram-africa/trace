@@ -28,7 +28,9 @@ export default {
     </div>
 
     <q-card flat class="border-radius-sm full-height">
-      <slot><router-view></router-view></slot>
+      <slot>
+        <router-view />
+      </slot>
     </q-card>
   </div>
 </template>

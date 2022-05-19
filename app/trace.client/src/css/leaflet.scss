@@ -1,3 +1,58 @@
 // $
 @import './quasar.variables.scss';
 @import './mixins';
+
+.leaflet-container {
+  font: 12px/1.5 $font-family;
+}
+
+/** Maps related styles */
+
+.map-marker-popup {
+  font-size: 0.6rem !important;
+  border-radius: 0.2rem !important;
+
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-tip {
+    text-align: left !important;
+    border-radius: 0.2rem !important;
+    color: #333 !important;
+    box-shadow: 1px 0.1rem 0.3rem rgb(0 0 0 / 40%) !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    padding: 0.1px 0 !important;
+
+    .leaflet-popup-content {
+      min-width: 170px !important;
+      padding: 0.1px 0 !important;
+      margin: 0 0 0.5rem !important;
+    }
+  }
+}
+
+.map-marker-tooltip {
+  padding: 0.1rem 0.2rem !important;
+  font-size: 0.6rem !important;
+  border-radius: 0.2rem !important;
+  text-shadow: rgb(214 214 214) 0 0 0.2px !important;
+  color: #363636 !important;
+}
+
+.leaflet-control-layers-toggle {
+  height: 1.9rem !important;
+  width: 1.9rem !important;
+}
+
+.leaflet-control-geosearch form input {
+  height: 30px !important;
+}
+
+.leaflet-control-scale-line {
+  margin-left: 8rem !important;
+}
+
+.leaflet-fade-anim .leaflet-tile,
+.leaflet-zoom-anim .leaflet-zoom-animated {
+  will-change: auto !important;
+}

@@ -12,8 +12,6 @@ export default {
 
 <template>
   <layout-wrapper :header="false" :module-items="moduleItems">
-    <q-page class="row items-center justify-evenly">
-      <router-view />
-    </q-page>
+    <router-view />
   </layout-wrapper>
 </template>

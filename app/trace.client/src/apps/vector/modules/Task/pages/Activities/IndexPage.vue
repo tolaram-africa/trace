@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useQuasar } from 'quasar';
 import ActivityContainer from './components/ActivityContainer.vue';
+import SwitcherButton from '@/layouts/navigation/SwitcherButton.vue';
 import ActivitiesMenu from './menu';
 
 const route = useRoute();
@@ -127,11 +128,14 @@ onBeforeUnmount(() => {
         </activity-container>
         <!-- Content grid mobile -->
         <fragment v-else>
-          <activity-container
-            v-if="$q.platform.is.mobile"
-            :module-items="ActivitiesMenu"
-            class="mobile-only"
-          ></activity-container>
+          <div class="q-mb-sm full-width">
+            <switcher-button
+              :items="ActivitiesMenu"
+              align="justify"
+              route
+              flat
+            ></switcher-button>
+          </div>
           <router-view></router-view>
         </fragment>
       </div>

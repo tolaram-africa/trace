@@ -3,7 +3,7 @@
 <template>
   <div class="q-pa-sm q-pl-md activity-timeline">
     <!-- Action buttons section -->
-    <div class="q-pa-sm row justify-between">
+    <div class="row justify-between">
       <q-btn outline no-caps color="blue" class="self-start border-radius-sm">
         <div class="row items-center no-wrap q-px-sm">
           <q-icon left name="bi-plus" class="q-mr-xs" />
@@ -48,7 +48,7 @@
                 >{{ 'LND 100 XG' }}</span
               >
             </div>
-            <div class="q-mx-sm q-pa-xs">
+            <div class="q-mx-sm q-pa-xs desktop-only">
               <q-icon size="1.6em" name="bi-person" color="secondary"></q-icon>
               <span class="text-secondary text-body2 q-ml-sm vertical-middle">{{
                 'Mohit Daga'
@@ -69,7 +69,7 @@
               }}</q-item-label>
             </q-item-section>
           </q-item>
-          <div class="q-mt-sm q-px-sm">
+          <div class="q-my-sm q-px-sm">
             <div class="q-mt-xl">
               <q-icon
                 size="2em"
@@ -140,7 +140,7 @@
       </div>
       <div class="text-body2">
         <q-separator class="q-ma-sm" />
-        <div class="q-py-xs q-px-md row justify-between aligns-center">
+        <div class="q-py-xs q-px-xs row justify-between aligns-center">
           <div class="q-px-sm">
             <q-icon size="1.5em" name="bi-speedometer2" color="red"></q-icon>
             <span class="text-weight-bold q-mx-xs text-primary">2</span>

@@ -4,6 +4,7 @@ const { configure } = require('quasar/wrappers');
 const path = require('path');
 const Components = require('unplugin-vue-components/vite');
 const tsconfigPaths = require('vite-tsconfig-paths').default;
+const commonjs = require('vite-plugin-commonjs').default;
 const svgLoader = require('vite-svg-loader');
 
 module.exports = configure(function (/* ctx */) {
@@ -79,6 +80,7 @@ module.exports = configure(function (/* ctx */) {
           exclude: [/node_modules/, /\.git/, /\.quasar/, /\.dist/],
         }),
         tsconfigPaths(),
+        commonjs(),
       ]
     },
 

@@ -6,6 +6,7 @@ export interface ITileLayer {
   visible: boolean;
   attribution?: string;
   url?: string;
+  custom?: boolean;
   layerType?: string;
   options?: any;
 }
@@ -24,7 +25,8 @@ export interface IMapOptions {
 }
 
 export interface IMapState {
-  currentTileLayer: ITileLayer;
+  currentTileLayer: null | ITileLayer;
+  mapRefrence: any;
   mapInstance: any;
   minimumZoom: number;
   maximumZoom: number;
