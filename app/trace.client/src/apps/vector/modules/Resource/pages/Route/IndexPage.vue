@@ -1,13 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import polyline from '@mapbox/polyline';
+import { center } from '@turf/turf';
+import { ref, onMounted } from 'vue';
 import MapCore from 'src/shared/components/Map/MapCore.vue';
+import { LGeoJson, LMarker } from '@vue-leaflet/vue-leaflet';
+
 const contextOptions = {
   page: {
     title: 'Route Templates',
   },
 };
+const samplePolyline =
+  'u~hg@}|mSkud@g~My~Va|f@ceoAcdn@}zAmkGsx|AsLyrbBks~Asic@aaLqqqAo`{@kyi@evEi_MmdN}xOmzo@yaeA_pn@{{_@_bx@mgW_qRipK}l[a{D_qq@cmsBc~cA_cL{}d@|lRohd@mxBwbTfvIsnfA|eAehEvqZjfEnpAybWayGy_VhoK_rF{_AmsWpgHatE';
 
 const search = ref('');
+const geoJSON = ref();
+const centerGeoJSON = ref();
 const sampleRouteList = ref([
   {
     name: 'LAGOS - IBADAN',
@@ -24,6 +32,13 @@ const sampleRouteList = ref([
     duration: '1hrs',
   },
 ]);
+
+onMounted(() => {
+  geoJSON.value = polyline.toGeoJSON(samplePolyline);
+  centerGeoJSON.value = center(geoJSON.value);
+  // const array = polyline.decode(samplePolyline);
+  // console.log('polygon', center(geojson));
+});
 </script>
 
 <template>
@@ -153,7 +168,11 @@ const sampleRouteList = ref([
 
         <!-- Column 2 -->
         <div class="col-12 col-md-8 border-radius-sm column">
-          <map-core class="col border-radius-sm"></map-core>
+          <map-core class="col border-radius-sm">
+            <l-marker :lat-lng="[6.604859, 3.353204]" :draggable="true" />
+            <l-marker :lat-lng="[10.382532, 7.853323]" :draggable="true" />
+            <l-geo-json :geojson="geoJSON"></l-geo-json>
+          </map-core>
         </div>
       </div>
     </q-page>

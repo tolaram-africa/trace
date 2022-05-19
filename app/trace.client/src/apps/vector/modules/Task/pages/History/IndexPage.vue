@@ -24,68 +24,77 @@ const dateTime = ref('2022-01-01 00:00');
         <!-- Column 1 -->
         <div class="col-12 col-md-4">
           <q-card flat class="border-radius-sm q-pa-xs full-height">
-            <div class="app-form q-mb-sm">
-              <input-text
-                type="search"
-                v-model="search"
-                label="Search.."
-                class="border-radius-sm"
-              >
-                <template #append>
-                  <q-icon
-                    name="bi-search"
-                    class="q-mr-sm"
-                    size="16"
-                    color="accent"
-                  ></q-icon>
-                </template>
-              </input-text>
+            <div class="row q-mb-sm">
+              <div class="col app-form">
+                <input-text
+                  type="search"
+                  v-model="search"
+                  label="Search.."
+                  class="border-radius-sm"
+                >
+                  <template #append>
+                    <q-icon
+                      name="bi-search"
+                      class="q-mr-sm"
+                      size="16"
+                      color="accent"
+                    ></q-icon>
+                  </template>
+                </input-text>
+              </div>
+              <q-btn
+                unelevated
+                icon="bi-funnel"
+                color="accent"
+                class="border-radius-sm q-ml-sm"
+              ></q-btn>
             </div>
-            One
+            <div>Vehicles</div>
           </q-card>
         </div>
         <!-- Column 2 -->
         <div class="col-12 col-md-4">
           <q-card flat class="border-radius-sm q-pa-xs full-height">
-            <div class="app-form q-mb-sm">
-              <input-date-time
-                v-model="dateTime"
-                label="Filter"
-                class="border-radius-sm"
-              >
-                <template #append>
-                  <q-icon
-                    name="bi-search"
-                    class="q-mr-sm"
-                    size="16"
-                    color="accent"
-                  ></q-icon>
-                </template>
-              </input-date-time>
+            <div class="row q-mb-sm">
+              <div class="col app-form">
+                <input-date-time
+                  v-model="dateTime"
+                  label="Filter"
+                  class="border-radius-sm"
+                >
+                </input-date-time>
+              </div>
+              <q-btn
+                unelevated
+                icon="bi-plus-lg"
+                color="primary"
+                class="border-radius-sm q-ml-sm"
+              ></q-btn>
             </div>
-            Two
+            <div>Trips</div>
           </q-card>
         </div>
         <!-- Column 3 -->
         <div class="col-12 col-md-4">
           <q-card flat class="border-radius-sm q-pa-xs full-height">
-            <div
-              class="q-pa-sm border-radius-sm bordered-section-1 row justify-between"
-              style="min-height: 48px"
-            >
-              <div class="text-h6 text-accent">{{ 'Details' }}</div>
-              <div>
+            <div class="q-mb-xs">
+              <div
+                class="bordered-section-1 border-radius-sm row justify-between"
+                style="min-height: 56px"
+              >
+                <div class="text-h6 text-accent text-center q-mx-sm">
+                  <span class="vertical-middle">{{ 'Details' }}</span>
+                </div>
                 <q-btn
-                  no-caps
-                  color="accent"
+                  unelevated
+                  color="primary"
                   icon="bi-pencil"
-                  class="self-start border-radius-sm"
-                  label="Modify"
+                  class="border-radius-sm"
                 >
                 </q-btn>
               </div>
             </div>
-            <div>Three</div>
+            <div>Details</div>
           </q-card>
         </div>
       </div>

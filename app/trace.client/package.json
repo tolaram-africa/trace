@@ -37,6 +37,7 @@
     "@mapbox/polyline": "^1.1.1",
     "@quasar/extras": "^1.14.0",
     "@quasar/quasar-ui-qoverlay": "^2.0.1",
+    "@turf/center-of-mass": "^6.5.0",
     "@turf/turf": "^6.5.0",
     "@vue-leaflet/vue-leaflet": "^0.6.1",
     "@vueuse/core": "^8.5.0",
