@@ -78,18 +78,21 @@
   box-shadow: none !important;
 }
 
-.leaflet-routing-container-hide .leaflet-routing-collapse-btn {
-  all: revert;
-  background-color: transparent !important;
-  border-radius: 0.1rem !important;
-  padding: 0 !important;
-  position: absolute !important;
-  left: 0px !important;
-  top: 0px !important;
-  right: 0px !important;
-  display: block !important;
-  width: 28px !important;
-  height: 28px !important;
-  outline: none !important;
-  box-shadow: none !important;
+.leaflet-routing-container-hide {
+  .leaflet-routing-collapse-btn {
+    all: revert;
+    background-color: transparent !important;
+    border-radius: 0.1rem !important;
+    padding: 0 !important;
+    position: absolute !important;
+    left: 0px !important;
+    top: 0px !important;
+    right: 0px !important;
+    display: block !important;
+    width: 28px !important;
+    height: 28px !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  display: none !important;
 }
