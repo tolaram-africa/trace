@@ -3,13 +3,14 @@ import { ref, onBeforeMount, onBeforeUnmount } from 'vue';
 import { defineStore } from 'pinia';
 import { useMapState } from './index';
 import { useRouting } from './Routing';
+import * as L from 'leaflet';
 
 export const useContextmenu = defineStore('app.map.contextMenu', () => {
   const mapState = useMapState();
   const routingState = useRouting();
   const contextMenuOptions = ref({
     contextmenu: true,
-    contextmenuWidth: 185,
+    contextmenuWidth: 165,
   });
   const contextMenuItems = ref<Array<any>>([]);
   const defaultContextMenuItems = [
@@ -22,7 +23,16 @@ export const useContextmenu = defineStore('app.map.contextMenu', () => {
     '-',
     {
       text: 'Show Point',
-      callback: () => true,
+      callback: (e: any) => {
+        L.popup()
+          .setLatLng(e.latlng)
+          .setContent(
+            `<div>${Number(e.latlng.lat).toFixed(5)}, ${Number(
+              e.latlng.lng
+            ).toFixed(5)}</div>`
+          )
+          .openOn(mapState.mapInstance);
+      },
     },
     '-',
     {

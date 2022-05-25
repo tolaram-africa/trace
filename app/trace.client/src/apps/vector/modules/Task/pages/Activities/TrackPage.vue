@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MapBasic from 'src/shared/components/Map/MapBasic.vue';
+import MapBasic from '@/components/Map/MapBasic.vue';
 </script>
 
 <template>
