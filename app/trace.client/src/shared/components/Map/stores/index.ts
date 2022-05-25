@@ -1,5 +1,8 @@
-import { ref, computed, onUnmounted, nextTick } from 'vue';
-import { defineStore } from 'pinia';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ref, computed, onBeforeUnmount, nextTick } from 'vue';
+import { defineStore, storeToRefs } from 'pinia';
+import { useContextmenu } from './ContextMenu';
+import { useRouting } from './Routing';
 import { ITileLayer } from '@/libs/Map/Map';
 import { TileLayers } from '@/libs/Map/TileLayers';
 
@@ -15,8 +18,13 @@ const googleLayerFix = (event: any): void => {
 */
 
 export const useMapState = defineStore('app.map', () => {
+  const routingState = useRouting();
+  const { contextMenuItems, contextMenuOptions } = storeToRefs(
+    useContextmenu()
+  );
   const config = process.env;
   const mapReady = ref<boolean>(false);
+  const mapPluginReady = ref<boolean>(false);
   const mapReference = ref();
   const mapInstance = ref();
   const mapOptions = ref();
@@ -24,13 +32,15 @@ export const useMapState = defineStore('app.map', () => {
   const maximumZoom = ref<number>(21);
   const currentTileLayer = ref();
   const currentZoomValue = ref<number>(5);
-  const currentCenterValue = ref<Array<number>>([0, 0]);
+  const currentCenterValue = ref<[number, number]>([0, 0]);
   const measurmentUnit = ref<string>('metric');
   const mapTiles = ref<Array<ITileLayer>>(TileLayers);
   const mapReadyTimeout = ref();
   const mapResizeTimeout = ref();
 
-  const currentCenter = computed<Array<number>>(() => currentCenterValue.value);
+  const currentCenter = computed<[number, number]>(
+    () => currentCenterValue.value
+  );
   const currentZoom = computed<number>(() => currentZoomValue.value);
   const showTooltip = computed<boolean>(() => {
     if (mapOptions.value !== null) {
@@ -44,7 +54,9 @@ export const useMapState = defineStore('app.map', () => {
   const onInitialize = () => {
     minimumZoom.value = Number(config.DEFAULT_MAP_MIN_ZOOM);
     maximumZoom.value = Number(config.DEFAULT_MAP_MAX_ZOOM);
-    currentCenterValue.value = config.DEFAULT_MAP_CENTER.split(',').map(Number);
+    currentCenterValue.value = String(config.DEFAULT_MAP_CENTER)
+      .split(',')
+      .map(Number) as [number, number];
     currentZoomValue.value = Number(config.DEFAULT_MAP_ZOOM);
 
     const options = {
@@ -66,14 +78,17 @@ export const useMapState = defineStore('app.map', () => {
     }, layerId)[0];
 
     currentTileLayer.value = defaultTileLayer || TileLayers[0];
-    mapOptions.value = options;
+    mapOptions.value = {
+      ...options,
+      ...contextMenuOptions.value,
+      contextmenuItems: contextMenuItems.value,
+    };
   };
 
   const onMapReady = async () => {
     await nextTick();
     if (mapReference.value !== null) {
       mapInstance.value = mapReference.value.leafletObject;
-
       mapReadyTimeout.value = setTimeout(() => {
         mapReady.value = true;
         mapResizeTimeout.value = setTimeout(() => {
@@ -82,8 +97,10 @@ export const useMapState = defineStore('app.map', () => {
             currentCenterValue.value,
             currentZoomValue.value
           );
-        }, 50);
-      }, 20);
+          mapPluginReady.value = true;
+          mapInstance.value.on('click', onMapClick);
+        }, 300);
+      }, 150);
 
       /** Events hooks for google layers font fix */
       // mapInstance.value.on('load', googleLayerFix);
@@ -97,7 +114,14 @@ export const useMapState = defineStore('app.map', () => {
     }
   };
 
-  const onCenterUpdate = (center: Array<number>): void => {
+  const onMapClick = (e: any) => {
+    /* Initial route points trigger */
+    if (routingState.isRoutePointsReady) {
+      routingState.addRoute(e);
+    }
+  };
+
+  const onCenterUpdate = (center: [number, number]): void => {
     currentCenterValue.value = center;
   };
 
@@ -117,13 +141,15 @@ export const useMapState = defineStore('app.map', () => {
     // TODO: Capture required event
   };
 
-  onUnmounted(() => {
+  onBeforeUnmount(() => {
     clearTimeout(mapReadyTimeout.value);
     clearTimeout(mapResizeTimeout.value);
+    mapReady.value = false;
   });
 
   return {
     mapReady,
+    mapPluginReady,
     mapReference,
     mapInstance,
     minimumZoom,
@@ -139,6 +165,7 @@ export const useMapState = defineStore('app.map', () => {
     showTooltip,
     /* Functions */
     onMapReady,
+    onMapClick,
     onInitialize,
     onMapZoomStart,
     onMapZoomEnd,

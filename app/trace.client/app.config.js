@@ -24,6 +24,8 @@ module.exports = {
   API_ROOT: env.API_ROOT || `${defaultServerHost}/api/v1/`,
   API_STORAGE: env.API_STORAGE || `${defaultServerHost}/api/storage/v1/`,
   API_AUTH: env.API_AUTH || `${defaultServerHost}/api/auth/v1/`,
+  API_ROUTING_SERVER: env.API_ROUTING_SERVER || '',
+  API_GEOCODING_SERVER: env.API_GEOCODING_SERVER || 'https://nominatim.openstreetmap.org/',
 
   APP_NAME: env.APP_NAME || 'Trace',
   APP_ID: env.APP_ID || 'ng.trace.vector',

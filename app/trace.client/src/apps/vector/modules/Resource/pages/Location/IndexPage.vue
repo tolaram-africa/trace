@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import MapCore from 'src/shared/components/Map/MapCore.vue';
+import MapBasic from 'src/shared/components/Map/MapBasic.vue';
 const contextOptions = {
   page: {
     title: 'Trip Locations',
@@ -125,7 +125,7 @@ const sampleLocationList = ref([
 
         <!-- Column 2 -->
         <div class="col-12 col-md-8 border-radius-sm column">
-          <map-core class="col border-radius-sm"></map-core>
+          <map-basic class="col border-radius-sm"></map-basic>
         </div>
       </div>
     </q-page>

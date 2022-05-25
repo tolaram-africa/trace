@@ -56,3 +56,40 @@
 .leaflet-zoom-anim .leaflet-zoom-animated {
   will-change: auto !important;
 }
+
+.leaflet-routing-container {
+  font: 13px/1.5 $font-family !important;
+  border-radius: 0.5rem !important;
+}
+.leaflet-routing-collapse-btn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  background-color: grey !important;
+  color: white !important;
+  font-size: 2rem !important;
+  font-family: $font-family !important;
+  text-align: center !important;
+  border-radius: 0.25rem !important;
+  width: 2.4rem !important;
+  height: 2.4rem !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.leaflet-routing-container-hide .leaflet-routing-collapse-btn {
+  all: revert;
+  background-color: transparent !important;
+  border-radius: 0.1rem !important;
+  padding: 0 !important;
+  position: absolute !important;
+  left: 0px !important;
+  top: 0px !important;
+  right: 0px !important;
+  display: block !important;
+  width: 28px !important;
+  height: 28px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}

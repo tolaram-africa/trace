@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import MapCore from 'src/shared/components/Map/MapCore.vue';
+import MapBasic from 'src/shared/components/Map/MapBasic.vue';
 </script>
 
 <template>
   <div class="q-pa-none">
-    <map-core class="border-radius-sm" style="height: 80vh"></map-core>
+    <map-basic class="border-radius-sm" style="height: 80vh"></map-basic>
   </div>
 </template>

@@ -1,21 +1,31 @@
 <script setup lang="ts">
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {
-  LMap,
-  LControlLayers,
-  LControlZoom,
-  LTileLayer,
-} from '@vue-leaflet/vue-leaflet';
-import { computed, onMounted, onBeforeMount } from 'vue';
+import { LMap, LControlZoom } from '@vue-leaflet/vue-leaflet';
+import 'leaflet-contextmenu';
+import 'leaflet-contextmenu/dist/leaflet.contextmenu.css';
+import { computed, onBeforeMount } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useQuasar } from 'quasar';
-import { useMapState } from './composables';
+import { useMapState } from './stores';
 import '@/css/leaflet.scss';
+import TileLayers from './TileLayers.vue';
+import GeocoderControl from './GeocoderControl.vue';
+import ButtonMapDefault from './ButtonMapDefault.vue';
+
+L.Icon.Default.imagePath = '';
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
 
 const $q = useQuasar();
 const mapState = useMapState();
 const {
   mapReady,
+  mapPluginReady,
   mapReference,
   mapInstance,
   currentZoomValue,
@@ -33,26 +43,19 @@ const {
   onMapReady,
 } = mapState;
 
-onInitialize();
-
 const isBrowser = computed(() => typeof window !== 'undefined');
 onBeforeMount(async () => {
+  onInitialize();
   if (isBrowser.value) {
-    /**
     let Loader: any;
-    ({ Loader } = require('@googlemaps/js-api-loader'));
+    ({ Loader } = await import('@googlemaps/js-api-loader'));
     const loader = new Loader({
       apiKey: process.env.GOOGLE_API_KEY,
       version: 'weekly',
       libraries: ['places'],
     });
     await loader.load();
-     */
-  }
-});
-
-onMounted(() => {
-  if (isBrowser) {
+    Loader = Loader.default;
   }
 });
 
@@ -61,7 +64,7 @@ defineExpose({ mapReference, mapInstance, mapTiles, currentTileLayer });
 
 <script lang="ts">
 export default {
-  name: 'MapCore',
+  name: 'MapBasic',
 };
 </script>
 
@@ -69,12 +72,12 @@ export default {
   <l-map
     v-show="mapReady"
     ref="mapReference"
-    :useGlobalLeaflet="false"
+    :use-global-leaflet="true"
     :zoom="currentZoomValue"
     :center="currentCenterValue"
     :options="mapOptions"
-    :zoomAnimation="true"
-    :markerZoomAnimation="true"
+    :zoom-animation="true"
+    :marker-zoom-animation="true"
     style="z-index: 0"
     @zoomstart="onMapZoomStart"
     @zoomend="onMapZoomEnd"
@@ -83,24 +86,14 @@ export default {
     @ready="onMapReady"
     v-bind="$attrs"
   >
-    <!-- Standard tile layers -->
-    <template v-for="(tile, tileIndex) in mapTiles">
-      <l-tile-layer
-        v-if="!tile.custom"
-        :key="tileIndex"
-        :url="tile.url"
-        :name="tile.name"
-        :visible="tile.visible || tile.id === currentTileLayer.id"
-        layer-type="base"
-      ></l-tile-layer>
-    </template>
-
     <slot name="first"></slot>
     <l-control-zoom
       :position="$q.platform.is.mobile ? 'topleft' : 'topright'"
     />
+    <tile-layers v-if="mapPluginReady"></tile-layers>
+    <geocoder-control v-if="mapPluginReady"></geocoder-control>
+    <button-map-default v-if="mapPluginReady"></button-map-default>
     <slot></slot>
-    <l-control-layers />
     <slot name="last"></slot>
   </l-map>
 </template>

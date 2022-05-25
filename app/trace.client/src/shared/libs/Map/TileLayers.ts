@@ -13,44 +13,25 @@ export const TileLayers: Array<ITileLayer> = [
   },
   {
     id: 'mapbox.streets',
-    name: 'MapBox Streets',
+    name: 'MapBox',
     custom: false,
     visible: false,
     url: `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${mapboxAccessToken}`,
     attribution: '',
   },
-  {
-    // TODO: add night mode option with style: navigation-night-v1
-    id: 'mapbox.traffic',
-    name: 'MapBox Traffic',
-    custom: false,
-    visible: false,
-    url: `https://api.mapbox.com/styles/v1/mapbox/navigation-day-v1/tiles/{z}/{x}/{y}?access_token=${mapboxAccessToken}`,
-    attribution: '',
-  },
+  // Traffic: navigation-day-v1
   {
     id: 'mapbox.satellite',
-    name: 'MapBox Satellite',
+    name: 'MapBox Sat',
     custom: false,
     visible: false,
     url: `https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=${mapboxAccessToken}`,
     attribution: '',
   },
-
+  // Traffic: include with addGoogleLayer
   {
-    id: 'google.streets',
-    name: 'Google Streets',
-    custom: true,
-    layerType: 'base',
-    visible: false,
-    options: {
-      type: 'roadmap',
-      maxZoom: 21,
-    },
-  },
-  {
-    id: 'google.traffic',
-    name: 'Google Traffic',
+    id: 'google.street',
+    name: 'Google',
     custom: true,
     layerType: 'TrafficLayer',
     visible: false,
@@ -61,31 +42,9 @@ export const TileLayers: Array<ITileLayer> = [
   },
   {
     id: 'google.satellite',
-    name: 'Google Satelite',
+    name: 'Google Sat',
     custom: true,
-    layerType: 'base',
-    visible: false,
-    options: {
-      type: 'satellite',
-      maxZoom: 21,
-    },
-  },
-  {
-    id: 'google.terrain',
-    name: 'Google Terrain',
-    custom: true,
-    layerType: 'base',
-    visible: false,
-    options: {
-      type: 'terrain',
-      maxZoom: 21,
-    },
-  },
-  {
-    id: 'google.hybrid', //   custom: true,
-    name: 'Google Hybird',
-    custom: true,
-    layerType: 'base',
+    layerType: 'TrafficLayer',
     visible: false,
     options: {
       type: 'hybrid',

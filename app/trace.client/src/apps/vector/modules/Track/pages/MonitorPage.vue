@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import MapCore from 'src/shared/components/Map/MapCore.vue';
+import MapLive from '@/components/Map/MapLive.vue';
+
 const contextOptions = {
   page: {
     title: 'Object Monitor',
@@ -10,7 +11,7 @@ const contextOptions = {
 <template>
   <page-wrapper :options="contextOptions">
     <q-page class="row">
-      <map-core class="col" style="height: 100vh"></map-core>
+      <map-live class="col" style="height: 100vh"></map-live>
     </q-page>
   </page-wrapper>
 </template>
