@@ -1,6 +1,4 @@
 <script setup lang="ts">
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue';
 import { storeToRefs } from 'pinia';
 import * as L from 'leaflet';
@@ -18,11 +16,33 @@ const getIcon = (fill: string) => {
 onMounted(async () => {
   if (mapPluginReady.value) {
     await nextTick();
+
+    const objectToggle = L.easyButton({
+      states: [
+        {
+          stateName: 'object-enabled',
+          title: 'Hide objects',
+          icon: getIcon('record2-fill'),
+          onClick: (control) => {
+            control.state('object-disabled');
+          },
+        },
+        {
+          stateName: 'object-disabled',
+          title: 'Show objects',
+          icon: getIcon('record2'),
+          onClick: (control) => {
+            control.state('object-enabled');
+          },
+        },
+      ],
+    });
+
     const trafficToggle = L.easyButton({
       states: [
         {
           stateName: 'traffic-enabled',
-          title: 'Traffic enabled',
+          title: 'Hide Traffic',
           icon: getIcon('stoplights-fill'),
           onClick: (control) => {
             control.state('traffic-disabled');
@@ -30,7 +50,7 @@ onMounted(async () => {
         },
         {
           stateName: 'traffic-disabled',
-          title: 'Traffic disabled',
+          title: 'Show Traffic',
           icon: getIcon('stoplights'),
           onClick: (control) => {
             control.state('traffic-enabled');
@@ -43,7 +63,7 @@ onMounted(async () => {
       states: [
         {
           stateName: 'cluster-enabled',
-          title: 'Cluster enabled',
+          title: 'Disable Cluster',
           icon: getIcon('diagram-3'),
           onClick: (control) => {
             control.state('cluster-disabled');
@@ -51,7 +71,7 @@ onMounted(async () => {
         },
         {
           stateName: 'cluster-disabled',
-          title: 'Cluster disabled',
+          title: 'Enable Cluster',
           icon: getIcon('diagram-3-fill'),
           onClick: (control) => {
             control.state('cluster-enabled');
@@ -106,7 +126,7 @@ onMounted(async () => {
       states: [
         {
           stateName: 'location-disabled',
-          title: 'Traffic disabled',
+          title: 'Show Location',
           icon: getIcon('pin'),
           onClick: (control) => {
             control.state('location-enabled');
@@ -114,7 +134,7 @@ onMounted(async () => {
         },
         {
           stateName: 'location-enabled',
-          title: 'Traffic enabled',
+          title: 'Hide Location',
           icon: getIcon('pin-fill'),
           onClick: (control) => {
             control.state('location-disabled');
@@ -124,7 +144,14 @@ onMounted(async () => {
     });
 
     const routeBar = L.easyBar(
-      [trafficToggle, clusterToggle, labelToggle, trailToggle, locationToggle],
+      [
+        objectToggle,
+        trafficToggle,
+        clusterToggle,
+        labelToggle,
+        trailToggle,
+        locationToggle,
+      ],
       {
         position: 'bottomright',
       }
