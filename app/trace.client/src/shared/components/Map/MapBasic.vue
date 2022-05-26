@@ -14,6 +14,7 @@ import TileLayers from './TileLayers.vue';
 import GeocoderControl from './GeocoderControl.vue';
 import ButtonMapDefault from './ButtonMapDefault.vue';
 import FullscreenControl from './FullscreenControl.vue';
+import MeasureControl from './MeasureControl.vue';
 
 L.Icon.Default.imagePath = '';
 L.Icon.Default.mergeOptions({
@@ -92,9 +93,10 @@ export default {
       :position="$q.platform.is.mobile ? 'topleft' : 'topright'"
     />
     <tile-layers v-if="mapPluginReady"></tile-layers>
-    <geocoder-control v-if="mapPluginReady"></geocoder-control>
-    <button-map-default v-if="mapPluginReady"></button-map-default>
     <fullscreen-control v-if="mapPluginReady"></fullscreen-control>
+    <measure-control v-if="mapPluginReady"></measure-control>
+    <button-map-default v-if="mapPluginReady"></button-map-default>
+    <geocoder-control v-if="mapPluginReady"></geocoder-control>
     <slot></slot>
     <slot name="last"></slot>
   </l-map>

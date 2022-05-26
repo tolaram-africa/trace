@@ -15,6 +15,7 @@ export const useContextmenu = defineStore('app.map.contextMenu', () => {
   const contextMenuItems = ref<Array<any>>([]);
   const defaultContextMenuItems = [
     {
+      icon: '/bootstrap-icons/geo.svg',
       text: 'Center Here',
       callback: (e: any) => {
         mapState.mapInstance.panTo(e.latlng);
@@ -22,6 +23,7 @@ export const useContextmenu = defineStore('app.map.contextMenu', () => {
     },
     '-',
     {
+      icon: '/bootstrap-icons/geo-alt.svg',
       text: 'Show Point',
       callback: (e: any) => {
         L.popup()
@@ -36,11 +38,13 @@ export const useContextmenu = defineStore('app.map.contextMenu', () => {
     },
     '-',
     {
+      icon: '/bootstrap-icons/compass.svg',
       text: 'Route to point',
       callback: () => true,
     },
     '-',
     {
+      icon: '/bootstrap-icons/arrow-repeat.svg',
       text: 'Route between points',
       callback: (e: any) => {
         routingState.addRoute(e);
@@ -48,6 +52,7 @@ export const useContextmenu = defineStore('app.map.contextMenu', () => {
     },
     '-',
     {
+      icon: '/bootstrap-icons/list-task.svg',
       text: 'New Task',
       callback: () => true,
     },
