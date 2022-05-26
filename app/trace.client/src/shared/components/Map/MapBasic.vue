@@ -13,6 +13,7 @@ import '@/css/leaflet.scss';
 import TileLayers from './TileLayers.vue';
 import GeocoderControl from './GeocoderControl.vue';
 import ButtonMapDefault from './ButtonMapDefault.vue';
+import FullscreenControl from './FullscreenControl.vue';
 
 L.Icon.Default.imagePath = '';
 L.Icon.Default.mergeOptions({
@@ -93,6 +94,7 @@ export default {
     <tile-layers v-if="mapPluginReady"></tile-layers>
     <geocoder-control v-if="mapPluginReady"></geocoder-control>
     <button-map-default v-if="mapPluginReady"></button-map-default>
+    <fullscreen-control v-if="mapPluginReady"></fullscreen-control>
     <slot></slot>
     <slot name="last"></slot>
   </l-map>
