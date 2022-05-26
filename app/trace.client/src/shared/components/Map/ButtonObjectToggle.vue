@@ -21,19 +21,19 @@ onMounted(async () => {
     const trafficToggle = L.easyButton({
       states: [
         {
-          stateName: 'traffic-disabled',
-          title: 'Traffic disabled',
-          icon: getIcon('stoplights'),
-          onClick: (control) => {
-            /** */
-          },
-        },
-        {
           stateName: 'traffic-enabled',
           title: 'Traffic enabled',
           icon: getIcon('stoplights-fill'),
           onClick: (control) => {
-            /** */
+            control.state('traffic-disabled');
+          },
+        },
+        {
+          stateName: 'traffic-disabled',
+          title: 'Traffic disabled',
+          icon: getIcon('stoplights'),
+          onClick: (control) => {
+            control.state('traffic-enabled');
           },
         },
       ],
@@ -46,7 +46,7 @@ onMounted(async () => {
           title: 'Cluster enabled',
           icon: getIcon('diagram-3'),
           onClick: (control) => {
-            /** */
+            control.state('cluster-disabled');
           },
         },
         {
@@ -54,7 +54,7 @@ onMounted(async () => {
           title: 'Cluster disabled',
           icon: getIcon('diagram-3-fill'),
           onClick: (control) => {
-            /** */
+            control.state('cluster-enabled');
           },
         },
       ],
@@ -67,7 +67,7 @@ onMounted(async () => {
           title: 'Hide labels',
           icon: getIcon('fonts'),
           onClick: (control) => {
-            /** */
+            control.state('show-labels');
           },
         },
         {
@@ -75,7 +75,7 @@ onMounted(async () => {
           title: 'Show labels',
           icon: getIcon('fonts'),
           onClick: (control) => {
-            /** */
+            control.state('hide-labels');
           },
         },
       ],
@@ -88,7 +88,7 @@ onMounted(async () => {
           title: 'Hide Trail',
           icon: getIcon('arrow-up-right-circle-fill'),
           onClick: (control) => {
-            /** */
+            control.state('trail-disabled');
           },
         },
         {
@@ -96,7 +96,7 @@ onMounted(async () => {
           title: 'Show Trail',
           icon: getIcon('arrow-up-right-circle'),
           onClick: (control) => {
-            /** */
+            control.state('trail-enabled');
           },
         },
       ],
@@ -109,7 +109,7 @@ onMounted(async () => {
           title: 'Traffic disabled',
           icon: getIcon('pin'),
           onClick: (control) => {
-            /** */
+            control.state('location-enabled');
           },
         },
         {
@@ -117,7 +117,7 @@ onMounted(async () => {
           title: 'Traffic enabled',
           icon: getIcon('pin-fill'),
           onClick: (control) => {
-            /** */
+            control.state('location-disabled');
           },
         },
       ],
