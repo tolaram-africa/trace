@@ -92,12 +92,12 @@ export default {
     <l-control-zoom
       :position="$q.platform.is.mobile ? 'topleft' : 'topright'"
     />
-    <tile-layers v-if="mapPluginReady"></tile-layers>
     <fullscreen-control v-if="mapPluginReady"></fullscreen-control>
     <measure-control v-if="mapPluginReady"></measure-control>
     <button-map-default v-if="mapPluginReady"></button-map-default>
     <geocoder-control v-if="mapPluginReady"></geocoder-control>
     <slot></slot>
     <slot name="last"></slot>
+    <tile-layers v-if="mapPluginReady"></tile-layers>
   </l-map>
 </template>
