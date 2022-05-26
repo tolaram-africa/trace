@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": false,
+      "forceConsistentCasingInFileNames": true,
+  },
+  "include": [
+      "**/*.ts",
+  ],
+  "exclude": [
+      "node_modules"
+  ],
+}

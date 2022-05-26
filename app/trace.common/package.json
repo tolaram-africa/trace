@@ -1,0 +1,46 @@
+{
+  "name": "@trace/common",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "setup": "pnpm run rimraf node_modules && pnpm install",
+    "dev": "tsc -w",
+    "build": "pnpm clean && tsc",
+    "clean": "rm -rf dist",
+    "test": "NODE_ENV=unittest pnpm jest",
+    "lint": "pnpm eslint --ext .js,.jsx,.ts,.tsx ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elevenClouds/trace.git"
+  },
+  "author": "radioActive DROID <me@godwin.dev>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elevenClouds/trace/issues"
+  },
+  "homepage": "https://trace.ng",
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "preset": "ts-jest",
+    "automock": false,
+    "testMatch": [
+      "**/__tests__/**/*.ts?(x)",
+      "**/?(*.)+(spec|test).ts?(x)"
+    ],
+    "setupFiles": [
+      "../../setupJest.ts"
+    ]
+  },
+  "engines": {
+    "node": "^18 || ^16 || ^14",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1",
+    "pnpm": ">=3"
+  }
+}
