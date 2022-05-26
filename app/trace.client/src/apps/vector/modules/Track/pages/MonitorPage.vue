@@ -42,10 +42,11 @@ const contextOptions = {
               </div>
               <q-btn
                 unelevated
-                icon="bi-funnel"
                 color="primary"
-                class="border-radius-sm q-ml-sm"
-              ></q-btn>
+                class="border-radius-sm q-ml-xs"
+              >
+                <q-icon size="2.4em" name="bi-sliders"></q-icon>
+              </q-btn>
             </div>
             <!-- <q-card-section>
             </q-card-section> -->
