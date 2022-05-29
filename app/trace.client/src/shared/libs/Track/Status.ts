@@ -1,28 +1,35 @@
+export type IStatusType = 'none' | 'idling' | 'moving' | 'parked' | 'offline';
+
 export interface IStatusTypes {
-  name: string;
+  title: string;
+  id: IStatusType;
   color: string;
   count: number;
 }
 
 export const StatusTypes: Array<IStatusTypes> = [
   {
-    name: 'Moving',
+    title: 'Moving',
+    id: 'moving',
     color: '#7ec27f',
-    count: 13,
+    count: 0,
   },
   {
-    name: 'Parked',
+    title: 'Parked',
+    id: 'parked',
     color: 'DodgerBlue',
-    count: 22,
+    count: 0,
   },
   {
-    name: 'Idle',
+    title: 'Idling',
+    id: 'idling',
     color: 'orange',
-    count: 3,
+    count: 0,
   },
   {
-    name: 'Offline',
+    title: 'Offline',
+    id: 'offline',
     color: 'crimson',
-    count: 2,
+    count: 0,
   },
 ];
