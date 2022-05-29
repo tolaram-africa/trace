@@ -33,7 +33,7 @@ export default {
       :to="{ name: item.name }"
       @click="gridAction"
     >
-      <q-icon flat class="grid-icon q-mb-sm" :name="item.icon" />
+      <q-icon flat class="q-mb-sm grid-icon" :name="item.icon" />
       <div class="grid-text text-weight-medium">
         {{ item.title }}
       </div>
@@ -65,7 +65,7 @@ export default {
     background-color: var(--q-app-background);
   }
   .grid-text {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     color: var(--q-accent-more);
     word-wrap: break-word;
   }
