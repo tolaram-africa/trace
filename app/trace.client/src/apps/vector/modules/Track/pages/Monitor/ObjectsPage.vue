@@ -141,7 +141,7 @@ export default {
     </q-inner-loading>
 
     <q-expansion-item
-      v-show="isObjectReady"
+      v-show="isObjectReady && resourceItem.items.length > 0"
       v-for="resourceItem in computedObjectResource"
       dense
       dense-toggle
