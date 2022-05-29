@@ -20,9 +20,9 @@ export default {
           component: () => import('./pages/Activities/SummaryPage.vue'),
         },
         {
-          path: 'timeline',
-          name: vectorPaths.task.activities.name + '.timeline',
-          component: () => import('./pages/Activities/TimelinePage.vue'),
+          path: 'events',
+          name: vectorPaths.task.activities.name + '.events',
+          component: () => import('./pages/Activities/EventPage.vue'),
         },
         {
           path: 'track',

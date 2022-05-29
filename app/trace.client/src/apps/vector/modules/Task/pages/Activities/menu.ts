@@ -7,8 +7,8 @@ export default [
     icon: '',
   },
   {
-    name: 'vec.task.activities.timeline',
-    title: 'Timeline',
+    name: 'vec.task.activities.events',
+    title: 'Events',
     icon: '',
   },
   {
