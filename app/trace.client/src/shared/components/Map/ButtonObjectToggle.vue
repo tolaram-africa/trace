@@ -1,6 +1,4 @@
 <script setup lang="ts">
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue';
 import { storeToRefs } from 'pinia';
 import * as L from 'leaflet';
@@ -18,22 +16,44 @@ const getIcon = (fill: string) => {
 onMounted(async () => {
   if (mapPluginReady.value) {
     await nextTick();
-    const trafficToggle = L.easyButton({
+
+    const objectToggle = L.easyButton({
       states: [
         {
-          stateName: 'traffic-disabled',
-          title: 'Traffic disabled',
-          icon: getIcon('stoplights'),
+          stateName: 'object-enabled',
+          title: 'Hide objects',
+          icon: getIcon('record2-fill'),
           onClick: (control) => {
-            /** */
+            control.state('object-disabled');
           },
         },
         {
+          stateName: 'object-disabled',
+          title: 'Show objects',
+          icon: getIcon('record2'),
+          onClick: (control) => {
+            control.state('object-enabled');
+          },
+        },
+      ],
+    });
+
+    const trafficToggle = L.easyButton({
+      states: [
+        {
           stateName: 'traffic-enabled',
-          title: 'Traffic enabled',
+          title: 'Hide Traffic',
           icon: getIcon('stoplights-fill'),
           onClick: (control) => {
-            /** */
+            control.state('traffic-disabled');
+          },
+        },
+        {
+          stateName: 'traffic-disabled',
+          title: 'Show Traffic',
+          icon: getIcon('stoplights'),
+          onClick: (control) => {
+            control.state('traffic-enabled');
           },
         },
       ],
@@ -43,18 +63,18 @@ onMounted(async () => {
       states: [
         {
           stateName: 'cluster-enabled',
-          title: 'Cluster enabled',
+          title: 'Disable Cluster',
           icon: getIcon('diagram-3'),
           onClick: (control) => {
-            /** */
+            control.state('cluster-disabled');
           },
         },
         {
           stateName: 'cluster-disabled',
-          title: 'Cluster disabled',
+          title: 'Enable Cluster',
           icon: getIcon('diagram-3-fill'),
           onClick: (control) => {
-            /** */
+            control.state('cluster-enabled');
           },
         },
       ],
@@ -67,7 +87,7 @@ onMounted(async () => {
           title: 'Hide labels',
           icon: getIcon('fonts'),
           onClick: (control) => {
-            /** */
+            control.state('show-labels');
           },
         },
         {
@@ -75,7 +95,7 @@ onMounted(async () => {
           title: 'Show labels',
           icon: getIcon('fonts'),
           onClick: (control) => {
-            /** */
+            control.state('hide-labels');
           },
         },
       ],
@@ -88,7 +108,7 @@ onMounted(async () => {
           title: 'Hide Trail',
           icon: getIcon('arrow-up-right-circle-fill'),
           onClick: (control) => {
-            /** */
+            control.state('trail-disabled');
           },
         },
         {
@@ -96,7 +116,7 @@ onMounted(async () => {
           title: 'Show Trail',
           icon: getIcon('arrow-up-right-circle'),
           onClick: (control) => {
-            /** */
+            control.state('trail-enabled');
           },
         },
       ],
@@ -106,25 +126,32 @@ onMounted(async () => {
       states: [
         {
           stateName: 'location-disabled',
-          title: 'Traffic disabled',
+          title: 'Show Location',
           icon: getIcon('pin'),
           onClick: (control) => {
-            /** */
+            control.state('location-enabled');
           },
         },
         {
           stateName: 'location-enabled',
-          title: 'Traffic enabled',
+          title: 'Hide Location',
           icon: getIcon('pin-fill'),
           onClick: (control) => {
-            /** */
+            control.state('location-disabled');
           },
         },
       ],
     });
 
     const routeBar = L.easyBar(
-      [trafficToggle, clusterToggle, labelToggle, trailToggle, locationToggle],
+      [
+        objectToggle,
+        trafficToggle,
+        clusterToggle,
+        labelToggle,
+        trailToggle,
+        locationToggle,
+      ],
       {
         position: 'bottomright',
       }

@@ -1,4 +1,4 @@
-import { IPosition } from '../Position';
+import { IPosition } from './Position';
 import { ITask } from '../Task/Task';
 
 export interface ITaskItem {

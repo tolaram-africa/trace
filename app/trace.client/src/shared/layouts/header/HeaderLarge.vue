@@ -86,7 +86,7 @@ export default {
           color="primary"
           text-color="primary-inverted"
           icon="bi-plus"
-          label="Create New"
+          label="Add New"
           class="gt-md text-weight-medium border-radius-sm q-mx-lg"
         >
           <q-menu
