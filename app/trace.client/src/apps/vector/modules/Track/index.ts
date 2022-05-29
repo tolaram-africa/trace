@@ -13,33 +13,6 @@ export default {
       path: vectorPaths.track.monitor.path,
       name: vectorPaths.track.monitor.name,
       component: () => import('./pages/Monitor/IndexPage.vue'),
-      children: [
-        {
-          path: '',
-          name: vectorPaths.track.monitor.name,
-          redirect: { name: vectorPaths.track.monitor.name + '.objects' },
-        },
-        {
-          path: 'objects',
-          name: vectorPaths.track.monitor.name + '.objects',
-          component: () => import('./pages/Monitor/ObjectsPage.vue'),
-        },
-        {
-          path: 'events',
-          name: vectorPaths.track.monitor.name + '.events',
-          component: () => import('./pages/Monitor/EventsPage.vue'),
-        },
-        {
-          path: 'history',
-          name: vectorPaths.track.monitor.name + '.history',
-          component: () => import('./pages/Monitor/HistoryPage.vue'),
-        },
-        {
-          path: 'locations',
-          name: vectorPaths.track.monitor.name + '.locations',
-          component: () => import('./pages/Monitor/LocationsPage.vue'),
-        },
-      ],
     },
     {
       path: vectorPaths.track.monitorId.path,

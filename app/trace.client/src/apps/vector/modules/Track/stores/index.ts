@@ -10,7 +10,7 @@ export enum WindowTypes {
 
 export const useTrackWindowState = defineStore('vec.track.panel', () => {
   const windowVisibility = ref(true);
-  const currentWindow = ref(WindowTypes.Object);
+  const currentWindow = ref<number>(WindowTypes.Object);
   const showOverlay = ref(false);
 
   const toggleWindowVisibility = () => {
