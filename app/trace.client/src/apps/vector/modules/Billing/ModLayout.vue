@@ -4,7 +4,7 @@ import vectorPaths from '@/vector/paths';
 
 const moduleItems: Array<IModule> = [
   vectorPaths.billing.summary,
-  vectorPaths.billing.trip,
+  vectorPaths.billing.order,
   vectorPaths.invoice.root,
   vectorPaths.billing.override,
   vectorPaths.billing.manifest,
