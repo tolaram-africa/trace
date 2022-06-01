@@ -24,7 +24,7 @@ export const useRouting = defineStore('app.map.routing', () => {
     routeInstance.value = L.Routing.control({
       // @ts-ignore
       router: L.Routing.mapzen('API_KEY', {
-        serviceUrl: process.env.API_ROUTING_SERVER + '/route?',
+        serviceUrl: process.env.API_ROUTING_PATH + 'route?',
         timeout: 45 * 1000,
         costing: 'truck',
         costing_options: {
@@ -44,7 +44,7 @@ export const useRouting = defineStore('app.map.routing', () => {
       formatter: new L.Routing.mapzenFormatter(),
       // @ts-ignore
       geocoder: L.Control.Geocoder.nominatim({
-        serviceUrl: process.env.API_GEOCODING_SERVER,
+        serviceUrl: process.env.API_GEOCODING_PATH,
       }),
       collapsible: false,
       summaryTemplate:

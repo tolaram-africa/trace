@@ -86,7 +86,31 @@ module.exports = configure(function (/* ctx */) {
 
     devServer: {
       open: false,
-      port: config.PORT
+      port: config.PORT,
+      proxy: {
+        '/api/routing/': {
+          target: config.API_ROUTING_SERVER,
+          rewrite: (path) => path.replace(/^\/api\/routing\//, ''),
+          changeOrigin: true,
+          headers: {
+            'Accept': '*/*',
+            'User-Agent': 'request',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Access-Control-Allow-Origin': '*',
+          }
+        },
+        '/api/geocoding/': {
+          target: config.API_GEOCODING_SERVER,
+          rewrite: (path) => path.replace(/^\/api\/geocoding\//, ''),
+          changeOrigin: true,
+          headers: {
+            'Accept': '*/*',
+            'User-Agent': 'request',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Access-Control-Allow-Origin': '*',
+          }
+        },
+      }
     },
 
     framework: {
