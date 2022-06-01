@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ChartObject: typeof import('./src/shared/layouts/components/ChartObject.vue')['default']
     CorePageWrapper: typeof import('./src/shared/components/CorePageWrapper.vue')['default']
     DesktopLayout: typeof import('./src/shared/layouts/components/DesktopLayout.vue')['default']
     DialogFormWrapper: typeof import('./src/shared/layouts/components/DialogFormWrapper.vue')['default']
