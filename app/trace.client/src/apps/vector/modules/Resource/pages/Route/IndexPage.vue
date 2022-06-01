@@ -168,11 +168,7 @@ onMounted(() => {
 
         <!-- Column 2 -->
         <div class="col-12 col-md-8 border-radius-sm column">
-          <map-basic class="col border-radius-sm">
-            <!-- <l-marker :lat-lng="[6.604859, 3.353204]" :draggable="true" />
-            <l-marker :lat-lng="[10.382532, 7.853323]" :draggable="true" />
-            <l-geo-json :geojson="geoJSON"></l-geo-json> -->
-          </map-basic>
+          <map-basic class="col border-radius-sm"> </map-basic>
         </div>
       </div>
     </q-page>

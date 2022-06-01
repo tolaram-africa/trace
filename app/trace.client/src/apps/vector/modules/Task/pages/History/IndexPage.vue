@@ -46,7 +46,7 @@ const dateTime = ref('2022-01-01 00:00');
                 unelevated
                 icon="bi-funnel"
                 color="accent"
-                class="border-radius-sm q-ml-sm"
+                class="border-radius-sm q-ml-xs"
               ></q-btn>
             </div>
             <div>Vehicles</div>

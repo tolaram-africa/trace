@@ -24,7 +24,7 @@ export default {
         {
           path: '',
           name: vectorPaths.billing.order.name + '.index',
-          component: () => import('./pages/Trip/IndexPage.vue'),
+          component: () => import('./pages/Order/IndexPage.vue'),
         },
       ],
     },
