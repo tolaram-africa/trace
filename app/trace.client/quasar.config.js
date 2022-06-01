@@ -94,9 +94,6 @@ module.exports = configure(function (/* ctx */) {
           changeOrigin: true,
           headers: {
             'Accept': '*/*',
-            'User-Agent': 'request',
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Access-Control-Allow-Origin': '*',
           }
         },
         '/api/geocoding/': {
@@ -105,9 +102,6 @@ module.exports = configure(function (/* ctx */) {
           changeOrigin: true,
           headers: {
             'Accept': '*/*',
-            'User-Agent': 'request',
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Access-Control-Allow-Origin': '*',
           }
         },
       }
