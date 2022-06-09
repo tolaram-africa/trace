@@ -1,3 +1,10 @@
+export enum ServiceLevel {
+  VECTOR,
+  DIRECT,
+  CUSTOMER,
+  ALL,
+}
+
 export enum AlertType {
   PUSH = 'push',
   WEB = 'web',
@@ -15,6 +22,51 @@ export enum ReoccurUnit {
   WEEK = 'week',
   MONTH = 'month',
   YEAR = 'year',
+}
+
+export enum SizeUnit {
+  CARTON = 'carton',
+  PACKAGE = 'package',
+  PIECE = 'piece',
+  CREATE = 'create',
+  BAGS = 'bags',
+  KILOGRAM = 'kilogram',
+  GRAM = 'gram',
+  MILLIGRAM = 'milligram',
+  LITRE = 'litre',
+  MILLILITRE = 'millilitre',
+  ALL = 'all',
+}
+
+export enum WeightUnit {
+  KILOGRAM = 'kilogram',
+  GRAM = 'gram',
+  MILLIGRAM = 'milligram',
+  POUND = 'pound',
+}
+
+export enum DimensionUnit {
+  CENTIMETER = 'centimeter',
+  METER = 'meter',
+  INCH = 'inch',
+  FEET = 'feet',
+  YARD = 'yard',
+}
+
+export enum AreaUnit {
+  SQUARE_METER = 'square_meter',
+  SQUARE_CENTIMETER = 'square_centimeter',
+  SQUARE_INCH = 'square_inch',
+  SQUARE_FEET = 'square_feet',
+  SQUARE_YARD = 'square_yard',
+}
+
+export enum HttpMethod {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  PATCH = 'PATCH',
 }
 
 export type Color = {

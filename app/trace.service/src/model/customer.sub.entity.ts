@@ -16,6 +16,7 @@ export class CustomerSub extends BaseTaggedEntity {
   public name: string;
 
   @ManyToMany(() => User)
+  @JoinTable({ name: 'sub_cust_users' })
   public users!: User[];
 
   @OneToOne(() => User)
@@ -23,7 +24,7 @@ export class CustomerSub extends BaseTaggedEntity {
   public manager!: User;
 
   @ManyToMany(() => User)
-  @JoinTable()
+  @JoinTable({ name: 'sub_cust_contacts' })
   public contacts!: User[];
 
   @ManyToMany(() => Location)

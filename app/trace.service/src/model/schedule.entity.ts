@@ -26,6 +26,6 @@ export class Schedule extends BaseTaggedEntity {
   public next: Date;
 
   @ManyToMany(() => ScheduleRecur)
-  @JoinTable()
+  @JoinTable({ name: 'recurring_schedules' })
   public schedules: ScheduleRecur[];
 }

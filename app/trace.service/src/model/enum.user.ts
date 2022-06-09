@@ -1,10 +1,3 @@
-export enum ServiceLevel {
-  VECTOR,
-  DIRECT,
-  CUSTOMER,
-  ALL,
-}
-
 export enum UserAccessType {
   CUSTOMER = 'customer',
   FLEET = 'fleet',
@@ -25,6 +18,7 @@ export enum UserAccountType {
 }
 
 export enum UserType {
+  ALL = 'all',
   /** Customer */
   CUSTOMER_USER = 'customer.user',
   CUSTOMER_SUB = 'customer.sub_account',

@@ -1,24 +1,11 @@
 import { Beacon } from './beacon.entity';
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  Index,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  RelationId,
-} from 'typeorm';
+import { Column, Entity, Index, ManyToOne, RelationId } from 'typeorm';
 import { Point } from 'geojson';
 import { GeometryTransformer } from './base.util';
+import { CoreEntity } from './base.core.entity';
 
 @Entity({ name: 'positions' })
-export class Position extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  public id: string;
-
-  @Column({ type: 'boolean', default: false })
-  public isArchived: boolean;
-
+export class Position extends CoreEntity {
   @Index({ spatial: true })
   @Column({
     type: 'geometry',
@@ -71,7 +58,7 @@ export class Position extends BaseEntity {
     type: 'timestamptz',
     nullable: false,
   })
-  public beaconTime: Date;
+  public time: Date;
 
   @Column({
     type: 'timestamptz',

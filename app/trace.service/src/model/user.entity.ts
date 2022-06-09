@@ -1,29 +1,43 @@
-import { Entity, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+  JoinTable,
+} from 'typeorm';
 import { BaseTaggedEntity } from './base.tagged.entity';
 import { UserProfile } from './user.profile.entity';
 import { UserPassport } from './user.passport.entity';
 import { UserSettings } from './user.settings.entity';
 import { UserAlerts } from './user.alerts.entity';
 import { UserAccountType, UserType } from './enum.user';
+import { Schedule } from './schedule.entity';
+import { ManyToMany } from 'typeorm';
+import { MaxLength } from 'class-validator';
 
 @Entity({ name: 'users' })
 export class User extends BaseTaggedEntity {
   @OneToOne(() => UserProfile)
   @JoinColumn()
-  public profile: UserProfile;
+  public profile!: UserProfile;
 
   @OneToOne(() => UserPassport)
   @JoinColumn()
-  public passport: UserPassport;
+  public passport!: UserPassport;
 
   @OneToOne(() => UserSettings, (setting) => setting.user)
-  public setting: UserSettings;
+  public setting!: UserSettings;
 
   @OneToMany(() => UserAlerts, (alerts) => alerts.user)
-  public alerts: UserAlerts[];
+  public alerts!: UserAlerts[];
 
   @Column({ default: true })
   public isActive: boolean;
+
+  @Column({ type: 'int', unique: true, nullable: false })
+  @MaxLength(15)
+  public phone: number;
 
   @Column({ type: 'varchar', length: 50 })
   public username: string;
@@ -51,8 +65,10 @@ export class User extends BaseTaggedEntity {
   })
   public type: UserType;
 
+  @ManyToMany(() => Schedule)
+  @JoinTable({ name: 'user_schedules' })
+  public schedules!: Schedule[];
+
   // role: Role;
   // bankAccounts?: BankAccounts[];
-  // schedules?: Schedule[];
-  // channels: ComunicationChannel[];
 }

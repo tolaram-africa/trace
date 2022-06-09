@@ -17,6 +17,12 @@ export class Beacon extends BaseTaggedEntity {
   @RelationId((beacon: Beacon) => beacon.position)
   public positionId!: string;
 
+  @Column({
+    type: 'timestamptz',
+    nullable: false,
+  })
+  public lastUpdate: Date;
+
   @Column({ type: 'varchar', length: 50 })
   public type: string;
 

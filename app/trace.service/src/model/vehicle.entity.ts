@@ -56,11 +56,11 @@ export class Vehicle extends BaseTaggedEntity {
   public beacon!: Beacon;
 
   @ManyToMany(() => Document)
-  @JoinTable()
+  @JoinTable({ name: 'vehicle_docs' })
   public docs!: Document[];
 
   @ManyToMany(() => Schedule)
-  @JoinTable()
+  @JoinTable({ name: 'vehicle_schedules' })
   public schedules!: Schedule[];
 
   @OneToOne(() => Trailer)

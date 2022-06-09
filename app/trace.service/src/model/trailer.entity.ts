@@ -36,10 +36,10 @@ export class Trailer extends BaseTaggedEntity {
   public decommissioned!: Date;
 
   @ManyToMany(() => Document)
-  @JoinTable()
+  @JoinTable({ name: 'traler_docs' })
   public docs!: Document[];
 
   @ManyToMany(() => Schedule)
-  @JoinTable()
+  @JoinTable({ name: 'trailer_schedules' })
   public schedules!: Schedule[];
 }

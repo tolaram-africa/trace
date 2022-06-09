@@ -9,7 +9,7 @@ export class UserPassport extends BaseTimedEntity {
   public user: User;
 
   @ManyToMany(() => Document)
-  @JoinTable()
+  @JoinTable({ name: 'profile_docs' })
   public docs!: Document[];
 
   @Column()

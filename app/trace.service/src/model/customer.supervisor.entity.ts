@@ -6,7 +6,7 @@ import { User } from './user.entity';
 @Entity({ name: 'cust_supv' })
 export class CustomerSupervisor extends BaseTimedEntity {
   @ManyToMany(() => Customer)
-  @JoinTable()
+  @JoinTable({ name: 'cust_supv_customers' })
   public customers: Customer[];
 
   @OneToOne(() => User)

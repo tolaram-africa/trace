@@ -16,7 +16,7 @@ export class CustomerLocation extends BaseTaggedEntity {
   public name: string;
 
   @ManyToMany(() => User)
-  @JoinTable()
+  @JoinTable({ name: 'cust_locations' })
   public users!: User[];
 
   @OneToOne(() => User)
@@ -24,7 +24,7 @@ export class CustomerLocation extends BaseTaggedEntity {
   public manager!: User;
 
   @ManyToMany(() => User)
-  @JoinTable()
+  @JoinTable({ name: 'cust_contacts' })
   public contacts!: User[];
 
   @OneToOne(() => Location)

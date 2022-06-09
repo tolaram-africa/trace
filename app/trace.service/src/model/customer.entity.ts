@@ -18,14 +18,14 @@ export class Customer extends BaseTaggedEntity {
   public owner: User;
 
   @ManyToMany(() => User)
-  @JoinTable()
+  @JoinTable({ name: 'cust_managers' })
   public managers!: User[];
 
   @Column({ default: true })
   public billable: boolean;
 
   @ManyToMany(() => Document)
-  @JoinTable()
+  @JoinTable({ name: 'cust_docs' })
   public docs!: Document[];
 
   @OneToOne(() => CustomerGroup)
