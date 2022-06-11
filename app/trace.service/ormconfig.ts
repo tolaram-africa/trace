@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import 'dotenv/config';
 
 export const ormConfig: DataSourceOptions = {
@@ -9,10 +10,12 @@ export const ormConfig: DataSourceOptions = {
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB_NAME,
+  entityPrefix: process.env.POSTGRES_TABLE_PREFIX || '',
   entities: [__dirname + '/src/model/**/*.entity.{ts,js}'],
   migrations: [__dirname + '/src/migrations/*.{ts,js}'],
   subscribers: [__dirname + '/src/subscriber/*.{ts,js}'],
   synchronize: true,
+  namingStrategy: new SnakeNamingStrategy(),
 };
 
 export const OrmConfig = {
