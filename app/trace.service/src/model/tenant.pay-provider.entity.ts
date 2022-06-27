@@ -18,8 +18,8 @@ export class TenantPayProvider extends BaseTimedEntity {
   })
   public provider: PayProvider;
 
-  @Column({ type: 'varchar', length: 512, nullable: false })
-  public username: string;
+  @Column({ type: 'varchar', length: 512, nullable: true })
+  public username!: string;
 
   @Column({ type: 'varchar', length: 512, nullable: false })
   public secret: string;

@@ -36,7 +36,7 @@ export class DriverPermit extends BaseTimedEntity {
   @Column()
   public expired: boolean;
 
-  @ManyToMany(() => Document)
+  @ManyToMany(() => Document, { nullable: true })
   @JoinTable({ name: 'driver_permit_docs' })
-  public documents: Document[];
+  public docs!: Document[];
 }

@@ -4,33 +4,34 @@ import {
   OneToOne,
   ManyToMany,
   JoinTable,
-  ManyToOne,
   JoinColumn,
 } from 'typeorm';
 import { BaseTaggedEntity } from './base.tagged.entity';
-import { UserType } from './enum.user';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { PaymentSettle } from './payment.settle.entity';
+import { TransactionAccount } from './user.transcation-account.entity';
+import { PaymentType } from './payment.type.entity';
+import { PaymentLoan } from './payment.loan.entity';
+import { PaymentRequest } from './payment.request.entity';
 
-@Entity({ name: 'payment_types' })
-export class PaymentType extends BaseTaggedEntity {
-  @Column({ default: false })
-  public default: boolean;
+export enum PayTransactionType {
+  PAYMENT = 'payment',
+  LOAN = 'loan',
+  LOAN_SETTLEMENT = 'loan_settlement',
+  SHORTAGE_SETTLEMENT = 'shortage_settlement',
+  EXPENSE = 'expense',
+  REFUND = 'refund',
+  COMPLETE_PAYMENT = 'complete_payment',
+  REPAYMENT = 'repayment',
+  REIMBURSEMENT = 'reimbursement',
+}
 
-  @Column()
-  public name: string;
-
-  @Column({ type: 'text', nullable: true })
-  public description!: string;
-
-  @Column({
-    type: 'enum',
-    enum: UserType,
-    default: [UserType.ALL],
-    array: true,
-  })
-  public userTypes: UserType[];
+export enum PaymentRequestStatus {
+  PENDING = 'pending',
+  APPROVED = 'approved',
+  REJECTED = 'rejected',
+  CANCELLED = 'cancelled',
+  PAYED = 'payed',
 }
 
 @Entity({ name: 'payments' })
@@ -38,39 +39,62 @@ export class Payment extends BaseTaggedEntity {
   @OneToOne(() => PaymentType)
   public type: PaymentType;
 
-  @Column({ default: false })
-  public settled: boolean;
+  @Column({
+    type: 'enum',
+    enum: PayTransactionType,
+    default: PayTransactionType.PAYMENT,
+    nullable: false,
+  })
+  public transactionType: PayTransactionType;
 
-  @ManyToOne(() => PaymentSettle, (settle) => settle.payments)
-  public settle: PaymentSettle;
+  @Column({
+    type: 'enum',
+    enum: PaymentRequestStatus,
+    default: PaymentRequestStatus.PENDING,
+    nullable: false,
+  })
+  public status: PaymentRequestStatus;
+
+  @OneToOne(() => TransactionAccount)
+  @JoinColumn()
+  public sourceAccount: TransactionAccount;
+
+  @OneToOne(() => TransactionAccount)
+  @JoinColumn()
+  public targetAccount: TransactionAccount;
 
   @Column({ type: 'int', default: 0 })
   public amount: number;
 
-  @Column({ type: 'int', default: 0 })
-  public pendingAmount: number;
-
-  @ManyToMany(() => User)
+  @ManyToMany(() => User, { nullable: true })
   @JoinTable({ name: 'payment_users' })
-  public users: User[];
+  public involvedParties!: User[];
 
-  @ManyToMany(() => User)
-  @JoinTable({ name: 'payment_docs' })
-  public documents!: Document[];
-
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
 
   @Column({
     type: 'timestamptz',
-    nullable: false,
+    nullable: true,
   })
-  public time: Date;
+  public approvedTime!: Date;
 
   @Column({
     type: 'timestamptz',
-    nullable: false,
+    nullable: true,
   })
-  public approvedTime: Date;
+  public paymentTime!: Date;
+
+  @OneToOne(() => PaymentLoan, { nullable: true })
+  @JoinColumn()
+  public loan!: PaymentLoan;
+
+  @OneToOne(() => PaymentRequest, { nullable: true })
+  @JoinColumn()
+  public request!: PaymentRequest;
+
+  @ManyToMany(() => Document)
+  @JoinTable({ name: 'payment_docs' })
+  public docs!: Document[];
 }

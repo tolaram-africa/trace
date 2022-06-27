@@ -10,14 +10,18 @@ export class Driver extends BaseTaggedEntity {
   public user: User;
 
   @ManyToOne(() => DriverGroup, (group) => group.driver)
+  @JoinColumn()
   public group: DriverGroup;
 
   @Column()
-  public tagId: string;
+  public identifier: string;
+
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  public barcode: string;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public employed: Date;
+  public employed!: Date;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public dismissed: Date;
+  public dismissed!: Date;
 }

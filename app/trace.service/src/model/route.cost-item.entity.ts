@@ -9,6 +9,7 @@ export class RouteCostItem extends BaseTaggedEntity {
   public approved: boolean;
 
   @ManyToOne(() => RouteCost, (route) => route.costItems)
+  @JoinColumn()
   public cost: RouteCost;
 
   @OneToOne(() => User)

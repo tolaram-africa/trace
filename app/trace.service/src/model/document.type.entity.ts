@@ -1,20 +1,11 @@
 import { Column, Entity } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { BaseTypeEntity } from './base.type.entity';
 
 @Entity({ name: 'doc_type' })
-export class DocumentType extends BaseEntity {
-  @Column()
-  public name: string;
-
+export class DocumentType extends BaseTypeEntity {
   @Column()
   public icon: string;
 
   @Column()
-  public sample: string;
-
-  @Column({ default: false })
-  public default: boolean;
-
-  @Column({ type: 'text' })
-  public description: string;
+  public module: string;
 }

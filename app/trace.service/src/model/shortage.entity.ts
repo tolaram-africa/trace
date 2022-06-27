@@ -13,8 +13,10 @@ import { DriverGroup } from './driver.group.entity';
 import { SizeUnit } from './enum.base';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { Product } from './product.entity';
 import { BaseTypeEntity } from './base.type.entity';
+import { InsuranceClaim } from './insurance.claim.entity';
+import { OrderFreight } from './order.freight.entity';
+import { Order } from './order.entity';
 
 export enum SettleIndividual {
   DRIVER = 'driver',
@@ -23,7 +25,6 @@ export enum SettleIndividual {
   TENANT = 'tenant',
   WAREHOUSE = 'warehouse',
   INSURANCE = 'insurance',
-  ALL = 'all',
 }
 
 @Entity({ name: 'shortage_settle_types' })
@@ -34,12 +35,13 @@ export class ShortageType extends BaseTypeEntity {}
 
 @Entity({ name: 'shortages' })
 export class Shortage extends BaseTaggedEntity {
-  @OneToOne(() => Product)
+  @OneToOne(() => Order)
   @JoinColumn()
-  public product: Product;
+  public order: Order;
 
-  // order: Order;
-  // freight: Freight;
+  @OneToOne(() => OrderFreight)
+  @JoinColumn()
+  public freight: OrderFreight;
 
   @Column({
     type: 'enum',
@@ -50,17 +52,17 @@ export class Shortage extends BaseTaggedEntity {
   })
   public settlementBy!: SettleIndividual[];
 
-  @OneToOne(() => Driver)
+  @OneToOne(() => Driver, { nullable: true })
   @JoinColumn()
-  public driver: DriverGroup;
+  public driver!: Driver;
 
-  @OneToOne(() => Driver)
+  @OneToOne(() => Driver, { nullable: true })
   @JoinColumn()
-  public group: DriverGroup;
+  public group!: DriverGroup;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
 
   @Column({
     type: 'timestamptz',
@@ -75,6 +77,10 @@ export class Shortage extends BaseTaggedEntity {
   @OneToOne(() => ShortageSettleType)
   @JoinColumn()
   public settleType!: ShortageSettleType;
+
+  @OneToOne(() => InsuranceClaim)
+  @JoinColumn()
+  public insuranceClaim!: InsuranceClaim;
 
   @Column({ type: 'int', nullable: false, default: 1 })
   public quantity: number;
@@ -100,7 +106,7 @@ export class Shortage extends BaseTaggedEntity {
   })
   public completed!: Date;
 
-  @ManyToMany(() => Document)
+  @ManyToMany(() => Document, { nullable: true })
   @JoinTable({ name: 'shortage_docs' })
-  public documents!: Document[];
+  public docs!: Document[];
 }

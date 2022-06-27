@@ -1,7 +1,15 @@
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
+} from 'typeorm';
 import { BaseTaggedEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
+import { Order } from './order.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'driver_incentives' })
@@ -15,11 +23,22 @@ export class DriverIncentive extends BaseTaggedEntity {
   public group: DriverGroup;
 
   @Column({ type: 'int', default: 0 })
-  public amount: number;
+  public amountCalculated: number;
 
-  @OneToOne(() => User)
+  @Column({ type: 'int', default: 0, nullable: true })
+  public amountPayed!: number;
+
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
 
-  // tasks: Order[];
+  @Column({ type: 'timestamptz', nullable: true })
+  public approvedAt!: Date;
+
+  @Column({ type: 'interval' })
+  public totalHours: number;
+
+  @ManyToMany(() => Order, { nullable: true })
+  @JoinTable({ name: 'driver_incentives_orders' })
+  public orders!: Order[];
 }

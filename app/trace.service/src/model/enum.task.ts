@@ -1,7 +1,8 @@
 export enum TaskType {
-  TRIP,
-  TASK,
-  BOTH,
+  TRIP = 'trip',
+  EVENT = 'event',
+  MAINTENANCE = 'maintenance',
+  STOCK_TRANSFER = 'stock_transfer',
 }
 
 export enum TripType {
@@ -28,4 +29,12 @@ export enum BeaconStatusItem {
   PARKED = 'parked',
   MOVING = 'moving',
   IDLING = 'idling',
+}
+
+export enum TaskObjectStatus {
+  PENDING = 'pending',
+  TRANSFER = 'transfer',
+  UNAVAILABLE = 'unavailable',
+  CANCELLED = 'cancelled',
+  FAILED = 'failed',
 }

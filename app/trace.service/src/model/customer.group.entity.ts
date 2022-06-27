@@ -15,8 +15,8 @@ export class CustomerGroup extends BaseTimedEntity {
   @Column({ default: true })
   public enableTrip: boolean;
 
-  @Column()
-  public tripType: string;
+  @Column({ default: false })
+  public autoRoute: boolean;
 
   @Column({ default: false })
   public autoOrder: boolean;
@@ -24,6 +24,15 @@ export class CustomerGroup extends BaseTimedEntity {
   @Column({ default: false })
   public autoInvoice: boolean;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ default: false })
+  public autoRouteCost: boolean;
+
+  @Column({ default: false })
+  public verifyOTP: boolean;
+
+  @Column({ default: false })
+  public autoZoneOTP: boolean;
+
+  @Column({ type: 'varchar', length: 512, nullable: true })
   public description!: string;
 }

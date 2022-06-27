@@ -12,6 +12,6 @@ export class TrailerType extends BaseEntity {
   @Column()
   public capacity: number;
 
-  @Column({ type: 'text' })
-  public description: string;
+  @Column({ type: 'text', nullable: true })
+  public description!: string;
 }

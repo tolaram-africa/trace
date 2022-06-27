@@ -6,18 +6,24 @@ import {
   ManyToMany,
   JoinTable,
   OneToMany,
+  Generated,
 } from 'typeorm';
 import { BaseTaggedEntity } from './base.tagged.entity';
 import { Customer } from './customer.entity';
 import { CustomerGroup } from './customer.group.entity';
-import { VehicleType } from './enum.vehicle';
+import { VehicleType } from './enum.object';
 import { RouteCostItem } from './route.cost-item.entity';
 import { Route } from './route.entity';
 import { TrailerType } from './trailer.type.entity';
 import { User } from './user.entity';
+import { CustomerContract } from './customer.contract.entity';
 
 @Entity({ name: 'route_costs' })
 export class RouteCost extends BaseTaggedEntity {
+  @Generated()
+  @Column({ unique: true })
+  public identifier: number;
+
   @OneToOne(() => Route)
   @JoinColumn()
   public route: Route;
@@ -36,6 +42,7 @@ export class RouteCost extends BaseTaggedEntity {
   public autoApprove: boolean;
 
   @OneToMany(() => RouteCostItem, (item) => item.cost)
+  @JoinColumn()
   public costItems: RouteCostItem[];
 
   @Column({
@@ -45,17 +52,21 @@ export class RouteCost extends BaseTaggedEntity {
     default: [VehicleType.TRUCK],
     nullable: false,
   })
-  public vehicleType: VehicleType;
+  public vehicleTypes: VehicleType[];
 
   @ManyToMany(() => TrailerType)
-  @JoinTable({ name: 'trailer_type_route_costs' })
-  public trailerTypes: TrailerType[];
-
-  @ManyToMany(() => CustomerGroup)
-  @JoinTable({ name: 'cust_grp_route_costs' })
-  public customerGroup!: CustomerGroup[];
+  @JoinTable({ name: 'route_cost_trailer_types' })
+  public trailerTypes!: TrailerType[];
 
   @ManyToMany(() => Customer)
-  @JoinTable({ name: 'customer_route_costs' })
-  public customer!: Customer[];
+  @JoinTable({ name: 'route_cost_customers' })
+  public customers!: Customer[];
+
+  @ManyToMany(() => CustomerGroup)
+  @JoinTable({ name: 'route_cost_cust_groups' })
+  public customerGroups!: CustomerGroup[];
+
+  @ManyToMany(() => CustomerContract)
+  @JoinTable({ name: 'route_cost__contracts' })
+  public contracts!: CustomerContract[];
 }

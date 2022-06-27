@@ -1,9 +1,10 @@
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { CoreTimeEntity } from './base.core-timed.entity';
 import { ScheduleRecur } from './schedule.recur.entity';
+import { Tag } from './tag.entity';
 
 @Entity({ name: 'schedules' })
-export class Schedule extends BaseTaggedEntity {
+export class Schedule extends CoreTimeEntity {
   @Column({ default: false })
   public recurring: boolean;
 
@@ -16,8 +17,8 @@ export class Schedule extends BaseTaggedEntity {
   @Column()
   public name: string;
 
-  @Column({ type: 'text' })
-  public description: string;
+  @Column({ type: 'text', nullable: true })
+  public description!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
   public excecuted: Date;
@@ -28,4 +29,8 @@ export class Schedule extends BaseTaggedEntity {
   @ManyToMany(() => ScheduleRecur)
   @JoinTable({ name: 'recurring_schedules' })
   public schedules: ScheduleRecur[];
+
+  @ManyToMany(() => Tag)
+  @JoinTable({ name: 'schedule_tags' })
+  public tag!: Tag[];
 }

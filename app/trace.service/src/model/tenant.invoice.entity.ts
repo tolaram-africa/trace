@@ -1,9 +1,10 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { User } from './user.entity';
 import { BaseTimedEntity } from './base.timed.entity';
-import { TenantSubscription } from './subscription.entity';
 import { TenantBill } from './tenant.billing.entity';
 import { ServiceLevel } from './enum.base';
+import { TenantPayProvider } from './tenant.pay-provider.entity';
+import { TenantSubscription } from './tenant.subscription.entity';
 
 @Entity({ name: 'tenant_invoices' })
 export class TenantInvoice extends BaseTimedEntity {
@@ -40,7 +41,12 @@ export class TenantInvoice extends BaseTimedEntity {
     array: true,
     default: [ServiceLevel.DIRECT],
   })
-  public paidFor: ServiceLevel;
+  public paidFor: ServiceLevel[];
 
-  // public card: UserCreditCard;
+  @OneToOne(() => TenantPayProvider)
+  @JoinColumn()
+  public paymentProvider!: TenantPayProvider;
+
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  public paymentRefrence!: string;
 }

@@ -3,16 +3,13 @@ import { CoreEntity } from './base.core.entity';
 import { Tenant } from './tenant.entity';
 
 export abstract class BaseEntity extends CoreEntity {
-  @Column({ type: 'varchar', length: 300, nullable: true })
-  public createdId!: string;
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  public createdBy!: string;
 
-  @Column({ type: 'varchar', length: 300, nullable: true })
-  public updatedId!: string;
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  public updatedBy!: string;
 
-  @Column({ type: 'varchar', length: 300, nullable: true })
-  public deletedId!: string;
-
-  @OneToOne(() => Tenant)
+  @OneToOne(() => Tenant, { nullable: true })
   @JoinColumn()
   public tenant!: Tenant;
 }

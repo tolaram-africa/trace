@@ -6,69 +6,85 @@ import {
   OneToMany,
   JoinTable,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
 import { UserProfile } from './user.profile.entity';
-import { UserPassport } from './user.passport.entity';
-import { UserSettings } from './user.settings.entity';
+import { UserPass } from './user.pass.entity';
 import { UserAlerts } from './user.alerts.entity';
 import { UserAccountType, UserType } from './enum.user';
 import { Schedule } from './schedule.entity';
 import { ManyToMany } from 'typeorm';
 import { MaxLength } from 'class-validator';
+import { CoreTimeEntity } from './base.core-timed.entity';
+import { UserSetting } from './user.setting.entity';
+import { Tenant } from './tenant.entity';
+import { BankAccount } from './user.bank-account.entity';
+import { TransactionAccount } from './user.transcation-account.entity';
 
 @Entity({ name: 'users' })
-export class User extends BaseTaggedEntity {
+export class User extends CoreTimeEntity {
   @OneToOne(() => UserProfile)
   @JoinColumn()
   public profile!: UserProfile;
 
-  @OneToOne(() => UserPassport)
+  @OneToOne(() => UserPass)
   @JoinColumn()
-  public passport!: UserPassport;
+  public passport!: UserPass;
 
-  @OneToOne(() => UserSettings, (setting) => setting.user)
-  public setting!: UserSettings;
+  @OneToOne(() => UserSetting, (setting) => setting.user, { nullable: true })
+  public setting!: UserSetting;
 
   @OneToMany(() => UserAlerts, (alerts) => alerts.user)
   public alerts!: UserAlerts[];
 
   @Column({ default: true })
+  public loginEnabled: boolean;
+
+  @Column({ default: true })
   public isActive: boolean;
 
-  @Column({ type: 'int', unique: true, nullable: false })
+  @Column({ type: 'bigint', unique: true, nullable: false })
   @MaxLength(15)
   public phone: number;
 
-  @Column({ type: 'varchar', length: 50 })
+  @Column({ type: 'varchar', length: 64, unique: false, nullable: false })
   public username: string;
 
   @Column({ default: false })
   public readonly: boolean;
 
-  @Column({ type: 'timestamptz' })
-  public expiry: Date;
+  @Column({ type: 'timestamptz', nullable: true })
+  public expiry!: Date;
 
-  @Column({ type: 'timestamptz' })
-  public lastActive: Date;
+  @Column({ type: 'timestamptz', nullable: true })
+  public lastActive!: Date;
+  true;
 
   @Column({
     type: 'enum',
     enum: UserAccountType,
-    default: UserAccountType.CUSTOMER_SUB,
+    default: UserAccountType.CUSTOMER_CLIENT,
   })
   public accountType: UserAccountType;
 
   @Column({
     type: 'enum',
     enum: UserType,
-    default: UserType.CUSTOMER_SUB,
+    default: UserType.CUSTOMER_CLIENT,
   })
   public type: UserType;
 
-  @ManyToMany(() => Schedule)
+  @OneToOne(() => Tenant, { nullable: true })
+  @JoinColumn()
+  public tenant!: Tenant;
+
+  @OneToOne(() => TransactionAccount, { nullable: true })
+  @JoinColumn()
+  public accountBalance!: TransactionAccount;
+
+  @ManyToMany(() => BankAccount, { nullable: true })
+  @JoinTable({ name: 'user_bank_accounts' })
+  public bankAccounts!: BankAccount[];
+
+  @ManyToMany(() => Schedule, { nullable: true })
   @JoinTable({ name: 'user_schedules' })
   public schedules!: Schedule[];
-
-  // role: Role;
-  // bankAccounts?: BankAccounts[];
 }

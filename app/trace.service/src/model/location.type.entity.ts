@@ -1,17 +1,8 @@
 import { Column, Entity } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { BaseTypeEntity } from './base.type.entity';
 
 @Entity({ name: 'location_type' })
-export class LocationType extends BaseEntity {
-  @Column({ default: false })
-  public default: boolean;
-
-  @Column()
-  public name: string;
-
+export class LocationType extends BaseTypeEntity {
   @Column({ type: 'varchar', length: 1024 })
   public icon: string;
-
-  @Column({ type: 'text' })
-  public description: string;
 }

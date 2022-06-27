@@ -9,29 +9,35 @@ import {
 } from 'typeorm';
 import { BaseTaggedEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
+import { BankAccount } from './user.bank-account.entity';
 import { User } from './user.entity';
+import { TransactionAccount } from './user.transcation-account.entity';
 
 @Entity({ name: 'driver_groups' })
 export class DriverGroup extends BaseTaggedEntity {
-  @Column()
+  @Column({ type: 'varchar', length: 128 })
   public name: string;
 
   @Column({ type: 'text', nullable: true })
   public description!: string;
 
-  @OneToMany(() => Driver, (driver) => driver.group)
-  public driver: Driver[];
+  @OneToMany(() => Driver, (driver) => driver.group, { nullable: true })
+  @JoinColumn()
+  public driver!: Driver[];
 
-  @Column({ type: 'int', default: 0 })
-  public balance: number;
-
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public manager!: User;
 
-  @ManyToMany(() => User)
+  @ManyToMany(() => User, { nullable: true })
   @JoinTable({ name: 'driver_supervisors' })
-  public supervisors: User[];
+  public supervisors!: User[];
 
-  // public accounts: BankAccounts[];
+  @OneToOne(() => TransactionAccount, { nullable: true })
+  @JoinColumn()
+  public accountBalance!: TransactionAccount;
+
+  @ManyToMany(() => BankAccount, { nullable: true })
+  @JoinTable({ name: 'drv_group_bank_accounts' })
+  public bankAccounts!: BankAccount[];
 }

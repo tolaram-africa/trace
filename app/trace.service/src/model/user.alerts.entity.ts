@@ -1,10 +1,10 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { CoreEntity } from './base.core.entity';
 import { AlertType } from './enum.base';
 import { User } from './user.entity';
 
 @Entity({ name: 'user_alerts' })
-export class UserAlerts extends BaseEntity {
+export class UserAlerts extends CoreEntity {
   @ManyToOne(() => User, (user) => user.alerts)
   @JoinColumn()
   public user: User;

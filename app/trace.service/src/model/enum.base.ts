@@ -114,10 +114,22 @@ export enum FuelOption {
 }
 
 export enum FuelCalculationType {
+  DISABLED = 'disabled',
   PER_BEACON = 'per_beacon',
   PER_DISTANCE = 'per_distance',
   PER_HOUR = 'per_hour',
   PER_DAY = 'per_day',
   PER_MONTH = 'per_month',
   PER_MANUAL = 'per_manual',
+}
+
+export enum BankAccountType {
+  CHECKING = 'checking',
+  SAVINGS = 'savings',
+  CURRENT = 'current',
+  BUSINESS = 'business',
+  CREDIT = 'credit',
+  LOAN = 'loan',
+  INVESTMENT = 'investment',
+  OTHER = 'other',
 }

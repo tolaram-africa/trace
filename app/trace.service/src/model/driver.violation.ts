@@ -39,7 +39,7 @@ export class DriverViolationTreshhold extends BaseTaggedEntity {
   public value!: number;
 
   @Column({ type: 'text', nullable: true })
-  public description: string;
+  public description!: string;
 }
 
 @Entity({ name: 'driver_violations' })

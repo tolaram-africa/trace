@@ -1,13 +1,14 @@
 import { Entity, ManyToOne, JoinColumn, OneToOne, Column } from 'typeorm';
 import { BaseTimedEntity } from './base.timed.entity';
-import { Product, ProductType } from './product.entity';
+import { ProductType } from './product.type.entity';
 import { User } from './user.entity';
+import { ProductModel } from './product.model.entity';
 
 @Entity({ name: 'product_cost' })
 export class ProductCost extends BaseTimedEntity {
-  @ManyToOne(() => Product, (product) => product.costs)
+  @ManyToOne(() => ProductModel, (product) => product.costs)
   @JoinColumn()
-  public product: Product;
+  public product: ProductModel;
 
   @OneToOne(() => ProductType)
   @JoinColumn()

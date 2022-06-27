@@ -62,9 +62,9 @@ export class DriverReview extends BaseTaggedEntity {
   @JoinTable({ name: 'drv_rvw_link_comments' })
   public comments!: DriverReviewComment[];
 
-  @ManyToMany(() => Document)
+  @ManyToMany(() => Document, { nullable: true })
   @JoinTable({ name: 'driver_review_docs' })
-  public documents!: Document[];
+  public docs!: Document[];
 
   @Column({ type: 'text', nullable: true })
   public remarks!: string;

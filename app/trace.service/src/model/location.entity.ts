@@ -1,26 +1,34 @@
 import { Point, Geometry } from 'geojson';
-import { Column, Entity, Index, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { BaseTaggedEntity } from './base.tagged.entity';
 import { GeometryType, LocationAutoType } from './enum.base';
 import { GeometryTransformer } from './base.util';
 import { LocationType } from './location.type.entity';
+import { User } from './user.entity';
 
 // NOTE: https://github.com/typeorm/typeorm/issues/370
+// TODO: Custom spec type for geometry column
+// https://geoman.io/geojson-editor
+// https://docs.microsoft.com/en-us/azure/azure-maps/extend-geojson
 @Entity({ name: 'locations' })
 export class Location extends BaseTaggedEntity {
-  @Column()
-  public name: string;
-
-  @Column({ type: 'text' })
-  public description: string;
-
   @Column({ default: false })
   public default: boolean;
 
   @Column({ default: true })
   public custom: boolean;
 
-  @OneToOne(() => LocationType)
+  @Column({ type: 'varchar', length: 128, nullable: false })
+  public name: string;
+
+  @OneToOne(() => User, { nullable: true })
+  @JoinColumn()
+  public approvedBy!: User;
+
+  @Column({ type: 'timestamptz', nullable: true })
+  public timeApproved!: Date;
+
+  @OneToOne(() => LocationType, { nullable: false })
   @JoinColumn()
   public type: LocationType;
 
@@ -31,6 +39,9 @@ export class Location extends BaseTaggedEntity {
   })
   public osmType: LocationAutoType;
 
+  @Column({ type: 'varchar', length: 128, nullable: false })
+  public osmId: string;
+
   @Column({
     type: 'enum',
     enum: GeometryType,
@@ -39,10 +50,9 @@ export class Location extends BaseTaggedEntity {
   })
   public geometryType: GeometryType;
 
-  @Column({ type: 'text', nullable: true })
-  public address: string;
+  @Column({ type: 'varchar', length: 1024, nullable: true })
+  public address!: string;
 
-  @Index({ spatial: true })
   @Column({
     type: 'geometry',
     spatialFeatureType: 'Point',
@@ -57,4 +67,7 @@ export class Location extends BaseTaggedEntity {
     nullable: false,
   })
   public shape: Geometry;
+
+  @Column({ type: 'text', nullable: true })
+  public description!: string;
 }

@@ -1,9 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { Tenant } from './tenant.entity';
-import { CoreEntity } from './base.core.entity';
+import { CoreTimeEntity } from './base.core-timed.entity';
 
 @Entity({ name: 'tenant_domains' })
-export class TenantDomain extends CoreEntity {
+export class TenantDomain extends CoreTimeEntity {
   @Column({ default: false })
   public default: boolean;
 

@@ -3,17 +3,19 @@ import {
   Column,
   Entity,
   OneToMany,
-  BaseEntity,
-  PrimaryGeneratedColumn,
   DeleteDateColumn,
   UpdateDateColumn,
   CreateDateColumn,
 } from 'typeorm';
+import { CoreTimeEntity } from './base.core-timed.entity';
 
 @Entity({ name: 'tenants' })
-export class Tenant extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  public id: string;
+export class Tenant extends CoreTimeEntity {
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  public createdBy!: string;
+
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  public updatedBy!: string;
 
   @Column()
   public name: string;
@@ -21,20 +23,8 @@ export class Tenant extends BaseEntity {
   @Column()
   public shortName: string;
 
-  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-  public created: Date;
-
-  @UpdateDateColumn({
-    type: 'timestamptz',
-    nullable: true,
-  })
-  public updated!: Date;
-
-  @DeleteDateColumn({
-    type: 'timestamptz',
-    nullable: true,
-  })
-  public deleted: Date;
+  @Column({ unique: true })
+  public uniqueId: string;
 
   @Column({ type: 'boolean', default: false })
   public isArchived: boolean;
@@ -43,7 +33,7 @@ export class Tenant extends BaseEntity {
   public active: boolean;
 
   @Column({ type: 'varchar', length: 512, nullable: false })
-  public key: string;
+  public token: string;
 
   @Column({ type: 'varchar', length: 512, nullable: false })
   public language: string;
@@ -53,10 +43,6 @@ export class Tenant extends BaseEntity {
 
   @Column({ type: 'varchar', length: 1024, nullable: false })
   public background: string;
-
-  // TODO: Add enum filed for color
-  // @Column()
-  // public colors: Color;
 
   @OneToMany(() => TenantDomain, (domain) => domain.tenant)
   public domains: TenantDomain[];

@@ -9,7 +9,7 @@ abstract class Template extends BaseTaggedEntity {
   public enabled: boolean;
 
   @Column({ type: 'text', nullable: true })
-  public description: string;
+  public description!: string;
 
   @Column({ type: 'text', nullable: true })
   public subject: string;

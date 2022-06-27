@@ -1,11 +1,20 @@
-import { IsEmail } from 'class-validator';
-import { Column, Entity, OneToOne } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
+} from 'typeorm';
+import { CoreTimeEntity } from './base.core-timed.entity';
 import { User } from './user.entity';
+import { Document } from './document.entity';
+import { BaseAddress } from './base.address.entity';
 
-@Entity({ name: 'user_profile' })
-export class UserProfile extends BaseTimedEntity {
-  @OneToOne(() => User, (user) => user.profile)
+@Entity({ name: 'user_profiles' })
+export class UserProfile extends CoreTimeEntity {
+  @OneToOne(() => User, (user) => user.profile, { nullable: false })
+  @JoinColumn()
   public user: User;
 
   @Column({ type: 'varchar', length: 255 })
@@ -14,31 +23,18 @@ export class UserProfile extends BaseTimedEntity {
   @Column({ type: 'varchar', length: 255 })
   public lastName: string;
 
-  @Column({ type: 'varchar', length: 255 })
-  @IsEmail()
-  public email: string;
+  @Column(() => BaseAddress)
+  public address: BaseAddress;
 
-  @Column({ type: 'int' })
-  public phone: number;
+  @OneToOne(() => Document, { nullable: true })
+  @JoinColumn()
+  public picture!: Document;
 
-  @Column()
-  address: string;
+  @OneToOne(() => Document, { nullable: true })
+  @JoinColumn()
+  public avatar!: Document;
 
-  @Column()
-  city: string;
-
-  @Column()
-  state: string;
-
-  @Column()
-  zip: string;
-
-  @Column()
-  country: string;
-
-  @Column({ type: 'varchar', length: 1024 })
-  picture: string;
-
-  @Column({ type: 'varchar', length: 1024 })
-  avatar: string;
+  @ManyToMany(() => Document, { nullable: true })
+  @JoinTable({ name: 'user_profile_docs' })
+  public docs!: Document[];
 }

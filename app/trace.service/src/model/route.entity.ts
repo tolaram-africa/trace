@@ -19,15 +19,24 @@ export class Route extends BaseTaggedEntity {
   @Column({ default: false })
   public default: boolean;
 
-  @OneToOne(() => User)
-  @JoinColumn()
-  public approvedBy: User;
+  @Column()
+  public name: string;
 
-  @OneToOne(() => Location)
+  @Column({ type: 'text', nullable: true })
+  public description!: string;
+
+  @OneToOne(() => User, { nullable: true })
+  @JoinColumn()
+  public approvedBy!: User;
+
+  @Column({ default: false })
+  public approved: boolean;
+
+  @OneToOne(() => Location, { nullable: false })
   @JoinColumn()
   public source: Location;
 
-  @OneToOne(() => Location)
+  @OneToOne(() => Location, { nullable: false })
   @JoinColumn()
   public destination: Location;
 
@@ -39,7 +48,7 @@ export class Route extends BaseTaggedEntity {
   })
   public polyline: LineString;
 
-  @ManyToMany(() => Location)
+  @ManyToMany(() => Location, { nullable: true })
   @JoinTable({ name: 'route_locations' })
   public stops!: Location[];
 
@@ -50,17 +59,25 @@ export class Route extends BaseTaggedEntity {
   @Max(300)
   public speedLimit!: number;
 
-  @Column({ type: 'interval', nullable: true })
-  public restPeriod!: number;
+  @Column({
+    type: 'bigint',
+    default: 0,
+    nullable: true,
+  })
+  public restDuration!: number;
 
-  @Column({ type: 'interval', nullable: true })
-  public tolerancePeriod!: number;
+  @Column({
+    type: 'bigint',
+    default: 0,
+    nullable: true,
+  })
+  public toleranceDuration!: number;
 
-  @Column({ type: 'int', default: 100 })
+  @Column({ type: 'int', default: 100, nullable: true })
   @Max(100)
-  public completedPercentage: number;
+  public completedPercentage!: number;
 
-  @ManyToMany(() => Schedule)
+  @ManyToMany(() => Schedule, { nullable: true })
   @JoinTable({ name: 'route_schedules' })
   public schedules!: Schedule[];
 }

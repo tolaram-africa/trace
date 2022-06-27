@@ -8,68 +8,46 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { DimensionUnit, SizeUnit, WeightUnit } from './enum.base';
-import { ProductCost } from './product.cost.entity';
 import { User } from './user.entity';
-import { Brand } from './brand.entity';
+import { ProductBrand } from './product.brand.entity';
+import { ProductType } from './product.type.entity';
 import { Customer } from './customer.entity';
-import { BaseTypeEntity } from './base.type.entity';
-
-@Entity({ name: 'product_types' })
-export class ProductType extends BaseTypeEntity {
-  @Column({
-    type: 'enum',
-    enum: SizeUnit,
-    default: SizeUnit.MILLIGRAM,
-    nullable: true,
-  })
-  unit: SizeUnit;
-}
+import { ProductModel } from './product.model.entity';
 
 @Entity({ name: 'products' })
 export class Product extends BaseTaggedEntity {
   @Column({ default: false })
   public default: boolean;
 
-  @Column()
+  @Column({ type: 'varchar', length: 128 })
   public name: string;
 
+  @Column({ default: false })
+  public perishable: boolean;
+
+  @Column({ default: false })
+  public hazardrous: boolean;
+
   @Column({ type: 'text', nullable: true })
-  public description: string;
+  public description!: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
 
-  @OneToOne(() => Brand)
+  @OneToOne(() => ProductBrand)
   @JoinColumn()
-  public brand: Brand;
+  public brand: ProductBrand;
 
   @OneToOne(() => ProductType)
   @JoinColumn()
   public type: ProductType;
 
-  @Column({
-    type: 'enum',
-    enum: DimensionUnit,
-    default: DimensionUnit.CENTIMETER,
-  })
-  public dimensionUnit: DimensionUnit;
-
-  @Column({ type: 'int', default: 1 })
-  public dimensionArea: number;
-
-  @Column({ type: 'enum', enum: WeightUnit, default: WeightUnit.KILOGRAM })
-  public weightUnit: WeightUnit;
-
-  @Column({ type: 'int', default: 1 })
-  public weight: number;
-
-  @OneToMany(() => ProductCost, (cost) => cost.product)
+  @OneToMany(() => ProductModel, (model) => model.product, { nullable: true })
   @JoinColumn()
-  public costs: ProductCost[];
+  public models!: ProductModel[];
 
-  @ManyToMany(() => Customer)
+  @ManyToMany(() => Customer, { nullable: true })
   @JoinTable({ name: 'customer_products' })
-  public customer: Customer[];
+  public customers!: Customer[];
 }

@@ -12,12 +12,8 @@ import { Location } from './location.entity';
 
 @Entity({ name: 'custs_locations' })
 export class CustomerLocation extends BaseTaggedEntity {
-  @Column()
-  public name: string;
-
-  @ManyToMany(() => User)
-  @JoinTable({ name: 'cust_locations' })
-  public users!: User[];
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  public label!: string;
 
   @OneToOne(() => User)
   @JoinColumn()
@@ -27,10 +23,10 @@ export class CustomerLocation extends BaseTaggedEntity {
   @JoinTable({ name: 'cust_contacts' })
   public contacts!: User[];
 
-  @OneToOne(() => Location)
+  @OneToOne(() => Location, { nullable: false })
   @JoinColumn()
-  location: Location;
+  public location: Location;
 
-  @Column({ type: 'text' })
-  public description: string;
+  @Column({ type: 'text', nullable: true })
+  public description!: string;
 }
