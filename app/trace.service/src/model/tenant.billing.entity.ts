@@ -1,4 +1,4 @@
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { TenantInvoice } from './tenant.invoice.entity';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 

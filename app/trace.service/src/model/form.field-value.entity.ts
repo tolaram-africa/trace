@@ -1,6 +1,6 @@
 import { FormField } from './form.field.entity';
 import { Form } from './form.entity';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { Column, Entity, OneToOne } from 'typeorm';
 
 @Entity({ name: 'form_field_values' })

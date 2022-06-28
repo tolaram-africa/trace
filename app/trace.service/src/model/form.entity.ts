@@ -1,5 +1,5 @@
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { FormField } from './form.field.entity';
 
 @Entity({ name: 'forms' })

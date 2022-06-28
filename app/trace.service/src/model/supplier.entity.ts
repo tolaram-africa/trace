@@ -7,7 +7,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { BaseAddress } from './base.address.entity';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { Document } from './document.entity';
 import { User } from './user.entity';
 

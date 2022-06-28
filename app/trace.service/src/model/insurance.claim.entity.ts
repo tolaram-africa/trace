@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { InsuranceClaimStatus } from './insurance.entity';
 import { InsurancePlan } from './insurance.plan.entity';
 import { IssurableObject } from './enum.object';

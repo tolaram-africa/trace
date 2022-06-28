@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 
 @Entity({ name: 'drv_review_comments' })
 export class DriverReviewComment extends SoftDeleteEntity {

@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { Document } from './document.entity';
 import { Shipment } from './shipment.entity';
 import { StockPurchaseRequest } from './stock.purchase-request.entity';

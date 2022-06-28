@@ -1,5 +1,5 @@
 import { Entity, ManyToOne, JoinColumn, OneToOne, Column } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { ProductType } from './product.type.entity';
 import { User } from './user.entity';
 import { ProductModel } from './product.model.entity';

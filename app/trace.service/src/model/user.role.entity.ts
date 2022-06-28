@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { UserType } from './enum.user';
 import { UserPermission } from './user.permission.entity';
 

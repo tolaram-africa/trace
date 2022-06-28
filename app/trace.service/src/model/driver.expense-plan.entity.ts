@@ -1,5 +1,5 @@
 import { Column, Entity, Generated, JoinColumn, OneToOne } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { DriverExpenseType } from './driver.expense-type.entity';
 import { RouteCost } from './route.cost.entity';
 import { User } from './user.entity';

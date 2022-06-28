@@ -7,7 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { MaintenanceRequestIssue } from './maintenance.request-issue.entity';

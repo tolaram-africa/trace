@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { BankAccountType } from './enum.base';
 import { Bank } from './system.bank.entity';
 import { Document } from './document.entity';

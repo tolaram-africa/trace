@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
 import { BaseAddress } from './base.address.entity';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 
 @Entity({ name: 'bank_profiles' })
 export class Bank extends SoftDeleteEntity {

@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 
 @Entity({ name: 'cust_group' })
 export class CustomerGroup extends SoftDeleteEntity {

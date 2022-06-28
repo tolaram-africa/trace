@@ -9,7 +9,7 @@ import {
   Entity,
   ManyToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { Customer } from './customer.entity';
 import { Document } from './document.entity';
 import { DimensionUnit, SizeUnit, WeightUnit } from './enum.base';
