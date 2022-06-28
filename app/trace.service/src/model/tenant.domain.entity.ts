@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { Tenant } from './tenant.entity';
-import { CoreDeleteEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core.soft-delete.entity';
 
 @Entity({ name: 'tenant_domains' })
 export class TenantDomain extends CoreDeleteEntity {

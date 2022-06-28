@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { CoreDeleteEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core.soft-delete.entity';
 
 @Entity({ name: 'currencies' })
 export class Currency extends CoreDeleteEntity {

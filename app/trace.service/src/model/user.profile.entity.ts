@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { CoreDeleteEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core.soft-delete.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { BaseAddress } from './base.address.entity';

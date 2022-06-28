@@ -1,5 +1,5 @@
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
-import { CoreDeleteEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core.soft-delete.entity';
 import { ScheduleRecur } from './schedule.recur.entity';
 import { Tag } from './tag.entity';
 

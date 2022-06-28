@@ -11,7 +11,7 @@ import { UserAlert } from './user.alerts.entity';
 import { UserAccountType, UserType } from './enum.user';
 import { Schedule } from './schedule.entity';
 import { ManyToMany } from 'typeorm';
-import { CoreDeleteEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core.soft-delete.entity';
 import { UserSetting } from './user.setting.entity';
 import { Tenant } from './tenant.entity';
 import { BankAccount } from './paymeny.bank-account.entity';
