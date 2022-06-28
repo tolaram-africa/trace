@@ -1,8 +1,8 @@
 import { Column, Entity } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 
 @Entity({ name: 'trailer_type' })
-export class TrailerType extends BaseEntity {
+export class TrailerType extends TenantEntity {
   @Column({ default: false })
   public default: boolean;
 

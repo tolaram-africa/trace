@@ -8,11 +8,11 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { InsuranceProvider } from './insurance.provider.entity';
 
 @Entity('insurance_policies')
-export class InsurancePolicy extends BaseTimedEntity {
+export class InsurancePolicy extends SoftDeleteEntity {
   @Column({ default: false })
   public active: boolean;
 

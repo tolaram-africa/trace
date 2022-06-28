@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
-import { CoreTimeEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core-timed.entity';
 import { TagMembers } from './tag.members.entity';
 import { Tenant } from './tenant.entity';
 import { OneToOne } from 'typeorm';
@@ -7,7 +7,7 @@ import { Tree, TreeChildren, TreeParent } from 'typeorm-pg-adjacency-list-tree';
 
 @Entity({ name: 'tags' })
 @Tree()
-export class Tag extends CoreTimeEntity {
+export class Tag extends CoreDeleteEntity {
   @Column({ type: 'varchar', length: 255 })
   public name: string;
 

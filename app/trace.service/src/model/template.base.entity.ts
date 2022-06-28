@@ -1,7 +1,7 @@
 import { Column } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 
-export abstract class Template extends BaseTaggedEntity {
+export abstract class MessageTemplate extends TagEntity {
   @Column({ default: false })
   public default: boolean;
 
@@ -15,7 +15,10 @@ export abstract class Template extends BaseTaggedEntity {
   public subject: string;
 
   @Column({ type: 'text', nullable: true })
-  public body: string;
+  public bodyFull: string;
+
+  @Column({ type: 'text', nullable: true })
+  public bodyShort: string;
 
   @Column({ type: 'varchar', length: 1024, nullable: true })
   public url: string;

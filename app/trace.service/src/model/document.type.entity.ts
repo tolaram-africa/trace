@@ -1,8 +1,8 @@
 import { Column, Entity } from 'typeorm';
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 
 @Entity({ name: 'doc_type' })
-export class DocumentType extends BaseTypeEntity {
+export class DocumentType extends TypeEntity {
   @Column()
   public icon: string;
 

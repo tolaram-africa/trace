@@ -1,9 +1,9 @@
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { FormField } from './form.field.entity';
 
 @Entity({ name: 'forms' })
-export class Form extends BaseTimedEntity {
+export class Form extends SoftDeleteEntity {
   @Column({ default: false })
   public default: boolean;
 

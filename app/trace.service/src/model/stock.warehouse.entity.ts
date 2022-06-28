@@ -6,12 +6,12 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 import { Warehouse } from './warehouse.entity';
 import { StockInventory } from './stock.inventory.entity';
 
 @Entity({ name: 'stock_warehouses' })
-export class StockWarehouse extends BaseTypeEntity {
+export class StockWarehouse extends TypeEntity {
   @OneToOne(() => Warehouse, { nullable: false })
   @JoinColumn()
   public warehouse: Warehouse;

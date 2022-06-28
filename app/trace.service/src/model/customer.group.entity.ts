@@ -1,8 +1,8 @@
 import { Column, Entity } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 
 @Entity({ name: 'cust_group' })
-export class CustomerGroup extends BaseTimedEntity {
+export class CustomerGroup extends SoftDeleteEntity {
   @Column({ default: false })
   public default: boolean;
 

@@ -7,13 +7,13 @@ import {
   ManyToOne,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { User } from './user.entity';
 import { Location } from './location.entity';
 import { Customer } from './customer.entity';
 
 @Entity({ name: 'custs_client' })
-export class CustomerClient extends BaseTaggedEntity {
+export class CustomerClient extends TagEntity {
   @Column({ default: true })
   public temporary!: string;
 

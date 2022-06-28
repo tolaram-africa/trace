@@ -7,14 +7,14 @@ import {
   OneToOne,
 } from 'typeorm';
 import { BaseAddress } from './base.address.entity';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Customer } from './customer.entity';
 import { AreaUnit } from './enum.base';
 import { Location } from './location.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'warehouses' })
-export class Warehouse extends BaseTaggedEntity {
+export class Warehouse extends TagEntity {
   @ManyToMany(() => Customer, { nullable: true })
   @JoinTable({ name: 'warehouse_customers' })
   public customers!: Customer[];

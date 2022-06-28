@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { StockOutRequest } from './stock.out-request.entity';
 import { User } from './user.entity';
 
@@ -11,7 +11,7 @@ export enum StockOutType {
 }
 
 @Entity({ name: 'stock_outs' })
-export class StockOut extends BaseTimedEntity {
+export class StockOut extends SoftDeleteEntity {
   @Column({ type: 'enum', enum: StockOutType, nullable: false })
   public type: StockOutType;
 

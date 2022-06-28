@@ -10,10 +10,10 @@ import {
 import { Currency } from './currency.entity';
 import { BankAccount } from './paymeny.bank-account.entity';
 import { Document } from './document.entity';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 
 @Entity({ name: 'transaction_accounts' })
-export class TransactionAccount extends BaseTaggedEntity {
+export class TransactionAccount extends TagEntity {
   @Column({ default: true })
   public active: boolean;
 

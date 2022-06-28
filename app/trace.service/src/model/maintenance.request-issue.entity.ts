@@ -1,9 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 import { MaintenanceRequestLog } from './maintenance.request-log.entity';
 
 @Entity({ name: 'maintenance_req_log_issues' })
-export class MaintenanceRequestIssue extends BaseTypeEntity {
+export class MaintenanceRequestIssue extends TypeEntity {
   @ManyToOne(() => MaintenanceRequestLog, (log) => log.issues)
   @JoinColumn()
   public requestLog: MaintenanceRequestLog;

@@ -6,7 +6,7 @@ import {
   ManyToOne,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Customer } from './customer.entity';
 import { OrderInvoice } from './order.invoice.entity';
 import { RouteCost } from './route.cost.entity';
@@ -14,7 +14,7 @@ import { User } from './user.entity';
 import { OrderRequest } from './order.request.entity';
 
 @Entity({ name: 'orders' })
-export class Order extends BaseTaggedEntity {
+export class Order extends TagEntity {
   @Generated()
   @Column({ unique: true })
   public identifier: number;

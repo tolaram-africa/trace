@@ -1,10 +1,10 @@
 import { Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { Trailer } from './object.trailer.entity';
-import { BaseTaskObjectState } from './task.base.object-state.entity';
+import { TaskObjectState } from './task.base.object-state.entity';
 import { TaskRequest } from './task.request.entity';
 
 @Entity({ name: 'task_trailers' })
-export class TaskTrailer extends BaseTaskObjectState {
+export class TaskTrailer extends TaskObjectState {
   @OneToOne(() => Trailer)
   @JoinColumn()
   public driver: Trailer;

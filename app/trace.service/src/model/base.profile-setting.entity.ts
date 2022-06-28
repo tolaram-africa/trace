@@ -1,9 +1,9 @@
 import { Point } from 'geojson';
 import { Column } from 'typeorm';
-import { CoreTimeEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core-timed.entity';
 import { GeometryTransformer } from './base.util';
 
-export abstract class BaseSetting extends CoreTimeEntity {
+export abstract class BaseSetting extends CoreDeleteEntity {
   @Column({ type: 'int' })
   public zoomInitial!: number;
 

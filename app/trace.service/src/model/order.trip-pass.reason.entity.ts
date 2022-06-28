@@ -1,8 +1,8 @@
 import { Column, Entity } from 'typeorm';
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 
 @Entity({ name: 'trip_pass_reasons' })
-export class TripPassReason extends BaseTypeEntity {
+export class TripPassReason extends TypeEntity {
   @Column({ default: true })
   public hasValidity: boolean;
 

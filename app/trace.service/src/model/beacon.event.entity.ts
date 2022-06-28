@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { CoreEntity } from './base.core.entity';
+import { TenantEntity } from './base.entity';
 import { Beacon } from './beacon.entity';
 import { BeaconPosition } from './beacon.position.entity';
 import { Location } from './location.entity';
@@ -25,7 +25,7 @@ export enum BeaconEventType {
 }
 
 @Entity({ name: 'beacon_events' })
-export class BeaconEvent extends CoreEntity {
+export class BeaconEvent extends TenantEntity {
   @OneToOne(() => Tenant, { nullable: true })
   @JoinColumn()
   public tenant!: Tenant;

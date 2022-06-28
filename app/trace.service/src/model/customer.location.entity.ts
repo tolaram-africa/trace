@@ -6,12 +6,12 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { User } from './user.entity';
 import { Location } from './location.entity';
 
 @Entity({ name: 'custs_locations' })
-export class CustomerLocation extends BaseTaggedEntity {
+export class CustomerLocation extends TagEntity {
   @Column({ type: 'varchar', length: 128, nullable: true })
   public label!: string;
 

@@ -7,7 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Supplier } from './supplier.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
@@ -15,7 +15,7 @@ import { StockWarehouse } from './stock.warehouse.entity';
 import { StockPurchaseItem } from './stock.purchase-item.entity';
 
 @Entity({ name: 'stock_purchase_reqs' })
-export class StockPurchaseRequest extends BaseTaggedEntity {
+export class StockPurchaseRequest extends TagEntity {
   @OneToOne(() => Supplier)
   @JoinColumn()
   public supplier: Supplier;

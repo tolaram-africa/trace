@@ -1,11 +1,11 @@
 import { Entity, ManyToOne, JoinColumn, OneToOne, Column } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { ProductType } from './product.type.entity';
 import { User } from './user.entity';
 import { ProductModel } from './product.model.entity';
 
 @Entity({ name: 'product_cost' })
-export class ProductCost extends BaseTimedEntity {
+export class ProductCost extends SoftDeleteEntity {
   @ManyToOne(() => ProductModel, (product) => product.costs)
   @JoinColumn()
   public product: ProductModel;

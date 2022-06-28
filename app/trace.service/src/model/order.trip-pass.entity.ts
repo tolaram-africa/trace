@@ -1,5 +1,5 @@
 import { Column, Entity, Generated, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Customer } from './customer.entity';
 import { TripPassReason } from './order.trip-pass.reason.entity';
 import { User } from './user.entity';
@@ -8,7 +8,7 @@ import { Driver } from './driver.entity';
 import { Order } from './order.entity';
 
 @Entity({ name: 'order_trip_passes' })
-export class OrderTripPass extends BaseTaggedEntity {
+export class OrderTripPass extends TagEntity {
   @Generated()
   @Column({ unique: true })
   public identifier: number;

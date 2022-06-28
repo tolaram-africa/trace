@@ -1,11 +1,11 @@
 import { Max } from 'class-validator';
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Rating } from './rating.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'rating_comments' })
-export class RatingComment extends BaseTaggedEntity {
+export class RatingComment extends TagEntity {
   @OneToOne(() => User)
   @JoinColumn()
   public user: User;

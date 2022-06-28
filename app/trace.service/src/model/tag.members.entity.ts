@@ -1,11 +1,11 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { CoreTimeEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core-timed.entity';
 import { RBACPermission } from './enum.user';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'tag_members' })
-export class TagMembers extends CoreTimeEntity {
+export class TagMembers extends CoreDeleteEntity {
   @ManyToOne(() => Tag, (tag) => tag.members)
   @JoinColumn()
   public tag: Tag;

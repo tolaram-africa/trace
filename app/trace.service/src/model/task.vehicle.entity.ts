@@ -1,10 +1,10 @@
 import { Vehicle } from './object.vehicle.entity';
 import { Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { BaseTaskObjectState } from './task.base.object-state.entity';
+import { TaskObjectState } from './task.base.object-state.entity';
 import { TaskRequest } from './task.request.entity';
 
 @Entity({ name: 'task_vehicles' })
-export class TaskVehicle extends BaseTaskObjectState {
+export class TaskVehicle extends TaskObjectState {
   @OneToOne(() => Vehicle)
   @JoinColumn()
   public driver: Vehicle;

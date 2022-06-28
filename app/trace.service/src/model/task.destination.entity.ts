@@ -1,5 +1,5 @@
 import { OneToOne, JoinColumn, Column, Entity, ManyToOne } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { Location } from './location.entity';
 import { Document } from './document.entity';
 import { TaskRequest } from './task.request.entity';
@@ -10,7 +10,7 @@ enum DestinationType {
 }
 
 @Entity({ name: 'task_destinations' })
-export class TaskDestination extends BaseEntity {
+export class TaskDestination extends TenantEntity {
   @ManyToOne(() => TaskRequest, (request) => request.destinations)
   @JoinColumn()
   public taskRequest: TaskRequest;

@@ -1,10 +1,10 @@
 import { TenantDomain } from './tenant.domain.entity';
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
-import { CoreTimeEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core-timed.entity';
 import { TenantSetting } from './tenant.setting.entity';
 
 @Entity({ name: 'tenants' })
-export class Tenant extends CoreTimeEntity {
+export class Tenant extends CoreDeleteEntity {
   @Column({ type: 'varchar', length: 128, nullable: true })
   public createdBy!: string;
 

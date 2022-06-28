@@ -1,11 +1,11 @@
 import { OneToOne, JoinColumn, Column } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 import { Rating } from './rating.entity';
 import { User } from './user.entity';
 
-export class DriverRating extends BaseTaggedEntity {
+export class DriverRating extends TagEntity {
   @OneToOne(() => Driver)
   @JoinColumn()
   public driver: DriverGroup;

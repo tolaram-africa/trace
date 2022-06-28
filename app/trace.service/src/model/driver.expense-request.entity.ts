@@ -1,4 +1,4 @@
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { User } from './user.entity';
 import { Driver } from './driver.entity';
 import { DriverExpensePlan } from './driver.expense-plan.entity';
@@ -9,7 +9,7 @@ import { TaskRequest } from './task.request.entity';
 import { DriverGroup } from './driver.group.entity';
 
 @Entity({ name: 'driver_expense_requests' })
-export class DriverExpenseRequest extends BaseTimedEntity {
+export class DriverExpenseRequest extends SoftDeleteEntity {
   @OneToOne(() => DriverExpenseType)
   @JoinColumn()
   public type: DriverExpenseType;

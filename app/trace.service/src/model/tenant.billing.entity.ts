@@ -1,9 +1,9 @@
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { TenantInvoice } from './tenant.invoice.entity';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 
 @Entity({ name: 'tenant_bills' })
-export class TenantBill extends BaseTimedEntity {
+export class TenantBill extends SoftDeleteEntity {
   @Column({ default: false })
   public paid: boolean;
 

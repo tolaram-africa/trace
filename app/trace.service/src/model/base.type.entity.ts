@@ -1,7 +1,7 @@
 import { Column } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 
-export abstract class BaseTypeEntity extends BaseEntity {
+export abstract class TypeEntity extends TenantEntity {
   @Column({ default: false })
   public default: boolean;
 

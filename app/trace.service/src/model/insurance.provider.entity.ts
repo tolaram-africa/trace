@@ -8,10 +8,10 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 
 @Entity('insurance_providers')
-export class InsuranceProvider extends BaseEntity {
+export class InsuranceProvider extends TenantEntity {
   @Column({ type: 'varchar', length: 128 })
   public name: string;
 

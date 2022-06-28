@@ -1,9 +1,9 @@
 import { Column, Entity } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { HttpMethod } from './enum.base';
 
 @Entity({ name: 'tenant_sms_configs' })
-export class TenantSmsConfig extends BaseEntity {
+export class TenantSmsConfig extends TenantEntity {
   @Column({ type: 'varchar', length: 155, nullable: false })
   public username: string;
 

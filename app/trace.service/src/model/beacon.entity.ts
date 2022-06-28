@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { FuelCalculationType } from './enum.base';
 import { BeaconPosition } from './beacon.position.entity';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { BeaconDevice } from './object.beacon.entity';
 
 export enum BeaconStatus {
@@ -20,7 +20,7 @@ export enum BeaconStatus {
 }
 
 @Entity({ name: 'beacons' })
-export class Beacon extends BaseEntity {
+export class Beacon extends TenantEntity {
   @Column({ type: 'varchar', length: 128 })
   public name: string;
 

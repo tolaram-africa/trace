@@ -6,7 +6,7 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Schedule } from './schedule.entity';
 import { User } from './user.entity';
 import { Location } from './location.entity';
@@ -15,7 +15,7 @@ import { GeometryTransformer } from './base.util';
 import { Max } from 'class-validator';
 
 @Entity({ name: 'routes' })
-export class Route extends BaseTaggedEntity {
+export class Route extends TagEntity {
   @Column({ default: false })
   public default: boolean;
 

@@ -1,11 +1,11 @@
 import { Max } from 'class-validator';
 import { Entity, ManyToOne, OneToOne, JoinColumn, Column } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { RouteCost } from './route.cost.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'route_cost_items' })
-export class RouteCostItem extends BaseTaggedEntity {
+export class RouteCostItem extends TagEntity {
   public approved: boolean;
 
   @ManyToOne(() => RouteCost, (route) => route.costItems)

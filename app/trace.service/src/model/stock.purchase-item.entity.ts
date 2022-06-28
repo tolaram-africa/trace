@@ -1,10 +1,10 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { ProductModel } from './product.model.entity';
 import { StockPurchaseRequest } from './stock.purchase-request.entity';
 
 @Entity({ name: 'stock_purchase_items' })
-export class StockPurchaseItem extends BaseTaggedEntity {
+export class StockPurchaseItem extends TagEntity {
   @OneToOne(() => ProductModel)
   @JoinColumn()
   public product: ProductModel;

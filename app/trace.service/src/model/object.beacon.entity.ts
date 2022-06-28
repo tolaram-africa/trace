@@ -1,5 +1,5 @@
 import { Column, OneToOne, JoinColumn, Entity } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { Beacon } from './beacon.entity';
 import { NetworkCard } from './network-card.entity';
 import { BeaconDeviceModel } from './beacon.model.entity';
@@ -14,7 +14,7 @@ export enum BeaconDeviceStatus {
 }
 
 @Entity({ name: 'beacon_devices' })
-export class BeaconDevice extends BaseEntity {
+export class BeaconDevice extends TenantEntity {
   @Column({
     type: 'enum',
     enum: BeaconDeviceStatus,

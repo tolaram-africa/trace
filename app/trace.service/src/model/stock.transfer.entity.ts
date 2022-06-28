@@ -7,7 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { StockChange } from './stock.change.entity';
 import { StockWarehouse } from './stock.warehouse.entity';
 import { Document } from './document.entity';
@@ -15,7 +15,7 @@ import { User } from './user.entity';
 import { Shipment } from './shipment.entity';
 
 @Entity({ name: 'stock_transfers' })
-export class StockTransfer extends BaseTimedEntity {
+export class StockTransfer extends SoftDeleteEntity {
   @OneToOne(() => StockWarehouse)
   @JoinColumn()
   public from: StockWarehouse;

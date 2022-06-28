@@ -6,13 +6,13 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { ProductBrand } from './product.brand.entity';
 import { Document } from './document.entity';
 import { AssetType } from './object.asset-type.entity';
 
 @Entity({ name: 'assets' })
-export class Asset extends BaseTaggedEntity {
+export class Asset extends TagEntity {
   @Column({ type: 'varchar', length: 128, nullable: false })
   public name: string;
 

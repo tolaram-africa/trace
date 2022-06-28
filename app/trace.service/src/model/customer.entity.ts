@@ -7,7 +7,7 @@ import {
   JoinTable,
   OneToMany,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { CustomerGroup } from './customer.group.entity';
@@ -18,7 +18,7 @@ import { CustomerSetting } from './customer.setting.entity';
 import { CustomerSubscription } from './customer.subscription.entity';
 
 @Entity({ name: 'custs' })
-export class Customer extends BaseTaggedEntity {
+export class Customer extends TagEntity {
   @Column({ default: true })
   public temporary!: string;
 

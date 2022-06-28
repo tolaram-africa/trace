@@ -1,8 +1,8 @@
 import { Column, Entity } from 'typeorm';
-import { CoreTimeEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core-timed.entity';
 
 @Entity({ name: 'currencies' })
-export class Currency extends CoreTimeEntity {
+export class Currency extends CoreDeleteEntity {
   @Column({ nullable: false, unique: true, type: 'varchar', length: 3 })
   public code: string;
 

@@ -7,7 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { MaintenanceRequestIssue } from './maintenance.request-issue.entity';
@@ -16,7 +16,7 @@ import { Vehicle } from './object.vehicle.entity';
 import { Trailer } from './object.trailer.entity';
 
 @Entity({ name: 'maintenance_req_logs' })
-export class MaintenanceRequestLog extends BaseTimedEntity {
+export class MaintenanceRequestLog extends SoftDeleteEntity {
   @OneToOne(() => MaintenanceRequest)
   @JoinColumn()
   public request: MaintenanceRequest;

@@ -7,7 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Customer } from './customer.entity';
 import { User } from './user.entity';
 import { Task } from './task.entity';
@@ -24,7 +24,7 @@ import { DriverExpenseRequest } from './driver.expense-request.entity';
 import { RouteCost } from './route.cost.entity';
 
 @Entity({ name: 'task_requests' })
-export class TaskRequest extends BaseTimedEntity {
+export class TaskRequest extends SoftDeleteEntity {
   @Column({ default: true })
   public active!: boolean;
 

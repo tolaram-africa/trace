@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { CoreEntity } from './base.core.entity';
+import { TenantEntity } from './base.entity';
 import { NetworkProvider } from './network-card.provider.entity';
 
 export enum NetworkServiceType {
@@ -11,7 +11,7 @@ export enum NetworkServiceType {
 }
 
 @Entity({ name: 'network_cards' })
-export class NetworkCard extends CoreEntity {
+export class NetworkCard extends TenantEntity {
   @OneToOne(() => NetworkProvider)
   @JoinColumn()
   public provider: NetworkProvider;

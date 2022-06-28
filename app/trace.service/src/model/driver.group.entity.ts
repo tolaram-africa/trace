@@ -7,14 +7,14 @@ import {
   JoinColumn,
   OneToMany,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
 import { BankAccount } from './paymeny.bank-account.entity';
 import { User } from './user.entity';
 import { TransactionAccount } from './payment.transcation-account.entity';
 
 @Entity({ name: 'driver_groups' })
-export class DriverGroup extends BaseTaggedEntity {
+export class DriverGroup extends TagEntity {
   @Column({ type: 'varchar', length: 128 })
   public name: string;
 

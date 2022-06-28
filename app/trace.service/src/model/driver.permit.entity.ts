@@ -6,14 +6,14 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Document } from './document.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'driver_permits' })
-export class DriverPermit extends BaseTimedEntity {
+export class DriverPermit extends SoftDeleteEntity {
   @OneToOne(() => Driver)
   @JoinColumn()
   public driver: Driver;

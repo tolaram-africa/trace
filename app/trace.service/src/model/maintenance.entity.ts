@@ -7,7 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { User } from './user.entity';
 import { Vehicle } from './object.vehicle.entity';
 import { MaintenanceRepair } from './maintenance.repair.entity';
@@ -16,7 +16,7 @@ import { StockOutRequest } from './stock.out-request.entity';
 import { Document } from './document.entity';
 
 @Entity({ name: 'maintenances' })
-export class Maintenance extends BaseTaggedEntity {
+export class Maintenance extends TagEntity {
   @OneToOne(() => Vehicle)
   @JoinColumn()
   public vehicle: Vehicle;

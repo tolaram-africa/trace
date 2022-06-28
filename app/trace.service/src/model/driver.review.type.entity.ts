@@ -1,8 +1,8 @@
 import { Entity, Column } from 'typeorm';
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 
 @Entity({ name: 'driver_review_types' })
-export class DriverReviewType extends BaseTypeEntity {
+export class DriverReviewType extends TypeEntity {
   @Column({ type: 'varchar', nullable: true, default: '#ff00ef' })
   public color!: string;
 

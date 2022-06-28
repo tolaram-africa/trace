@@ -1,10 +1,10 @@
 import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { SystemUserType } from './enum.user';
 import { SystemUserPermission } from './system.user-permission.entity';
 
 @Entity({ name: 'system_user_roles' })
-export class SystemUserRole extends BaseTimedEntity {
+export class SystemUserRole extends SoftDeleteEntity {
   @Column({ default: false })
   public default: boolean;
 

@@ -1,9 +1,9 @@
 import { Entity, Column } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { UserType } from './enum.user';
 
 @Entity({ name: 'payment_types' })
-export class PaymentType extends BaseTaggedEntity {
+export class PaymentType extends TagEntity {
   @Column({ default: false })
   public default: boolean;
 

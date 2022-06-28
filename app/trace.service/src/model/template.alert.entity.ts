@@ -1,5 +1,5 @@
 import { Entity } from 'typeorm';
-import { Template } from './template.base.entity';
+import { MessageTemplate } from './template.base.entity';
 
 @Entity({ name: 'alert_templates' })
-export class AlertTemplate extends Template {}
+export class AlertTemplate extends MessageTemplate {}

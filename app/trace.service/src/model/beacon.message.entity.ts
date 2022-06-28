@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 
 export enum BeaconMessageChannel {
   SMS = 'SMS',
@@ -8,7 +8,7 @@ export enum BeaconMessageChannel {
 }
 
 @Entity({ name: 'beacon_messages' })
-export class BeaconMessage extends BaseEntity {
+export class BeaconMessage extends TenantEntity {
   @Column({ default: false })
   public default: boolean;
 

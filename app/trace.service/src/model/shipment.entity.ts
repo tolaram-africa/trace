@@ -6,12 +6,12 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { ShipmentProvider } from './shipment.provider.entity';
 import { Document } from './document.entity';
 
 @Entity({ name: 'shipments' })
-export class Shipment extends BaseTimedEntity {
+export class Shipment extends SoftDeleteEntity {
   @OneToOne(() => ShipmentProvider)
   @JoinColumn()
   public provider: ShipmentProvider;

@@ -1,4 +1,4 @@
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { DriverExpenseRequest } from './driver.expense-request.entity';
 import { User } from './user.entity';
 import { Payment } from './payment.entity';
@@ -23,7 +23,7 @@ export enum DriverExpenseStatus {
 }
 
 @Entity({ name: 'driver_expenses' })
-export class DriverExpense extends BaseTimedEntity {
+export class DriverExpense extends SoftDeleteEntity {
   @OneToOne(() => Driver, { nullable: false })
   @JoinColumn()
   public driver: Driver;

@@ -2,7 +2,7 @@ import { Column, JoinColumn, OneToOne } from 'typeorm';
 import { CoreEntity } from './base.core.entity';
 import { Tenant } from './tenant.entity';
 
-export abstract class BaseEntity extends CoreEntity {
+export abstract class TenantEntity extends CoreEntity {
   @Column({ type: 'varchar', length: 128, nullable: true })
   public createdBy!: string;
 

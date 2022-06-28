@@ -6,7 +6,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Customer } from './customer.entity';
 import { Task } from './task.entity';
 import { Ticket } from './ticket.entity';
@@ -22,7 +22,7 @@ export enum OrderRequestStatus {
 }
 
 @Entity({ name: 'order_requests' })
-export class OrderRequest extends BaseTimedEntity {
+export class OrderRequest extends SoftDeleteEntity {
   @Generated()
   @Column({ unique: true })
   public identifier: number;

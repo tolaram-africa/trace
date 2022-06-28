@@ -1,4 +1,4 @@
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Document } from './document.entity';
 import {
   Column,
@@ -12,7 +12,7 @@ import { ProductModel } from './product.model.entity';
 import { OrderRequest } from './order.request.entity';
 
 @Entity({ name: 'order_freights' })
-export class OrderFreight extends BaseTaggedEntity {
+export class OrderFreight extends TagEntity {
   @ManyToOne(() => OrderRequest, (order) => order.freights)
   @JoinColumn()
   public orderRequest: OrderRequest;

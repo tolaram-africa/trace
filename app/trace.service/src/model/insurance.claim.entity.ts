@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { InsuranceClaimStatus } from './insurance.entity';
 import { InsurancePlan } from './insurance.plan.entity';
 import { IssurableObject } from './enum.object';
@@ -16,7 +16,7 @@ import { Payment } from './payment.entity';
 import { InsuranceClaimReason } from './insurance.claim-reasons.entity';
 
 @Entity('insurance_claims')
-export class InsuranceClaim extends BaseTimedEntity {
+export class InsuranceClaim extends SoftDeleteEntity {
   @Column({
     type: 'enum',
     enum: InsuranceClaimStatus,

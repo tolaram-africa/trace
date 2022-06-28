@@ -8,7 +8,7 @@ import {
   OneToMany,
   Generated,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Customer } from './customer.entity';
 import { CustomerGroup } from './customer.group.entity';
 import { VehicleType } from './enum.object';
@@ -19,7 +19,7 @@ import { User } from './user.entity';
 import { CustomerContract } from './customer.contract.entity';
 
 @Entity({ name: 'route_costs' })
-export class RouteCost extends BaseTaggedEntity {
+export class RouteCost extends TagEntity {
   @Generated()
   @Column({ unique: true })
   public identifier: number;

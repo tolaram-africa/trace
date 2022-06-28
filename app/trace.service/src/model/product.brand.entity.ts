@@ -6,12 +6,12 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Customer } from './customer.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'product_brands' })
-export class ProductBrand extends BaseTaggedEntity {
+export class ProductBrand extends TagEntity {
   @Column({ default: false })
   public default: boolean;
 

@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { User } from './user.entity';
 import { Driver } from './driver.entity';
 import { Document } from './document.entity';
@@ -14,7 +14,7 @@ import { DriverReviewComment } from './driver.review.comment.entity';
 import { DriverReviewType } from './driver.review.type.entity';
 
 @Entity({ name: 'driver_reviews' })
-export class DriverReview extends BaseTaggedEntity {
+export class DriverReview extends TagEntity {
   @OneToOne(() => Driver)
   @JoinColumn()
   public driver: Driver;

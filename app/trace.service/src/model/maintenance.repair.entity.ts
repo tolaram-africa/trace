@@ -1,10 +1,10 @@
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 import { Maintenance } from './maintenance.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { MaintenanceRepairType } from './maintenance.repair-types.entity';
 
 @Entity({ name: 'maintenance_repairs' })
-export class MaintenanceRepair extends BaseTypeEntity {
+export class MaintenanceRepair extends TypeEntity {
   @OneToOne(() => MaintenanceRepairType)
   @JoinColumn()
   public type: MaintenanceRepairType;

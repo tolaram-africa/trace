@@ -1,4 +1,4 @@
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Schedule } from './schedule.entity';
 import { Vehicle } from './object.vehicle.entity';
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
@@ -6,7 +6,7 @@ import { Trailer } from './object.trailer.entity';
 import { MaintenanceType } from './maintenance.type.entity';
 
 @Entity({ name: 'maintenance_requests' })
-export class MaintenanceRequest extends BaseTimedEntity {
+export class MaintenanceRequest extends SoftDeleteEntity {
   @Column({ default: false })
   public scheduled: boolean;
 

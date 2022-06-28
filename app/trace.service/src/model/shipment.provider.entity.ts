@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
 import { BaseAddress } from './base.address.entity';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 
 export enum ShipmentAPI {
   UPS = 'ups',
@@ -15,7 +15,7 @@ export enum ShipmentAPI {
 }
 
 @Entity({ name: 'shipment_providers' })
-export class ShipmentProvider extends BaseEntity {
+export class ShipmentProvider extends TenantEntity {
   @Column({ type: 'varchar', length: 128, nullable: false })
   public name: string;
 

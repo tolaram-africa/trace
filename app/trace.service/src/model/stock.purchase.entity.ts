@@ -6,14 +6,14 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Document } from './document.entity';
 import { Shipment } from './shipment.entity';
 import { StockPurchaseRequest } from './stock.purchase-request.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'stock_purchases' })
-export class StockPurchase extends BaseTimedEntity {
+export class StockPurchase extends SoftDeleteEntity {
   @OneToOne(() => User)
   @JoinColumn()
   public payedBy: User;

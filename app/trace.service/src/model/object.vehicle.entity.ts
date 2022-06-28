@@ -6,7 +6,7 @@ import {
   Entity,
   JoinTable,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Beacon } from './beacon.entity';
 import { VehicleType } from './enum.object';
 import { Schedule } from './schedule.entity';
@@ -17,7 +17,7 @@ import { ProductBrand } from './product.brand.entity';
 import { StockOutRequest } from './stock.out-request.entity';
 
 @Entity({ name: 'vehicles' })
-export class Vehicle extends BaseTaggedEntity {
+export class Vehicle extends TagEntity {
   @Column({ default: false })
   public active: boolean;
 

@@ -6,13 +6,13 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Ticket } from './ticket.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 
 @Entity({ name: 'ticket_messages' })
-export class TicketMessage extends BaseTimedEntity {
+export class TicketMessage extends SoftDeleteEntity {
   @Column({
     type: 'timestamptz',
     nullable: false,

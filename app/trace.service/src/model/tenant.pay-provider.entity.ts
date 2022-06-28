@@ -1,4 +1,4 @@
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Column, Entity } from 'typeorm';
 
 export enum PayProvider {
@@ -9,7 +9,7 @@ export enum PayProvider {
 }
 
 @Entity({ name: 'tenant_pay_providers' })
-export class TenantPayProvider extends BaseTimedEntity {
+export class TenantPayProvider extends SoftDeleteEntity {
   @Column({
     type: 'enum',
     enum: PayProvider,

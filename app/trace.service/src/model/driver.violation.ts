@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 import { DriverViolationTreshhold } from './driver.violation.threshold';
@@ -16,7 +16,7 @@ export enum DriverAutoViolation {
 }
 
 @Entity({ name: 'driver_violations' })
-export class DriverViolation extends BaseTaggedEntity {
+export class DriverViolation extends TagEntity {
   @OneToOne(() => Driver)
   @JoinColumn()
   public driver: DriverGroup;

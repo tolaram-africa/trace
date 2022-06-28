@@ -7,13 +7,13 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { GeometryTransformer } from './base.util';
 import { Location } from './location.entity';
 import { TaskRequest } from './task.request.entity';
 
 @Entity({ name: 'task_routes' })
-export class TaskRoute extends BaseEntity {
+export class TaskRoute extends TenantEntity {
   @OneToOne(() => TaskRequest, (request) => request.route)
   @JoinColumn()
   public request: TaskRequest;

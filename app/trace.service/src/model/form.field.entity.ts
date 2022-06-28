@@ -1,9 +1,9 @@
 import { Column, Entity } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { FieldType } from './form.field.types';
 
 @Entity({ name: 'form_fields' })
-export class FormField extends BaseEntity {
+export class FormField extends TenantEntity {
   @Column({ default: false })
   public default: boolean;
 

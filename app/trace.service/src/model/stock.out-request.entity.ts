@@ -7,7 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { StockWarehouse } from './stock.warehouse.entity';
 import { Document } from './document.entity';
 import { StockChange } from './stock.change.entity';
@@ -15,7 +15,7 @@ import { User } from './user.entity';
 import { ProductModel } from './product.model.entity';
 
 @Entity({ name: 'stock_out_requests' })
-export class StockOutRequest extends BaseTimedEntity {
+export class StockOutRequest extends SoftDeleteEntity {
   @OneToOne(() => StockWarehouse)
   @JoinColumn()
   public warehouse: StockWarehouse;

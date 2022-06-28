@@ -7,12 +7,12 @@ import {
   OneToOne,
 } from 'typeorm';
 import { BaseAddress } from './base.address.entity';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Document } from './document.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'suppliers' })
-export class Supplier extends BaseTimedEntity {
+export class Supplier extends SoftDeleteEntity {
   @OneToOne(() => User)
   @JoinColumn()
   public contact: User;

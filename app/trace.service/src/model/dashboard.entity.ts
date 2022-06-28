@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { User } from './user.entity';
 import { SystemFeature } from './system.module.entity';
 
@@ -16,7 +16,7 @@ export enum DashboardType {
 }
 
 @Entity({ name: 'dashboards' })
-export class Dashboard extends BaseTimedEntity {
+export class Dashboard extends SoftDeleteEntity {
   @Column({ default: false, type: 'boolean' })
   public default: boolean;
 

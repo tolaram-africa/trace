@@ -1,10 +1,10 @@
 import { Entity, JoinColumn, OneToOne, ManyToMany, JoinTable } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Customer } from './customer.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'cust_loaders' })
-export class CustomerLoader extends BaseTimedEntity {
+export class CustomerLoader extends SoftDeleteEntity {
   @ManyToMany(() => Customer)
   @JoinTable({ name: 'cust_loader_customers' })
   public customers: Customer[];

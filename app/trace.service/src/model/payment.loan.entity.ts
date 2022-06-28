@@ -6,14 +6,14 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Payment } from './payment.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { PaymentLoanRequest } from './payment.loan-request.entity';
 
 @Entity({ name: 'payment_loans' })
-export class PaymentLoan extends BaseTimedEntity {
+export class PaymentLoan extends SoftDeleteEntity {
   @OneToOne(() => PaymentLoanRequest, { nullable: false })
   @JoinColumn()
   public request: PaymentLoanRequest;

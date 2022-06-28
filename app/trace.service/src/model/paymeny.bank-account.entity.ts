@@ -6,14 +6,14 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { BankAccountType } from './enum.base';
 import { Bank } from './system.bank.entity';
 import { Document } from './document.entity';
 import { BaseAddress } from './base.address.entity';
 
 @Entity({ name: 'bank_accounts' })
-export class BankAccount extends BaseTimedEntity {
+export class BankAccount extends SoftDeleteEntity {
   @OneToOne(() => Bank)
   @JoinColumn()
   bank: Bank;

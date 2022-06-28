@@ -1,9 +1,9 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 import { TaskEventType } from './task.event-type.entity';
 
 @Entity({ name: 'task_event_status_types' })
-export class TaskEventStatusType extends BaseTypeEntity {
+export class TaskEventStatusType extends TypeEntity {
   @OneToOne(() => TaskEventType, { nullable: false })
   @JoinColumn()
   public type: TaskEventType;

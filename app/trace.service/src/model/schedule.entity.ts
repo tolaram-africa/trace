@@ -1,10 +1,10 @@
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
-import { CoreTimeEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core-timed.entity';
 import { ScheduleRecur } from './schedule.recur.entity';
 import { Tag } from './tag.entity';
 
 @Entity({ name: 'schedules' })
-export class Schedule extends CoreTimeEntity {
+export class Schedule extends CoreDeleteEntity {
   @Column({ default: false })
   public recurring: boolean;
 

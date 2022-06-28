@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Schedule } from './schedule.entity';
 import { Document } from './document.entity';
 import { TrailerType } from './object.trailer.type.entity';
@@ -15,7 +15,7 @@ import { ProductBrand } from './product.brand.entity';
 import { StockOutRequest } from './stock.out-request.entity';
 
 @Entity({ name: 'trailers' })
-export class Trailer extends BaseTaggedEntity {
+export class Trailer extends TagEntity {
   @Column()
   public active: boolean;
 

@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { PaymentLoanType } from './payment.loan-type.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
@@ -22,7 +22,7 @@ export enum PaymentLoanRequestStatus {
 }
 
 @Entity({ name: 'payment_loan_requets' })
-export class PaymentLoanRequest extends BaseTimedEntity {
+export class PaymentLoanRequest extends SoftDeleteEntity {
   public type: PaymentLoanType;
 
   @Column({

@@ -1,6 +1,6 @@
 import { Customer } from './customer.entity';
 import { User } from './user.entity';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import {
   Column,
   Entity,
@@ -14,7 +14,7 @@ import { OrderRequest } from './order.request.entity';
 import { OrderInvoice } from './order.invoice.entity';
 
 @Entity({ name: 'tickets' })
-export class Ticket extends BaseTaggedEntity {
+export class Ticket extends TagEntity {
   @OneToOne(() => Customer)
   @JoinColumn()
   public customer: Customer;

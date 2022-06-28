@@ -7,13 +7,13 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 import { SizeUnit } from './enum.base';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 import { InsuranceClaim } from './insurance.claim.entity';
 import { OrderFreight } from './order.freight.entity';
 import { Order } from './order.entity';
@@ -28,13 +28,13 @@ export enum SettleIndividual {
 }
 
 @Entity({ name: 'shortage_settle_types' })
-export class ShortageSettleType extends BaseTypeEntity {}
+export class ShortageSettleType extends TypeEntity {}
 
 @Entity({ name: 'shortage_types' })
-export class ShortageType extends BaseTypeEntity {}
+export class ShortageType extends TypeEntity {}
 
 @Entity({ name: 'shortages' })
-export class Shortage extends BaseTaggedEntity {
+export class Shortage extends TagEntity {
   @OneToOne(() => Order)
   @JoinColumn()
   public order: Order;

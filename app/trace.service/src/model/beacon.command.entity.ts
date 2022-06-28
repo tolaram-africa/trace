@@ -6,12 +6,12 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { BeaconMessage } from './beacon.message.entity';
 import { BeaconDeviceModel } from './beacon.model.entity';
 
 @Entity({ name: 'beacon_commands' })
-export class BeaconCommand extends BaseEntity {
+export class BeaconCommand extends TenantEntity {
   @Column({ type: 'varchar', length: 128, nullable: false })
   public name: string;
 

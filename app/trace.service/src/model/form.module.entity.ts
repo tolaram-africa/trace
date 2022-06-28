@@ -1,9 +1,9 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Form } from './form.entity';
 
 @Entity({ name: 'form_modules' })
-export class FormModule extends BaseTaggedEntity {
+export class FormModule extends TagEntity {
   @Column({ default: false })
   public default: boolean;
 

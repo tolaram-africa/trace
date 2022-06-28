@@ -1,12 +1,12 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Task } from './task.entity';
 import { TaskEventStatusType } from './task.event-status-type.entity';
 import { TaskEventType } from './task.event-type.entity';
 import { Document } from './document.entity';
 
 @Entity({ name: 'task_events' })
-export class TaskEvent extends BaseTaggedEntity {
+export class TaskEvent extends TagEntity {
   @ManyToOne(() => Task, (task) => task.events)
   @JoinColumn()
   public task: Task;

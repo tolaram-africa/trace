@@ -1,11 +1,11 @@
 import { Column, Entity, Generated, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { DriverExpenseType } from './driver.expense-type.entity';
 import { RouteCost } from './route.cost.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'driver_expense_plans' })
-export class DriverExpensePlan extends BaseTimedEntity {
+export class DriverExpensePlan extends SoftDeleteEntity {
   @Generated()
   @Column({ unique: true })
   public identifier: number;

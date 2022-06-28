@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 
 export enum BankCardType {
   MASTERCARD = 'mastercard',
@@ -7,7 +7,7 @@ export enum BankCardType {
 }
 
 @Entity({ name: 'user_bank_cards' })
-export class BankCard extends BaseTimedEntity {
+export class BankCard extends SoftDeleteEntity {
   @Column({
     type: 'enum',
     enum: BankCardType,

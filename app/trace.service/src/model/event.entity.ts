@@ -1,5 +1,5 @@
 import { User } from './user.entity';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import {
   Column,
   CreateDateColumn,
@@ -13,7 +13,7 @@ import { SystemFeature } from './system.module.entity';
 import { Customer } from './customer.entity';
 
 @Entity({ name: 'events' })
-export class Event extends BaseEntity {
+export class Event extends TenantEntity {
   @Column({ type: 'varchar', length: 128, nullable: false })
   public type: string;
 

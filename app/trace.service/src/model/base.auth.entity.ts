@@ -1,5 +1,5 @@
 import { Column, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { User } from './user.entity';
 
 export enum RecoveryOption {
@@ -8,7 +8,7 @@ export enum RecoveryOption {
   BACKUP_CODE = 'backup_code',
 }
 
-export abstract class BaseAuth extends BaseTimedEntity {
+export abstract class BaseAuth extends SoftDeleteEntity {
   @OneToOne(() => User)
   @JoinColumn()
   public user: User;

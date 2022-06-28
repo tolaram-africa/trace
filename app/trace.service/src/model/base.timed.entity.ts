@@ -1,8 +1,8 @@
 import { Column } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { TimeEmbed } from './base.time.embed';
 
-export abstract class BaseTimedEntity extends BaseEntity {
+export abstract class SoftDeleteEntity extends TenantEntity {
   @Column(() => TimeEmbed)
   public time: TimeEmbed;
 }

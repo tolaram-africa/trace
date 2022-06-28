@@ -1,9 +1,9 @@
 import { ServiceLevel } from './enum.base';
 import { Column, JoinColumn, OneToOne } from 'typeorm';
 import { SubscriptionsTier } from './subscription.tier.entity';
-import { CoreTimeEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core-timed.entity';
 
-export abstract class BaseSubscription extends CoreTimeEntity {
+export abstract class BaseSubscription extends CoreDeleteEntity {
   @OneToOne(() => SubscriptionsTier)
   @JoinColumn()
   public tier: SubscriptionsTier;

@@ -6,12 +6,12 @@ import {
   ManyToMany,
   ManyToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Customer } from './customer.entity';
 import { TaskEventType } from './task.event-type.entity';
 
 @Entity({ name: 'cust_contracts' })
-export class CustomerContract extends BaseTimedEntity {
+export class CustomerContract extends SoftDeleteEntity {
   @ManyToOne(() => Customer, (customer) => customer.contract, {
     nullable: true,
   })

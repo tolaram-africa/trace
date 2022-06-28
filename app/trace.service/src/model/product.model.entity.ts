@@ -9,7 +9,7 @@ import {
   Entity,
   ManyToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Customer } from './customer.entity';
 import { Document } from './document.entity';
 import { DimensionUnit, SizeUnit, WeightUnit } from './enum.base';
@@ -17,7 +17,7 @@ import { ProductCost } from './product.cost.entity';
 import { Product } from './product.entity';
 
 @Entity({ name: 'product_models' })
-export class ProductModel extends BaseTimedEntity {
+export class ProductModel extends SoftDeleteEntity {
   @ManyToOne(() => Product, (product) => product.models, { nullable: false })
   public product: Product;
 

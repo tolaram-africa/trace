@@ -1,8 +1,8 @@
 import { Entity, Column } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 
 @Entity({ name: 'drv_review_comments' })
-export class DriverReviewComment extends BaseTimedEntity {
+export class DriverReviewComment extends SoftDeleteEntity {
   @Column({ type: 'text', nullable: true })
   public comment: string;
 }

@@ -6,7 +6,7 @@ import {
   JoinTable,
   JoinColumn,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { TransactionAccount } from './payment.transcation-account.entity';
@@ -35,7 +35,7 @@ export enum PaymentRequestStatus {
 }
 
 @Entity({ name: 'payments' })
-export class Payment extends BaseTaggedEntity {
+export class Payment extends TagEntity {
   @OneToOne(() => PaymentType)
   public type: PaymentType;
 

@@ -1,8 +1,8 @@
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { Column, Entity } from 'typeorm';
 
 @Entity({ name: 'tenant_email_configs' })
-export class TenantEmailConfig extends BaseEntity {
+export class TenantEmailConfig extends TenantEntity {
   @Column({ type: 'varchar', length: 512, nullable: false })
   public username: string;
 

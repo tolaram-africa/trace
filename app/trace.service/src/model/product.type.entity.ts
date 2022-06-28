@@ -1,10 +1,10 @@
 import { Entity, Column, ManyToMany, JoinTable } from 'typeorm';
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 import { Customer } from './customer.entity';
 import { SizeUnit } from './enum.base';
 
 @Entity({ name: 'product_types' })
-export class ProductType extends BaseTypeEntity {
+export class ProductType extends TypeEntity {
   @Column({
     type: 'enum',
     enum: SizeUnit,

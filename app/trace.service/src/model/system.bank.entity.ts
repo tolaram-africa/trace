@@ -1,9 +1,9 @@
 import { Column, Entity } from 'typeorm';
 import { BaseAddress } from './base.address.entity';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 
 @Entity({ name: 'bank_profiles' })
-export class Bank extends BaseTimedEntity {
+export class Bank extends SoftDeleteEntity {
   @Column({ default: false })
   public default: boolean;
 

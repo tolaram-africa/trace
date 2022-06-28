@@ -1,9 +1,9 @@
 import { Column, Entity } from 'typeorm';
-import { BaseTypeEntity } from './base.type.entity';
+import { TypeEntity } from './base.type.entity';
 import { TaskType } from './enum.task';
 
 @Entity({ name: 'task_event_types' })
-export class TaskEventType extends BaseTypeEntity {
+export class TaskEventType extends TypeEntity {
   @Column({
     type: 'enum',
     enum: TaskType,

@@ -1,18 +1,10 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  ManyToOne,
-  OneToOne,
-} from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { CoreTimeEntity } from './base.core-timed.entity';
-import { UserPass } from './user.pass.entity';
+import { CoreDeleteEntity } from './base.core-timed.entity';
 import { JoinColumn } from 'typeorm';
 
-export enum UserPassType {
+export enum UserPassportType {
   BANK_ID = 'bank_id',
   SUB_CONTINENT_ID = 'sub_continent_id',
   NATIONAL_ID = 'national_id',
@@ -23,29 +15,26 @@ export enum UserPassType {
   VEHICLE_INSURANCE = 'vehicle_insurance',
 }
 
-@Entity({ name: 'user_pass_items' })
-export class UserPassItem extends CoreTimeEntity {
-  @OneToOne(() => User, (user) => user.passport)
-  public user: User;
-
-  @ManyToOne(() => UserPass, (userPass) => userPass.identityCards)
+@Entity({ name: 'user_passports' })
+export class UserPassport extends CoreDeleteEntity {
+  @ManyToOne(() => User, (user) => user.passport, { onDelete: 'CASCADE' })
   @JoinColumn()
-  public userPass: UserPass;
+  public user: User;
 
   @Column({
     type: 'enum',
-    enum: UserPassType,
-    default: UserPassType.NATIONAL_ID,
+    enum: UserPassportType,
+    default: UserPassportType.NATIONAL_ID,
   })
-  public type!: UserPassType;
+  public type!: UserPassportType;
 
-  @Column()
+  @Column({ nullable: true })
   public class!: string;
 
-  @Column()
+  @Column({ nullable: true })
   public uniqueId!: string;
 
-  @Column()
+  @Column({ nullable: true })
   public serialNo!: string;
 
   @Column({ type: 'date', nullable: true })
@@ -54,19 +43,19 @@ export class UserPassItem extends CoreTimeEntity {
   @Column({ type: 'date', nullable: true })
   public dateIssued!: Date;
 
-  @Column()
+  @Column({ nullable: true })
   public issuedBy!: string;
 
-  @Column()
+  @Column({ nullable: true })
   public issuedCountry!: string;
 
-  @Column()
+  @Column({ nullable: true })
   public issuedState!: string;
 
-  @Column()
+  @Column({ nullable: true })
   public issuedPlace!: string;
 
   @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'user_pass_item_docs' })
+  @JoinTable({ name: 'user_passport_docs' })
   public docs!: Document[];
 }

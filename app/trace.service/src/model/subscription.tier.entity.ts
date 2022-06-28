@@ -1,9 +1,9 @@
 import { Entity, Column } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { ServiceLevel } from './enum.base';
 
 @Entity({ name: 'subscription_tier' })
-export class SubscriptionsTier extends BaseTimedEntity {
+export class SubscriptionsTier extends SoftDeleteEntity {
   @Column({ default: false })
   public default: boolean;
 

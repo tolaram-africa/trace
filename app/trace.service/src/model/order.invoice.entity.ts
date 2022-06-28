@@ -7,7 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Customer } from './customer.entity';
 import { Order } from './order.entity';
 import { Ticket } from './ticket.entity';
@@ -25,7 +25,7 @@ export enum OrderInvoiceStatus {
 }
 
 @Entity({ name: 'order_invoices' })
-export class OrderInvoice extends BaseTaggedEntity {
+export class OrderInvoice extends TagEntity {
   @Column({
     type: 'enum',
     enum: OrderInvoiceStatus,

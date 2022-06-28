@@ -7,7 +7,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 import { Order } from './order.entity';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';
@@ -15,7 +15,7 @@ import { Document } from './document.entity';
 import { Shipment } from './shipment.entity';
 
 @Entity({ name: 'order_manifests' })
-export class OrderManifest extends BaseEntity {
+export class OrderManifest extends TenantEntity {
   @Generated()
   @Column({ unique: true })
   public identifier: number;

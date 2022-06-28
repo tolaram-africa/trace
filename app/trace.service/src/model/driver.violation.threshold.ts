@@ -1,10 +1,10 @@
 import { Max } from 'class-validator';
 import { Entity, Column } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { DriverAutoViolation } from './driver.violation';
 
 @Entity({ name: 'drv_vio_thresholds' })
-export class DriverViolationTreshhold extends BaseTaggedEntity {
+export class DriverViolationTreshhold extends TagEntity {
   @Column({
     type: 'enum',
     enum: DriverAutoViolation,

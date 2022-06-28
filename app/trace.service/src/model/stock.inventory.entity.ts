@@ -8,13 +8,13 @@ import {
   ManyToOne,
   OneToOne,
 } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { Document } from './document.entity';
 import { StockWarehouse } from './stock.warehouse.entity';
 import { ProductModel } from './product.model.entity';
 
 @Entity({ name: 'stock_inventory' })
-export class StockInventory extends BaseTimedEntity {
+export class StockInventory extends SoftDeleteEntity {
   @Generated()
   @Column({ unique: true })
   public identifier: number;

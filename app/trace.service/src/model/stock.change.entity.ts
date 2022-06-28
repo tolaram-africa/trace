@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { StockInventory } from './stock.inventory.entity';
 import { StockOutRequest } from './stock.out-request.entity';
 import { StockTransfer } from './stock.transfer.entity';
@@ -10,7 +10,7 @@ export enum StockChangeDirection {
 }
 
 @Entity({ name: 'stock_changes' })
-export class StockChange extends BaseTimedEntity {
+export class StockChange extends SoftDeleteEntity {
   @Column({ type: 'enum', enum: StockChangeDirection, nullable: false })
   public type: StockChangeDirection;
 

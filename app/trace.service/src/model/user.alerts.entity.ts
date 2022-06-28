@@ -1,11 +1,11 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { CoreEntity } from './base.core.entity';
 import { AlertType } from './enum.base';
 import { User } from './user.entity';
 import { SystemFeature } from './system.module.entity';
+import { TenantEntity } from './base.entity';
 
 @Entity({ name: 'user_alerts' })
-export class UserAlerts extends CoreEntity {
+export class UserAlert extends TenantEntity {
   @ManyToOne(() => User, (user) => user.alerts, { onDelete: 'CASCADE' })
   @JoinColumn()
   public user: User;

@@ -2,10 +2,10 @@ import { Beacon } from './beacon.entity';
 import { Column, Entity, JoinColumn, ManyToOne, RelationId } from 'typeorm';
 import { Point } from 'geojson';
 import { GeometryTransformer } from './base.util';
-import { BaseEntity } from './base.entity';
+import { TenantEntity } from './base.entity';
 
 @Entity({ name: 'beacon_positions' })
-export class BeaconPosition extends BaseEntity {
+export class BeaconPosition extends TenantEntity {
   @Column({
     type: 'geometry',
     spatialFeatureType: 'Point',

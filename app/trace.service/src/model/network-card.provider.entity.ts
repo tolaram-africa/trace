@@ -1,14 +1,8 @@
 import { Entity, Column } from 'typeorm';
-import { CoreEntity } from './base.core.entity';
+import { TypeEntity } from './base.type.entity';
 
 @Entity({ name: 'network_providers' })
-export class NetworkProvider extends CoreEntity {
-  @Column({ type: 'varchar', length: 128, nullable: false })
-  public name: string;
-
-  @Column({ type: 'text', nullable: true })
-  public description!: string;
-
+export class NetworkProvider extends TypeEntity {
   @Column({ type: 'varchar', length: 1024, nullable: false })
   public url: string;
 

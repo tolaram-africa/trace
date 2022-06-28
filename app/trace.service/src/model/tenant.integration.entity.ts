@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTimedEntity } from './base.timed.entity';
+import { SoftDeleteEntity } from './base.timed.entity';
 import { HttpMethod } from './enum.base';
 import { SystemFeature } from './system.module.entity';
 import { TenantIntegrationConfig } from './tenant.integration-config.entity';
@@ -18,7 +18,7 @@ export enum IntegrationAuthType {
 }
 
 @Entity({ name: 'tenant_integrations' })
-export class TenantIntegration extends BaseTimedEntity {
+export class TenantIntegration extends SoftDeleteEntity {
   @Column({ default: false })
   public enabled: boolean;
 

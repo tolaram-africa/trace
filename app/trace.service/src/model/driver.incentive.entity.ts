@@ -6,14 +6,14 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 import { Order } from './order.entity';
 import { User } from './user.entity';
 
 @Entity({ name: 'driver_incentives' })
-export class DriverIncentive extends BaseTaggedEntity {
+export class DriverIncentive extends TagEntity {
   @OneToOne(() => Driver)
   @JoinColumn()
   public driver: DriverGroup;

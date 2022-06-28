@@ -1,6 +1,6 @@
 import { Point, Geometry } from 'geojson';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { GeometryType, LocationAutoType } from './enum.base';
 import { GeometryTransformer } from './base.util';
 import { LocationType } from './location.type.entity';
@@ -11,7 +11,7 @@ import { User } from './user.entity';
 // https://geoman.io/geojson-editor
 // https://docs.microsoft.com/en-us/azure/azure-maps/extend-geojson
 @Entity({ name: 'locations' })
-export class Location extends BaseTaggedEntity {
+export class Location extends TagEntity {
   @Column({ default: false })
   public default: boolean;
 

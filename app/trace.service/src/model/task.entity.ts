@@ -8,7 +8,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import { TaskType } from './enum.task';
 import { TaskEvent } from './task.event.entity';
 import { TaskRequest } from './task.request.entity';
@@ -17,7 +17,7 @@ import { Schedule } from './schedule.entity';
 import { OrderRequest } from './order.request.entity';
 
 @Entity({ name: 'tasks' })
-export class Task extends BaseTaggedEntity {
+export class Task extends TagEntity {
   @Generated()
   @Column({ unique: true })
   public identifier: number;

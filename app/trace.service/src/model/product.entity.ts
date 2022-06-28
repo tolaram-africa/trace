@@ -1,4 +1,4 @@
-import { BaseTaggedEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tagged.entity';
 import {
   Column,
   Entity,
@@ -15,7 +15,7 @@ import { Customer } from './customer.entity';
 import { ProductModel } from './product.model.entity';
 
 @Entity({ name: 'products' })
-export class Product extends BaseTaggedEntity {
+export class Product extends TagEntity {
   @Column({ default: false })
   public default: boolean;
 

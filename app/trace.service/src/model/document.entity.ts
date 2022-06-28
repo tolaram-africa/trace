@@ -1,10 +1,10 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { User } from './user.entity';
 import { DocumentType } from './document.type.entity';
-import { CoreTimeEntity } from './base.core-timed.entity';
+import { CoreDeleteEntity } from './base.core-timed.entity';
 
 @Entity({ name: 'docs' })
-export class Document extends CoreTimeEntity {
+export class Document extends CoreDeleteEntity {
   @OneToOne(() => DocumentType)
   @JoinColumn()
   public documentType: DocumentType;
@@ -24,13 +24,13 @@ export class Document extends CoreTimeEntity {
   @Column({ default: false })
   public original: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   public mime: string;
 
-  @Column()
+  @Column({ nullable: true })
   public description!: string;
 
-  @ManyToOne(() => User, { nullable: true })
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy!: User;
+  public createdBy!: User;
 }
