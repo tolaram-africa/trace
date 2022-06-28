@@ -8,7 +8,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { Currency } from './currency.entity';
-import { BankAccount } from './user.bank-account.entity';
+import { BankAccount } from './paymeny.bank-account.entity';
 import { Document } from './document.entity';
 import { BaseTaggedEntity } from './base.tagged.entity';
 

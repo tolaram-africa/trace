@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { BaseTimedEntity } from './base.timed.entity';
 import { BankAccountType } from './enum.base';
-import { Bank } from './tenant.bank.entity';
+import { Bank } from './system.bank.entity';
 import { Document } from './document.entity';
 import { BaseAddress } from './base.address.entity';
 

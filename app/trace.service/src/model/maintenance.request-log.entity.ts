@@ -15,8 +15,6 @@ import { MaintenanceRequest } from './maintenance.request.entity';
 import { Vehicle } from './object.vehicle.entity';
 import { Trailer } from './object.trailer.entity';
 
-// TODO: Auto generate request logs
-
 @Entity({ name: 'maintenance_req_logs' })
 export class MaintenanceRequestLog extends BaseTimedEntity {
   @OneToOne(() => MaintenanceRequest)

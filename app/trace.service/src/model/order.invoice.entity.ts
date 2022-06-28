@@ -12,7 +12,7 @@ import { Customer } from './customer.entity';
 import { Order } from './order.entity';
 import { Ticket } from './ticket.entity';
 import { User } from './user.entity';
-import { TransactionAccount } from './user.transcation-account.entity';
+import { TransactionAccount } from './payment.transcation-account.entity';
 import { Document } from './document.entity';
 
 export enum OrderInvoiceStatus {

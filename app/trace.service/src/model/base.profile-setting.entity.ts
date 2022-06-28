@@ -4,68 +4,80 @@ import { CoreTimeEntity } from './base.core-timed.entity';
 import { GeometryTransformer } from './base.util';
 
 export abstract class BaseSetting extends CoreTimeEntity {
-  @Column()
+  @Column({ type: 'int' })
   public zoomInitial!: number;
 
-  @Column()
+  @Column({ type: 'int' })
   public zoomSelection!: number;
 
   @Column({
     type: 'geometry',
     spatialFeatureType: 'Point',
     transformer: new GeometryTransformer(),
-    nullable: false,
+    nullable: true,
   })
-  public mapCenter: Point;
+  public mapCenter!: Point;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public mapType!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public language!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public timezone!: string;
 
-  @Column()
+  @Column({ default: true })
   public Hour24Time!: boolean;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitDistance!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitVolume!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitWeight!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitTemperature!: string;
 
-  @Column()
-  public unitTime!: string;
-
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitSpeed!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitFuel!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitPower!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitPressure!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitForce!: string;
 
-  @Column()
-  public unitTorque!: string;
-
-  @Column()
-  public unitAcceleration!: string;
-
-  @Column()
+  @Column({ type: 'varchar', length: 64 })
   public unitArea!: string;
+
+  @Column({ default: true })
+  public enableTrip!: boolean;
+
+  @Column({ default: false })
+  public autoRoute!: boolean;
+
+  @Column({ default: false })
+  public autoOrder!: boolean;
+
+  @Column({ default: false })
+  public autoRouteCost!: boolean;
+
+  @Column({ default: false })
+  public autoInvoice!: boolean;
+
+  @Column({ default: false })
+  public verifyOTP!: boolean;
+
+  @Column({ default: false })
+  public autoZoneOTP!: boolean;
 }

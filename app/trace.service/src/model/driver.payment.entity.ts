@@ -3,6 +3,7 @@ import { DriverGroup } from './driver.group.entity';
 import { User } from './user.entity';
 import { BaseTaggedEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
+import { PaymentRequest } from './payment.request.entity';
 
 @Entity({ name: 'driver_payments' })
 export class driverPayment extends BaseTaggedEntity {
@@ -15,11 +16,13 @@ export class driverPayment extends BaseTaggedEntity {
   public group: DriverGroup;
 
   @Column({ type: 'int', default: 0 })
-  public amount: number;
+  public amountRequested: number;
 
   @OneToOne(() => User)
   @JoinColumn()
   public approvedBy: User;
 
-  // payment: Payment;
+  @OneToOne(() => PaymentRequest, { nullable: true })
+  @JoinColumn()
+  payment: PaymentRequest;
 }

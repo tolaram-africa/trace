@@ -1,6 +1,3 @@
-import { User } from './user.entity';
-import { Document } from './document.entity';
-import { BaseEntity } from './base.entity';
 import {
   Column,
   Entity,
@@ -9,6 +6,9 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
+import { User } from './user.entity';
+import { Document } from './document.entity';
+import { BaseEntity } from './base.entity';
 
 @Entity('insurance_providers')
 export class InsuranceProvider extends BaseEntity {

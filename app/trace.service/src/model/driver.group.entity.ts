@@ -9,9 +9,9 @@ import {
 } from 'typeorm';
 import { BaseTaggedEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
-import { BankAccount } from './user.bank-account.entity';
+import { BankAccount } from './paymeny.bank-account.entity';
 import { User } from './user.entity';
-import { TransactionAccount } from './user.transcation-account.entity';
+import { TransactionAccount } from './payment.transcation-account.entity';
 
 @Entity({ name: 'driver_groups' })
 export class DriverGroup extends BaseTaggedEntity {

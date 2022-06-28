@@ -10,6 +10,7 @@ import { BaseTimedEntity } from './base.timed.entity';
 import { Document } from './document.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
+import { User } from './user.entity';
 
 @Entity({ name: 'driver_permits' })
 export class DriverPermit extends BaseTimedEntity {
@@ -22,13 +23,17 @@ export class DriverPermit extends BaseTimedEntity {
   public driverGroup: DriverGroup;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public start!: Date;
+  public startedAt!: Date;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public end!: Date;
+  public endedAt!: Date;
 
-  @Column({ type: 'varchar', nullable: true })
-  public status: string;
+  @Column({ type: 'timestamptz', nullable: true })
+  public approvedAt!: Date;
+
+  @OneToOne(() => User, { nullable: true })
+  @JoinColumn()
+  public approvedBy!: User;
 
   @Column({ type: 'text', nullable: true })
   public notes: string;

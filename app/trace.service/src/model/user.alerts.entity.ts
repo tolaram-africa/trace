@@ -1,22 +1,24 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { CoreEntity } from './base.core.entity';
 import { AlertType } from './enum.base';
 import { User } from './user.entity';
+import { SystemFeature } from './system.module.entity';
 
 @Entity({ name: 'user_alerts' })
 export class UserAlerts extends CoreEntity {
-  @ManyToOne(() => User, (user) => user.alerts)
+  @ManyToOne(() => User, (user) => user.alerts, { onDelete: 'CASCADE' })
   @JoinColumn()
   public user: User;
 
-  @Column()
+  @Column({ type: 'int', default: 1 })
   public repeatInterval!: number;
 
   @Column({ default: false })
   public schedule: boolean;
 
-  @Column({ type: 'varchar', length: 75 })
-  public module: string; // TODO: enum for modules
+  @OneToOne(() => SystemFeature, { onDelete: 'CASCADE' })
+  @JoinColumn()
+  public module: SystemFeature;
 
   @Column({
     type: 'enum',

@@ -11,7 +11,7 @@ import { PaymentLoanType } from './payment.loan-type.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { Currency } from './currency.entity';
-import { TransactionAccount } from './user.transcation-account.entity';
+import { TransactionAccount } from './payment.transcation-account.entity';
 
 export enum PaymentLoanRequestStatus {
   PENDING = 'pending',

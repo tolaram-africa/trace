@@ -16,10 +16,12 @@ import { MaxLength } from 'class-validator';
 import { CoreTimeEntity } from './base.core-timed.entity';
 import { UserSetting } from './user.setting.entity';
 import { Tenant } from './tenant.entity';
-import { BankAccount } from './user.bank-account.entity';
-import { TransactionAccount } from './user.transcation-account.entity';
+import { BankAccount } from './paymeny.bank-account.entity';
+import { TransactionAccount } from './payment.transcation-account.entity';
+import { Tree, TreeChildren, TreeParent } from 'typeorm-pg-adjacency-list-tree';
 
 @Entity({ name: 'users' })
+@Tree()
 export class User extends CoreTimeEntity {
   @OneToOne(() => UserProfile)
   @JoinColumn()
@@ -30,9 +32,11 @@ export class User extends CoreTimeEntity {
   public passport!: UserPass;
 
   @OneToOne(() => UserSetting, (setting) => setting.user, { nullable: true })
+  @JoinColumn()
   public setting!: UserSetting;
 
   @OneToMany(() => UserAlerts, (alerts) => alerts.user)
+  @JoinColumn()
   public alerts!: UserAlerts[];
 
   @Column({ default: true })
@@ -44,6 +48,7 @@ export class User extends CoreTimeEntity {
   @Column({ type: 'bigint', unique: true, nullable: false })
   @MaxLength(15)
   public phone: number;
+  false;
 
   @Column({ type: 'varchar', length: 64, unique: false, nullable: false })
   public username: string;
@@ -56,7 +61,6 @@ export class User extends CoreTimeEntity {
 
   @Column({ type: 'timestamptz', nullable: true })
   public lastActive!: Date;
-  true;
 
   @Column({
     type: 'enum',
@@ -80,6 +84,12 @@ export class User extends CoreTimeEntity {
   @JoinColumn()
   public accountBalance!: TransactionAccount;
 
+  @TreeParent()
+  public manager!: User;
+
+  @TreeChildren()
+  public directReports!: User[];
+
   @ManyToMany(() => BankAccount, { nullable: true })
   @JoinTable({ name: 'user_bank_accounts' })
   public bankAccounts!: BankAccount[];
@@ -88,3 +98,9 @@ export class User extends CoreTimeEntity {
   @JoinTable({ name: 'user_schedules' })
   public schedules!: Schedule[];
 }
+
+// EXAMPLE: Usage example
+// @EntityRepository(User)
+// class UserRepository extends TreeRepository<User> {}
+// countDescendants() All descendants count.
+// findDescendantsTree() All descendants in flat array

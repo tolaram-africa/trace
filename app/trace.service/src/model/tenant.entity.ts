@@ -1,13 +1,7 @@
 import { TenantDomain } from './tenant.domain.entity';
-import {
-  Column,
-  Entity,
-  OneToMany,
-  DeleteDateColumn,
-  UpdateDateColumn,
-  CreateDateColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { CoreTimeEntity } from './base.core-timed.entity';
+import { TenantSetting } from './tenant.setting.entity';
 
 @Entity({ name: 'tenants' })
 export class Tenant extends CoreTimeEntity {
@@ -17,10 +11,10 @@ export class Tenant extends CoreTimeEntity {
   @Column({ type: 'varchar', length: 128, nullable: true })
   public updatedBy!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 128, nullable: true })
   public name: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 64, nullable: true })
   public shortName: string;
 
   @Column({ unique: true })
@@ -35,15 +29,19 @@ export class Tenant extends CoreTimeEntity {
   @Column({ type: 'varchar', length: 512, nullable: false })
   public token: string;
 
-  @Column({ type: 'varchar', length: 512, nullable: false })
-  public language: string;
-
   @Column({ type: 'varchar', length: 1024, nullable: false })
   public logo: string;
 
   @Column({ type: 'varchar', length: 1024, nullable: false })
   public background: string;
 
+  @OneToOne(() => TenantSetting, (setting) => setting.tenant, {
+    nullable: true,
+  })
+  @JoinColumn()
+  public setting!: TenantSetting;
+
   @OneToMany(() => TenantDomain, (domain) => domain.tenant)
+  @JoinColumn()
   public domains: TenantDomain[];
 }

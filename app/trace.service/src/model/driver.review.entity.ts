@@ -1,5 +1,3 @@
-import { BaseTimedEntity } from './base.timed.entity';
-import { BaseTaggedEntity } from './base.tagged.entity';
 import {
   Column,
   Entity,
@@ -8,25 +6,12 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
+import { BaseTaggedEntity } from './base.tagged.entity';
 import { User } from './user.entity';
 import { Driver } from './driver.entity';
 import { Document } from './document.entity';
-import { BaseTypeEntity } from './base.type.entity';
-
-@Entity({ name: 'drv_review_types' })
-export class DriverReviewType extends BaseTypeEntity {
-  @Column({ type: 'varchar', nullable: true, default: '#ff00ef' })
-  public color!: string;
-
-  @Column({ type: 'int', default: 0 })
-  public point: number;
-}
-
-@Entity({ name: 'drv_review_comments' })
-export class DriverReviewComment extends BaseTimedEntity {
-  @Column({ type: 'text', nullable: true })
-  public comment: string;
-}
+import { DriverReviewComment } from './driver.review.comment.entity';
+import { DriverReviewType } from './driver.review.type.entity';
 
 @Entity({ name: 'driver_reviews' })
 export class DriverReview extends BaseTaggedEntity {
@@ -38,7 +23,10 @@ export class DriverReview extends BaseTaggedEntity {
   @JoinColumn()
   public reviewBy!: User;
 
-  @OneToOne(() => User)
+  @Column({ type: 'timestamptz', nullable: true })
+  public approvedAt!: Date;
+
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public approvedBy!: User;
 
@@ -56,7 +44,7 @@ export class DriverReview extends BaseTaggedEntity {
   public type: DriverReviewType;
 
   @Column({ type: 'int', default: 1 })
-  public rating: number;
+  public pointScored: number;
 
   @ManyToMany(() => DriverReviewComment)
   @JoinTable({ name: 'drv_rvw_link_comments' })

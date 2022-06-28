@@ -10,14 +10,10 @@ import {
 import { BaseTaggedEntity } from './base.tagged.entity';
 import { User } from './user.entity';
 import { Vehicle } from './object.vehicle.entity';
-import { BaseTypeEntity } from './base.type.entity';
 import { MaintenanceRepair } from './maintenance.repair.entity';
 import { MaintenanceRequestLog } from './maintenance.request-log.entity';
 import { StockOutRequest } from './stock.out-request.entity';
 import { Document } from './document.entity';
-
-@Entity({ name: 'maintenance_types' })
-export class MaintenanceType extends BaseTypeEntity {}
 
 @Entity({ name: 'maintenances' })
 export class Maintenance extends BaseTaggedEntity {

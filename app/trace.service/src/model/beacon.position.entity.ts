@@ -1,5 +1,5 @@
 import { Beacon } from './beacon.entity';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, RelationId } from 'typeorm';
 import { Point } from 'geojson';
 import { GeometryTransformer } from './base.util';
 import { BaseEntity } from './base.entity';
@@ -20,8 +20,9 @@ export class BeaconPosition extends BaseEntity {
   @ManyToOne(() => Beacon, (beacon) => beacon.position, { nullable: false })
   @JoinColumn()
   public beacon: Beacon;
-  // @RelationId((position: BeaconPosition) => position.beacon)
-  // public beaconId!: string;
+
+  @RelationId((position: BeaconPosition) => position.beacon)
+  public beaconId!: string;
 
   @Column({ type: 'float', nullable: false })
   public speed: number;

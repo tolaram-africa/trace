@@ -14,7 +14,7 @@ import { CustomerGroup } from './customer.group.entity';
 import { VehicleType } from './enum.object';
 import { RouteCostItem } from './route.cost-item.entity';
 import { Route } from './route.entity';
-import { TrailerType } from './trailer.type.entity';
+import { TrailerType } from './object.trailer.type.entity';
 import { User } from './user.entity';
 import { CustomerContract } from './customer.contract.entity';
 

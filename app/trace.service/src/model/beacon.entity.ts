@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToOne,
+  RelationId,
 } from 'typeorm';
 import { FuelCalculationType } from './enum.base';
 import { BeaconPosition } from './beacon.position.entity';
@@ -37,6 +38,9 @@ export class Beacon extends BaseEntity {
   })
   @JoinColumn()
   public position: BeaconPosition;
+
+  @RelationId((beacon: Beacon) => beacon.position)
+  public positionId!: string;
 
   @OneToOne(() => BeaconDevice, (beaconDevice) => beaconDevice.beacon, {
     nullable: false,

@@ -1,12 +1,7 @@
 import { BaseTypeEntity } from './base.type.entity';
 import { Maintenance } from './maintenance.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-
-@Entity({ name: 'maintenance_repair_types' })
-export class MaintenanceRepairType extends BaseTypeEntity {
-  @Column({ default: false })
-  public quick: boolean;
-}
+import { MaintenanceRepairType } from './maintenance.repair-types.entity';
 
 @Entity({ name: 'maintenance_repairs' })
 export class MaintenanceRepair extends BaseTypeEntity {

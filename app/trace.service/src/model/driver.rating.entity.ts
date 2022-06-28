@@ -1,4 +1,4 @@
-import { OneToOne, JoinColumn } from 'typeorm';
+import { OneToOne, JoinColumn, Column } from 'typeorm';
 import { BaseTaggedEntity } from './base.tagged.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
@@ -14,9 +14,12 @@ export class DriverRating extends BaseTaggedEntity {
   @JoinColumn()
   public group: DriverGroup;
 
-  @OneToOne(() => User)
+  @Column({ type: 'timestamptz', nullable: true })
+  public approvedAt!: Date;
+
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
 
   @OneToOne(() => Rating)
   @JoinColumn()

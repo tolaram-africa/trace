@@ -1,9 +1,9 @@
 import { BaseTimedEntity } from './base.timed.entity';
-import { MaintenanceType } from './maintenance.entity';
 import { Schedule } from './schedule.entity';
 import { Vehicle } from './object.vehicle.entity';
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 import { Trailer } from './object.trailer.entity';
+import { MaintenanceType } from './maintenance.type.entity';
 
 @Entity({ name: 'maintenance_requests' })
 export class MaintenanceRequest extends BaseTimedEntity {

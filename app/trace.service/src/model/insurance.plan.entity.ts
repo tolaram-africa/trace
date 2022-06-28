@@ -9,8 +9,9 @@ import {
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { BaseTimedEntity } from './base.timed.entity';
-import { InsurancePlanStatus, InsuranceCategory } from './insurance.entity';
+import { InsurancePlanStatus } from './insurance.entity';
 import { InsurancePolicy } from './insurance.policy.entity';
+import { InsuranceCategory } from './insurance.category.entity';
 
 @Entity('insurance_plans')
 export class InsurancePlan extends BaseTimedEntity {

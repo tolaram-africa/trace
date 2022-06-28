@@ -1,19 +1,12 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToMany,
-  Tree,
-  TreeChildren,
-  TreeParent,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
 import { CoreTimeEntity } from './base.core-timed.entity';
 import { TagMembers } from './tag.members.entity';
 import { Tenant } from './tenant.entity';
 import { OneToOne } from 'typeorm';
+import { Tree, TreeChildren, TreeParent } from 'typeorm-pg-adjacency-list-tree';
 
 @Entity({ name: 'tags' })
-@Tree('materialized-path')
+@Tree()
 export class Tag extends CoreTimeEntity {
   @Column({ type: 'varchar', length: 255 })
   public name: string;
@@ -29,11 +22,17 @@ export class Tag extends CoreTimeEntity {
   public color: string;
 
   @TreeParent()
-  public parent: Tag;
+  public parent!: Tag;
 
   @TreeChildren()
-  public children: Tag[];
+  public childrens!: Tag[];
 
   @Column({ type: 'text', nullable: true })
   public description!: string;
 }
+
+// EXAMPLE: Usage example
+// @EntityRepository(Tag)
+// class TagRepository extends TreeRepository<Tag> {}
+// countDescendants() All descendants count.
+// findDescendantsTree() All descendants in flat array

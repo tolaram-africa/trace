@@ -28,6 +28,7 @@ export class Customer extends BaseTaggedEntity {
   @OneToOne(() => CustomerSetting, (setting) => setting.customer, {
     nullable: true,
   })
+  @JoinColumn()
   public setting!: CustomerSetting;
 
   @OneToOne(() => User)
