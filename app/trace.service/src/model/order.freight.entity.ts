@@ -1,4 +1,4 @@
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { Document } from './document.entity';
 import {
   Column,

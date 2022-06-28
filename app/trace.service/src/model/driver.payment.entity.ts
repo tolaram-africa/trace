@@ -1,7 +1,7 @@
 import { OneToOne, JoinColumn, Column, Entity } from 'typeorm';
 import { DriverGroup } from './driver.group.entity';
 import { User } from './user.entity';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { Driver } from './driver.entity';
 import { PaymentRequest } from './payment.request.entity';
 

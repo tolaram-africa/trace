@@ -6,7 +6,7 @@ import {
   JoinTable,
   JoinColumn,
 } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { TransactionAccount } from './payment.transcation-account.entity';

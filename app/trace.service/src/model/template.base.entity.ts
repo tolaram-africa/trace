@@ -1,5 +1,5 @@
 import { Column } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 
 export abstract class MessageTemplate extends TagEntity {
   @Column({ default: false })

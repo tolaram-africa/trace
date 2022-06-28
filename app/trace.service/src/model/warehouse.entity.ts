@@ -7,7 +7,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { BaseAddress } from './base.address.entity';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { Customer } from './customer.entity';
 import { AreaUnit } from './enum.base';
 import { Location } from './location.entity';

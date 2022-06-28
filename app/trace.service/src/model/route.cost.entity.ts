@@ -8,7 +8,7 @@ import {
   OneToMany,
   Generated,
 } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { Customer } from './customer.entity';
 import { CustomerGroup } from './customer.group.entity';
 import { VehicleType } from './enum.object';

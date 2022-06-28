@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { UserType } from './enum.user';
 
 @Entity({ name: 'payment_types' })

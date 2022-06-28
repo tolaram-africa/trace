@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { Task } from './task.entity';
 import { TaskEventStatusType } from './task.event-status-type.entity';
 import { TaskEventType } from './task.event-type.entity';

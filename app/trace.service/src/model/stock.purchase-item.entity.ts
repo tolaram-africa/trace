@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { ProductModel } from './product.model.entity';
 import { StockPurchaseRequest } from './stock.purchase-request.entity';
 

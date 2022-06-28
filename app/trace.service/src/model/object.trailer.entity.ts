@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { Schedule } from './schedule.entity';
 import { Document } from './document.entity';
 import { TrailerType } from './object.trailer.type.entity';

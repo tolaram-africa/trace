@@ -6,7 +6,7 @@ import {
   Entity,
   JoinTable,
 } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { Beacon } from './beacon.entity';
 import { VehicleType } from './enum.object';
 import { Schedule } from './schedule.entity';

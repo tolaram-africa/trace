@@ -6,7 +6,7 @@ import {
   ManyToOne,
   OneToOne,
 } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { Customer } from './customer.entity';
 import { OrderInvoice } from './order.invoice.entity';
 import { RouteCost } from './route.cost.entity';

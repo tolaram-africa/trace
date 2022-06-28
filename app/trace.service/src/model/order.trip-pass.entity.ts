@@ -1,5 +1,5 @@
 import { Column, Entity, Generated, JoinColumn, OneToOne } from 'typeorm';
-import { TagEntity } from './base.tagged.entity';
+import { TagEntity } from './base.tag.entity';
 import { Customer } from './customer.entity';
 import { TripPassReason } from './order.trip-pass.reason.entity';
 import { User } from './user.entity';
