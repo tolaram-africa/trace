@@ -22,10 +22,10 @@
       "@root/*": [
         "./*"
       ],
-      "@app/common": [
+      "@/common": [
         "libs/common/src"
       ],
-      "@app/common/*": [
+      "@/common/*": [
         "libs/common/src/*"
       ]
     }
