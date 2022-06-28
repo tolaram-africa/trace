@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { TypeEntity } from './base.type.entity';
+import { TypeEntity } from '@/common/entity/base.type.entity';
 import { MaintenanceRequestLog } from './maintenance.request-log.entity';
 
 @Entity({ name: 'maintenance_req_log_issues' })

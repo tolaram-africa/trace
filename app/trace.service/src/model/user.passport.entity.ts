@@ -1,7 +1,7 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { CoreDeleteEntity } from './base.core.soft-delete.entity';
+import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 import { JoinColumn } from 'typeorm';
 
 export enum UserPassportType {

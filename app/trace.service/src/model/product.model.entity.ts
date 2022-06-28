@@ -9,10 +9,10 @@ import {
   Entity,
   ManyToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { Customer } from './customer.entity';
 import { Document } from './document.entity';
-import { DimensionUnit, SizeUnit, WeightUnit } from './enum.base';
+import { DimensionUnit, SizeUnit, WeightUnit } from '@/common/entity/enum.base';
 import { ProductCost } from './product.cost.entity';
 import { Product } from './product.entity';
 

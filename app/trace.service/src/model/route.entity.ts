@@ -6,12 +6,12 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Schedule } from './schedule.entity';
 import { User } from './user.entity';
 import { Location } from './location.entity';
 import { LineString } from 'geojson';
-import { GeometryTransformer } from './base.util';
+import { GeometryTransformer } from '@/common/entity/base.util';
 import { Max } from 'class-validator';
 
 @Entity({ name: 'routes' })

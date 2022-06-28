@@ -1,5 +1,5 @@
 import { Entity, JoinColumn, OneToOne, ManyToMany, JoinTable } from 'typeorm';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { Customer } from './customer.entity';
 import { User } from './user.entity';
 

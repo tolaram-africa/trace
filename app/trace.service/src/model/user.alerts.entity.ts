@@ -1,8 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { AlertType } from './enum.base';
+import { AlertType } from '@/common/entity/enum.base';
 import { User } from './user.entity';
 import { SystemFeature } from './system.feature.entity';
-import { TenantEntity } from './base.tenant.entity';
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
 
 @Entity({ name: 'user_alerts' })
 export class UserAlert extends TenantEntity {

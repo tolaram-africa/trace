@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { CoreDeleteEntity } from './base.core.soft-delete.entity';
-import { RBACPermission } from './enum.user';
+import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
+import { RBACPermission } from '@/common/entity/enum.user';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';
 

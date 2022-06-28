@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { ProductBrand } from './product.brand.entity';
 import { Document } from './document.entity';
 import { AssetType } from './object.asset-type.entity';

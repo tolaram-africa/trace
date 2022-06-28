@@ -1,8 +1,8 @@
 import { Beacon } from './beacon.entity';
 import { Column, Entity, JoinColumn, ManyToOne, RelationId } from 'typeorm';
 import { Point } from 'geojson';
-import { GeometryTransformer } from './base.util';
-import { TenantEntity } from './base.tenant.entity';
+import { GeometryTransformer } from '@/common/entity/base.util';
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
 
 @Entity({ name: 'beacon_positions' })
 export class BeaconPosition extends TenantEntity {

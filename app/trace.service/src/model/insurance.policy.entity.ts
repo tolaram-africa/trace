@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { InsuranceProvider } from './insurance.provider.entity';
 
 @Entity('insurance_policies')

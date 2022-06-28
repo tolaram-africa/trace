@@ -1,6 +1,6 @@
 import { Customer } from './customer.entity';
 import { User } from './user.entity';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import {
   Column,
   Entity,

@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { CoreEntity } from './base.core.entity';
+import { CoreEntity } from '@/common/entity/base.core.entity';
 
 @Entity({ name: 'system_features' })
 export class SystemFeature extends CoreEntity {

@@ -10,7 +10,7 @@ import {
 import { Currency } from './currency.entity';
 import { BankAccount } from './paymeny.bank-account.entity';
 import { Document } from './document.entity';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 
 @Entity({ name: 'transaction_accounts' })
 export class TransactionAccount extends TagEntity {

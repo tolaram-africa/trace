@@ -1,4 +1,4 @@
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { Column, Entity } from 'typeorm';
 
 export enum PayProvider {

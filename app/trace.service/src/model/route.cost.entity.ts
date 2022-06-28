@@ -8,10 +8,10 @@ import {
   OneToMany,
   Generated,
 } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Customer } from './customer.entity';
 import { CustomerGroup } from './customer.group.entity';
-import { VehicleType } from './enum.object';
+import { VehicleType } from '@/common/entity/enum.object';
 import { RouteCostItem } from './route.cost-item.entity';
 import { Route } from './route.entity';
 import { TrailerType } from './object.trailer.type.entity';

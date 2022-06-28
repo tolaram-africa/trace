@@ -6,11 +6,11 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
-import { BankAccountType } from './enum.base';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
+import { BankAccountType } from '@/common/entity/enum.base';
 import { Bank } from './system.bank.entity';
 import { Document } from './document.entity';
-import { ExtendedAddress } from './base.address.entity';
+import { ExtendedAddress } from '@/common/entity/base.address.entity';
 
 @Entity({ name: 'bank_accounts' })
 export class BankAccount extends SoftDeleteEntity {

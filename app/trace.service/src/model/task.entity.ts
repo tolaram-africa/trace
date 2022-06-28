@@ -8,8 +8,8 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
-import { TaskType } from './enum.task';
+import { TagEntity } from '@/common/entity/base.tag.entity';
+import { TaskType } from '@/common/entity/enum.task';
 import { TaskEvent } from './task.event.entity';
 import { TaskRequest } from './task.request.entity';
 import { Document } from './document.entity';

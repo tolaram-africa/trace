@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { TypeEntity } from './base.type.entity';
+import { TypeEntity } from '@/common/entity/base.type.entity';
 import { TaskEventType } from './task.event-type.entity';
 
 @Entity({ name: 'task_event_status_types' })

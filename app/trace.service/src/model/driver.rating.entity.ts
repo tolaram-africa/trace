@@ -1,5 +1,5 @@
 import { OneToOne, JoinColumn, Column } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 import { Rating } from './rating.entity';

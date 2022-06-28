@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 
 export enum BankCardType {
   MASTERCARD = 'mastercard',

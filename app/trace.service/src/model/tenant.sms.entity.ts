@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
-import { TenantEntity } from './base.tenant.entity';
-import { HttpMethod } from './enum.base';
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
+import { HttpMethod } from '@/common/entity/enum.base';
 
 @Entity({ name: 'tenant_sms_configs' })
 export class TenantSmsConfig extends TenantEntity {

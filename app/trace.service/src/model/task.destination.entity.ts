@@ -1,5 +1,5 @@
 import { OneToOne, JoinColumn, Column, Entity, ManyToOne } from 'typeorm';
-import { TenantEntity } from './base.tenant.entity';
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import { Location } from './location.entity';
 import { Document } from './document.entity';
 import { TaskRequest } from './task.request.entity';

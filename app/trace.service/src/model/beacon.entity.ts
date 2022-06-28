@@ -7,9 +7,9 @@ import {
   OneToOne,
   RelationId,
 } from 'typeorm';
-import { FuelCalculationType } from './enum.base';
+import { FuelCalculationType } from '@/common/entity/enum.base';
 import { BeaconPosition } from './beacon.position.entity';
-import { TenantEntity } from './base.tenant.entity';
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import { BeaconDevice } from './object.beacon.entity';
 
 export enum BeaconStatus {

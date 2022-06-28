@@ -7,7 +7,7 @@ import {
   JoinColumn,
   OneToMany,
 } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Driver } from './driver.entity';
 import { BankAccount } from './paymeny.bank-account.entity';
 import { User } from './user.entity';

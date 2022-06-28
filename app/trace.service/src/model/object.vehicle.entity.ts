@@ -6,9 +6,9 @@ import {
   Entity,
   JoinTable,
 } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Beacon } from './beacon.entity';
-import { VehicleType } from './enum.object';
+import { VehicleType } from '@/common/entity/enum.object';
 import { Schedule } from './schedule.entity';
 import { Document } from './document.entity';
 import { Trailer } from './object.trailer.entity';

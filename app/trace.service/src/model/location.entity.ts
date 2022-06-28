@@ -1,8 +1,8 @@
 import { Point, Geometry } from 'geojson';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
-import { GeometryType, LocationAutoType } from './enum.base';
-import { GeometryTransformer } from './base.util';
+import { TagEntity } from '@/common/entity/base.tag.entity';
+import { GeometryType, LocationAutoType } from '@/common/entity/enum.base';
+import { GeometryTransformer } from '@/common/entity/base.util';
 import { LocationType } from './location.type.entity';
 import { User } from './user.entity';
 

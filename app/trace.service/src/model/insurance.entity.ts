@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { TypeEntity } from './base.type.entity';
+import { TypeEntity } from '@/common/entity/base.type.entity';
 
 export enum InsurancePlanStatus {
   PENDING = 'pending',

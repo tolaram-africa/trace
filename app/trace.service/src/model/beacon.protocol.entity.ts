@@ -1,5 +1,5 @@
 import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
-import { TypeEntity } from './base.type.entity';
+import { TypeEntity } from '@/common/entity/base.type.entity';
 import { Document } from './document.entity';
 
 @Entity({ name: 'beacon_device_protocols' })

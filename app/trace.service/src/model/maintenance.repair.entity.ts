@@ -1,4 +1,4 @@
-import { TypeEntity } from './base.type.entity';
+import { TypeEntity } from '@/common/entity/base.type.entity';
 import { Maintenance } from './maintenance.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { MaintenanceRepairType } from './maintenance.repair-types.entity';

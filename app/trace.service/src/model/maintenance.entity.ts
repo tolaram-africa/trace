@@ -7,7 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from './user.entity';
 import { Vehicle } from './object.vehicle.entity';
 import { MaintenanceRepair } from './maintenance.repair.entity';

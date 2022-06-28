@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { StockInventory } from './stock.inventory.entity';
 import { StockOutRequest } from './stock.out-request.entity';
 import { StockTransfer } from './stock.transfer.entity';

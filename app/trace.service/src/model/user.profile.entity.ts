@@ -1,8 +1,8 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { CoreDeleteEntity } from './base.core.soft-delete.entity';
+import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { ExtendedAddress } from './base.address.entity';
+import { ExtendedAddress } from '@/common/entity/base.address.entity';
 
 export enum UserMaritalStatus {
   SINGLE = 'single',

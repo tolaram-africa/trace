@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
-import { TenantEntity } from './base.tenant.entity';
-import { ReoccurUnit } from './enum.base';
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
+import { ReoccurUnit } from '@/common/entity/enum.base';
 
 @Entity({ name: 're_schedule' })
 export class ScheduleRecur extends TenantEntity {

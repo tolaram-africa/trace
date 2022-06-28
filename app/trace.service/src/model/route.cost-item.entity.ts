@@ -1,6 +1,6 @@
 import { Max } from 'class-validator';
 import { Entity, ManyToOne, OneToOne, JoinColumn, Column } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { RouteCost } from './route.cost.entity';
 import { User } from './user.entity';
 

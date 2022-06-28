@@ -8,10 +8,10 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { InsuranceClaimStatus } from './insurance.entity';
 import { InsurancePlan } from './insurance.plan.entity';
-import { IssurableObject } from './enum.object';
+import { IssurableObject } from '@/common/entity/enum.object';
 import { Payment } from './payment.entity';
 import { InsuranceClaimReason } from './insurance.claim-reasons.entity';
 

@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
-import { UserType } from './enum.user';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
+import { UserType } from '@/common/entity/enum.user';
 import { UserPermission } from './user.permission.entity';
 
 @Entity({ name: 'user_roles' })

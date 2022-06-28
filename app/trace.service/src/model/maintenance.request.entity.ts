@@ -1,4 +1,4 @@
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { Schedule } from './schedule.entity';
 import { Vehicle } from './object.vehicle.entity';
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';

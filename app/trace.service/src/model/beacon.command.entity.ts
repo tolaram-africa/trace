@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { TenantEntity } from './base.tenant.entity';
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import { BeaconMessage } from './beacon.message.entity';
 import { BeaconDeviceModel } from './beacon.model.entity';
 

@@ -1,7 +1,7 @@
 import { Point } from 'geojson';
 import { Column } from 'typeorm';
-import { CoreDeleteEntity } from './base.core.soft-delete.entity';
-import { GeometryTransformer } from './base.util';
+import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
+import { GeometryTransformer } from '@/common/entity/base.util';
 
 export abstract class BaseSetting extends CoreDeleteEntity {
   @Column({ type: 'int' })

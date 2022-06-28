@@ -7,7 +7,7 @@ import {
   JoinTable,
   OneToMany,
 } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
 import { CustomerGroup } from './customer.group.entity';

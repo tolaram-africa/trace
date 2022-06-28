@@ -1,5 +1,5 @@
 import { Column } from 'typeorm';
-import { TenantEntity } from './base.tenant.entity';
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
 
 export abstract class TypeEntity extends TenantEntity {
   @Column({ default: false })

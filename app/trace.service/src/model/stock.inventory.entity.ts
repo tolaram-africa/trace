@@ -8,7 +8,7 @@ import {
   ManyToOne,
   OneToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { Document } from './document.entity';
 import { StockWarehouse } from './stock.warehouse.entity';
 import { ProductModel } from './product.model.entity';

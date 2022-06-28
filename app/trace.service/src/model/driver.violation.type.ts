@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import { TypeEntity } from './base.type.entity';
+import { TypeEntity } from '@/common/entity/base.type.entity';
 
 @Entity({ name: 'drv_violation_types' })
 export class ViolationType extends TypeEntity {

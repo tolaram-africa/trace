@@ -7,8 +7,8 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { TenantEntity } from './base.tenant.entity';
-import { GeometryTransformer } from './base.util';
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
+import { GeometryTransformer } from '@/common/entity/base.util';
 import { Location } from './location.entity';
 import { TaskRequest } from './task.request.entity';
 

@@ -6,10 +6,10 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { ExtendedAddress } from './base.address.entity';
-import { TagEntity } from './base.tag.entity';
+import { ExtendedAddress } from '@/common/entity/base.address.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Customer } from './customer.entity';
-import { AreaUnit } from './enum.base';
+import { AreaUnit } from '@/common/entity/enum.base';
 import { Location } from './location.entity';
 import { User } from './user.entity';
 

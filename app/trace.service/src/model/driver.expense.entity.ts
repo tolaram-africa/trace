@@ -1,4 +1,4 @@
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { DriverExpenseRequest } from './driver.expense-request.entity';
 import { User } from './user.entity';
 import { Payment } from './payment.entity';

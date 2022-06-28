@@ -1,6 +1,6 @@
 import { Entity, Column } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
-import { UserType } from './enum.user';
+import { TagEntity } from '@/common/entity/base.tag.entity';
+import { UserType } from '@/common/entity/enum.user';
 
 @Entity({ name: 'payment_types' })
 export class PaymentType extends TagEntity {

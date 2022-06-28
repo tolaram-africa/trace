@@ -1,8 +1,8 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { User } from './user.entity';
-import { SoftDeleteEntity } from './base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { TenantBill } from './tenant.billing.entity';
-import { ServiceLevel } from './enum.base';
+import { ServiceLevel } from '@/common/entity/enum.base';
 import { TenantPayProvider } from './tenant.pay-provider.entity';
 import { TenantSubscription } from './tenant.subscription.entity';
 

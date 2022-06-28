@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { User } from './user.entity';
 import { DocumentType } from './document.type.entity';
-import { CoreDeleteEntity } from './base.core.soft-delete.entity';
+import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 
 @Entity({ name: 'docs' })
 export class Document extends CoreDeleteEntity {

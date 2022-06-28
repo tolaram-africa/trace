@@ -1,4 +1,4 @@
-import { AuthProvider } from './enum.user';
+import { AuthProvider } from '@/common/entity/enum.user';
 import { BaseAuth } from './base.auth.entity';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { UserRole } from './user.role.entity';

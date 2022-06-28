@@ -8,10 +8,10 @@ import {
 } from 'typeorm';
 import { UserProfile } from './user.profile.entity';
 import { UserAlert } from './user.alerts.entity';
-import { UserAccountType, UserType } from './enum.user';
+import { UserAccountType, UserType } from '@/common/entity/enum.user';
 import { Schedule } from './schedule.entity';
 import { ManyToMany } from 'typeorm';
-import { CoreDeleteEntity } from './base.core.soft-delete.entity';
+import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 import { UserSetting } from './user.setting.entity';
 import { Tenant } from './tenant.entity';
 import { BankAccount } from './paymeny.bank-account.entity';

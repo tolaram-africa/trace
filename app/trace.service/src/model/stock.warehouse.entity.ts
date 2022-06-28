@@ -6,7 +6,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { TypeEntity } from './base.type.entity';
+import { TypeEntity } from '@/common/entity/base.type.entity';
 import { Warehouse } from './warehouse.entity';
 import { StockInventory } from './stock.inventory.entity';
 

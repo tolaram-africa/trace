@@ -7,13 +7,13 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { TagEntity } from './base.tag.entity';
+import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
-import { SizeUnit } from './enum.base';
+import { SizeUnit } from '@/common/entity/enum.base';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { TypeEntity } from './base.type.entity';
+import { TypeEntity } from '@/common/entity/base.type.entity';
 import { InsuranceClaim } from './insurance.claim.entity';
 import { OrderFreight } from './order.freight.entity';
 import { Order } from './order.entity';
