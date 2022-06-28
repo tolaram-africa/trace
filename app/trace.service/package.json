@@ -101,7 +101,8 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
-      "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1"
+      "^@/common(|/.*)$": "<rootDir>/libs/common/src/$1",
+      "^@/module(|/.*)$": "<rootDir>/libs/module/src/$1"
     }
   },
   "engines": {
