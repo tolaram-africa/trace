@@ -1,4 +1,4 @@
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 import { Column, Entity } from 'typeorm';
 
 @Entity({ name: 'tenant_email_configs' })

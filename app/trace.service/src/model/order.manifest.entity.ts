@@ -7,7 +7,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 import { Order } from './order.entity';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';

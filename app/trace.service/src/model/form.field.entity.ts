@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 import { FieldType } from './form.field.types';
 
 @Entity({ name: 'form_fields' })

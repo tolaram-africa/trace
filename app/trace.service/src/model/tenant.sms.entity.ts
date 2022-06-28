@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 import { HttpMethod } from './enum.base';
 
 @Entity({ name: 'tenant_sms_configs' })

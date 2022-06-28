@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 import { ReoccurUnit } from './enum.base';
 
 @Entity({ name: 're_schedule' })

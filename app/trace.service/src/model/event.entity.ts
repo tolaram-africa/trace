@@ -1,5 +1,5 @@
 import { User } from './user.entity';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 import {
   Column,
   CreateDateColumn,

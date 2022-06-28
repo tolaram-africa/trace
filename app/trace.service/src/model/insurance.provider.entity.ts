@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 
 @Entity('insurance_providers')
 export class InsuranceProvider extends TenantEntity {

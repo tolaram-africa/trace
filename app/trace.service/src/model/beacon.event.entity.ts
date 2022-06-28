@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 import { Beacon } from './beacon.entity';
 import { BeaconPosition } from './beacon.position.entity';
 import { Location } from './location.entity';

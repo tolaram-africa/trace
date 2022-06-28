@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { FuelCalculationType } from './enum.base';
 import { BeaconPosition } from './beacon.position.entity';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 import { BeaconDevice } from './object.beacon.entity';
 
 export enum BeaconStatus {

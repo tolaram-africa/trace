@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
 import { BaseAddress } from './base.address.entity';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 
 export enum ShipmentAPI {
   UPS = 'ups',

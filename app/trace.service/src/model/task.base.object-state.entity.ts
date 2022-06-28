@@ -1,5 +1,5 @@
 import { Column } from 'typeorm';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 import { TaskObjectStatus } from './enum.task';
 
 export abstract class TaskObjectState extends TenantEntity {

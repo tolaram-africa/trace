@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { TenantEntity } from './base.entity';
+import { TenantEntity } from './base.tenant.entity';
 
 @Entity({ name: 'trailer_type' })
 export class TrailerType extends TenantEntity {
