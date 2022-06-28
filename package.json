@@ -31,7 +31,7 @@
     "dev:docs": "pnpm run docs dev",
     "dev:service": "pnpm run service dev",
     "build": "pnpm clean:packages && pnpm -r --filter ./app run build",
-    "clean": " pnpm -r --filter ./app --parallel run clean && pnpm clean:packages && rimraf ./app/*/node_modules, ./app/trace.client/*/node_modules ./app/*/yarn* ./app/*/package-lock.json ./app/*/.pnpm-debug*",
+    "clean": " pnpm -r --filter ./app --parallel run clean && pnpm clean:packages && rimraf ./app/*/node_modules, ./app/trace.client/*/node_modules ./app/*/yarn* ./app/*/package-lock.json ./app/*/.pnpm-debug* pnpm-lock.yaml",
     "clean:packages": "rimraf app/*/dist node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
