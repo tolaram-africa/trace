@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { User } from './user.entity';
-import { SystemFeature } from './system.module.entity';
+import { SystemFeature } from './system.feature.entity';
 
 export enum DashboardType {
   GRAPH = 'GRAPH',

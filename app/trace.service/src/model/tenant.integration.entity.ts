@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { HttpMethod } from './enum.base';
-import { SystemFeature } from './system.module.entity';
+import { SystemFeature } from './system.feature.entity';
 import { TenantIntegrationConfig } from './tenant.integration-config.entity';
 
 export enum IntegrationType {

@@ -1,6 +1,6 @@
 import { Column } from 'typeorm';
 
-export class BaseAddress {
+export class ExtendedAddress {
   @Column({ type: 'varchar', length: 1024, nullable: true })
   public street!: string;
 

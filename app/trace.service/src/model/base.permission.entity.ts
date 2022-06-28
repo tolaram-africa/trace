@@ -1,5 +1,5 @@
 import { Column, JoinColumn, OneToOne } from 'typeorm';
-import { SystemFeature } from './system.module.entity';
+import { SystemFeature } from './system.feature.entity';
 import { TenantEntity } from './base.tenant.entity';
 import { RBACPermission } from './enum.user';
 

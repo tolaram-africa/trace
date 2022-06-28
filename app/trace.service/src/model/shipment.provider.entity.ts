@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { BaseAddress } from './base.address.entity';
+import { ExtendedAddress } from './base.address.entity';
 import { TenantEntity } from './base.tenant.entity';
 
 export enum ShipmentAPI {
@@ -30,8 +30,8 @@ export class ShipmentProvider extends TenantEntity {
   @Column({ type: 'varchar', length: 128, nullable: true })
   public token!: string;
 
-  @Column(() => BaseAddress)
-  public address: BaseAddress;
+  @Column(() => ExtendedAddress)
+  public address: ExtendedAddress;
 
   @Column({ type: 'text', nullable: true })
   public notes: string;

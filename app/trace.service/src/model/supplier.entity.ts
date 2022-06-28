@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseAddress } from './base.address.entity';
+import { ExtendedAddress } from './base.address.entity';
 import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { Document } from './document.entity';
 import { User } from './user.entity';
@@ -23,8 +23,8 @@ export class Supplier extends SoftDeleteEntity {
   @Column({ type: 'varchar', length: 128, nullable: true })
   public identifier: string;
 
-  @Column(() => BaseAddress)
-  public address: BaseAddress;
+  @Column(() => ExtendedAddress)
+  public address: ExtendedAddress;
 
   @Column({ type: 'varchar', length: 512, nullable: true })
   public website: string;

@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { CoreEntity } from './base.core.entity';
 
-@Entity({ name: 'system_modules' })
+@Entity({ name: 'system_features' })
 export class SystemFeature extends CoreEntity {
   @PrimaryColumn({
     type: 'varchar',

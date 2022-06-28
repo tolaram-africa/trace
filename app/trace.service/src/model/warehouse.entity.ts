@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { BaseAddress } from './base.address.entity';
+import { ExtendedAddress } from './base.address.entity';
 import { TagEntity } from './base.tag.entity';
 import { Customer } from './customer.entity';
 import { AreaUnit } from './enum.base';
@@ -23,8 +23,8 @@ export class Warehouse extends TagEntity {
   @JoinColumn()
   public location: Location;
 
-  @Column(() => BaseAddress)
-  public address: BaseAddress;
+  @Column(() => ExtendedAddress)
+  public address: ExtendedAddress;
 
   @OneToOne(() => User)
   @JoinColumn()

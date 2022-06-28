@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { BaseAddress } from './base.address.entity';
+import { ExtendedAddress } from './base.address.entity';
 import { SoftDeleteEntity } from './base.soft-delete.entity';
 
 @Entity({ name: 'bank_profiles' })
@@ -13,6 +13,6 @@ export class Bank extends SoftDeleteEntity {
   @Column({ type: 'varchar', length: 128, unique: true, nullable: false })
   public routing: string;
 
-  @Column(() => BaseAddress)
-  public address: BaseAddress;
+  @Column(() => ExtendedAddress)
+  public address: ExtendedAddress;
 }

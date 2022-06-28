@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { CoreDeleteEntity } from './base.core.soft-delete.entity';
 import { User } from './user.entity';
 import { Document } from './document.entity';
-import { BaseAddress } from './base.address.entity';
+import { ExtendedAddress } from './base.address.entity';
 
 export enum UserMaritalStatus {
   SINGLE = 'single',
@@ -24,8 +24,8 @@ export class UserProfile extends CoreDeleteEntity {
   @JoinColumn()
   public user: User;
 
-  @Column(() => BaseAddress)
-  public address: BaseAddress;
+  @Column(() => ExtendedAddress)
+  public address: ExtendedAddress;
 
   @OneToOne(() => Document, { nullable: true })
   @JoinColumn()

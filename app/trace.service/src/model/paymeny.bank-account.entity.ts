@@ -10,7 +10,7 @@ import { SoftDeleteEntity } from './base.soft-delete.entity';
 import { BankAccountType } from './enum.base';
 import { Bank } from './system.bank.entity';
 import { Document } from './document.entity';
-import { BaseAddress } from './base.address.entity';
+import { ExtendedAddress } from './base.address.entity';
 
 @Entity({ name: 'bank_accounts' })
 export class BankAccount extends SoftDeleteEntity {
@@ -44,8 +44,8 @@ export class BankAccount extends SoftDeleteEntity {
   @Column({ type: 'varchar', length: 256, nullable: false })
   holderFullName: string;
 
-  @Column(() => BaseAddress)
-  public address: BaseAddress;
+  @Column(() => ExtendedAddress)
+  public address: ExtendedAddress;
 
   @ManyToMany(() => Document, { nullable: true })
   @JoinTable({ name: 'bank_aacount_docs' })

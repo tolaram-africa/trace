@@ -9,7 +9,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { SystemFeature } from './system.module.entity';
+import { SystemFeature } from './system.feature.entity';
 import { Customer } from './customer.entity';
 
 @Entity({ name: 'events' })
