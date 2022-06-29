@@ -29,8 +29,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./apps/trace-service/test/jest-e2e.json",
-    "typeorm": "typeorm-ts-node-esm -d ormconfig.ts",
-    "orm": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ormconfig.ts"
+    "typeorm": "typeorm-ts-node-esm -d .ormconfig.ts",
+    "orm": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d .ormconfig.ts"
   },
   "dependencies": {
     "@apollo/federation": "^0.36.1",
