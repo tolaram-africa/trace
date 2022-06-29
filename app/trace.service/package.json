@@ -50,6 +50,7 @@
     "graphql-upload": "^15.0.1",
     "pg": "^8.4.0",
     "rxjs": "^7.5.5",
+    "type-graphql": "^1.1.1",
     "typeorm": "0.3.6",
     "typeorm-naming-strategies": "^4.1.0",
     "typeorm-pg-adjacency-list-tree": "^1.1.0",
