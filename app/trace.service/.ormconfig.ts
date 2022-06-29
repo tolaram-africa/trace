@@ -23,8 +23,8 @@ export const ormConfig: DataSourceOptions = {
     __dirname + '/libs/common/src/entity/**/*.entity.{ts,js}',
     __dirname + '/libs/module/src/**/*.entity.{ts,js}',
   ],
-  migrations: ['src/migrations/*.{ts,js}'],
-  subscribers: [],
+  migrations: ['database/migrations/*.{ts,js}'],
+  subscribers: ['database/subscribers/*.{ts,js}'],
   synchronize: true,
   dropSchema: false,
   namingStrategy: new SnakeNamingStrategy(),
@@ -33,10 +33,8 @@ export const ormConfig: DataSourceOptions = {
 export const OrmConfig = {
   ...ormConfig,
   migrationsTableName: 'trace_migrations',
-  migrations: ['src/migrations/*.ts'],
   cli: {
-    migrationsDir: 'src/migrations',
-    entitiesDir: 'src/model',
+    migrationsDir: 'database/migrations',
   },
 };
 
