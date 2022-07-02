@@ -25,13 +25,19 @@ export class TenantIntegration extends SoftDeleteEntity {
   @Column({ default: false })
   public cache: boolean;
 
-  @OneToOne(() => SystemFeature)
+  @OneToOne(() => SystemFeature, { nullable: true })
   @JoinColumn()
-  public feature: SystemFeature;
+  public feature!: SystemFeature;
+
+  @Column({ nullable: true })
+  public featureId!: string;
 
   @OneToOne(() => TenantIntegrationConfig, { nullable: true })
   @JoinColumn()
   public config!: TenantIntegrationConfig;
+
+  @Column({ nullable: true })
+  public configId!: string;
 
   @Column({
     type: 'enum',
@@ -40,10 +46,10 @@ export class TenantIntegration extends SoftDeleteEntity {
   })
   public type: IntegrationType;
 
-  @Column({ type: 'varchar', length: 2048, nullable: false })
+  @Column({ type: 'varchar', length: 2048, nullable: true })
   public pushUrl!: string;
 
-  @Column({ type: 'varchar', length: 2048, nullable: false })
+  @Column({ type: 'varchar', length: 2048, nullable: true })
   public pushPull!: string;
 
   @Column({
@@ -51,7 +57,6 @@ export class TenantIntegration extends SoftDeleteEntity {
     enum: HttpMethod,
     array: true,
     default: [HttpMethod.GET],
-    nullable: false,
   })
   public methods: HttpMethod[];
 
@@ -65,16 +70,16 @@ export class TenantIntegration extends SoftDeleteEntity {
   })
   public authType: IntegrationAuthType;
 
-  @Column({ type: 'varchar', length: 128, nullable: false })
+  @Column({ type: 'varchar', length: 128, nullable: true })
   public token!: string;
 
-  @Column({ type: 'varchar', length: 128, nullable: false })
+  @Column({ type: 'varchar', length: 128, nullable: true })
   public username!: string;
 
-  @Column({ type: 'varchar', length: 128, nullable: false })
+  @Column({ type: 'varchar', length: 128, nullable: true })
   public passwordHashed!: string;
 
-  @Column({ type: 'varchar', length: 128, nullable: false })
+  @Column({ type: 'varchar', length: 128, nullable: true })
   public passwordSalt!: string;
 
   @Column({ type: 'timestamptz', nullable: true })

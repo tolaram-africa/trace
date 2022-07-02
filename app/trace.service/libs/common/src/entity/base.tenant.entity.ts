@@ -12,4 +12,7 @@ export abstract class TenantEntity extends CoreEntity {
   @OneToOne(() => Tenant, { nullable: true })
   @JoinColumn()
   public tenant!: Tenant;
+
+  @Column({ nullable: true })
+  public tenantId!: string;
 }

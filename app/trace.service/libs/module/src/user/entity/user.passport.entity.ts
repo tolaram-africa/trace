@@ -1,4 +1,11 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+} from 'typeorm';
 import { User } from '@/module/user/entity/user.entity';
 import { Document } from '@/module/document/entity/document.entity';
 import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
@@ -17,9 +24,13 @@ export enum UserPassportType {
 
 @Entity({ name: 'user_passports' })
 export class UserPassport extends CoreDeleteEntity {
-  @ManyToOne(() => User, (user) => user.passport, { onDelete: 'CASCADE' })
+  @Index('idx_user_passport_userid')
+  @ManyToOne(() => User, (user) => user.passports, { onDelete: 'CASCADE' })
   @JoinColumn()
   public user: User;
+
+  @Column({ nullable: true })
+  public userId!: string;
 
   @Column({
     type: 'enum',

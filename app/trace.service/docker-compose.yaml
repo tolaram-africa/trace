@@ -1,4 +1,9 @@
 version: '3.9'
+
+networks:
+  app:
+    driver: bridge
+
 services:
   postgres:
     image: postgis/postgis:14-3.2-alpine
@@ -7,9 +12,27 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ~/docker-temp/postgres:/var/lib/postgresql/data/pgdata
+      - postgres:/var/lib/postgresql/data/pgdata
     env_file:
-      - .env.development
+      - .env.docker
+    networks:
+      - app
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    ports:
+      - 4580:80
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=trace@local.host
+      - PGADMIN_DEFAULT_PASSWORD=trace
+      - PGADMIN_LISTEN_ADDRESS=0.0.0.0
+      - PGADMIN_CONFIG_CONSOLE_LOG_LEVEL=10
+    networks:
+      - app
+
   # yugabyte:
   #   container_name: yugabyte
   #   image: gpproton/yugabyte-postgis:latest
@@ -22,3 +45,7 @@ services:
   #   volumes:
   #     - ~/docker-temp/yugabyte:/home/yugabyte/yb_data
   #   command: bin/yugabyted start --base_dir=/home/yugabyte/yb_data --daemon=false
+
+volumes:
+    postgres:
+    pgadmin:

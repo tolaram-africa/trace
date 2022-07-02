@@ -21,12 +21,12 @@ export class TenantPayProvider extends SoftDeleteEntity {
   @Column({ type: 'varchar', length: 512, nullable: true })
   public username!: string;
 
-  @Column({ type: 'varchar', length: 512, nullable: false })
+  @Column({ type: 'varchar', length: 512, nullable: true })
   public secret: string;
 
-  @Column({ type: 'varchar', length: 512, nullable: false })
+  @Column({ type: 'varchar', length: 512, nullable: true })
   public publicKey: string;
 
-  @Column({ type: 'varchar', length: 512, nullable: false })
+  @Column({ type: 'varchar', length: 512, nullable: true })
   public privateKey: string;
 }

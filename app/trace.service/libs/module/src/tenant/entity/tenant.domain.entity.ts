@@ -11,6 +11,9 @@ export class TenantDomain extends CoreDeleteEntity {
   @JoinColumn()
   public tenant: Tenant;
 
+  @Column({ nullable: true })
+  public tenantId: string;
+
   @Column({ type: 'varchar', length: 255, nullable: false })
   public domain: string;
 

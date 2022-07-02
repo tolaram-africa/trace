@@ -1,7 +1,7 @@
 import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
-import { AuthProvider } from '@/common/entity/enum.user';
-import { SystemUserRole } from './system.user-role.entity';
-import { BaseAuth } from '@/module/user/entity/base.auth.entity';
+import { AuthProvider } from '@/common/entity';
+import { SystemUserRole } from './';
+import { BaseAuth } from '@/module/user/entity';
 
 @Entity({ name: 'system_user_auths' })
 export class SystemUserAuth extends BaseAuth {

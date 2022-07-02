@@ -1,4 +1,4 @@
-import { Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { BaseSubscription } from './base.subscription.entity';
 import { Tenant } from '@/module/tenant/entity/tenant.entity';
 
@@ -7,4 +7,7 @@ export class TenantSubscription extends BaseSubscription {
   @OneToOne(() => Tenant, { nullable: true })
   @JoinColumn()
   public tenant!: Tenant;
+
+  @Column({ nullable: true })
+  public tenantId!: string;
 }

@@ -8,6 +8,9 @@ export class TenantIntegrationConfig extends TenantEntity {
   @JoinColumn()
   public integration: TenantIntegration;
 
+  @Column({ nullable: true })
+  public integrationId: string;
+
   @Column({ type: 'jsonb', default: {} })
   public keys: string;
 }

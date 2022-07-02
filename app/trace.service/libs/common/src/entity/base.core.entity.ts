@@ -16,14 +16,11 @@ export abstract class CoreEntity extends BaseEntity {
   @CreateDateColumn({
     type: 'timestamptz',
     default: () => 'CURRENT_TIMESTAMP',
-    nullable: false,
   })
   public timeCreated!: Date;
 
   @UpdateDateColumn({
     type: 'timestamptz',
-    default: () => 'CURRENT_TIMESTAMP',
-    nullable: true,
   })
   public timeUpdated!: Date;
 }

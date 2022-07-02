@@ -2,7 +2,10 @@ import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { Point, Geometry } from 'geojson';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { GeometryType, LocationAutoType } from '@/common/entity/enum.base';
-import { GeometryTransformer } from '@/common/entity/base.util';
+import {
+  GeometryExtended,
+  GeometryTransformer,
+} from '@/common/entity/base.util';
 import { LocationType } from '@/module/location/entity/location.type.entity';
 import { User } from '@/module/user/entity/user.entity';
 
@@ -66,7 +69,7 @@ export class Location extends TagEntity {
     transformer: new GeometryTransformer(),
     nullable: false,
   })
-  public shape: Geometry;
+  public shape: GeometryExtended;
 
   @Column({ type: 'text', nullable: true })
   public description!: string;

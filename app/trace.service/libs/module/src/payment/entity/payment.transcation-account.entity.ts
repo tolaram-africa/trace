@@ -7,10 +7,10 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
-import { Currency } from '@/module/system/entity/currency.entity';
-import { BankAccount } from './payment.bank-account.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { SoftDeleteEntity } from '@/common/entity';
+import { Currency } from '@/module/system/entity';
+import { Document } from '@/module/document/entity';
+import { User } from '@/module/user/entity';
 
 @Entity({ name: 'transaction_accounts' })
 export class TransactionAccount extends SoftDeleteEntity {
@@ -21,9 +21,12 @@ export class TransactionAccount extends SoftDeleteEntity {
   @Column({ type: 'bigint', unique: true, nullable: false })
   public identifier: number;
 
-  @OneToOne(() => BankAccount, { nullable: true })
+  @OneToOne(() => User)
   @JoinColumn()
-  public bankAccount!: BankAccount;
+  public user!: User;
+
+  @Column({ nullable: true })
+  public userId!: string;
 
   @Column({ type: 'bigint', nullable: false, default: 0 })
   public currentLoan: number;

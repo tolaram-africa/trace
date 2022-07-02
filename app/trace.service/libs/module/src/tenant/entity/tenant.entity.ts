@@ -1,5 +1,12 @@
 import { TenantDomain } from './tenant.domain.entity';
-import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Generated,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+} from 'typeorm';
 import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 import { TenantSetting } from './tenant.setting.entity';
 
@@ -18,21 +25,19 @@ export class Tenant extends CoreDeleteEntity {
   public shortName: string;
 
   @Column({ unique: true })
-  public uniqueId: string;
-
-  @Column({ type: 'boolean', default: false })
-  public isArchived: boolean;
+  @Generated()
+  public uniqueId: number;
 
   @Column({ default: false })
   public active: boolean;
 
-  @Column({ type: 'varchar', length: 512, nullable: false })
+  @Column({ type: 'varchar', length: 512, nullable: true })
   public token: string;
 
-  @Column({ type: 'varchar', length: 1024, nullable: false })
+  @Column({ type: 'varchar', length: 1024, nullable: true })
   public logo: string;
 
-  @Column({ type: 'varchar', length: 1024, nullable: false })
+  @Column({ type: 'varchar', length: 1024, nullable: true })
   public background: string;
 
   @OneToOne(() => TenantSetting, (setting) => setting.tenant, {
@@ -41,7 +46,10 @@ export class Tenant extends CoreDeleteEntity {
   @JoinColumn()
   public setting!: TenantSetting;
 
+  @Column({ nullable: true })
+  public settingId: string;
+
   @OneToMany(() => TenantDomain, (domain) => domain.tenant)
   @JoinColumn()
-  public domains: TenantDomain[];
+  public domains!: TenantDomain[];
 }

@@ -1,6 +1,7 @@
-import { OneToOne, JoinColumn, Entity, Index } from 'typeorm';
-import { BaseSetting } from '@/module/tenant/entity/base.profile-setting.entity';
-import { Customer } from '@/module/customer/entity/customer.entity';
+import { OneToOne, JoinColumn, Entity, Index, Column } from 'typeorm';
+import { BaseSetting } from '@/module/tenant/entity';
+import { Customer } from './';
+import { Tenant } from '@/module/tenant/entity';
 
 @Entity({ name: 'customer_settings' })
 export class CustomerSetting extends BaseSetting {
@@ -8,4 +9,14 @@ export class CustomerSetting extends BaseSetting {
   @OneToOne(() => Customer, (customer) => customer.setting, { nullable: true })
   @JoinColumn()
   public customer!: Customer;
+
+  @Column({ nullable: true })
+  public customerId: string;
+
+  @OneToOne(() => Tenant)
+  @JoinColumn()
+  public tenant: Tenant;
+
+  @Column({ nullable: true })
+  public tenantId: string;
 }

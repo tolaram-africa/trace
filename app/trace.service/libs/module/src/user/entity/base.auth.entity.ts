@@ -19,14 +19,14 @@ export abstract class BaseAuth extends SoftDeleteEntity {
     array: true,
     default: [RecoveryOption.EMAIL],
   })
-  public recoveryOptAlwd: RecoveryOption[];
+  public recoveryAllowed: RecoveryOption[];
 
   @Column({
     type: 'enum',
     enum: RecoveryOption,
     default: RecoveryOption.EMAIL,
   })
-  public recoveryOptDeflt: RecoveryOption;
+  public recoveryDefault: RecoveryOption;
 
   @Column({ type: 'varchar', length: 128, nullable: false })
   public passwordHash: string;

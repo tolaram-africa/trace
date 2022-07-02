@@ -12,9 +12,15 @@ export class TenantInvoice extends SoftDeleteEntity {
   @JoinColumn()
   public subscription: TenantSubscription;
 
+  @Column({ nullable: true })
+  public subscriptionId!: string;
+
   @OneToOne(() => TenantBill)
   @JoinColumn()
   public billing: TenantBill;
+
+  @Column({ nullable: true })
+  public billingId!: string;
 
   @Column({
     type: 'timestamptz',
@@ -46,6 +52,9 @@ export class TenantInvoice extends SoftDeleteEntity {
   @OneToOne(() => TenantPayProvider)
   @JoinColumn()
   public paymentProvider!: TenantPayProvider;
+
+  @Column({ nullable: true })
+  public paymentProviderId: string;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
   public paymentRefrence!: string;

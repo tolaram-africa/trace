@@ -4,43 +4,38 @@ import {
   OneToOne,
   JoinColumn,
   OneToMany,
+  ManyToMany,
   JoinTable,
+  AfterLoad,
 } from 'typeorm';
-import { UserProfile } from './user.profile.entity';
-import { UserAlert } from './user.alerts.entity';
-import { UserAccountType, UserType } from '@/common/entity/enum.user';
+import { TenantEntity, UserAccountType, UserType } from '@/common/entity';
+import { UserProfile, UserAlert, UserSetting, UserPassport } from './';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
-import { ManyToMany } from 'typeorm';
-import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
-import { UserSetting } from './user.setting.entity';
-import { Tenant } from '@/module/tenant/entity/tenant.entity';
 import { BankAccount } from '@/module/payment/entity/payment.bank-account.entity';
-import { TransactionAccount } from '@/module/payment/entity/payment.transcation-account.entity';
 import { Tree, TreeChildren, TreeParent } from 'typeorm-pg-adjacency-list-tree';
-import { UserPassport } from './user.passport.entity';
 
 @Entity({ name: 'users' })
 @Tree()
-export class User extends CoreDeleteEntity {
+export class User extends TenantEntity {
   @Column({
     type: 'enum',
     enum: UserAccountType,
     default: UserAccountType.CUSTOMER_CLIENT,
   })
-  public accountType: UserAccountType;
+  public serviceGroup: UserAccountType;
 
   @Column({
     type: 'enum',
     enum: UserType,
     default: UserType.CUSTOMER_CLIENT,
   })
-  public type: UserType;
+  public userType: UserType;
 
   @Column({ default: true })
-  public active!: boolean;
+  public active: boolean;
 
-  @Column({ type: 'bigint', unique: true, nullable: false })
-  public phone: number;
+  @Column({ type: 'varchar', length: 15, unique: true, nullable: false })
+  public phone: string;
 
   @Column({ type: 'varchar', length: 64, unique: false, nullable: false })
   public username: string;
@@ -48,26 +43,38 @@ export class User extends CoreDeleteEntity {
   @Column({ type: 'varchar', length: 128, nullable: false })
   public firstName: string;
 
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  public middleName!: string;
+
   @Column({ type: 'varchar', length: 128, nullable: false })
   public lastName: string;
+
+  @Column({ type: 'varchar', length: 256, nullable: false })
+  public name: string;
 
   @OneToOne(() => UserProfile, (porfile) => porfile.user, { nullable: true })
   @JoinColumn()
   public profile!: UserProfile;
 
+  @Column({ nullable: true })
+  public profileId: string;
+
   @OneToOne(() => UserSetting, (setting) => setting.user, { nullable: true })
   @JoinColumn()
   public setting!: UserSetting;
 
-  @OneToMany(() => UserAlert, (alerts) => alerts.user, { nullable: true })
+  @Column({ nullable: true })
+  public settingId!: string;
+
+  @OneToMany(() => UserAlert, (alerts) => alerts.user)
   @JoinColumn()
   public alerts!: UserAlert[];
 
   @Column({ default: true })
-  public loginEnabled: boolean;
+  public loginEnabled!: boolean;
 
   @Column({ default: false })
-  public readonly: boolean;
+  public readonly!: boolean;
 
   @Column({ type: 'timestamptz', nullable: true })
   public expiry!: Date;
@@ -75,19 +82,18 @@ export class User extends CoreDeleteEntity {
   @Column({ type: 'timestamptz', nullable: true })
   public lastActive!: Date;
 
-  @OneToOne(() => Tenant, { nullable: true })
-  @JoinColumn()
-  public tenant!: Tenant;
-
-  @OneToOne(() => TransactionAccount, { nullable: true })
-  @JoinColumn()
-  public accountBalance!: TransactionAccount;
-
   @TreeParent()
   public manager!: User;
 
+  @Column({ nullable: true })
+  public parentId!: string;
+
   @TreeChildren()
   public directReports!: User[];
+
+  @OneToMany(() => UserPassport, (passport) => passport.user)
+  @JoinColumn()
+  public passports!: UserPassport[];
 
   @ManyToMany(() => BankAccount, { nullable: true })
   @JoinTable({ name: 'user_bank_accounts' })
@@ -97,9 +103,10 @@ export class User extends CoreDeleteEntity {
   @JoinTable({ name: 'user_schedules' })
   public schedules!: Schedule[];
 
-  @OneToMany(() => UserPassport, (item) => item.user, { nullable: true })
-  @JoinColumn()
-  public passport!: UserPassport[];
+  @AfterLoad()
+  setCombined() {
+    this.name = this.firstName + ' ' + this.middleName + ' ' + this.lastName;
+  }
 }
 
 // EXAMPLE: Usage example

@@ -1,4 +1,4 @@
-import { Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { BasePermission } from './base.permission.entity';
 import { UserRole } from './user.role.entity';
 
@@ -7,4 +7,7 @@ export class UserPermission extends BasePermission {
   @ManyToOne(() => UserRole, (role) => role.permissions)
   @JoinColumn()
   public role: UserRole;
+
+  @Column({ nullable: true })
+  public roleId!: string;
 }

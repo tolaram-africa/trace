@@ -13,4 +13,7 @@ export class TenantBill extends SoftDeleteEntity {
   @OneToOne(() => TenantInvoice)
   @JoinColumn()
   public invoice: TenantInvoice;
+
+  @Column({ nullable: true })
+  public invoiceId!: string;
 }

@@ -6,15 +6,14 @@ import {
   JoinTable,
   JoinColumn,
 } from 'typeorm';
-import { TagEntity } from '@/common/entity/base.tag.entity';
-import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
 import {
-  Payment,
+  TagEntity,
   PaymentRequestStatus,
   PayTransactionType,
-} from './payment.entity';
-import { PaymentType } from './payment.type.entity';
+} from '@/common/entity';
+import { User } from '@/module/user/entity';
+import { Document } from '@/module/document/entity';
+import { PaymentType, Payment } from './';
 
 @Entity({ name: 'payment_requests' })
 export class PaymentRequest extends TagEntity {
