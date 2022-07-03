@@ -1,12 +1,11 @@
-import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
 import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
-import { ScheduleRecur } from './schedule.recur.entity';
-import { Tag } from '@/module/tag/entity/tag.entity';
+import { ScheduleEvent } from './schedule.event.entity';
 
 @Entity({ name: 'schedules' })
 export class Schedule extends CoreDeleteEntity {
   @Column({ default: false })
-  public recurring: boolean;
+  public default: boolean;
 
   @Column({ default: false })
   public active: boolean;
@@ -14,23 +13,22 @@ export class Schedule extends CoreDeleteEntity {
   @Column({ default: false })
   public restrict: boolean;
 
-  @Column()
+  @Column({ default: false })
+  public recurring: boolean;
+
+  @Column({ type: 'varchar', length: 128 })
   public name: string;
 
   @Column({ type: 'text', nullable: true })
   public description!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public excecuted: Date;
+  public lastRun: Date;
 
   @Column({ type: 'timestamptz', nullable: true })
   public next: Date;
 
-  @ManyToMany(() => ScheduleRecur)
-  @JoinTable({ name: 'recurring_schedules' })
-  public schedules: ScheduleRecur[];
-
-  @ManyToMany(() => Tag)
-  @JoinTable({ name: 'schedule_tags' })
-  public tag!: Tag[];
+  @OneToMany(() => ScheduleEvent, (event) => event.schedule, { nullable: true })
+  @JoinColumn()
+  public events!: ScheduleEvent[];
 }

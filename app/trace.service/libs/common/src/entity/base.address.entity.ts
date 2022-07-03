@@ -2,7 +2,10 @@ import { Column } from 'typeorm';
 
 export class ExtendedAddress {
   @Column({ type: 'varchar', length: 1024, nullable: true })
-  public street!: string;
+  public line1!: string;
+
+  @Column({ type: 'varchar', length: 1024, nullable: true })
+  public line2!: string;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
   public city!: string;

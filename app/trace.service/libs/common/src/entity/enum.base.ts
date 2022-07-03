@@ -14,14 +14,14 @@ export enum AlertType {
   ALL = 'all',
 }
 
-export enum ReoccurUnit {
-  SECOND = 'second',
+export enum PeriodUnit {
   MINUTE = 'minute',
   HOUR = 'hour',
   DAY = 'day',
   WEEK = 'week',
   MONTH = 'month',
   YEAR = 'year',
+  CRON = 'cron',
 }
 
 export enum SizeUnit {

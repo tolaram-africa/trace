@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, OneToOne } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { SystemFeature } from '@/module/system/entity/system.feature.entity';
@@ -20,20 +20,25 @@ export class Dashboard extends SoftDeleteEntity {
   @Column({ default: false, type: 'boolean' })
   public default: boolean;
 
+  @Index('idx_dashboard_userid')
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public user!: User;
 
+  @Column({ nullable: true })
+  public userId!: string;
+
   @Column({ type: 'enum', enum: DashboardType, default: DashboardType.COUNT })
   public type: DashboardType;
 
-  @OneToOne(() => SystemFeature)
+  @Index('idx_dashboard_featureid')
+  @OneToOne(() => SystemFeature, { nullable: true })
   @JoinColumn()
-  public module: SystemFeature;
+  public module!: SystemFeature;
+
+  @Column({ nullable: true })
+  public moduleId!: number;
 
   @Column({ nullable: false, type: 'int', default: 0 })
   public position: number;
-
-  @Column({ nullable: true, type: 'text' })
-  public description!: string;
 }
