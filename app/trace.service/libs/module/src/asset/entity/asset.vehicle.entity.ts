@@ -10,7 +10,7 @@ import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Beacon } from '@/module/beacon/entity/beacon.entity';
 import { VehicleType } from '@/common/entity/enum.object';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { Trailer } from './asset.trailer.entity';
 import { InsurancePlan } from '@/module/insurance/entity/insurance.plan.entity';
 import { ProductBrand } from '@/module/product/entity/product.brand.entity';
@@ -93,9 +93,9 @@ export class Vehicle extends TagEntity {
   @JoinTable({ name: 'vehicle_insurance_plans' })
   public insurance!: InsurancePlan[];
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'vehicle_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'vehicle_files' })
+  public files!: File[];
 
   @ManyToMany(() => Schedule, { nullable: true })
   @JoinTable({ name: 'vehicle_schedules' })

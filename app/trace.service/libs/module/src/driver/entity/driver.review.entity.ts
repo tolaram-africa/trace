@@ -9,7 +9,7 @@ import {
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { Driver } from './driver.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { DriverReviewComment } from './driver.review.comment.entity';
 import { DriverReviewType } from './driver.review.type.entity';
 
@@ -50,9 +50,9 @@ export class DriverReview extends TagEntity {
   @JoinTable({ name: 'drv_rvw_link_comments' })
   public comments!: DriverReviewComment[];
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'driver_review_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'driver_review_files' })
+  public files!: File[];
 
   @Column({ type: 'text', nullable: true })
   public remarks!: string;

@@ -10,7 +10,7 @@ import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { DriverExpenseRequest } from './driver.expense-request.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { Payment } from '@/module/payment/entity/payment.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 
@@ -64,7 +64,7 @@ export class DriverExpense extends SoftDeleteEntity {
   @JoinColumn()
   public payment!: Payment;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'driver_exp_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'driver_exp_files' })
+  public files!: File[];
 }

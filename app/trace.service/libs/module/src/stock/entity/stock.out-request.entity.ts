@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { StockWarehouse } from './stock.warehouse.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { StockChange } from './stock.change.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { ProductModel } from '@/module/product/entity/product.model.entity';
@@ -41,7 +41,7 @@ export class StockOutRequest extends SoftDeleteEntity {
   @JoinColumn()
   public changes: StockChange[];
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'stock_out_req_docs' })
-  public docs: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'stock_out_req_files' })
+  public files!: File[];
 }

@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { ShipmentProvider } from '@/module/shipment/entity/shipment.provider.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 
 @Entity({ name: 'shipments' })
 export class Shipment extends SoftDeleteEntity {
@@ -28,7 +28,7 @@ export class Shipment extends SoftDeleteEntity {
   })
   public completedAt!: Date;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'shipment_documents' })
-  public docs: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'shipment_files' })
+  public files!: File[];
 }

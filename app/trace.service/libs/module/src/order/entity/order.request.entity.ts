@@ -12,7 +12,7 @@ import { Task } from '@/module/task/entity/task.entity';
 import { Ticket } from '@/module/ticket/entity/ticket.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { OrderFreight } from './order.freight.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { Order } from './order.entity';
 
 export enum OrderRequestStatus {
@@ -68,9 +68,9 @@ export class OrderRequest extends SoftDeleteEntity {
   @JoinColumn()
   public freights!: OrderFreight[];
 
-  @OneToOne(() => Document, { nullable: true })
+  @OneToOne(() => File, { nullable: true })
   @JoinColumn()
-  public docment!: Document;
+  public file!: File;
 
   @OneToMany(() => Ticket, (ticket) => ticket.orderRequest)
   @JoinColumn()

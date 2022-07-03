@@ -12,7 +12,7 @@ import { TagEntity } from '@/common/entity/base.tag.entity';
 import { TaskType } from '@/common/entity/enum.task';
 import { TaskEvent } from './task.event.entity';
 import { TaskRequest } from './task.request.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
 import { OrderRequest } from '@/module/order/entity/order.request.entity';
 
@@ -70,8 +70,9 @@ export class Task extends TagEntity {
   })
   public endedAt!: Date;
 
-  @OneToOne(() => Document, { nullable: true })
-  public document!: Document;
+  @OneToOne(() => File, { nullable: true })
+  @JoinColumn()
+  public file!: File;
 
   @ManyToMany(() => Schedule, { nullable: true })
   @JoinTable({ name: 'task_schedules' })

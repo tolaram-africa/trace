@@ -12,7 +12,7 @@ import { Driver } from '@/module/driver/entity/driver.entity';
 import { DriverGroup } from '@/module/driver/entity/driver.group.entity';
 import { SizeUnit } from '@/common/entity/enum.base';
 import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { TypeEntity } from '@/common/entity/base.type.entity';
 import { InsuranceClaim } from '@/module/insurance/entity/insurance.claim.entity';
 import { OrderFreight } from '@/module/order/entity/order.freight.entity';
@@ -106,7 +106,7 @@ export class Shortage extends TagEntity {
   })
   public completed!: Date;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'shortage_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'shortage_files' })
+  public files!: File[];
 }

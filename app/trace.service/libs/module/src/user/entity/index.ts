@@ -9,3 +9,23 @@ export * from './user.permission.entity';
 export * from './user.profile.entity';
 export * from './user.role.entity';
 export * from './user.setting.entity';
+
+import {
+  UserProfile,
+  UserRole,
+  UserPassport,
+  UserSetting,
+  UserAlert,
+  UserPermission,
+  BankCard,
+} from './';
+
+export const UserModuleEntity = [
+  UserProfile,
+  UserRole,
+  UserPassport,
+  UserSetting,
+  UserAlert,
+  UserPermission,
+  BankCard,
+];

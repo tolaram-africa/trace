@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { CustomerGroup } from './customer.group.entity';
 import { Tenant } from '@/module/tenant/entity/tenant.entity';
 import { CustomerContract } from './customer.contract.entity';
@@ -48,9 +48,9 @@ export class Customer extends TagEntity {
   @Column({ default: true })
   public billable: boolean;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'cust_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'cust_files' })
+  public files!: File[];
 
   @OneToOne(() => CustomerGroup)
   @JoinColumn()

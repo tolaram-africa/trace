@@ -7,7 +7,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { InsuranceProvider } from './insurance.provider.entity';
 
@@ -49,7 +49,7 @@ export class InsurancePolicy extends SoftDeleteEntity {
   @Column({ type: 'date', nullable: true })
   public expiry!: Date;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'insurance_policy_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'insurance_policy_files' })
+  public files!: File[];
 }

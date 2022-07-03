@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity';
 import { Currency } from '@/module/system/entity';
-import { Document } from '@/module/document/entity';
+import { File } from '@root/libs/module/src/file/entity';
 import { User } from '@/module/user/entity';
 
 @Entity({ name: 'transaction_accounts' })
@@ -41,9 +41,9 @@ export class TransactionAccount extends SoftDeleteEntity {
   @JoinColumn()
   public currency: Currency;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'transaction_account_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'transaction_account_files' })
+  public files!: File[];
 
   @Column({ type: 'text', nullable: true })
   public notes!: string;

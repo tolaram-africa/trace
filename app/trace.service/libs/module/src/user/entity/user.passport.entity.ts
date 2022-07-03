@@ -7,7 +7,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 import { JoinColumn } from 'typeorm';
 
@@ -66,7 +66,7 @@ export class UserPassport extends CoreDeleteEntity {
   @Column({ nullable: true })
   public issuedPlace!: string;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'user_passport_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'user_passport_files' })
+  public files!: File[];
 }

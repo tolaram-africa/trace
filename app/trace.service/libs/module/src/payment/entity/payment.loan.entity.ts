@@ -9,7 +9,7 @@ import {
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { Payment } from './payment.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { PaymentLoanRequest } from './payment.loan-request.entity';
 
 @Entity({ name: 'payment_loans' })
@@ -29,7 +29,7 @@ export class PaymentLoan extends SoftDeleteEntity {
   @Column({ type: 'timestamptz', nullable: true })
   public timeSettled!: Date;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'payment_loan_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'payment_loan_files' })
+  public files!: File[];
 }

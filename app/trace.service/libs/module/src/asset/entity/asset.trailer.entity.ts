@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { TrailerType } from './asset.trailer.type.entity';
 import { InsurancePlan } from '@/module/insurance/entity/insurance.plan.entity';
 import { ProductBrand } from '@/module/product/entity/product.brand.entity';
@@ -71,9 +71,9 @@ export class Trailer extends TagEntity {
   @JoinTable({ name: 'trailer_insurance_plans' })
   public insurance!: InsurancePlan[];
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'traler_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'traler_files' })
+  public files!: File[];
 
   @ManyToMany(() => Schedule, { nullable: true })
   @JoinTable({ name: 'trailer_schedules' })

@@ -2,7 +2,7 @@ import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { Driver } from './driver.entity';
 import { DriverExpensePlan } from './driver.expense-plan.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { DriverExpenseType } from '@/module/driver/entity/driver.expense-type.entity';
 import { TaskRequest } from '@/module/task/entity/task.request.entity';
@@ -52,7 +52,7 @@ export class DriverExpenseRequest extends SoftDeleteEntity {
   @JoinColumn()
   public approvedBy!: User;
 
-  @OneToOne(() => Document, { nullable: true })
+  @OneToOne(() => File, { nullable: true })
   @JoinColumn()
-  public document!: Document;
+  public file!: File;
 }

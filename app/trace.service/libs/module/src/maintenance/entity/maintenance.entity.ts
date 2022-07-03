@@ -13,7 +13,7 @@ import { Vehicle } from '@/module/asset/entity/asset.vehicle.entity';
 import { MaintenanceRepair } from '@/module/maintenance/entity/maintenance.repair.entity';
 import { MaintenanceRequestLog } from '@/module/maintenance/entity/maintenance.request-log.entity';
 import { StockOutRequest } from '@/module/stock/entity/stock.out-request.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 
 @Entity({ name: 'maintenances' })
 export class Maintenance extends TagEntity {
@@ -63,7 +63,7 @@ export class Maintenance extends TagEntity {
   @Column({ type: 'text', nullable: true })
   public notes: string;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'maintenance_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'maintenance_files' })
+  public files!: File[];
 }

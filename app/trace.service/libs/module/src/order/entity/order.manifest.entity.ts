@@ -11,7 +11,7 @@ import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import { Order } from './order.entity';
 import { Tag } from '@/module/tag/entity/tag.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { Shipment } from '@/module/shipment/entity/shipment.entity';
 
 @Entity({ name: 'order_manifests' })
@@ -59,7 +59,7 @@ export class OrderManifest extends TenantEntity {
   @Column({ type: 'varchar', nullable: true })
   public notes!: string;
 
-  @OneToOne(() => Document, { nullable: true })
+  @OneToOne(() => File, { nullable: true })
   @JoinColumn()
-  public docment!: Document;
+  public file!: File;
 }

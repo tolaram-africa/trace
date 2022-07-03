@@ -13,7 +13,7 @@ import { Order } from './order.entity';
 import { Ticket } from '@/module/ticket/entity/ticket.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { TransactionAccount } from '@/module/payment/entity/payment.transcation-account.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 
 export enum OrderInvoiceStatus {
   PENDING = 'pending',
@@ -82,9 +82,9 @@ export class OrderInvoice extends TagEntity {
   @Column({ type: 'int', default: 0, nullable: true })
   public amountPending: number;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'order_invoice_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'order_invoice_files' })
+  public files!: File[];
 
   @OneToMany(() => Ticket, (ticket) => ticket.orderInvoice, { nullable: true })
   @JoinColumn()

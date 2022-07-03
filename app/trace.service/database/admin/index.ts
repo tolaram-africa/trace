@@ -3,11 +3,15 @@ import 'reflect-metadata';
 import { coreDataSource } from '../../.ormconfig';
 import { validate } from 'class-validator';
 import { AdminJSOptions } from 'adminjs';
-import { AdminUserModule } from './user.module';
-import { AdminSystemModule } from './system.module';
-import { AdminDocumentModule, AdminTenantModule } from './tenant.module';
-import { AdminPaymentModule } from './payment.module';
 import { Database, Resource } from '@adminjs/typeorm';
+import {
+  AdminTenantModule,
+  AdminSystemModule,
+  AdminFileModule,
+  AdminUserModule,
+  AdminPaymentModule,
+  AdminTagModule,
+} from './module.resources';
 
 const AdminJS = require('adminjs');
 const AdminJSExpress = require('@adminjs/express');
@@ -34,8 +38,9 @@ const main = async () => {
     resources: [
       ...AdminSystemModule,
       ...AdminTenantModule,
+      ...AdminTagModule,
+      ...AdminFileModule,
       ...AdminUserModule,
-      ...AdminDocumentModule,
       ...AdminPaymentModule,
     ],
     auth: {

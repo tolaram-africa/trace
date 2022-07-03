@@ -9,7 +9,7 @@ import {
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { BankAccountType } from '@/common/entity/enum.base';
 import { Bank } from '@/module/system/entity/system.bank.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { ExtendedAddress } from '@/common/entity/base.address.entity';
 
 @Entity({ name: 'bank_accounts' })
@@ -47,7 +47,7 @@ export class BankAccount extends SoftDeleteEntity {
   @Column(() => ExtendedAddress)
   public address: ExtendedAddress;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'bank_aacount_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'bank_aacount_files' })
+  public files!: File[];
 }

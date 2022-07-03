@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { Customer } from '@/module/customer/entity/customer.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { DimensionUnit, SizeUnit, WeightUnit } from '@/common/entity/enum.base';
 import { ProductCost } from './product.cost.entity';
 import { Product } from './product.entity';
@@ -62,9 +62,9 @@ export class ProductModel extends SoftDeleteEntity {
   @Column({ type: 'varchar', length: 512, nullable: true })
   public description!: string;
 
-  @OneToOne(() => Document)
+  @OneToOne(() => File)
   @JoinColumn()
-  public image: Document;
+  public image: File;
 
   @ManyToMany(() => Customer, { nullable: true })
   @JoinTable({ name: 'customer_product_models' })

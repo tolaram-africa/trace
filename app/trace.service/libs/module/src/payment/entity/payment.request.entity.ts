@@ -12,7 +12,7 @@ import {
   PayTransactionType,
 } from '@/common/entity';
 import { User } from '@/module/user/entity';
-import { Document } from '@/module/document/entity';
+import { File } from '@root/libs/module/src/file/entity';
 import { PaymentType, Payment } from './';
 
 @Entity({ name: 'payment_requests' })
@@ -59,7 +59,7 @@ export class PaymentRequest extends TagEntity {
   @JoinColumn()
   public payment!: Payment;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'payment_request_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'payment_request_files' })
+  public files!: File[];
 }

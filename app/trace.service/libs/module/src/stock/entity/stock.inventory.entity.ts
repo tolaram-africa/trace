@@ -9,7 +9,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { StockWarehouse } from './stock.warehouse.entity';
 import { ProductModel } from '@/module/product/entity/product.model.entity';
 
@@ -36,7 +36,7 @@ export class StockInventory extends SoftDeleteEntity {
   @Column({ type: 'varchar', default: 1024, nullable: true })
   public notes!: string;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'stock_inventory_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'stock_inventory_files' })
+  public files!: File[];
 }

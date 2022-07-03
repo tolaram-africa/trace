@@ -5,7 +5,7 @@ import { TenantModule } from './tenant/tenant.module';
 import { BeaconModule } from './beacon/beacon.module';
 import { CustomerModule } from './customer/customer.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { DocumentModule } from './document/document.module';
+import { FileModule } from './file/file.module';
 import { DriverModule } from './driver/driver.module';
 import { EventModule } from './event/event.module';
 import { FormModule } from './form/form.module';
@@ -41,7 +41,7 @@ import { WarehouseModule } from './warehouse/warehouse.module';
     BeaconModule,
     CustomerModule,
     DashboardModule,
-    DocumentModule,
+    FileModule,
     DriverModule,
     EventModule,
     FormModule,

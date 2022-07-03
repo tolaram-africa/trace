@@ -44,5 +44,5 @@ export class SubscriptionsTier extends SoftDeleteEntity {
   public maxPayments: number;
 
   @Column({ type: 'int', nullable: false, default: 0 })
-  public maxDocument: number;
+  public maxFile: number;
 }

@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { MaintenanceRequestIssue } from './maintenance.request-issue.entity';
 import { MaintenanceRequest } from './maintenance.request.entity';
 import { Vehicle } from '@/module/asset/entity/asset.vehicle.entity';
@@ -52,7 +52,7 @@ export class MaintenanceRequestLog extends SoftDeleteEntity {
   @Column({ type: 'text', nullable: true })
   public notes!: string;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'maintenance_req_log_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'maintenance_req_log_files' })
+  public files!: File[];
 }

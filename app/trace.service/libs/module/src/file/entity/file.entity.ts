@@ -1,13 +1,13 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { User } from '@/module/user/entity/user.entity';
-import { DocumentType } from './document.type.entity';
+import { FileType } from './file.type.entity';
 import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 
 @Entity({ name: 'docs' })
-export class Document extends CoreDeleteEntity {
-  @OneToOne(() => DocumentType)
+export class File extends CoreDeleteEntity {
+  @OneToOne(() => FileType)
   @JoinColumn()
-  public documentType: DocumentType;
+  public type: FileType;
 
   @Column({ type: 'text', nullable: false })
   public uniqueId: string;

@@ -7,7 +7,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 import { User } from '@/module/user/entity/user.entity';
@@ -41,7 +41,7 @@ export class DriverPermit extends SoftDeleteEntity {
   @Column()
   public expired: boolean;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'driver_permit_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'driver_permit_files' })
+  public files!: File[];
 }

@@ -7,7 +7,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { ProductModel } from '@/module/product/entity/product.model.entity';
 import { OrderRequest } from './order.request.entity';
 
@@ -34,7 +34,7 @@ export class OrderFreight extends TagEntity {
   @Column({ type: 'varchar', length: 256, nullable: true })
   public notes: string;
 
-  @OneToOne(() => Document, { nullable: true })
+  @OneToOne(() => File, { nullable: true })
   @JoinColumn()
-  public document!: Document;
+  public file!: File;
 }

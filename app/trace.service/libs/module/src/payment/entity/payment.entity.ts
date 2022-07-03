@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { TransactionAccount } from './payment.transcation-account.entity';
 import { PaymentType } from './payment.type.entity';
 import { PaymentLoan } from './payment.loan.entity';
@@ -75,7 +75,7 @@ export class Payment extends TagEntity {
   @JoinColumn()
   public request!: PaymentRequest;
 
-  @ManyToMany(() => Document)
-  @JoinTable({ name: 'payment_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File)
+  @JoinTable({ name: 'payment_files' })
+  public files!: File[];
 }

@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { ExtendedAddress, TenantEntity } from '@/common/entity';
 import { User } from './';
-import { Document } from '@/module/document/entity';
+import { File } from '@root/libs/module/src/file/entity';
 
 export enum UserMaritalStatus {
   SINGLE = 'single',
@@ -29,13 +29,13 @@ export class UserProfile extends TenantEntity {
   @Column(() => ExtendedAddress)
   public address: ExtendedAddress;
 
-  @OneToOne(() => Document, { nullable: true })
+  @OneToOne(() => File, { nullable: true })
   @JoinColumn()
-  public picture!: Document;
+  public picture!: File;
 
-  @OneToOne(() => Document, { nullable: true })
+  @OneToOne(() => File, { nullable: true })
   @JoinColumn()
-  public avatar!: Document;
+  public avatar!: File;
 
   @Column({ type: 'date', nullable: true })
   public birthDate!: Date;

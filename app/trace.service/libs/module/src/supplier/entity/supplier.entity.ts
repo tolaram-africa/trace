@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { ExtendedAddress } from '@/common/entity/base.address.entity';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
-import { Document } from '../../document/entity/document.entity';
+import { File } from '../../file/entity/file.entity';
 import { User } from '@/module/user/entity/user.entity';
 
 @Entity({ name: 'suppliers' })
@@ -29,7 +29,7 @@ export class Supplier extends SoftDeleteEntity {
   @Column({ type: 'varchar', length: 512, nullable: true })
   public website: string;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'supplier_documents' })
-  public docs: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'supplier_files' })
+  public files!: File[];
 }

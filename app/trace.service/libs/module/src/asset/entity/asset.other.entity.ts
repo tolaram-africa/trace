@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { ProductBrand } from '@/module/product/entity/product.brand.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { AssetType } from './asset.type.entity';
 
 @Entity({ name: 'assets' })
@@ -29,9 +29,9 @@ export class Asset extends TagEntity {
   @Column({ type: 'varchar', length: 32, nullable: true })
   public color: string;
 
-  @OneToOne(() => Document, { nullable: true })
+  @OneToOne(() => File, { nullable: true })
   @JoinColumn()
-  public picture!: Document;
+  public picture!: File;
 
   @OneToOne(() => ProductBrand, { nullable: false })
   @JoinColumn()
@@ -46,7 +46,7 @@ export class Asset extends TagEntity {
   @Column({ type: 'timestamptz', nullable: true })
   public decommissioned!: Date;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'asset_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'asset_files' })
+  public files!: File[];
 }

@@ -4,3 +4,21 @@ export * from './system.feature.entity';
 export * from './system.user-auth.entity';
 export * from './system.user-permission.entity';
 export * from './system.user-role.entity';
+
+import {
+  Currency,
+  Bank,
+  SystemFeature,
+  SystemUserPermission,
+  SystemUserRole,
+} from './';
+import { SubscriptionsTier } from '@/module/subscription/entity';
+
+export const SystemModuleEntity = [
+  Currency,
+  Bank,
+  SystemFeature,
+  SystemUserPermission,
+  SystemUserRole,
+  SubscriptionsTier,
+];

@@ -9,7 +9,7 @@ import {
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { PaymentLoanType } from './payment.loan-type.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { Document } from '@/module/document/entity/document.entity';
+import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { Currency } from '@/module/system/entity/currency.entity';
 import { TransactionAccount } from './payment.transcation-account.entity';
 
@@ -61,7 +61,7 @@ export class PaymentLoanRequest extends SoftDeleteEntity {
   @Column({ type: 'text', nullable: true })
   public notes!: string;
 
-  @ManyToMany(() => Document, { nullable: true })
-  @JoinTable({ name: 'payment_loan_req_docs' })
-  public docs!: Document[];
+  @ManyToMany(() => File, { nullable: true })
+  @JoinTable({ name: 'payment_loan_req_files' })
+  public files!: File[];
 }
