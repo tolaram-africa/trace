@@ -8,6 +8,8 @@ import { File, FileType } from '@/module/file/entity';
 import { Location, LocationModuleEntity } from '@/module/location/entity';
 import { ScheduleModuleEntity } from '@/module/schedule/entity';
 import { DashboardModuleEntity } from '@/module/dashboard/entity';
+import { CustomerModuleEntity } from '@/module/customer/entity';
+import { ProductModuleEntity } from '@/module/product/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -38,4 +40,12 @@ export const AdminLocationModule = transformResources(
 export const AdminScheduleModule = transformResources(
   ScheduleModuleEntity,
   'Schedules',
+);
+export const AdminCustomerModule = transformResources(
+  CustomerModuleEntity,
+  'Customers',
+);
+export const AdminProductModule = transformResources(
+  ProductModuleEntity,
+  'Products',
 );

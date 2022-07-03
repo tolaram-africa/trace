@@ -11,7 +11,6 @@ import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { CustomerGroup } from './customer.group.entity';
-import { Tenant } from '@/module/tenant/entity/tenant.entity';
 import { CustomerContract } from './customer.contract.entity';
 import { CustomerClient } from './customer.client.entity';
 import { CustomerSetting } from './customer.setting.entity';
@@ -31,9 +30,12 @@ export class Customer extends TagEntity {
   @JoinColumn()
   public setting!: CustomerSetting;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public owner: User;
+  public owner!: User;
+
+  @Column({ nullable: true })
+  public ownerId!: string;
 
   @ManyToMany(() => User, { nullable: true })
   @JoinTable({ name: 'cust_managers' })
@@ -56,17 +58,19 @@ export class Customer extends TagEntity {
   @JoinColumn()
   public group: CustomerGroup;
 
-  @OneToOne(() => Tenant, { nullable: false })
+  @Column({ nullable: true })
+  public groupId!: string;
+
+  @OneToOne(() => CustomerSubscription, { nullable: true })
   @JoinColumn()
-  public tenant: Tenant;
+  public subscription!: CustomerSubscription;
+
+  @Column({ nullable: true })
+  public subscriptionId!: string;
 
   @OneToMany(() => CustomerContract, (contract) => contract.customer, {
     nullable: true,
   })
   @JoinColumn()
-  public contract!: CustomerContract[];
-
-  @OneToOne(() => CustomerSubscription)
-  @JoinColumn()
-  public subscription: CustomerSubscription;
+  public contracts!: CustomerContract[];
 }

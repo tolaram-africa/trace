@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  Index,
   JoinColumn,
   JoinTable,
   ManyToMany,
@@ -12,11 +13,15 @@ import { TaskEventType } from '@/module/task/entity/task.event-type.entity';
 
 @Entity({ name: 'cust_contracts' })
 export class CustomerContract extends SoftDeleteEntity {
-  @ManyToOne(() => Customer, (customer) => customer.contract, {
+  @Index('idx_cust_contract_customerid')
+  @ManyToOne(() => Customer, (customer) => customer.contracts, {
     nullable: true,
   })
   @JoinColumn()
   public customer: Customer;
+
+  @Column({ nullable: true })
+  public customerId!: string;
 
   @Column({ nullable: false, unique: true, type: 'varchar', length: 128 })
   public code: string;

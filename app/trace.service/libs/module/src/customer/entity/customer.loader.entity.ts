@@ -1,4 +1,11 @@
-import { Entity, JoinColumn, OneToOne, ManyToMany, JoinTable } from 'typeorm';
+import {
+  Entity,
+  JoinColumn,
+  OneToOne,
+  ManyToMany,
+  JoinTable,
+  Column,
+} from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { Customer } from '@/module/customer/entity/customer.entity';
 import { User } from '@/module/user/entity/user.entity';
@@ -12,4 +19,7 @@ export class CustomerLoader extends SoftDeleteEntity {
   @OneToOne(() => User)
   @JoinColumn()
   public user: User;
+
+  @Column({ nullable: true })
+  public userId!: string;
 }

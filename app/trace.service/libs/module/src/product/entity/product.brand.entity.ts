@@ -15,17 +15,17 @@ export class ProductBrand extends TagEntity {
   @Column({ default: false })
   public default: boolean;
 
-  @Column()
+  @Column({ type: 'varchar', length: 128 })
   public name: string;
 
   @Column({ type: 'text', nullable: true })
   public description!: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
 
   @ManyToMany(() => Customer)
   @JoinTable({ name: 'customer_brands' })
-  public customer: Customer[];
+  public customers!: Customer[];
 }

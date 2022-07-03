@@ -24,6 +24,9 @@ export class CustomerClient extends TagEntity {
   @JoinColumn()
   public customer!: Customer;
 
+  @Column({ nullable: true })
+  public customerId!: string;
+
   @Column()
   public name: string;
 
@@ -34,6 +37,9 @@ export class CustomerClient extends TagEntity {
   @OneToOne(() => User)
   @JoinColumn()
   public manager!: User;
+
+  @Column({ nullable: true })
+  public managerId!: string;
 
   @ManyToMany(() => User)
   @JoinTable({ name: 'cust_client_contacts' })

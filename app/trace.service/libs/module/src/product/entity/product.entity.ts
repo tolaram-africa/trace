@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { User } from '@/module/user/entity/user.entity';
 import { ProductBrand } from './product.brand.entity';
-import { ProductType } from './product.type.entity';
+import { ProductCategory } from './product.category.entity';
 import { Customer } from '@/module/customer/entity/customer.entity';
 import { ProductModel } from './product.model.entity';
 
@@ -39,9 +39,15 @@ export class Product extends TagEntity {
   @JoinColumn()
   public brand: ProductBrand;
 
-  @OneToOne(() => ProductType)
+  @Column({ nullable: true })
+  public brandId!: string;
+
+  @OneToOne(() => ProductCategory)
   @JoinColumn()
-  public type: ProductType;
+  public category: ProductCategory;
+
+  @Column({ nullable: true })
+  public categoryId!: string;
 
   @OneToMany(() => ProductModel, (model) => model.product, { nullable: true })
   @JoinColumn()

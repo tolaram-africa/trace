@@ -21,6 +21,9 @@ export class ProductModel extends SoftDeleteEntity {
   @ManyToOne(() => Product, (product) => product.models, { nullable: false })
   public product: Product;
 
+  @Column({ nullable: true })
+  public productId!: string;
+
   @Column({ type: 'varchar', length: 128 })
   public name: string;
 
@@ -55,7 +58,7 @@ export class ProductModel extends SoftDeleteEntity {
   @Column({ type: 'int', default: 1 })
   public weight: number;
 
-  @OneToMany(() => ProductCost, (cost) => cost.product)
+  @OneToMany(() => ProductCost, (cost) => cost.productModel)
   @JoinColumn()
   public costs: ProductCost[];
 
@@ -65,6 +68,9 @@ export class ProductModel extends SoftDeleteEntity {
   @OneToOne(() => File)
   @JoinColumn()
   public image: File;
+
+  @Column({ nullable: true })
+  public imageId!: string;
 
   @ManyToMany(() => Customer, { nullable: true })
   @JoinTable({ name: 'customer_product_models' })

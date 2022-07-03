@@ -7,11 +7,13 @@ import {
   ManyToMany,
   JoinTable,
   AfterLoad,
+  Index,
 } from 'typeorm';
 import { TenantEntity, UserAccountType, UserType } from '@/common/entity';
 import { UserProfile, UserAlert, UserSetting, UserPassport } from './';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
 import { BankAccount } from '@/module/payment/entity/payment.bank-account.entity';
+import { Tag } from '@/module/tag/entity';
 import { Tree, TreeChildren, TreeParent } from 'typeorm-pg-adjacency-list-tree';
 
 @Entity({ name: 'users' })
@@ -34,24 +36,30 @@ export class User extends TenantEntity {
   @Column({ default: true })
   public active: boolean;
 
+  @Index('idx_user_phone')
   @Column({ type: 'varchar', length: 15, unique: true, nullable: false })
   public phone: string;
 
+  @Index('idx_user_username')
   @Column({ type: 'varchar', length: 64, unique: false, nullable: false })
   public username: string;
 
+  @Index('idx_user_first_name')
   @Column({ type: 'varchar', length: 128, nullable: false })
   public firstName: string;
 
+  @Index('idx_user_middle_name')
   @Column({ type: 'varchar', length: 128, nullable: true })
   public middleName!: string;
 
+  @Index('idx_user_last_name')
   @Column({ type: 'varchar', length: 128, nullable: false })
   public lastName: string;
 
   @Column({ type: 'varchar', length: 256, nullable: false })
   public name: string;
 
+  @Index('idx_user_profileid')
   @OneToOne(() => UserProfile, (porfile) => porfile.user, { nullable: true })
   @JoinColumn()
   public profile!: UserProfile;
@@ -59,6 +67,15 @@ export class User extends TenantEntity {
   @Column({ nullable: true })
   public profileId: string;
 
+  @Index('idx_user_tagid')
+  @OneToOne(() => Tag, { nullable: true })
+  @JoinColumn()
+  public team!: Tag;
+
+  @Column({ nullable: true })
+  public teamId: string;
+
+  @Index('idx_user_settingid')
   @OneToOne(() => UserSetting, (setting) => setting.user, { nullable: true })
   @JoinColumn()
   public setting!: UserSetting;

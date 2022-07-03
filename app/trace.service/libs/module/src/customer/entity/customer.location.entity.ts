@@ -9,15 +9,26 @@ import {
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { Location } from '@/module/location/entity/location.entity';
+import { Customer } from './customer.entity';
 
 @Entity({ name: 'custs_locations' })
 export class CustomerLocation extends TagEntity {
   @Column({ type: 'varchar', length: 128, nullable: true })
-  public label!: string;
+  public name!: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => Customer)
+  @JoinColumn()
+  public customer: Customer;
+
+  @Column({ nullable: true })
+  public customerId!: string;
+
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public manager!: User;
+
+  @Column({ nullable: true })
+  public managerId!: string;
 
   @ManyToMany(() => User)
   @JoinTable({ name: 'cust_contacts' })
@@ -28,5 +39,5 @@ export class CustomerLocation extends TagEntity {
   public location: Location;
 
   @Column({ type: 'text', nullable: true })
-  public description!: string;
+  public notes!: string;
 }

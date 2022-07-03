@@ -11,12 +11,12 @@ export class CustomerSetting extends BaseSetting {
   public customer!: Customer;
 
   @Column({ nullable: true })
-  public customerId: string;
+  public customerId!: string;
 
   @OneToOne(() => Tenant)
   @JoinColumn()
   public tenant: Tenant;
 
   @Column({ nullable: true })
-  public tenantId: string;
+  public tenantId!: string;
 }
