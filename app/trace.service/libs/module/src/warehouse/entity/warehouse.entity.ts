@@ -15,26 +15,21 @@ import { User } from '@/module/user/entity/user.entity';
 
 @Entity({ name: 'warehouses' })
 export class Warehouse extends TagEntity {
-  @ManyToMany(() => Customer, { nullable: true })
-  @JoinTable({ name: 'warehouse_customers' })
-  public customers!: Customer[];
-
   @OneToOne(() => Location)
   @JoinColumn()
   public location: Location;
 
-  @Column(() => ExtendedAddress)
-  public address: ExtendedAddress;
+  @Column({ nullable: false })
+  public locationId!: string;
 
   @OneToOne(() => User)
   @JoinColumn()
   public manager!: User;
 
-  @ManyToMany(() => User)
-  @JoinTable({ name: 'warehouse_contacts' })
-  public contacts!: User[];
-
   @Column({ nullable: false })
+  public managerId!: string;
+
+  @Column({ type: 'varchar', length: 128 })
   public name: string;
 
   @Column({ type: 'text', nullable: true })
@@ -45,4 +40,15 @@ export class Warehouse extends TagEntity {
 
   @Column({ type: 'float', default: 0 })
   public capacity: number;
+
+  @Column(() => ExtendedAddress)
+  public address: ExtendedAddress;
+
+  @ManyToMany(() => User, { nullable: true })
+  @JoinTable({ name: 'warehouse_contacts' })
+  public contacts!: User[];
+
+  @ManyToMany(() => Customer, { nullable: true })
+  @JoinTable({ name: 'warehouse_customers' })
+  public customers!: Customer[];
 }

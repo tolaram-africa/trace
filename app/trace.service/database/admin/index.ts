@@ -16,6 +16,9 @@ import {
   AdminDashboardModule,
   AdminCustomerModule,
   AdminProductModule,
+  AdminWarehouseModule,
+  AdminSupplierModule,
+  AdminTemplateModule,
 } from './module.resources';
 
 const AdminJS = require('adminjs');
@@ -52,6 +55,9 @@ const main = async () => {
       ...AdminScheduleModule,
       ...AdminLocationModule,
       ...AdminProductModule,
+      ...AdminWarehouseModule,
+      ...AdminTemplateModule,
+      ...AdminSupplierModule,
     ],
     auth: {
       authenticate: async (email, password) =>

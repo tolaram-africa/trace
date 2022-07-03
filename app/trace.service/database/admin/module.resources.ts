@@ -10,6 +10,9 @@ import { ScheduleModuleEntity } from '@/module/schedule/entity';
 import { DashboardModuleEntity } from '@/module/dashboard/entity';
 import { CustomerModuleEntity } from '@/module/customer/entity';
 import { ProductModuleEntity } from '@/module/product/entity';
+import { WarehouseModuleEntity } from '@/module/warehouse/entity';
+import { TemplateModuleEntity } from '@/module/template/entity';
+import { SupplierModuleEntity } from '@/module/supplier/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -48,4 +51,16 @@ export const AdminCustomerModule = transformResources(
 export const AdminProductModule = transformResources(
   ProductModuleEntity,
   'Products',
+);
+export const AdminWarehouseModule = transformResources(
+  WarehouseModuleEntity,
+  'Warehouses',
+);
+export const AdminTemplateModule = transformResources(
+  TemplateModuleEntity,
+  'Templates',
+);
+export const AdminSupplierModule = transformResources(
+  SupplierModuleEntity,
+  'Suppliers',
 );

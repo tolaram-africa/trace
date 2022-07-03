@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  Index,
   JoinColumn,
   JoinTable,
   ManyToMany,
@@ -13,11 +14,12 @@ import { User } from '@/module/user/entity/user.entity';
 
 @Entity({ name: 'suppliers' })
 export class Supplier extends SoftDeleteEntity {
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public contact: User;
+  public contact!: User;
 
-  @Column({ type: 'varchar', length: 128, nullable: false })
+  @Index('idx_supplier_name')
+  @Column({ type: 'varchar', length: 128 })
   public name: string;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
