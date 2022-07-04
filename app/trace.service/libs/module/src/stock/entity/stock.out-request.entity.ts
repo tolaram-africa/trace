@@ -20,6 +20,9 @@ export class StockOutRequest extends SoftDeleteEntity {
   @JoinColumn()
   public warehouse: StockWarehouse;
 
+  @Column({ nullable: true })
+  public warehouseId!: string;
+
   @OneToOne(() => ProductModel)
   @JoinColumn()
   public product: ProductModel;

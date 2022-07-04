@@ -19,7 +19,10 @@ export class StockOut extends SoftDeleteEntity {
   @JoinColumn()
   public request: StockOutRequest;
 
-  @OneToOne(() => User)
+  @Column({ nullable: true })
+  public requestId!: string;
+
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
 }

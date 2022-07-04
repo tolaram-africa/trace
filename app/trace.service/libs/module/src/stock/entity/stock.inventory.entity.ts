@@ -19,16 +19,22 @@ export class StockInventory extends SoftDeleteEntity {
   @Column({ unique: true })
   public identifier: number;
 
-  @Column({ type: 'varchar', default: 128 })
-  public barcode: string;
+  @Column({ type: 'varchar', default: 128, nullable: true })
+  public barcode!: string;
 
   @OneToOne(() => ProductModel)
   @JoinColumn()
-  public product: ProductModel;
+  public productModel: ProductModel;
+
+  @Column({ nullable: true })
+  public productModelId: string;
 
   @ManyToOne(() => StockWarehouse, (warehouse) => warehouse.inventories)
   @JoinColumn()
   public warehouse: StockWarehouse;
+
+  @Column({ nullable: true })
+  public warehouseId!: string;
 
   @Column({ type: 'int', default: 1 })
   public totalQuantity: number;

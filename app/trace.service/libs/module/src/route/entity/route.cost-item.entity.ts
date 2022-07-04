@@ -11,9 +11,15 @@ export class RouteCostItem extends TagEntity {
   @JoinColumn()
   public cost: RouteCost;
 
+  @Column({ nullable: true })
+  public costId!: string;
+
   @OneToOne(() => User)
   @JoinColumn()
   public approvedBy: User;
+
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @Column({
     type: 'timestamptz',
@@ -27,6 +33,9 @@ export class RouteCostItem extends TagEntity {
   @OneToOne(() => RouteCostItem)
   @JoinColumn()
   public previous: RouteCostItem;
+
+  @Column({ nullable: true })
+  public previousId!: string;
 
   @Column({ type: 'int', nullable: false })
   public costPercentage: number;

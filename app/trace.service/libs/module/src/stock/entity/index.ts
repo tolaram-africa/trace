@@ -7,3 +7,27 @@ export * from './stock.purchase-request.entity';
 export * from './stock.purchase.entity';
 export * from './stock.transfer.entity';
 export * from './stock.warehouse.entity';
+
+import {
+  StockChange,
+  StockInventory,
+  StockOutRequest,
+  StockOut,
+  StockPurchaseItem,
+  StockPurchaseRequest,
+  StockPurchase,
+  StockTransfer,
+  StockWarehouse,
+} from './';
+
+export const StockModuleEntity = [
+  StockChange,
+  StockInventory,
+  StockOutRequest,
+  StockOut,
+  StockPurchaseItem,
+  StockPurchaseRequest,
+  StockPurchase,
+  StockTransfer,
+  StockWarehouse,
+];

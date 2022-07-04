@@ -16,12 +16,15 @@ export class StockWarehouse extends TypeEntity {
   @JoinColumn()
   public warehouse: Warehouse;
 
+  @Column({ nullable: true })
+  public warehouseId!: string;
+
   @Generated()
   @Column({ unique: true })
   public identifier: number;
 
-  @Column({ type: 'varchar', default: 128 })
-  public barcode: string;
+  @Column({ type: 'varchar', default: 128, nullable: true })
+  public barcode!: string;
 
   @OneToMany(() => StockInventory, (inventory) => inventory.warehouse, {
     nullable: true,

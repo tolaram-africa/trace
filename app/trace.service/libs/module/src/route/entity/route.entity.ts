@@ -18,7 +18,7 @@ export class Route extends TagEntity {
   @Column({ default: false })
   public default: boolean;
 
-  @Column()
+  @Column({ type: 'varchar', length: 128 })
   public name: string;
 
   @Column({ type: 'text', nullable: true })
@@ -28,6 +28,9 @@ export class Route extends TagEntity {
   @JoinColumn()
   public approvedBy!: User;
 
+  @Column({ nullable: true })
+  public approvedById!: string;
+
   @Column({ default: false })
   public approved: boolean;
 
@@ -35,9 +38,15 @@ export class Route extends TagEntity {
   @JoinColumn()
   public source: Location;
 
+  @Column({ nullable: true })
+  public sourceId!: string;
+
   @OneToOne(() => Location, { nullable: false })
   @JoinColumn()
   public destination: Location;
+
+  @Column({ nullable: true })
+  public destinationId!: string;
 
   @Column({
     type: 'geometry',

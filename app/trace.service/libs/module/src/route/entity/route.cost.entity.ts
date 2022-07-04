@@ -28,9 +28,15 @@ export class RouteCost extends TagEntity {
   @JoinColumn()
   public route: Route;
 
+  @Column({ nullable: true })
+  public routeId!: string;
+
   @OneToOne(() => User)
   @JoinColumn()
   public approvedBy: User;
+
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @Column({
     type: 'timestamptz',
@@ -41,9 +47,9 @@ export class RouteCost extends TagEntity {
   @Column({ default: false })
   public autoApprove: boolean;
 
-  @OneToMany(() => RouteCostItem, (item) => item.cost)
+  @OneToMany(() => RouteCostItem, (item) => item.cost, { nullable: true })
   @JoinColumn()
-  public costItems: RouteCostItem[];
+  public costItems!: RouteCostItem[];
 
   @Column({
     type: 'enum',

@@ -20,9 +20,15 @@ export class StockPurchaseRequest extends TagEntity {
   @JoinColumn()
   public supplier: Supplier;
 
+  @Column({ nullable: true })
+  public supplierId!: string;
+
   @OneToOne(() => StockWarehouse)
   @JoinColumn()
   public warehouse: StockWarehouse;
+
+  @Column({ nullable: true })
+  public warehouseId!: string;
 
   @OneToMany(() => StockPurchaseItem, (item) => item.request, {
     nullable: true,
@@ -30,13 +36,13 @@ export class StockPurchaseRequest extends TagEntity {
   @JoinColumn()
   public items!: StockPurchaseItem[];
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public requestedBy: User;
+  public requestedBy!: User;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
 
   @Column({ type: 'text', nullable: true })
   public notes: string;

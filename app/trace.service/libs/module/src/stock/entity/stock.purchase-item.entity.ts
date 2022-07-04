@@ -9,8 +9,15 @@ export class StockPurchaseItem extends TagEntity {
   @JoinColumn()
   public product: ProductModel;
 
+  @Column({ nullable: true })
+  public productId!: string;
+
   @ManyToOne(() => StockPurchaseRequest, (request) => request.items)
+  @JoinColumn()
   public request: StockPurchaseRequest;
+
+  @Column({ nullable: true })
+  public requestId!: string;
 
   @Column({ type: 'int', default: 1 })
   public quantity: number;

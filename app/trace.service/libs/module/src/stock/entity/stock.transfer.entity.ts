@@ -7,12 +7,12 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity';
 import { StockChange } from './stock.change.entity';
 import { StockWarehouse } from './stock.warehouse.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
-import { User } from '@/module/user/entity/user.entity';
-import { Shipment } from '@/module/shipment/entity/shipment.entity';
+import { File } from '@/module/file/entity';
+import { User } from '@/module/user/entity';
+import { Shipment } from '@/module/shipment/entity';
 
 @Entity({ name: 'stock_transfers' })
 export class StockTransfer extends SoftDeleteEntity {
@@ -20,25 +20,43 @@ export class StockTransfer extends SoftDeleteEntity {
   @JoinColumn()
   public from: StockWarehouse;
 
+  @Column({ nullable: true })
+  public fromId!: string;
+
   @OneToOne(() => StockWarehouse)
   @JoinColumn()
   public to: StockWarehouse;
+
+  @Column({ nullable: true })
+  public toId!: string;
 
   @OneToOne(() => Shipment)
   @JoinColumn()
   public shipment: Shipment;
 
-  @OneToOne(() => User)
+  @Column({ nullable: true })
+  public shipmentId!: string;
+
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public sentBy: User;
+  public sentBy!: User;
+
+  @Column({ nullable: true })
+  public sentById!: string;
 
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public receivedBy!: User;
 
+  @Column({ nullable: true })
+  public receivedById!: string;
+
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public approvedBy!: User;
+
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @OneToMany(() => StockChange, (stockChange) => stockChange.stockTransfer, {
     nullable: false,

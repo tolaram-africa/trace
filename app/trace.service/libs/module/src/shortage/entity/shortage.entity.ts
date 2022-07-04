@@ -1,4 +1,3 @@
-import { Max } from 'class-validator';
 import {
   Column,
   Entity,
@@ -39,9 +38,15 @@ export class Shortage extends TagEntity {
   @JoinColumn()
   public order: Order;
 
+  @Column({ nullable: true })
+  public orderId!: string;
+
   @OneToOne(() => OrderFreight)
   @JoinColumn()
   public freight: OrderFreight;
+
+  @Column({ nullable: true })
+  public freightId!: string;
 
   @Column({
     type: 'enum',
@@ -56,13 +61,22 @@ export class Shortage extends TagEntity {
   @JoinColumn()
   public driver!: Driver;
 
+  @Column({ nullable: true })
+  public driverId!: string;
+
   @OneToOne(() => Driver, { nullable: true })
   @JoinColumn()
   public group!: DriverGroup;
 
+  @Column({ nullable: true })
+  public groupId!: string;
+
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public approvedBy!: User;
+
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @Column({
     type: 'timestamptz',
@@ -82,6 +96,9 @@ export class Shortage extends TagEntity {
   @JoinColumn()
   public insuranceClaim!: InsuranceClaim;
 
+  @Column({ nullable: true })
+  public insuranceClaimId!: string;
+
   @Column({ type: 'int', nullable: false, default: 1 })
   public quantity: number;
 
@@ -97,7 +114,6 @@ export class Shortage extends TagEntity {
   public cost: number;
 
   @Column({ type: 'int', nullable: true, default: 0 })
-  @Max(100)
   public costPercentage: number;
 
   @Column({

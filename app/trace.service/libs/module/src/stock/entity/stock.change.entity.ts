@@ -18,6 +18,9 @@ export class StockChange extends SoftDeleteEntity {
   @JoinColumn()
   public inventory: StockInventory;
 
+  @Column({ nullable: true })
+  public inventoryId!: string;
+
   @Column({ type: 'int', default: 1 })
   public quantity: number;
 
@@ -29,11 +32,17 @@ export class StockChange extends SoftDeleteEntity {
   @JoinColumn()
   public stockOutRequest!: StockOutRequest;
 
+  @Column({ nullable: true })
+  public stockOutRequestId!: string;
+
   @ManyToOne(() => StockTransfer, (stockTransfer) => stockTransfer.changes, {
     nullable: true,
   })
   @JoinColumn()
   public stockTransfer!: StockTransfer;
+
+  @Column({ nullable: true })
+  public stockTransferId!: string;
 
   @Column({ type: 'varchar', default: 512 })
   public reason: string;

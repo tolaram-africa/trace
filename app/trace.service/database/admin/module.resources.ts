@@ -16,6 +16,10 @@ import { SupplierModuleEntity } from '@/module/supplier/entity';
 import { SubscriptionModuleEntity } from '@/module/subscription/entity';
 import { ShipmentModuleEntity } from '@/module/shipment/entity';
 import { RatingModuleEntity } from '@/module/rating/entity';
+import { NetworkModuleEntity } from '@/module/network-card/entity';
+import { StockModuleEntity } from '@/module/stock/entity';
+import { ShortageModuleEntity } from '@/module/shortage/entity';
+import { RouteModuleEntity } from '@/module/route/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -79,3 +83,13 @@ export const AdminRatingModule = transformResources(
   RatingModuleEntity,
   'Ratings',
 );
+export const AdminNetworkModule = transformResources(
+  NetworkModuleEntity,
+  'Networks',
+);
+export const AdminStockModule = transformResources(StockModuleEntity, 'Stocks');
+export const AdminShortageModule = transformResources(
+  ShortageModuleEntity,
+  'Shortages',
+);
+export const AdminRouteModule = transformResources(RouteModuleEntity, 'Routes');
