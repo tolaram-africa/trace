@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { ProductBrand } from '@/module/product/entity/product.brand.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { AssetType } from './asset.type.entity';
 
 @Entity({ name: 'assets' })
@@ -19,6 +19,9 @@ export class Asset extends TagEntity {
   @OneToOne(() => AssetType)
   @JoinColumn()
   public type: AssetType;
+
+  @Column({ nullable: true })
+  public typeId!: string;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
   public barcode: string;
@@ -31,11 +34,17 @@ export class Asset extends TagEntity {
 
   @OneToOne(() => File, { nullable: true })
   @JoinColumn()
-  public picture!: File;
+  public image: File;
 
-  @OneToOne(() => ProductBrand, { nullable: false })
+  @Column({ nullable: true })
+  public imageId!: string;
+
+  @OneToOne(() => ProductBrand, { nullable: true })
   @JoinColumn()
-  public manufacturer: ProductBrand;
+  public manufacturer!: ProductBrand;
+
+  @Column({ nullable: true })
+  public manufacturerId!: string;
 
   @Column({ type: 'int', nullable: true, default: 1999 })
   public yearManufactured: number;

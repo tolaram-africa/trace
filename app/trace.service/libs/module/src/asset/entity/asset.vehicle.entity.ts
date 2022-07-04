@@ -10,7 +10,7 @@ import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Beacon } from '@/module/beacon/entity/beacon.entity';
 import { VehicleType } from '@/common/entity/enum.object';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { Trailer } from './asset.trailer.entity';
 import { InsurancePlan } from '@/module/insurance/entity/insurance.plan.entity';
 import { ProductBrand } from '@/module/product/entity/product.brand.entity';
@@ -21,13 +21,13 @@ export class Vehicle extends TagEntity {
   @Column({ default: false })
   public active: boolean;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: false })
   public name: string;
 
-  @Column()
-  public registrationId: string;
+  @Column({ type: 'varchar', nullable: true })
+  public registrationId!: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: true })
   public fleetId!: string;
 
   @Column({ type: 'enum', enum: VehicleType, default: VehicleType.CAR })
@@ -35,13 +35,20 @@ export class Vehicle extends TagEntity {
 
   @OneToOne(() => StockOutRequest, { nullable: true })
   @JoinColumn()
-  public assetRequest!: StockOutRequest;
+  public stock!: StockOutRequest;
+
+  @Column({ nullable: true })
+  public stockId!: string;
 
   @Column()
   public color: string;
 
-  @Column({ type: 'text', nullable: true })
-  public picture: string;
+  @OneToOne(() => File, { nullable: true })
+  @JoinColumn()
+  public image: File;
+
+  @Column({ nullable: true })
+  public imageId!: string;
 
   @Column({ type: 'bigint', default: 0 })
   public odometer: number;
@@ -57,9 +64,12 @@ export class Vehicle extends TagEntity {
 
   public engineCapacity: number;
 
-  @OneToOne(() => ProductBrand)
+  @OneToOne(() => ProductBrand, { nullable: true })
   @JoinColumn()
-  public manufacturer: ProductBrand;
+  public manufacturer!: ProductBrand;
+
+  @Column({ nullable: true })
+  public manufacturerId!: string;
 
   @Column()
   public model: string;
@@ -95,13 +105,16 @@ export class Vehicle extends TagEntity {
 
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'vehicle_files' })
-  public files!: File[];
+  public docs!: File[];
 
   @ManyToMany(() => Schedule, { nullable: true })
   @JoinTable({ name: 'vehicle_schedules' })
   public schedules!: Schedule[];
 
-  @OneToOne(() => Trailer)
+  @OneToOne(() => Trailer, { nullable: true })
   @JoinColumn()
-  public activeTrailer!: Trailer;
+  public trailer!: Trailer;
+
+  @Column({ nullable: true })
+  public trailerId!: string;
 }

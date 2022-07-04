@@ -25,6 +25,9 @@ export class BeaconCommand extends TenantEntity {
   @JoinColumn()
   public model: BeaconDeviceModel;
 
+  @Column({ nullable: true })
+  public modelId!: string;
+
   @ManyToMany(() => BeaconMessage)
   @JoinTable({ name: 'beacon_command_msg' })
   messages: BeaconMessage[];

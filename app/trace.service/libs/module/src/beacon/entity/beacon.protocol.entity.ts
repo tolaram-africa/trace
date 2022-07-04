@@ -1,6 +1,6 @@
 import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
 import { TypeEntity } from '@/common/entity/base.type.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 
 @Entity({ name: 'beacon_device_protocols' })
 export class BeaconDeviceProtocol extends TypeEntity {
@@ -10,4 +10,7 @@ export class BeaconDeviceProtocol extends TypeEntity {
   @OneToOne(() => File, { nullable: true })
   @JoinColumn()
   public file!: File;
+
+  @Column({ nullable: true })
+  public fileId!: string;
 }

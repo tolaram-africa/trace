@@ -24,6 +24,8 @@ import { FormModuleEntity } from '@/module/form/entity';
 import { InsuranceModuleEntity } from '@/module/insurance/entity';
 import { Driver, DriverModuleEntity } from '@/module/driver/entity';
 import { MaintenanceModuleEntity } from '@/module/maintenance/entity';
+import { AssetModuleEntity } from '@/module/asset/entity';
+import { BeaconModuleEntity } from '@/module/beacon/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -52,6 +54,11 @@ export const AdminLocationModule = transformResources(
   'Locations',
 );
 export const AdminRouteModule = transformResources(RouteModuleEntity, 'Routes');
+export const AdminAssetModule = transformResources(AssetModuleEntity, 'Assets');
+export const AdminBeaconModule = transformResources(
+  BeaconModuleEntity,
+  'Beacons',
+);
 export const AdminScheduleModule = transformResources(
   ScheduleModuleEntity,
   'Schedules',

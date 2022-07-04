@@ -8,11 +8,12 @@ import {
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { TrailerType } from './asset.trailer.type.entity';
 import { InsurancePlan } from '@/module/insurance/entity/insurance.plan.entity';
 import { ProductBrand } from '@/module/product/entity/product.brand.entity';
 import { StockOutRequest } from '@/module/stock/entity/stock.out-request.entity';
+import { Vehicle } from './asset.vehicle.entity';
 
 @Entity({ name: 'trailers' })
 export class Trailer extends TagEntity {
@@ -32,15 +33,25 @@ export class Trailer extends TagEntity {
   @JoinColumn()
   public type: TrailerType;
 
+  @Column({ nullable: true })
+  public typeId!: string;
+
   @OneToOne(() => StockOutRequest, { nullable: true })
   @JoinColumn()
-  public assetRequest!: StockOutRequest;
+  public stock!: StockOutRequest;
+
+  @Column({ nullable: true })
+  public stockId!: string;
 
   @Column()
   public color: string;
 
-  @Column({ type: 'text', nullable: true })
-  public picture: string;
+  @OneToOne(() => File, { nullable: true })
+  @JoinColumn()
+  public image: File;
+
+  @Column({ nullable: true })
+  public imageId!: string;
 
   @Column({ type: 'bigint', default: 0 })
   public odometer: number;
@@ -48,9 +59,12 @@ export class Trailer extends TagEntity {
   @Column({ type: 'int', default: 0 })
   public fuelCapacity: number;
 
-  @OneToOne(() => ProductBrand)
+  @OneToOne(() => ProductBrand, { nullable: true })
   @JoinColumn()
-  public manufacturer: ProductBrand;
+  public manufacturer!: ProductBrand;
+
+  @Column({ nullable: true })
+  public manufacturerId!: string;
 
   @Column({ type: 'int', nullable: true, default: 1999 })
   public yearManufactured: number;
@@ -78,4 +92,11 @@ export class Trailer extends TagEntity {
   @ManyToMany(() => Schedule, { nullable: true })
   @JoinTable({ name: 'trailer_schedules' })
   public schedules!: Schedule[];
+
+  @OneToOne(() => Vehicle, { nullable: true })
+  @JoinColumn()
+  public vehicle!: Vehicle;
+
+  @Column({ nullable: true })
+  public vehicleId!: string;
 }

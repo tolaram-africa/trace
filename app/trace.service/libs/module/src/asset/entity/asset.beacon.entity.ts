@@ -4,6 +4,7 @@ import { Beacon } from '@/module/beacon/entity/beacon.entity';
 import { NetworkCard } from '@/module/network-card/entity/network-card.entity';
 import { BeaconDeviceModel } from '@/module/beacon/entity/beacon.model.entity';
 import { StockOutRequest } from '@/module/stock/entity/stock.out-request.entity';
+import { File } from '@/module/file/entity/file.entity';
 
 export enum BeaconDeviceStatus {
   ASSIGNED = 'assigned',
@@ -29,9 +30,15 @@ export class BeaconDevice extends TenantEntity {
   @JoinColumn()
   public beacon!: Beacon;
 
+  @Column({ nullable: true })
+  public beaconId!: string;
+
   @OneToOne(() => StockOutRequest, { nullable: true })
   @JoinColumn()
-  public assetRequest!: StockOutRequest;
+  public stock!: StockOutRequest;
+
+  @Column({ nullable: true })
+  public stockId!: string;
 
   @Column({
     type: 'timestamptz',
@@ -43,11 +50,18 @@ export class BeaconDevice extends TenantEntity {
   @JoinColumn()
   public model: BeaconDeviceModel;
 
+  @Column({ nullable: true })
+  public modelId!: string;
+
   @Column()
   public color: string;
 
-  @Column({ type: 'text', nullable: true })
-  public picture: string;
+  @OneToOne(() => File, { nullable: true })
+  @JoinColumn()
+  public image: File;
+
+  @Column({ nullable: true })
+  public imageId!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
   public deployed!: Date;
@@ -64,4 +78,7 @@ export class BeaconDevice extends TenantEntity {
   @OneToOne(() => NetworkCard, { nullable: true })
   @JoinColumn()
   public networkCard!: NetworkCard;
+
+  @Column({ nullable: true })
+  public networkCardId!: string;
 }

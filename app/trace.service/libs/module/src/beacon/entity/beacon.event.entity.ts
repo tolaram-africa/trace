@@ -54,13 +54,22 @@ export class BeaconEvent extends TenantEntity {
   @JoinColumn()
   public beacon: Beacon;
 
+  @Column({ nullable: true })
+  public beaconId!: string;
+
   @OneToOne(() => BeaconPosition, { nullable: true })
   @JoinColumn()
-  public position: BeaconPosition;
+  public position!: BeaconPosition;
+
+  @Column({ nullable: true })
+  public positionId!: string;
 
   @OneToOne(() => Location, { nullable: true })
   @JoinColumn()
-  public location: Location;
+  public location!: Location;
+
+  @Column({ nullable: true })
+  public locationId!: string;
 
   @Column({ type: 'jsonb', nullable: true })
   public attributes: string;

@@ -43,10 +43,13 @@ export class Beacon extends TenantEntity {
   public positionId!: string;
 
   @OneToOne(() => BeaconDevice, (beaconDevice) => beaconDevice.beacon, {
-    nullable: false,
+    nullable: true,
   })
   @JoinColumn()
-  public device: BeaconDevice;
+  public device!: BeaconDevice;
+
+  @Column({ nullable: true })
+  public deviceId!: string;
 
   @Column({ type: 'enum', enum: BeaconStatus, default: BeaconStatus.OFFLINE })
   public status: BeaconStatus;

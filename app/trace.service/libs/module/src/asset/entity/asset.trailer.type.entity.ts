@@ -1,17 +1,8 @@
+import { TypeEntity } from '@/common/entity/base.type.entity';
 import { Column, Entity } from 'typeorm';
-import { TenantEntity } from '@/common/entity/base.tenant.entity';
 
-@Entity({ name: 'trailer_type' })
-export class TrailerType extends TenantEntity {
-  @Column({ default: false })
-  public default: boolean;
-
-  @Column()
-  public name: string;
-
-  @Column()
+@Entity({ name: 'trailer_types' })
+export class TrailerType extends TypeEntity {
+  @Column({ type: 'int', default: 0 })
   public capacity: number;
-
-  @Column({ type: 'text', nullable: true })
-  public description!: string;
 }
