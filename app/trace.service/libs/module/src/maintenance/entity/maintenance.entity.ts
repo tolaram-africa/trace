@@ -13,7 +13,7 @@ import { Vehicle } from '@/module/asset/entity/asset.vehicle.entity';
 import { MaintenanceRepair } from '@/module/maintenance/entity/maintenance.repair.entity';
 import { MaintenanceRequestLog } from '@/module/maintenance/entity/maintenance.request-log.entity';
 import { StockOutRequest } from '@/module/stock/entity/stock.out-request.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 
 @Entity({ name: 'maintenances' })
 export class Maintenance extends TagEntity {
@@ -21,9 +21,15 @@ export class Maintenance extends TagEntity {
   @JoinColumn()
   public vehicle: Vehicle;
 
+  @Column({ nullable: true })
+  public vehicleId!: string;
+
   @OneToOne(() => MaintenanceRequestLog)
   @JoinColumn()
   public repairLog: MaintenanceRequestLog;
+
+  @Column({ nullable: true })
+  public repairLogId!: string;
 
   @OneToMany(() => MaintenanceRepair, (repair) => repair.maintenance)
   @JoinColumn()
@@ -32,6 +38,9 @@ export class Maintenance extends TagEntity {
   @OneToOne(() => StockOutRequest, { nullable: true })
   @JoinColumn()
   public partsUsed!: StockOutRequest;
+
+  @Column({ nullable: true })
+  public partsUsedId!: string;
 
   @Column({ type: 'bigint', nullable: false, default: 0 })
   public odometer: number;
@@ -43,6 +52,9 @@ export class Maintenance extends TagEntity {
   @JoinColumn()
   public assignedTo!: User;
 
+  @Column({ nullable: true })
+  public assignedToId!: string;
+
   @Column({ type: 'timestamptz', nullable: true })
   public assignedAt!: Date;
 
@@ -50,18 +62,24 @@ export class Maintenance extends TagEntity {
   @JoinColumn()
   public assignedBy!: User;
 
+  @Column({ nullable: true })
+  public assignedById!: string;
+
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public completedBy!: User;
+
+  @Column({ nullable: true })
+  public completedById!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
   public startedAt!: Date;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public completedAt: Date;
+  public completedAt!: Date;
 
   @Column({ type: 'text', nullable: true })
-  public notes: string;
+  public notes!: string;
 
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'maintenance_files' })

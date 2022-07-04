@@ -14,10 +14,10 @@ export class MaintenanceRequest extends SoftDeleteEntity {
   public archived: boolean;
 
   @Column({ default: false })
-  public allVehicles: boolean;
+  public allVehicle: boolean;
 
   @Column({ default: false })
-  public allTrailers: boolean;
+  public allTrailer: boolean;
 
   @ManyToMany(() => Vehicle, { nullable: true })
   @JoinTable({ name: 'maintenance_req_vehicles' })

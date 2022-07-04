@@ -34,7 +34,6 @@ import {
 } from './';
 
 export const DriverModuleEntity = [
-  // Driver,
   DriverExpensePlan,
   DriverExpenseRequest,
   DriverExpenseType,

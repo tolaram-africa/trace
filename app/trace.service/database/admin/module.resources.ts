@@ -23,6 +23,7 @@ import { RouteModuleEntity } from '@/module/route/entity';
 import { FormModuleEntity } from '@/module/form/entity';
 import { InsuranceModuleEntity } from '@/module/insurance/entity';
 import { Driver, DriverModuleEntity } from '@/module/driver/entity';
+import { MaintenanceModuleEntity } from '@/module/maintenance/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -50,6 +51,7 @@ export const AdminLocationModule = transformResources(
   [...LocationModuleEntity, Location],
   'Locations',
 );
+export const AdminRouteModule = transformResources(RouteModuleEntity, 'Routes');
 export const AdminScheduleModule = transformResources(
   ScheduleModuleEntity,
   'Schedules',
@@ -99,7 +101,10 @@ export const AdminShortageModule = transformResources(
   ShortageModuleEntity,
   'Shortages',
 );
-export const AdminRouteModule = transformResources(RouteModuleEntity, 'Routes');
+export const AdminMaintenanceModule = transformResources(
+  MaintenanceModuleEntity,
+  'Maintenances',
+);
 export const AdminFormModule = transformResources(FormModuleEntity, 'Forms');
 export const AdminIsuranceModule = transformResources(
   InsuranceModuleEntity,

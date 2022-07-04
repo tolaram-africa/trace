@@ -21,6 +21,9 @@ export class MaintenanceRequestLog extends SoftDeleteEntity {
   @JoinColumn()
   public request: MaintenanceRequest;
 
+  @Column({ nullable: true })
+  public requestId!: string;
+
   @OneToMany(() => MaintenanceRequestIssue, (issue) => issue.requestLog, {
     nullable: true,
   })
@@ -31,9 +34,15 @@ export class MaintenanceRequestLog extends SoftDeleteEntity {
   @JoinColumn()
   public vehicle!: Vehicle;
 
-  @OneToOne(() => Trailer)
+  @Column({ nullable: true })
+  public vehicleId!: string;
+
+  @OneToOne(() => Trailer, { nullable: true })
   @JoinColumn()
   public trailer!: Trailer;
+
+  @Column({ nullable: true })
+  public trailerId!: string;
 
   @Column({ type: 'int' })
   public expectedCost!: number;
@@ -42,12 +51,18 @@ export class MaintenanceRequestLog extends SoftDeleteEntity {
   @JoinColumn()
   public appeovedBy!: User;
 
+  @Column({ nullable: true })
+  public appeovedById!: string;
+
   @Column({ type: 'timestamptz', nullable: true })
   public appeovedTime!: Date;
 
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public assignedTo!: User;
+
+  @Column({ nullable: true })
+  public assignedToId!: string;
 
   @Column({ type: 'text', nullable: true })
   public notes!: string;

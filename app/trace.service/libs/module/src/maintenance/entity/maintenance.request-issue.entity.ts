@@ -8,6 +8,9 @@ export class MaintenanceRequestIssue extends TypeEntity {
   @JoinColumn()
   public requestLog: MaintenanceRequestLog;
 
+  @Column({ nullable: true })
+  public requestLogId!: string;
+
   @Column({ default: false })
   public minor: boolean;
 
