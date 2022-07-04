@@ -11,24 +11,39 @@ export class TaskEvent extends TagEntity {
   @JoinColumn()
   public task: Task;
 
+  @Column({ nullable: true })
+  public taskId!: string;
+
+  @OneToOne(() => TaskEventType)
+  @JoinColumn()
   public type: TaskEventType;
 
+  @Column({ nullable: true })
+  public typeId!: string;
+
   @OneToOne(() => TaskEventStatusType)
+  @JoinColumn()
   public status: TaskEventStatusType;
 
-  @Column({
-    type: 'timestamptz',
-    nullable: true,
-  })
-  public startedAt: Date;
+  @Column({ nullable: true })
+  public statusId!: string;
 
   @Column({
     type: 'timestamptz',
     nullable: true,
   })
-  public endedAt: Date;
+  public startedAt!: Date;
+
+  @Column({
+    type: 'timestamptz',
+    nullable: true,
+  })
+  public endedAt!: Date;
 
   @OneToOne(() => File, { nullable: true })
   @JoinColumn()
   public file!: File;
+
+  @Column({ nullable: true })
+  public fileId!: string;
 }

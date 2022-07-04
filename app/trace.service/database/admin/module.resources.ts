@@ -27,6 +27,7 @@ import { MaintenanceModuleEntity } from '@/module/maintenance/entity';
 import { AssetModuleEntity } from '@/module/asset/entity';
 import { BeaconModuleEntity } from '@/module/beacon/entity';
 import { EventModuleEntity } from '@/module/event/entity';
+import { TaskModuleEntity } from '@/module/task/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -64,6 +65,7 @@ export const AdminScheduleModule = transformResources(
   ScheduleModuleEntity,
   'Schedules',
 );
+export const AdminTaskModule = transformResources(TaskModuleEntity, 'Tasks');
 export const AdminCustomerModule = transformResources(
   CustomerModuleEntity,
   'Customers',

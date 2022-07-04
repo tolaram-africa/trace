@@ -16,4 +16,7 @@ export class UserAuth extends BaseAuth {
   @OneToOne(() => UserRole)
   @JoinColumn()
   public role: UserRole;
+
+  @Column({ nullable: true })
+  public roleId!: string;
 }

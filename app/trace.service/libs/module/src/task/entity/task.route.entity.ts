@@ -18,13 +18,22 @@ export class TaskRoute extends TenantEntity {
   @JoinColumn()
   public request: TaskRequest;
 
+  @Column({ nullable: true })
+  public requestId!: string;
+
   @OneToOne(() => Location, { nullable: false })
   @JoinColumn()
   public source: Location;
 
+  @Column({ nullable: true })
+  public sourceId!: string;
+
   @OneToOne(() => Location, { nullable: false })
   @JoinColumn()
   public destination: Location;
+
+  @Column({ nullable: true })
+  public destinationId!: string;
 
   @Column({
     type: 'geometry',

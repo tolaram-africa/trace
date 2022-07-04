@@ -18,15 +18,21 @@ export class UserAlert extends TenantEntity {
   @JoinColumn()
   public user: User;
 
+  @Column({ nullable: true })
+  public userId!: string;
+
   @Column({ type: 'int', default: 1 })
   public repeatInterval!: number;
 
   @Column({ default: false })
   public schedule: boolean;
 
-  @OneToOne(() => SystemFeature, { onDelete: 'CASCADE' })
+  @OneToOne(() => SystemFeature, { nullable: true })
   @JoinColumn()
-  public module: SystemFeature;
+  public feature!: SystemFeature;
+
+  @Column({ nullable: true })
+  public featureId!: number;
 
   @Column({
     type: 'enum',

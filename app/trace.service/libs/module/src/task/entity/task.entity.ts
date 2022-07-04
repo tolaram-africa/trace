@@ -12,7 +12,7 @@ import { TagEntity } from '@/common/entity/base.tag.entity';
 import { TaskType } from '@/common/entity/enum.task';
 import { TaskEvent } from './task.event.entity';
 import { TaskRequest } from './task.request.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
 import { OrderRequest } from '@/module/order/entity/order.request.entity';
 
@@ -22,13 +22,19 @@ export class Task extends TagEntity {
   @Column({ unique: true })
   public identifier: number;
 
-  @OneToOne(() => TaskRequest, (request) => request.task, { nullable: false })
+  @OneToOne(() => TaskRequest, (request) => request.task)
   @JoinColumn()
   public request: TaskRequest;
+
+  @Column({ nullable: true })
+  public requestId!: string;
 
   @OneToOne(() => OrderRequest, (request) => request.task, { nullable: true })
   @JoinColumn()
   public orderRequest!: OrderRequest;
+
+  @Column({ nullable: true })
+  public orderRequestId!: string;
 
   @Column({ type: 'enum', enum: TaskType, default: TaskType.TRIP })
   public taskType: TaskType;
@@ -73,6 +79,9 @@ export class Task extends TagEntity {
   @OneToOne(() => File, { nullable: true })
   @JoinColumn()
   public file!: File;
+
+  @Column({ nullable: true })
+  public fileId!: string;
 
   @ManyToMany(() => Schedule, { nullable: true })
   @JoinTable({ name: 'task_schedules' })

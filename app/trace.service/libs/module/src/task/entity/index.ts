@@ -9,3 +9,29 @@ export * from './task.request.entity';
 export * from './task.route.entity';
 export * from './task.trailer.entity';
 export * from './task.vehicle.entity';
+
+import {
+  TaskDestination,
+  TaskDriver,
+  TaskVehicle,
+  TaskTrailer,
+  TaskEventStatusType,
+  TaskEventType,
+  TaskEvent,
+  TaskRequest,
+  TaskRoute,
+  Task,
+} from './';
+
+export const TaskModuleEntity = [
+  TaskDestination,
+  TaskDriver,
+  TaskVehicle,
+  TaskTrailer,
+  TaskEventStatusType,
+  TaskEventType,
+  TaskEvent,
+  TaskRequest,
+  TaskRoute,
+  Task,
+];

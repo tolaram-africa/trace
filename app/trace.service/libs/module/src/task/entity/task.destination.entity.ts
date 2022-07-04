@@ -1,7 +1,7 @@
 import { OneToOne, JoinColumn, Column, Entity, ManyToOne } from 'typeorm';
 import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import { Location } from '@/module/location/entity/location.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { TaskRequest } from './task.request.entity';
 
 enum DestinationType {
@@ -13,7 +13,10 @@ enum DestinationType {
 export class TaskDestination extends TenantEntity {
   @ManyToOne(() => TaskRequest, (request) => request.destinations)
   @JoinColumn()
-  public taskRequest: TaskRequest;
+  public request: TaskRequest;
+
+  @Column({ nullable: true })
+  public requestId!: string;
 
   @Column({
     type: 'enum',
@@ -29,9 +32,15 @@ export class TaskDestination extends TenantEntity {
   @JoinColumn()
   public point: Location;
 
+  @Column({ nullable: true })
+  public pointId!: string;
+
   @OneToOne(() => File, { nullable: true })
   @JoinColumn()
   public file!: File;
+
+  @Column({ nullable: true })
+  public fileId!: string;
 
   @Column({
     type: 'timestamptz',

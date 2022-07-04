@@ -4,9 +4,12 @@ import { TaskEventType } from './task.event-type.entity';
 
 @Entity({ name: 'task_event_status_types' })
 export class TaskEventStatusType extends TypeEntity {
-  @OneToOne(() => TaskEventType, { nullable: false })
+  @OneToOne(() => TaskEventType)
   @JoinColumn()
   public type: TaskEventType;
+
+  @Column({ nullable: true })
+  public typeId!: string;
 
   @Column({ default: true })
   public available: boolean;

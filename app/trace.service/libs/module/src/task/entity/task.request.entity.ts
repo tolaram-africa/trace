@@ -69,7 +69,7 @@ export class TaskRequest extends SoftDeleteEntity {
 
   @OneToMany(
     () => TaskDestination,
-    (taskDestinations) => taskDestinations.taskRequest,
+    (taskDestinations) => taskDestinations.request,
     { nullable: true },
   )
   @JoinColumn()

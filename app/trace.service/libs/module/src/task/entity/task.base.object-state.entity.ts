@@ -8,7 +8,7 @@ export abstract class TaskObjectState extends TenantEntity {
     nullable: false,
     default: () => 'CURRENT_TIMESTAMP',
   })
-  public assignedAt: Date;
+  public assignedAt!: Date;
 
   @Column({
     type: 'timestamptz',
