@@ -17,9 +17,12 @@ export class OrderFreight extends TagEntity {
   @JoinColumn()
   public orderRequest: OrderRequest;
 
+  @Column({ nullable: true })
+  public orderRequestId!: string;
+
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
   public waybillNo!: string;
@@ -27,6 +30,9 @@ export class OrderFreight extends TagEntity {
   @OneToOne(() => ProductModel, { nullable: true })
   @JoinColumn()
   public product: ProductModel;
+
+  @Column({ nullable: true })
+  public productId!: string;
 
   @Column({ type: 'int', default: 1 })
   public size: number;
@@ -37,4 +43,7 @@ export class OrderFreight extends TagEntity {
   @OneToOne(() => File, { nullable: true })
   @JoinColumn()
   public file!: File;
+
+  @Column({ nullable: true })
+  public fileId!: string;
 }

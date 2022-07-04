@@ -31,7 +31,7 @@ export class Beacon extends TenantEntity {
   public expiry!: Date;
 
   @Generated('increment')
-  public identifier: number;
+  public identifier!: number;
 
   @ManyToOne(() => BeaconPosition, (beaconPosition) => beaconPosition.beacon, {
     nullable: true,

@@ -11,31 +11,49 @@ import { Order } from './order.entity';
 export class OrderTripPass extends TagEntity {
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @OneToOne(() => Order, { nullable: false })
   @JoinColumn()
   public order: Order;
 
+  @Column({ nullable: true })
+  public orderId!: string;
+
   @OneToOne(() => TripPassReason, { nullable: false })
   @JoinColumn()
   public reason: TripPassReason;
+
+  @Column({ nullable: true })
+  public reasonId!: string;
 
   @OneToOne(() => Customer, { nullable: true })
   @JoinColumn()
   public customer!: Customer;
 
+  @Column({ nullable: true })
+  public customerId!: string;
+
   @OneToOne(() => Driver, { nullable: true })
   @JoinColumn()
   public driver!: Driver;
+
+  @Column({ nullable: true })
+  public driverId!: string;
 
   @OneToOne(() => DriverGroup, { nullable: true })
   @JoinColumn()
   public driverGroup!: DriverGroup;
 
+  @Column({ nullable: true })
+  public driverGroupId!: string;
+
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public approvedBy!: User;
+
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @Column({
     type: 'timestamptz',

@@ -20,7 +20,7 @@ import { OrderRequest } from '@/module/order/entity/order.request.entity';
 export class Task extends TagEntity {
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @OneToOne(() => TaskRequest, (request) => request.task)
   @JoinColumn()

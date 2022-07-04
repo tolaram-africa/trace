@@ -24,6 +24,9 @@ export class Customer extends TagEntity {
   @Column({ type: 'date', nullable: true })
   public expiry!: Date;
 
+  @Column({ type: 'varchar', length: 128 })
+  public name: string;
+
   @OneToOne(() => CustomerSetting, (setting) => setting.customer, {
     nullable: true,
   })

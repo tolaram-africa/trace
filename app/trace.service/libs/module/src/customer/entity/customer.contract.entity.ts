@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  Generated,
   Index,
   JoinColumn,
   JoinTable,
@@ -19,6 +20,10 @@ export class CustomerContract extends SoftDeleteEntity {
   })
   @JoinColumn()
   public customer: Customer;
+
+  @Generated()
+  @Column({ unique: true })
+  public identifier!: number;
 
   @Column({ nullable: true })
   public customerId!: string;

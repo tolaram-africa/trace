@@ -19,7 +19,7 @@ export class TransactionAccount extends SoftDeleteEntity {
 
   @Generated()
   @Column({ type: 'bigint', unique: true, nullable: false })
-  public identifier: number;
+  public identifier!: number;
 
   @OneToOne(() => User)
   @JoinColumn()

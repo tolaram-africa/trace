@@ -26,6 +26,9 @@ export class TicketMessage extends SoftDeleteEntity {
   @JoinColumn()
   public ticket: Ticket;
 
+  @Column({ nullable: true })
+  public ticketId!: string;
+
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'ticket_msg_files' })
   public files: File[];

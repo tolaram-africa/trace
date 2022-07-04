@@ -32,7 +32,7 @@ export class ProductModel extends SoftDeleteEntity {
 
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @Column({
     type: 'enum',

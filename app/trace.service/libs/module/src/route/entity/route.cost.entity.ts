@@ -22,7 +22,7 @@ import { Route } from './route.entity';
 export class RouteCost extends TagEntity {
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @OneToOne(() => Route)
   @JoinColumn()

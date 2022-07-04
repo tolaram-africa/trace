@@ -25,15 +25,21 @@ export enum OrderRequestStatus {
 export class OrderRequest extends SoftDeleteEntity {
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @OneToOne(() => Order, (order) => order.request, { nullable: true })
   @JoinColumn()
   public order!: Order;
 
+  @Column({ nullable: true })
+  public orderId!: string;
+
   @OneToOne(() => Task, (task) => task.orderRequest, { nullable: false })
   @JoinColumn()
   public task: Task;
+
+  @Column({ nullable: true })
+  public taskId!: string;
 
   @Column({
     type: 'enum',
@@ -55,9 +61,15 @@ export class OrderRequest extends SoftDeleteEntity {
   @JoinColumn()
   public customer: Customer;
 
+  @Column({ nullable: true })
+  public customerId!: string;
+
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public approvedBy!: User;
+
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
   public approvedAt!: Date;
@@ -71,6 +83,9 @@ export class OrderRequest extends SoftDeleteEntity {
   @OneToOne(() => File, { nullable: true })
   @JoinColumn()
   public file!: File;
+
+  @Column({ nullable: true })
+  public fileId!: string;
 
   @OneToMany(() => Ticket, (ticket) => ticket.orderRequest)
   @JoinColumn()

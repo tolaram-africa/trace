@@ -21,7 +21,7 @@ export class StockWarehouse extends TypeEntity {
 
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @Column({ type: 'varchar', default: 128, nullable: true })
   public barcode!: string;

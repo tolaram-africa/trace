@@ -6,6 +6,9 @@ export class CustomerGroup extends SoftDeleteEntity {
   @Column({ default: false })
   public default: boolean;
 
+  @Column({ type: 'varchar', length: 128 })
+  public name: string;
+
   @Column({ default: true })
   public selfManage: boolean;
 

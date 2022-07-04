@@ -28,6 +28,8 @@ import { AssetModuleEntity } from '@/module/asset/entity';
 import { BeaconModuleEntity } from '@/module/beacon/entity';
 import { EventModuleEntity } from '@/module/event/entity';
 import { TaskModuleEntity } from '@/module/task/entity';
+import { OrderModuleEntity } from '@/module/order/entity';
+import { TicketModuleEntity } from '@/module/ticket/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -66,9 +68,14 @@ export const AdminScheduleModule = transformResources(
   'Schedules',
 );
 export const AdminTaskModule = transformResources(TaskModuleEntity, 'Tasks');
+export const AdminOrderModule = transformResources(OrderModuleEntity, 'Orders');
 export const AdminCustomerModule = transformResources(
   CustomerModuleEntity,
   'Customers',
+);
+export const AdminTicketModule = transformResources(
+  TicketModuleEntity,
+  'Tickets',
 );
 export const AdminDriverModule = transformResources(
   [...DriverModuleEntity, Driver],

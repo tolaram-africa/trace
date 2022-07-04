@@ -17,7 +17,7 @@ import { ProductModel } from '@/module/product/entity/product.model.entity';
 export class StockInventory extends SoftDeleteEntity {
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @Column({ type: 'varchar', default: 128, nullable: true })
   public barcode!: string;

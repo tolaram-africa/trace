@@ -17,11 +17,14 @@ import { OrderRequest } from './order.request.entity';
 export class Order extends TagEntity {
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @OneToOne(() => OrderRequest, (request) => request.order, { nullable: false })
   @JoinColumn()
   public request: OrderRequest;
+
+  @Column({ nullable: true })
+  public requestId!: string;
 
   @ManyToOne(() => OrderInvoice, (invoice) => invoice.orders, {
     nullable: true,
@@ -29,13 +32,22 @@ export class Order extends TagEntity {
   @JoinColumn()
   public invoice!: OrderInvoice;
 
+  @Column({ nullable: true })
+  public invoiceId!: string;
+
   @OneToOne(() => Customer)
   @JoinColumn()
   public customer: Customer;
 
+  @Column({ nullable: true })
+  public customerId!: string;
+
   @OneToOne(() => RouteCost, { nullable: true })
   @JoinColumn()
   public routeCost!: RouteCost;
+
+  @Column({ nullable: true })
+  public routeCostId!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
   public arrivalTime!: Date;
@@ -44,10 +56,16 @@ export class Order extends TagEntity {
   @JoinColumn()
   public arrivalCheckedBy!: User;
 
+  @Column({ nullable: true })
+  public arrivalCheckedById!: string;
+
   @Column({ type: 'timestamptz', nullable: true })
   public confirmedTime!: Date;
 
   @OneToOne(() => User)
   @JoinColumn()
   public confirmedBy!: User;
+
+  @Column({ nullable: true })
+  public confirmedById!: string;
 }

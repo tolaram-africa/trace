@@ -8,7 +8,7 @@ import { User } from '@/module/user/entity';
 export class DriverExpensePlan extends SoftDeleteEntity {
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @OneToOne(() => DriverExpenseType)
   public type: DriverExpenseType;

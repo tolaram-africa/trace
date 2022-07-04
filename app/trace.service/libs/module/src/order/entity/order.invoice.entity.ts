@@ -37,6 +37,9 @@ export class OrderInvoice extends TagEntity {
   @JoinColumn()
   public approvedBy!: User;
 
+  @Column({ nullable: true })
+  public approvedById!: string;
+
   @Column({
     type: 'timestamptz',
     nullable: true,
@@ -65,6 +68,9 @@ export class OrderInvoice extends TagEntity {
   @JoinColumn()
   public creditAccount!: TransactionAccount;
 
+  @Column({ nullable: true })
+  public creditAccountId!: string;
+
   @OneToMany(() => Order, (order) => order.invoice)
   @JoinColumn()
   public orders!: Order[];
@@ -72,6 +78,9 @@ export class OrderInvoice extends TagEntity {
   @OneToOne(() => Customer, { nullable: false })
   @JoinColumn()
   public customer: Customer;
+
+  @Column({ nullable: true })
+  public customerId!: string;
 
   @Column({ type: 'int', default: 0, nullable: true })
   public amountCharged: number;
@@ -86,7 +95,7 @@ export class OrderInvoice extends TagEntity {
   @JoinTable({ name: 'order_invoice_files' })
   public files!: File[];
 
-  @OneToMany(() => Ticket, (ticket) => ticket.orderInvoice, { nullable: true })
+  @OneToMany(() => Ticket, (ticket) => ticket.invoice, { nullable: true })
   @JoinColumn()
   public tickets!: Ticket[];
 }

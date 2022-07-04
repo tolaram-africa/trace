@@ -18,7 +18,7 @@ import { Shipment } from '@/module/shipment/entity/shipment.entity';
 export class OrderManifest extends TenantEntity {
   @Generated()
   @Column({ unique: true })
-  public identifier: number;
+  public identifier!: number;
 
   @ManyToMany(() => Order, { nullable: true })
   @JoinTable({ name: 'order_manifest_items' })
@@ -28,9 +28,15 @@ export class OrderManifest extends TenantEntity {
   @JoinColumn()
   public shipment!: Shipment;
 
+  @Column({ nullable: true })
+  public shipmentId!: string;
+
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public sentBy!: User;
+
+  @Column({ nullable: true })
+  public sentById!: string;
 
   @Column({
     type: 'timestamptz',
@@ -42,9 +48,15 @@ export class OrderManifest extends TenantEntity {
   @JoinColumn()
   public sentTag!: Tag;
 
+  @Column({ nullable: true })
+  public sentTagId!: string;
+
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public recievedBy!: User;
+
+  @Column({ nullable: true })
+  public recievedById!: string;
 
   @Column({
     type: 'timestamptz',
@@ -56,10 +68,16 @@ export class OrderManifest extends TenantEntity {
   @JoinColumn()
   public recievedTag!: Tag;
 
+  @Column({ nullable: true })
+  public recievedTagId!: string;
+
   @Column({ type: 'varchar', nullable: true })
   public notes!: string;
 
   @OneToOne(() => File, { nullable: true })
   @JoinColumn()
   public file!: File;
+
+  @Column({ nullable: true })
+  public fileId!: string;
 }

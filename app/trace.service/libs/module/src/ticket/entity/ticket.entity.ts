@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  Generated,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -19,26 +20,49 @@ export class Ticket extends TagEntity {
   @JoinColumn()
   public customer: Customer;
 
+  @Column({ nullable: true })
+  public customerId!: string;
+
+  @Generated()
+  @Column({ unique: true })
+  public identifier!: number;
+
   @ManyToOne(() => OrderRequest, (request) => request.tickets)
   @JoinColumn()
   public orderRequest!: OrderRequest;
 
+  @Column({ nullable: true })
+  public orderRequestId!: string;
+
   @ManyToOne(() => OrderInvoice, (invoice) => invoice.tickets)
   @JoinColumn()
-  public orderInvoice: OrderInvoice;
+  public invoice: OrderInvoice;
 
-  @OneToOne(() => User)
+  @Column({ nullable: true })
+  public invoiceId!: string;
+
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public resolvedBy: User;
+  public openedBy!: User;
+
+  @Column({ nullable: true })
+  public openedById!: string;
+
+  @OneToOne(() => User, { nullable: true })
+  @JoinColumn()
+  public resolvedBy!: User;
+
+  @Column({ nullable: true })
+  public resolvedById!: string;
 
   @Column({
     type: 'timestamptz',
     nullable: true,
   })
-  public timeResolved!: Date;
+  public resolvedAt!: Date;
 
-  @Column({ type: 'text', nullable: false })
-  public subject: string;
+  @Column({ type: 'text' })
+  public subject!: string;
 
   @OneToMany(() => TicketMessage, (message) => message.ticket, {
     nullable: false,

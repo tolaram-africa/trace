@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  Generated,
   JoinColumn,
   JoinTable,
   ManyToMany,
@@ -27,6 +28,10 @@ import { RouteCost } from '@/module/route/entity/route.cost.entity';
 export class TaskRequest extends SoftDeleteEntity {
   @Column({ default: true })
   public active!: boolean;
+
+  @Generated()
+  @Column({ unique: true })
+  public identifier!: number;
 
   @Column({ default: false })
   public schedule: boolean;

@@ -34,6 +34,8 @@ import {
   AdminBeaconModule,
   AdminEventModule,
   AdminTaskModule,
+  AdminOrderModule,
+  AdminTicketModule,
 } from './module.resources';
 
 const AdminJS = require('adminjs');
@@ -65,7 +67,9 @@ const main = async () => {
       ...AdminFileModule,
       ...AdminUserModule,
       ...AdminTaskModule,
+      ...AdminOrderModule,
       ...AdminCustomerModule,
+      ...AdminTicketModule,
       ...AdminDriverModule,
       ...AdminAssetModule,
       ...AdminBeaconModule,
