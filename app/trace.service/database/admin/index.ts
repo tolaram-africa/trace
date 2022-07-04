@@ -32,6 +32,7 @@ import {
   AdminMaintenanceModule,
   AdminAssetModule,
   AdminBeaconModule,
+  AdminEventModule,
 } from './module.resources';
 
 const AdminJS = require('adminjs');
@@ -84,6 +85,7 @@ const main = async () => {
       ...AdminMaintenanceModule,
       ...AdminIsuranceModule,
       ...AdminStockModule,
+      ...AdminEventModule,
     ],
     auth: {
       authenticate: async (email, password) =>

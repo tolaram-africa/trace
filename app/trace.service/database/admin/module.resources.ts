@@ -26,6 +26,7 @@ import { Driver, DriverModuleEntity } from '@/module/driver/entity';
 import { MaintenanceModuleEntity } from '@/module/maintenance/entity';
 import { AssetModuleEntity } from '@/module/asset/entity';
 import { BeaconModuleEntity } from '@/module/beacon/entity';
+import { EventModuleEntity } from '@/module/event/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -117,3 +118,4 @@ export const AdminIsuranceModule = transformResources(
   InsuranceModuleEntity,
   'Insurances',
 );
+export const AdminEventModule = transformResources(EventModuleEntity, 'Events');

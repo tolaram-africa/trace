@@ -1,13 +1,4 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  JoinTable,
-  ManyToMany,
-  OneToOne,
-} from 'typeorm';
-import { User } from '@/module/user/entity/user.entity';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import { SystemFeature } from '@/module/system/entity/system.feature.entity';
 import { Customer } from '@/module/customer/entity/customer.entity';
@@ -21,20 +12,18 @@ export class Event extends TenantEntity {
   @JoinColumn()
   public feature: SystemFeature;
 
-  @CreateDateColumn({
-    type: 'timestamptz',
-    default: () => 'CURRENT_TIMESTAMP',
-    nullable: false,
-  })
-  public created: Date;
+  @Column({ nullable: true })
+  public featureId!: string;
 
-  @ManyToMany(() => User, { nullable: true })
-  @JoinTable({ name: 'events_users' })
-  public users!: User[];
+  @Column({ type: 'jsonb', nullable: true })
+  public users!: Record<string, unknown>;
 
   @OneToOne(() => Customer, { nullable: true })
   @JoinColumn()
   public customer!: Customer;
+
+  @Column({ nullable: true })
+  public customerId!: string;
 
   @Column({ type: 'jsonb', default: {}, nullable: true })
   public payload!: string;
