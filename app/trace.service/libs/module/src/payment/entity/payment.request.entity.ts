@@ -20,6 +20,9 @@ export class PaymentRequest extends TagEntity {
   @OneToOne(() => PaymentType)
   public type: PaymentType;
 
+  @Column({ nullable: true })
+  public typeId!: string;
+
   @Column({ default: false })
   public reflectionInBank: boolean;
 
@@ -49,6 +52,9 @@ export class PaymentRequest extends TagEntity {
   @JoinColumn()
   public approvedBy!: User;
 
+  @Column({ nullable: true })
+  public approvedById!: string;
+
   @Column({
     type: 'timestamptz',
     nullable: true,
@@ -58,6 +64,9 @@ export class PaymentRequest extends TagEntity {
   @OneToOne(() => Payment, { nullable: true })
   @JoinColumn()
   public payment!: Payment;
+
+  @Column({ nullable: true })
+  public paymentId!: string;
 
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'payment_request_files' })

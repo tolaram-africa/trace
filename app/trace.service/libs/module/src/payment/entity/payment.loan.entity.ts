@@ -18,16 +18,25 @@ export class PaymentLoan extends SoftDeleteEntity {
   @JoinColumn()
   public request: PaymentLoanRequest;
 
+  @Column({ nullable: true })
+  public requestId!: string;
+
   @OneToOne(() => Payment, { nullable: true })
   @JoinColumn()
   public payment!: Payment;
+
+  @Column({ nullable: true })
+  public paymentId!: string;
 
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public settleBy!: User;
 
+  @Column({ nullable: true })
+  public settleById!: string;
+
   @Column({ type: 'timestamptz', nullable: true })
-  public timeSettled!: Date;
+  public settledAt!: Date;
 
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'payment_loan_files' })

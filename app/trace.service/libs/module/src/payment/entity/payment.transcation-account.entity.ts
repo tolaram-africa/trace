@@ -41,6 +41,9 @@ export class TransactionAccount extends SoftDeleteEntity {
   @JoinColumn()
   public currency: Currency;
 
+  @Column({ nullable: true })
+  public currencyId!: string;
+
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'transaction_account_files' })
   public files!: File[];

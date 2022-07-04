@@ -18,7 +18,11 @@ import { PaymentRequestStatus, PayTransactionType } from '@/common/entity';
 @Entity({ name: 'payments' })
 export class Payment extends TagEntity {
   @OneToOne(() => PaymentType)
+  @JoinColumn()
   public type: PaymentType;
+
+  @Column({ nullable: true })
+  public typeId!: string;
 
   @Column({
     type: 'enum',
@@ -40,9 +44,15 @@ export class Payment extends TagEntity {
   @JoinColumn()
   public sourceAccount: TransactionAccount;
 
+  @Column({ nullable: true })
+  public sourceAccountId!: string;
+
   @OneToOne(() => TransactionAccount)
   @JoinColumn()
   public targetAccount: TransactionAccount;
+
+  @Column({ nullable: true })
+  public targetAccountId!: string;
 
   @Column({ type: 'int', default: 0 })
   public amount: number;
@@ -71,9 +81,15 @@ export class Payment extends TagEntity {
   @JoinColumn()
   public loan!: PaymentLoan;
 
+  @Column({ nullable: true })
+  public loanId!: string;
+
   @OneToOne(() => PaymentRequest, { nullable: true })
   @JoinColumn()
   public request!: PaymentRequest;
+
+  @Column({ nullable: true })
+  public requestId!: string;
 
   @ManyToMany(() => File)
   @JoinTable({ name: 'payment_files' })

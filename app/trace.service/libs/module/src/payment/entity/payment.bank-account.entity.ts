@@ -16,19 +16,22 @@ import { ExtendedAddress } from '@/common/entity/base.address.entity';
 export class BankAccount extends SoftDeleteEntity {
   @OneToOne(() => Bank)
   @JoinColumn()
-  bank: Bank;
+  public bank: Bank;
+
+  @Column({ nullable: true })
+  public bankId!: string;
 
   @Column({ type: 'varchar', length: 256, nullable: true })
-  bankBranch!: string;
+  public bankBranch!: string;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
-  bankSwift!: string;
+  public bankSwift!: string;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
-  bankIBAN!: string;
+  public bankIBAN!: string;
 
   @Column({ type: 'varchar', unique: true, length: 128, nullable: false })
-  number: string;
+  public number: string;
 
   @Column({
     type: 'enum',
@@ -36,13 +39,13 @@ export class BankAccount extends SoftDeleteEntity {
     default: BankAccountType.SAVINGS,
     nullable: false,
   })
-  type: BankAccountType;
+  public type: BankAccountType;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
-  routingNumber!: string;
+  public routingNumber!: string;
 
   @Column({ type: 'varchar', length: 256, nullable: false })
-  holderFullName: string;
+  public holderFullName: string;
 
   @Column(() => ExtendedAddress)
   public address: ExtendedAddress;

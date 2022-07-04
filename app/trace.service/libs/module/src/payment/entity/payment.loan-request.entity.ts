@@ -23,7 +23,12 @@ export enum PaymentLoanRequestStatus {
 
 @Entity({ name: 'payment_loan_requets' })
 export class PaymentLoanRequest extends SoftDeleteEntity {
+  @OneToOne(() => PaymentLoanType)
+  @JoinColumn()
   public type: PaymentLoanType;
+
+  @Column({ nullable: true })
+  public typeId!: string;
 
   @Column({
     type: 'enum',
@@ -40,9 +45,15 @@ export class PaymentLoanRequest extends SoftDeleteEntity {
   @JoinColumn()
   public creditorAccount: TransactionAccount;
 
+  @Column({ nullable: true })
+  public creditorAccountId!: string;
+
   @OneToOne(() => TransactionAccount)
   @JoinColumn()
-  public creditAccount: TransactionAccount;
+  public requestAccount: TransactionAccount;
+
+  @Column({ nullable: true })
+  public requestAccountId!: string;
 
   @Column({ type: 'int', default: 0 })
   public pendingAmount: number;
@@ -51,12 +62,18 @@ export class PaymentLoanRequest extends SoftDeleteEntity {
   @JoinColumn()
   public currency: Currency;
 
+  @Column({ nullable: true })
+  public currencyId!: string;
+
   @OneToOne(() => User)
   @JoinColumn()
   public loanee: User;
 
+  @Column({ nullable: true })
+  public loaneeId!: string;
+
   @Column({ type: 'timestamptz', nullable: true })
-  public timeApproved: Date;
+  public approvedAt!: Date;
 
   @Column({ type: 'text', nullable: true })
   public notes!: string;
