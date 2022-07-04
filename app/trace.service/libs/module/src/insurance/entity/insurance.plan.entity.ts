@@ -7,9 +7,9 @@ import {
   OneToOne,
 } from 'typeorm';
 import { User } from '@/module/user/entity/user.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
-import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
-import { InsurancePlanStatus } from './insurance.entity';
+import { File } from '@/module/file/entity/file.entity';
+import { SoftDeleteEntity } from '@/common/entity';
+import { InsurancePlanStatus } from './insurance.type';
 import { InsurancePolicy } from './insurance.policy.entity';
 import { InsuranceCategory } from './insurance.category.entity';
 
@@ -32,13 +32,22 @@ export class InsurancePlan extends SoftDeleteEntity {
   @JoinColumn()
   public approvedBy!: User;
 
+  @Column({ nullable: true })
+  public approvedById!: string;
+
   @OneToOne(() => InsuranceCategory)
   @JoinColumn()
   public category: InsuranceCategory;
 
+  @Column({ nullable: true })
+  public categoryId!: string;
+
   @OneToOne(() => InsurancePolicy)
   @JoinColumn()
   public policy: InsurancePolicy;
+
+  @Column({ nullable: true })
+  public policyId!: string;
 
   @Column({ type: 'float', default: 0 })
   public price!: number;
@@ -47,10 +56,10 @@ export class InsurancePlan extends SoftDeleteEntity {
   public notes!: string;
 
   @Column({ type: 'date', nullable: true })
-  public start!: Date;
+  public startAt!: Date;
 
   @Column({ type: 'date', nullable: true })
-  public end: Date;
+  public endAt!: Date;
 
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'insurance_plan_files' })

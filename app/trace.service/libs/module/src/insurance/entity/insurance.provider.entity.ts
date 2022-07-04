@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  Generated,
   JoinColumn,
   JoinTable,
   ManyToMany,
@@ -15,33 +16,37 @@ export class InsuranceProvider extends TenantEntity {
   @Column({ type: 'varchar', length: 128 })
   public name: string;
 
-  @Column({ type: 'varchar', length: 128, unique: true })
-  identifier: string;
+  @Generated()
+  @Column({ unique: true })
+  identifier: number;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
+
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @Column({ default: false })
   public active: boolean;
 
   @Column({ type: 'varchar', length: 1024, nullable: true })
-  public address: string;
+  public address!: string;
 
-  @Column({ type: 'int' })
-  public phone: number;
+  @Column({ type: 'varchar', length: 15, nullable: true })
+  public phone!: string;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
-  public contact: string;
+  public contact!: string;
 
   @Column({ type: 'varchar', length: 512, nullable: true })
-  public email: string;
+  public email!: string;
 
   @Column({ type: 'varchar', length: 512, nullable: true })
-  public website: string;
+  public website!: string;
 
   @Column({ type: 'text', nullable: true })
-  public notes: string;
+  public notes!: string;
 
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'insurance_provider_files' })

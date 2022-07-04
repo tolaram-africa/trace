@@ -7,8 +7,8 @@ import {
   OneToOne,
 } from 'typeorm';
 import { User } from '@/module/user/entity/user.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
-import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
+import { File } from '@/module/file/entity/file.entity';
+import { SoftDeleteEntity } from '@/common/entity';
 import { InsuranceProvider } from './insurance.provider.entity';
 
 @Entity('insurance_policies')
@@ -26,9 +26,15 @@ export class InsurancePolicy extends SoftDeleteEntity {
   @JoinColumn()
   public approvedBy!: User;
 
+  @Column({ nullable: true })
+  public approvedById!: string;
+
   @OneToOne(() => InsuranceProvider)
   @JoinColumn()
   public provider: InsuranceProvider;
+
+  @Column({ nullable: true })
+  public providerId!: string;
 
   @Column({ type: 'float', default: 0 })
   public percentage!: number;

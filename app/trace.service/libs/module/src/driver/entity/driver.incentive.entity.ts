@@ -18,9 +18,15 @@ export class DriverIncentive extends TagEntity {
   @JoinColumn()
   public driver: DriverGroup;
 
+  @Column({ nullable: true })
+  public driverId!: string;
+
   @OneToOne(() => Driver)
   @JoinColumn()
   public group: DriverGroup;
+
+  @Column({ nullable: true })
+  public groupId!: string;
 
   @Column({ type: 'int', default: 0 })
   public amountCalculated: number;
@@ -31,6 +37,9 @@ export class DriverIncentive extends TagEntity {
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public approvedBy!: User;
+
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
   public approvedAt!: Date;

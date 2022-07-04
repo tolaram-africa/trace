@@ -26,6 +26,9 @@ import {
   AdminShortageModule,
   AdminRouteModule,
   AdminStockModule,
+  AdminFormModule,
+  AdminIsuranceModule,
+  AdminDriverModule,
 } from './module.resources';
 
 const AdminJS = require('adminjs');
@@ -57,9 +60,11 @@ const main = async () => {
       ...AdminFileModule,
       ...AdminUserModule,
       ...AdminCustomerModule,
+      ...AdminDriverModule,
       ...AdminSupplierModule,
       ...AdminSubscriptionModule,
       ...AdminTemplateModule,
+      ...AdminFormModule,
       ...AdminDashboardModule,
       ...AdminPaymentModule,
       ...AdminScheduleModule,
@@ -71,6 +76,7 @@ const main = async () => {
       ...AdminRatingModule,
       ...AdminNetworkModule,
       ...AdminShortageModule,
+      ...AdminIsuranceModule,
       ...AdminStockModule,
     ],
     auth: {

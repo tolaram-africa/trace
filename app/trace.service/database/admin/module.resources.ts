@@ -20,6 +20,9 @@ import { NetworkModuleEntity } from '@/module/network-card/entity';
 import { StockModuleEntity } from '@/module/stock/entity';
 import { ShortageModuleEntity } from '@/module/shortage/entity';
 import { RouteModuleEntity } from '@/module/route/entity';
+import { FormModuleEntity } from '@/module/form/entity';
+import { InsuranceModuleEntity } from '@/module/insurance/entity';
+import { Driver, DriverModuleEntity } from '@/module/driver/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -54,6 +57,10 @@ export const AdminScheduleModule = transformResources(
 export const AdminCustomerModule = transformResources(
   CustomerModuleEntity,
   'Customers',
+);
+export const AdminDriverModule = transformResources(
+  [...DriverModuleEntity, Driver],
+  'Drivers',
 );
 export const AdminProductModule = transformResources(
   ProductModuleEntity,
@@ -93,3 +100,8 @@ export const AdminShortageModule = transformResources(
   'Shortages',
 );
 export const AdminRouteModule = transformResources(RouteModuleEntity, 'Routes');
+export const AdminFormModule = transformResources(FormModuleEntity, 'Forms');
+export const AdminIsuranceModule = transformResources(
+  InsuranceModuleEntity,
+  'Insurances',
+);

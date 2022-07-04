@@ -7,9 +7,9 @@ import {
   OneToOne,
 } from 'typeorm';
 import { User } from '@/module/user/entity/user.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
-import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
-import { InsuranceClaimStatus } from './insurance.entity';
+import { File } from '@/module/file/entity/file.entity';
+import { SoftDeleteEntity } from '@/common/entity';
+import { InsuranceClaimStatus } from './insurance.type';
 import { InsurancePlan } from './insurance.plan.entity';
 import { IssurableObject } from '@/common/entity/enum.object';
 import { Payment } from '@/module/payment/entity/payment.entity';
@@ -25,7 +25,7 @@ export class InsuranceClaim extends SoftDeleteEntity {
   public status: InsuranceClaimStatus;
 
   @ManyToMany(() => InsuranceClaimReason)
-  @JoinTable({ name: 'insurance_claim_linked_reasons' })
+  @JoinTable({ name: 'insurance_claim_lnk_reasons' })
   public reasons: InsuranceClaimReason[];
 
   @Column({ type: 'int', default: 1 })
@@ -34,12 +34,21 @@ export class InsuranceClaim extends SoftDeleteEntity {
   @OneToOne(() => User)
   public approvedBy!: User;
 
+  @Column({ nullable: true })
+  public approvedById!: string;
+
   @OneToOne(() => User)
   public requestedBy!: User;
+
+  @Column({ nullable: true })
+  public requestedById!: string;
 
   @OneToOne(() => InsurancePlan)
   @JoinColumn()
   public plan: InsurancePlan;
+
+  @Column({ nullable: true })
+  public planId!: string;
 
   @Column({
     type: 'enum',
@@ -49,7 +58,7 @@ export class InsuranceClaim extends SoftDeleteEntity {
   public objectType!: IssurableObject;
 
   @Column({ type: 'jsonb', default: {} })
-  public object!: string;
+  public object!: Record<string, unknown>;
 
   @Column({ type: 'float', default: 0 })
   public paymentRequeted!: number;
@@ -57,15 +66,18 @@ export class InsuranceClaim extends SoftDeleteEntity {
   @Column({ type: 'float', default: 0 })
   public paymentRecieved!: number;
 
-  @OneToOne(() => Payment)
+  @OneToOne(() => Payment, { nullable: true })
   @JoinColumn()
-  public payment: Payment;
+  public payment!: Payment;
+
+  @Column({ nullable: true })
+  public paymentId!: string;
 
   @Column({ type: 'date' })
-  public dateRequested!: Date;
+  public requestedAt!: Date;
 
   @Column({ type: 'date' })
-  public dateClaimed!: Date;
+  public claimedAt!: Date;
 
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'insurance_claim_files' })

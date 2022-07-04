@@ -11,6 +11,43 @@ export * from './driver.rating.entity';
 export * from './driver.review.comment.entity';
 export * from './driver.review.entity';
 export * from './driver.review.type.entity';
-export * from './driver.violation.threshold';
-export * from './driver.violation';
-export * from './driver.violation.type';
+export * from './driver.violation.threshold.entity';
+export * from './driver.violation.entity';
+export * from './driver.violation.type.entity';
+
+import {
+  DriverExpensePlan,
+  DriverExpenseRequest,
+  DriverExpenseType,
+  DriverExpense,
+  DriverGroup,
+  DriverIncentive,
+  DriverPayment,
+  DriverReview,
+  DriverReviewType,
+  DriverReviewComment,
+  DriverPermit,
+  DriverRating,
+  DriverViolationTreshold,
+  DriverViolation,
+  ViolationType,
+} from './';
+
+export const DriverModuleEntity = [
+  // Driver,
+  DriverExpensePlan,
+  DriverExpenseRequest,
+  DriverExpenseType,
+  DriverExpense,
+  DriverGroup,
+  DriverIncentive,
+  DriverPayment,
+  DriverReview,
+  DriverReviewType,
+  DriverReviewComment,
+  DriverPermit,
+  DriverRating,
+  DriverViolationTreshold,
+  DriverViolation,
+  ViolationType,
+];

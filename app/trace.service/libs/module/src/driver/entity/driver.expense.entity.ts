@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity';
 import { DriverExpenseRequest } from './driver.expense-request.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { Payment } from '@/module/payment/entity/payment.entity';
@@ -28,9 +28,15 @@ export class DriverExpense extends SoftDeleteEntity {
   @JoinColumn()
   public driver: Driver;
 
+  @Column({ nullable: true })
+  public driverId!: string;
+
   @OneToOne(() => DriverGroup, { nullable: false })
   @JoinColumn()
   public driverGroup: DriverGroup;
+
+  @Column({ nullable: true })
+  public driverGroupId!: string;
 
   @Column({
     type: 'enum',
@@ -44,25 +50,34 @@ export class DriverExpense extends SoftDeleteEntity {
   @JoinColumn()
   public expenseRequest: DriverExpenseRequest;
 
-  @Column({ type: 'timestamptz', nullable: true })
-  public timeSettled!: Date;
+  @Column({ nullable: true })
+  public expenseRequestId!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public timeApproved!: Date;
+  public settledAt!: Date;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public timeRejected!: Date;
+  public approvedAt!: Date;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public timePayed!: Date;
+  public rejectedAt!: Date;
+
+  @Column({ type: 'timestamptz', nullable: true })
+  public payedAt!: Date;
 
   @OneToOne(() => User)
   @JoinColumn()
   public approvedBy!: User;
 
-  @OneToOne(() => Payment)
+  @Column({ nullable: true })
+  public approvedById!: string;
+
+  @OneToOne(() => Payment, { nullable: true })
   @JoinColumn()
   public payment!: Payment;
+
+  @Column({ nullable: true })
+  public paymentId!: string;
 
   @ManyToMany(() => File, { nullable: true })
   @JoinTable({ name: 'driver_exp_files' })

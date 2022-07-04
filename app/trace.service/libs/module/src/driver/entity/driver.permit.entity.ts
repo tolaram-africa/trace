@@ -6,7 +6,7 @@ import {
   ManyToMany,
   OneToOne,
 } from 'typeorm';
-import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
+import { SoftDeleteEntity } from '@/common/entity';
 import { File } from '@root/libs/module/src/file/entity/file.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
@@ -18,9 +18,15 @@ export class DriverPermit extends SoftDeleteEntity {
   @JoinColumn()
   public driver: Driver;
 
+  @Column({ nullable: true })
+  public driverId!: string;
+
   @OneToOne(() => DriverGroup)
   @JoinColumn()
   public driverGroup: DriverGroup;
+
+  @Column({ nullable: true })
+  public driverGroupId!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
   public startedAt!: Date;
@@ -34,6 +40,9 @@ export class DriverPermit extends SoftDeleteEntity {
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()
   public approvedBy!: User;
+
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @Column({ type: 'text', nullable: true })
   public notes: string;

@@ -1,9 +1,17 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import { FieldType } from './form.field.types';
+import { Form } from './form.entity';
 
 @Entity({ name: 'form_fields' })
 export class FormField extends TenantEntity {
+  @ManyToOne(() => Form, (item) => item.fields)
+  @JoinColumn()
+  public form: Form;
+
+  @Column({ nullable: true })
+  public formId!: string;
+
   @Column({ default: false })
   public default: boolean;
 
@@ -15,11 +23,11 @@ export class FormField extends TenantEntity {
   })
   public type: FieldType;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', default: 0 })
   public position: number;
 
-  @Column({ type: 'varchar', length: 128, nullable: false })
-  public label: string;
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  public name!: string;
 
   @Column({ type: 'varchar', length: 128, nullable: true })
   public placeholder: string;

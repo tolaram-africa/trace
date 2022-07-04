@@ -30,6 +30,7 @@ export enum UserType {
   TENANT_WAREHOUSE_MANAGER = 'tenant.warehouse',
   TENANT_DRIVER_MANAGER = 'tenant.driver-manager',
   TENANT_DRIVER_SUPERVISOR = 'tenant.driver-supervisor',
+  TENANT_DRIVER = 'tenant.driver',
 }
 
 export enum SystemUserType {

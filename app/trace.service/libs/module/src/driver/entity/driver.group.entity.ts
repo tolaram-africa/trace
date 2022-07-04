@@ -29,6 +29,9 @@ export class DriverGroup extends TagEntity {
   @JoinColumn()
   public manager!: User;
 
+  @Column({ nullable: true })
+  public managerId!: string;
+
   @ManyToMany(() => User, { nullable: true })
   @JoinTable({ name: 'driver_supervisors' })
   public supervisors!: User[];
@@ -36,6 +39,9 @@ export class DriverGroup extends TagEntity {
   @OneToOne(() => TransactionAccount, { nullable: true })
   @JoinColumn()
   public accountBalance!: TransactionAccount;
+
+  @Column({ nullable: true })
+  public accountBalanceId!: string;
 
   @ManyToMany(() => BankAccount, { nullable: true })
   @JoinTable({ name: 'drv_group_bank_accounts' })

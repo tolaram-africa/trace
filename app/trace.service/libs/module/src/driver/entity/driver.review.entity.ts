@@ -19,9 +19,15 @@ export class DriverReview extends TagEntity {
   @JoinColumn()
   public driver: Driver;
 
+  @Column({ nullable: true })
+  public driverId!: string;
+
   @OneToOne(() => User)
   @JoinColumn()
   public reviewBy!: User;
+
+  @Column({ nullable: true })
+  public reviewById!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
   public approvedAt!: Date;
@@ -30,11 +36,14 @@ export class DriverReview extends TagEntity {
   @JoinColumn()
   public approvedBy!: User;
 
-  @Column({ type: 'timestamptz', nullable: true })
-  public started: Date;
+  @Column({ nullable: true })
+  public approvedById!: string;
 
   @Column({ type: 'timestamptz', nullable: true })
-  public ended: Date;
+  public startedAt!: Date;
+
+  @Column({ type: 'timestamptz', nullable: true })
+  public endedAt: Date;
 
   @Column()
   public passed: boolean;

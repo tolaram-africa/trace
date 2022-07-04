@@ -1,10 +1,12 @@
-import { Max } from 'class-validator';
 import { Entity, Column } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
-import { DriverAutoViolation } from './driver.violation';
+import { DriverAutoViolation } from './driver.violation.entity';
 
-@Entity({ name: 'drv_vio_thresholds' })
-export class DriverViolationTreshhold extends TagEntity {
+@Entity({ name: 'driver_violation_thres' })
+export class DriverViolationTreshold extends TagEntity {
+  @Column({ type: 'varchar', length: 128 })
+  public name: string;
+
   @Column({
     type: 'enum',
     enum: DriverAutoViolation,
@@ -13,13 +15,11 @@ export class DriverViolationTreshhold extends TagEntity {
   public type: DriverAutoViolation;
 
   @Column({ type: 'int', default: 0 })
-  @Max(100)
   public percentage!: number;
 
   @Column({ type: 'int', default: 0 })
-  @Max(10)
   public value!: number;
 
   @Column({ type: 'text', nullable: true })
-  public description!: string;
+  public notes!: string;
 }
