@@ -12,7 +12,7 @@ import {
   SystemUserPermission,
   SystemUserRole,
 } from './';
-import { SubscriptionsTier } from '@/module/subscription/entity';
+import { SubscriptionTier } from '@/module/subscription/entity';
 
 export const SystemModuleEntity = [
   Currency,
@@ -20,5 +20,5 @@ export const SystemModuleEntity = [
   SystemFeature,
   SystemUserPermission,
   SystemUserRole,
-  SubscriptionsTier,
+  SubscriptionTier,
 ];

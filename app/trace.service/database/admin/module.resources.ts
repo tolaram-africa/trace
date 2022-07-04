@@ -13,6 +13,9 @@ import { ProductModuleEntity } from '@/module/product/entity';
 import { WarehouseModuleEntity } from '@/module/warehouse/entity';
 import { TemplateModuleEntity } from '@/module/template/entity';
 import { SupplierModuleEntity } from '@/module/supplier/entity';
+import { SubscriptionModuleEntity } from '@/module/subscription/entity';
+import { ShipmentModuleEntity } from '@/module/shipment/entity';
+import { RatingModuleEntity } from '@/module/rating/entity';
 
 export const AdminSystemModule = transformResources(
   SystemModuleEntity,
@@ -63,4 +66,16 @@ export const AdminTemplateModule = transformResources(
 export const AdminSupplierModule = transformResources(
   SupplierModuleEntity,
   'Suppliers',
+);
+export const AdminSubscriptionModule = transformResources(
+  SubscriptionModuleEntity,
+  'Subscriptions',
+);
+export const AdminShipmentModule = transformResources(
+  ShipmentModuleEntity,
+  'Shipments',
+);
+export const AdminRatingModule = transformResources(
+  RatingModuleEntity,
+  'Ratings',
 );

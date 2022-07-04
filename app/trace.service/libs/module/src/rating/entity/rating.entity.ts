@@ -1,42 +1,35 @@
-import { Max } from 'class-validator';
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
-import { TagEntity } from '@/common/entity/base.tag.entity';
-import { TypeEntity } from '@/common/entity/base.type.entity';
-import { RatingComment } from './rating.coment.entity';
+import { TagEntity } from '@/common/entity';
+import { RatingComment } from './rating.comment.entity';
 import { User } from '@/module/user/entity/user.entity';
-
-@Entity({ name: 'rating_types' })
-export class RatingType extends TypeEntity {
-  @Column({ type: 'int', default: 0 })
-  @Max(10)
-  public point: number;
-}
+import { RatingType } from './rating.type.entity';
 
 @Entity({ name: 'ratings' })
 export class Rating extends TagEntity {
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public user: User;
+  public individual!: User;
 
   @OneToOne(() => RatingType)
   @JoinColumn()
   public type: RatingType;
 
   @Column({ type: 'int', default: 0 })
-  @Max(10)
   public point: number;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, { nullable: true })
   @JoinColumn()
-  public approvedBy: User;
+  public approvedBy!: User;
 
   @Column({
     type: 'timestamptz',
     nullable: false,
   })
-  public approvedTime: Date;
+  public approvedAt!: Date;
 
-  @OneToMany(() => RatingComment, (comment) => comment.rating)
+  @OneToMany(() => RatingComment, (comment) => comment.rating, {
+    nullable: true,
+  })
   @JoinColumn()
-  public comments: RatingComment[];
+  public comments!: RatingComment[];
 }

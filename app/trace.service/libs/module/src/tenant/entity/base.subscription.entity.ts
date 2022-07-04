@@ -1,12 +1,12 @@
 import { ServiceLevel } from '@/common/entity/enum.base';
 import { Column, JoinColumn, OneToOne } from 'typeorm';
 import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
-import { SubscriptionsTier } from '@/module/subscription/entity/subscription.entity';
+import { SubscriptionTier } from '@/module/subscription/entity/subscription.entity';
 
 export abstract class BaseSubscription extends CoreDeleteEntity {
-  @OneToOne(() => SubscriptionsTier)
+  @OneToOne(() => SubscriptionTier)
   @JoinColumn()
-  public tier: SubscriptionsTier;
+  public tier: SubscriptionTier;
 
   @Column({
     type: 'enum',

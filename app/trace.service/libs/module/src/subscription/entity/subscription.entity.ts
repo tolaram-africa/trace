@@ -3,7 +3,7 @@ import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { ServiceLevel } from '@/common/entity/enum.base';
 
 @Entity({ name: 'subscription_tier' })
-export class SubscriptionsTier extends SoftDeleteEntity {
+export class SubscriptionTier extends SoftDeleteEntity {
   @Column({ default: false })
   public default: boolean;
 

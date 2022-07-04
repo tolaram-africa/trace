@@ -16,6 +16,9 @@ export class Shipment extends SoftDeleteEntity {
   @JoinColumn()
   public provider: ShipmentProvider;
 
+  @Column({ nullable: true })
+  public providerId: string;
+
   @Column({ default: false })
   public track: boolean;
 
