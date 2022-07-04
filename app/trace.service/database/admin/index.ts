@@ -2,7 +2,7 @@
 import 'reflect-metadata';
 import { coreDataSource } from '../../.ormconfig';
 import { validate } from 'class-validator';
-import { AdminJSOptions } from 'adminjs';
+import AdminJS, { AdminJSOptions } from 'adminjs';
 import { Database, Resource } from '@adminjs/typeorm';
 import {
   AdminTenantModule,
@@ -38,10 +38,8 @@ import {
   AdminTicketModule,
 } from './module.resources';
 
-const AdminJS = require('adminjs');
 const AdminJSExpress = require('@adminjs/express');
 const express = require('express');
-const app = express();
 
 const main = async () => {
   Resource.validate = validate;
@@ -49,7 +47,7 @@ const main = async () => {
 
   const adminJs = new AdminJS({
     rootPath: '/',
-    loginPath: '/login',
+    loginPath: '/auth/login',
     branding: {
       logo: false,
       companyName: 'Trace Admin',
@@ -93,16 +91,29 @@ const main = async () => {
       ...AdminStockModule,
       ...AdminEventModule,
     ],
-    auth: {
-      authenticate: async (email, password) =>
-        Promise.resolve({ email: 'test' }),
-      cookieName: 'test',
-      cookiePassword: 'testPass',
-    },
   } as AdminJSOptions);
 
   const appPort = 3002;
-  const router = AdminJSExpress.buildRouter(adminJs);
+
+  let router = express.Router();
+  router = AdminJSExpress.buildAuthenticatedRouter(
+    adminJs,
+    {
+      authenticate: async (email: string, password: string) => {
+        const auth = email === 'trace' && password === 'trace';
+        if (auth) return { email: 'trace@local.host' };
+        else return null;
+      },
+      cookieName: 'trace',
+      cookiePassword: 'trace',
+    },
+    null,
+    {
+      resave: false,
+      saveUninitialized: true,
+    },
+  );
+  const app = express();
   app.use(adminJs.options.rootPath, router);
   app.listen(appPort, () => console.log(`Trace Admin localhost:${appPort}/`));
 };
