@@ -10,10 +10,17 @@ export declare type DriverType =
   | 'mariadb'
   | 'mssql';
 
+const path = require('path');
 const production = process.env.NODE_ENV === 'production';
 
-export const ormConfig: DataSourceOptions = {
-  name: 'default',
+const entities = [
+  path.join(__dirname, '/libs/common/src/entity/**/*.entity.{ts,js}'),
+  path.join(__dirname, '/libs/module/src/**/*.entity.{ts,js}'),
+];
+const migrations = [path.join(__dirname, '/database/migrations/*.{ts,js}')];
+const subscribers = [path.join(__dirname, '/database/subscribers/*.{ts,js}')];
+
+export const dataSourceConfig: DataSourceOptions = {
   type: (String(process.env.POSTGRES_DB_TYPE) as DriverType) || 'postgres',
   host: process.env.POSTGRES_DB_HOST || 'localhost',
   port: parseInt(<string>process.env.POSTGRES_DB_PORT) || 5432,
@@ -25,15 +32,16 @@ export const ormConfig: DataSourceOptions = {
   migrationsTableName: 'migrations',
   migrationsTransactionMode: 'each',
   synchronize: !production,
+  installExtensions: true,
   dropSchema: false,
   namingStrategy: new SnakeNamingStrategy(),
   logging: process.env.POSTGRES_LOGGING === 'true' ? true : false || true,
-  entities: [
-    __dirname + '/libs/common/src/entity/**/*.entity.{ts,js}',
-    __dirname + '/libs/module/src/**/*.entity.{ts,js}',
-  ],
-  migrations: ['database/migrations/*.{ts,js}'],
-  subscribers: ['database/subscribers/*.{ts,js}'],
+  entities,
+  migrations,
+  subscribers,
+  extra: {
+    characterSet: 'UTF8',
+  },
 };
 
-export const coreDataSource = new DataSource(ormConfig);
+export const dataSource = new DataSource(dataSourceConfig);
