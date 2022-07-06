@@ -1,8 +1,10 @@
-import { Column } from 'typeorm';
+import { DeleteDateColumn } from 'typeorm';
 import { TenantEntity } from '@/common/entity/base.tenant.entity';
-import { TimeEmbed } from './base.time.embed';
 
 export abstract class SoftDeleteEntity extends TenantEntity {
-  @Column(() => TimeEmbed)
-  public time: TimeEmbed;
+  @DeleteDateColumn({
+    type: 'timestamptz',
+    nullable: true,
+  })
+  public deletedAt!: Date;
 }
