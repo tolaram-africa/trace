@@ -12,7 +12,6 @@ const seeds = [
   path.join(__dirname, root + '**/*.seeder.{ts,js}'),
 ];
 const factories = [path.join(__dirname, root + '**/*.factory.{ts,js}')];
-
 const options = dataSource.options;
 const config: SeederOptions & DataSourceOptions & any = {
   options,
