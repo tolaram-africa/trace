@@ -6,6 +6,8 @@ import {
   Column,
   JoinTable,
   OneToMany,
+  Index,
+  RelationId,
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from '@/module/user/entity/user.entity';
@@ -15,6 +17,7 @@ import { CustomerContract } from './customer.contract.entity';
 import { CustomerClient } from './customer.client.entity';
 import { CustomerSetting } from './customer.setting.entity';
 import { CustomerSubscription } from './customer.subscription.entity';
+import { CustomerNavigation } from './customer.navigation.entity';
 
 @Entity({ name: 'custs' })
 export class Customer extends TagEntity {
@@ -27,11 +30,24 @@ export class Customer extends TagEntity {
   @Column({ type: 'varchar', length: 128 })
   public name: string;
 
+  @Index('idx_customer_settingid')
   @OneToOne(() => CustomerSetting, (setting) => setting.customer, {
     nullable: true,
   })
   @JoinColumn()
   public setting!: CustomerSetting;
+
+  @Index('idx_customer_navid')
+  @OneToOne(() => CustomerNavigation, (navigation) => navigation.customer, {
+    cascade: true,
+    nullable: true,
+  })
+  @JoinColumn()
+  public navigation!: CustomerNavigation;
+
+  @RelationId((item: User) => item.navigation)
+  @Column({ type: 'uuid', nullable: true })
+  public navigationId!: string;
 
   @OneToOne(() => User, { nullable: true })
   @JoinColumn()

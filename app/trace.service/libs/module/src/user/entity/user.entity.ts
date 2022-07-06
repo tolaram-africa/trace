@@ -8,6 +8,7 @@ import {
   JoinTable,
   AfterLoad,
   Index,
+  RelationId,
 } from 'typeorm';
 import { TenantEntity, UserAccountType, UserType } from '@/common/entity';
 import { UserProfile, UserAlert, UserSetting, UserPassport } from './';
@@ -15,6 +16,7 @@ import { Schedule } from '@/module/schedule/entity/schedule.entity';
 import { BankAccount } from '@/module/payment/entity/payment.bank-account.entity';
 import { Tag } from '@/module/tag/entity';
 import { Tree, TreeChildren, TreeParent } from 'typeorm-pg-adjacency-list-tree';
+import { UserNavigation } from './user.navigation.entity';
 
 @Entity({ name: 'users' })
 @Tree()
@@ -60,28 +62,48 @@ export class User extends TenantEntity {
   public name: string;
 
   @Index('idx_user_profileid')
-  @OneToOne(() => UserProfile, (porfile) => porfile.user, { nullable: true })
+  @OneToOne(() => UserProfile, (porfile) => porfile.user, {
+    nullable: true,
+  })
   @JoinColumn()
   public profile!: UserProfile;
 
-  @Column({ nullable: true })
-  public profileId: string;
+  @RelationId((item: User) => item.profile)
+  @Column({ type: 'uuid', nullable: true })
+  public profileId!: string;
 
   @Index('idx_user_tagid')
-  @OneToOne(() => Tag, { nullable: true })
+  @OneToOne(() => Tag, { cascade: true, nullable: true })
   @JoinColumn()
   public team!: Tag;
 
-  @Column({ nullable: true })
+  @RelationId((item: User) => item.team)
+  @Column({ type: 'uuid', nullable: true })
   public teamId: string;
 
   @Index('idx_user_settingid')
-  @OneToOne(() => UserSetting, (setting) => setting.user, { nullable: true })
+  @OneToOne(() => UserSetting, (setting) => setting.user, {
+    cascade: true,
+    nullable: true,
+  })
   @JoinColumn()
   public setting!: UserSetting;
 
-  @Column({ nullable: true })
+  @RelationId((item: User) => item.setting)
+  @Column({ type: 'uuid', nullable: true })
   public settingId!: string;
+
+  @Index('idx_user_navid')
+  @OneToOne(() => UserNavigation, (navigation) => navigation.user, {
+    cascade: true,
+    nullable: true,
+  })
+  @JoinColumn()
+  public navigation!: UserNavigation;
+
+  @RelationId((item: User) => item.navigation)
+  @Column({ type: 'uuid', nullable: true })
+  public navigationId!: string;
 
   @OneToMany(() => UserAlert, (alerts) => alerts.user)
   @JoinColumn()

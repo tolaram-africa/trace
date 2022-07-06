@@ -1,25 +1,9 @@
-import { Point } from 'geojson';
 import { Column } from 'typeorm';
 import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
-import { GeometryTransformer } from '@/common/entity/base.util';
 
 export abstract class BaseSetting extends CoreDeleteEntity {
-  @Column({ type: 'int', nullable: true })
-  public zoomInitial!: number;
-
-  @Column({ type: 'int', nullable: true })
-  public zoomSelection!: number;
-
-  @Column({
-    type: 'geometry',
-    spatialFeatureType: 'Point',
-    transformer: new GeometryTransformer(),
-    nullable: true,
-  })
-  public mapCenter!: Point;
-
-  @Column({ type: 'varchar', length: 64, nullable: true })
-  public mapType!: string;
+  @Column({ type: 'varchar', length: 512, nullable: true })
+  public apiToken: string;
 
   @Column({ type: 'varchar', length: 64, nullable: true })
   public language!: string;
@@ -46,9 +30,6 @@ export abstract class BaseSetting extends CoreDeleteEntity {
   public unitSpeed!: string;
 
   @Column({ type: 'varchar', length: 64, nullable: true })
-  public unitFuel!: string;
-
-  @Column({ type: 'varchar', length: 64, nullable: true })
   public unitPower!: string;
 
   @Column({ type: 'varchar', length: 64, nullable: true })
@@ -59,25 +40,4 @@ export abstract class BaseSetting extends CoreDeleteEntity {
 
   @Column({ type: 'varchar', length: 64, nullable: true })
   public unitArea!: string;
-
-  @Column({ default: true })
-  public enableTrip!: boolean;
-
-  @Column({ default: false })
-  public autoRoute!: boolean;
-
-  @Column({ default: false })
-  public autoOrder!: boolean;
-
-  @Column({ default: false })
-  public autoRouteCost!: boolean;
-
-  @Column({ default: false })
-  public autoInvoice!: boolean;
-
-  @Column({ default: false })
-  public verifyOTP!: boolean;
-
-  @Column({ default: false })
-  public autoZoneOTP!: boolean;
 }

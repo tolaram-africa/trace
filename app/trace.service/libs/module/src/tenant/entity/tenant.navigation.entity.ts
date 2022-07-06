@@ -1,9 +1,9 @@
 import { Entity, OneToOne, RelationId } from 'typeorm';
-import { BaseSetting } from './base.profile-setting.entity';
 import { Tenant } from '@/module/tenant/entity/tenant.entity';
+import { BaseNavigationOption } from './base.navigation-option.entity';
 
-@Entity({ name: 'tenant_settings' })
-export class TenantSetting extends BaseSetting {
+@Entity({ name: 'tenant_nav_options' })
+export class TenantNavigation extends BaseNavigationOption {
   @OneToOne(() => Tenant, (tenant) => tenant.setting, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
@@ -11,6 +11,6 @@ export class TenantSetting extends BaseSetting {
   })
   public tenant: Tenant;
 
-  @RelationId((item: TenantSetting) => item.tenant)
+  @RelationId((item: TenantNavigation) => item.tenant)
   public tenantId!: string;
 }

@@ -1,4 +1,11 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  RelationId,
+} from 'typeorm';
 import { Tenant } from '@/module/tenant/entity/tenant.entity';
 import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 
@@ -7,15 +14,17 @@ export class TenantDomain extends CoreDeleteEntity {
   @Column({ default: false })
   public default: boolean;
 
-  @ManyToOne(() => Tenant, (tenant) => tenant.domains)
+  @Index('idx_tenant_domain_tenantid')
+  @ManyToOne(() => Tenant, (tenant) => tenant.domains, { onDelete: 'CASCADE' })
   @JoinColumn()
   public tenant: Tenant;
 
-  @Column({ nullable: true })
+  @RelationId((item: TenantDomain) => item.tenant)
+  @Column({ type: 'uuid', nullable: true })
   public tenantId: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
-  public domain: string;
+  @Column({ type: 'varchar', length: 128, nullable: false })
+  public address: string;
 
   @Column({ default: false })
   public verified: boolean;
@@ -24,5 +33,5 @@ export class TenantDomain extends CoreDeleteEntity {
     type: 'timestamptz',
     nullable: true,
   })
-  public expires: Date;
+  public expires!: Date;
 }

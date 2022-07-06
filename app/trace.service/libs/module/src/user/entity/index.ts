@@ -4,6 +4,7 @@ export * from './user.alerts.entity';
 export * from './user.auth.entity';
 export * from './user.bank-card.entity';
 export * from './user.entity';
+export * from './user.navigation.entity';
 export * from './user.passport.entity';
 export * from './user.permission.entity';
 export * from './user.profile.entity';
@@ -16,6 +17,7 @@ import {
   UserPassport,
   UserSetting,
   UserAlert,
+  UserNavigation,
   UserPermission,
   BankCard,
 } from './';
@@ -26,6 +28,7 @@ export const UserModuleEntity = [
   UserPassport,
   UserSetting,
   UserAlert,
+  UserNavigation,
   UserPermission,
   BankCard,
 ];

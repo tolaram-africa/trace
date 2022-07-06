@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, RelationId } from 'typeorm';
 import { ExtendedAddress, TenantEntity } from '@/common/entity';
 import { User } from './';
 import { File } from '@root/libs/module/src/file/entity';
@@ -19,11 +19,15 @@ export enum UserGender {
 
 @Entity({ name: 'user_profiles' })
 export class UserProfile extends TenantEntity {
-  @OneToOne(() => User, (user) => user.profile)
+  @OneToOne(() => User, (user) => user.profile, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
   @JoinColumn()
   public user: User;
 
-  @Column({ nullable: true })
+  @RelationId((item: UserProfile) => item.user)
   public userId!: string;
 
   @Column(() => ExtendedAddress)

@@ -1,22 +1,28 @@
-import { OneToOne, JoinColumn, Entity, Index, Column } from 'typeorm';
-import { BaseSetting } from '@/module/tenant/entity';
+import { OneToOne, Entity, RelationId, Column, JoinColumn } from 'typeorm';
+import { BaseSetting, Tenant } from '@/module/tenant/entity';
 import { Customer } from './';
-import { Tenant } from '@/module/tenant/entity';
 
 @Entity({ name: 'customer_settings' })
 export class CustomerSetting extends BaseSetting {
-  @Index('idx_customer_settings_custid')
-  @OneToOne(() => Customer, (customer) => customer.setting, { nullable: true })
+  @OneToOne(() => Tenant, {
+    nullable: true,
+    onDelete: 'SET NULL',
+    orphanedRowAction: 'nullify',
+  })
   @JoinColumn()
-  public customer!: Customer;
+  public tenant!: Tenant;
 
-  @Column({ nullable: true })
-  public customerId!: string;
-
-  @OneToOne(() => Tenant)
-  @JoinColumn()
-  public tenant: Tenant;
-
-  @Column({ nullable: true })
+  @RelationId((item: CustomerSetting) => item.tenant)
+  @Column({ type: 'uuid', nullable: true })
   public tenantId!: string;
+
+  @OneToOne(() => Customer, (customer) => customer.setting, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
+  public customer: Customer;
+
+  @RelationId((item: CustomerSetting) => item.customer)
+  public customerId!: string;
 }
