@@ -1,3 +1,4 @@
+import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import {
   Column,
   Entity,
@@ -6,22 +7,12 @@ import {
   ManyToOne,
   OneToOne,
 } from 'typeorm';
-import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 import { RBACPermission } from '@/common/entity/enum.user';
 import { Tag } from './tag.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { Tenant } from '@/module/tenant/entity';
 
 @Entity({ name: 'tag_members' })
-export class TagMember extends CoreDeleteEntity {
-  @Index('idx_tag_member_tenantid')
-  @OneToOne(() => Tenant, { nullable: true })
-  @JoinColumn()
-  public tenant!: Tenant;
-
-  @Column({ nullable: true })
-  public tenantId!: string;
-
+export class TagMember extends TenantEntity {
   @Index('idx_tag_member_tagid')
   @ManyToOne(() => Tag, (tag) => tag.members)
   @JoinColumn()

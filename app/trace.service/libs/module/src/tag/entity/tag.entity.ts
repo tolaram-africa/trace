@@ -1,30 +1,13 @@
-import {
-  Column,
-  Entity,
-  Index,
-  JoinColumn,
-  OneToMany,
-  OneToOne,
-} from 'typeorm';
-import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
+import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
 import { TagMember } from './tag.members.entity';
 import { Tree, TreeChildren, TreeParent } from 'typeorm-pg-adjacency-list-tree';
-import { Tenant } from '@/module/tenant/entity/tenant.entity';
+import { TenantEntity } from '@/common/entity';
 
 @Entity({ name: 'tags' })
 @Tree()
-export class Tag extends CoreDeleteEntity {
+export class Tag extends TenantEntity {
   @Column({ type: 'varchar', length: 128 })
   public name: string;
-
-  @Index('idx_tag_tenantid')
-  @OneToOne(() => Tenant, { nullable: true })
-  @JoinColumn()
-  public tenant!: Tenant;
-
-  @Column({ nullable: true })
-  public tenantId!: string;
-
   @OneToMany(() => TagMember, (tagMembers) => tagMembers.tag, {
     nullable: true,
   })

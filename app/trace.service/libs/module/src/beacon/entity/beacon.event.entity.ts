@@ -26,10 +26,6 @@ export enum BeaconEventType {
 
 @Entity({ name: 'beacon_events' })
 export class BeaconEvent extends TenantEntity {
-  @OneToOne(() => Tenant, { nullable: true })
-  @JoinColumn()
-  public tenant!: Tenant;
-
   @Column({
     type: 'enum',
     enum: BeaconEventType,
