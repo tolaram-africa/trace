@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import 'reflect-metadata';
-import { coreDataSource } from '../../.ormconfig';
+import { dataSource } from '@root/.orm.config';
 import { validate } from 'class-validator';
 import AdminJS, { AdminJSOptions } from 'adminjs';
 import { Database, Resource } from '@adminjs/typeorm';
@@ -118,7 +118,7 @@ const main = async () => {
   app.listen(appPort, () => console.log(`Trace Admin localhost:${appPort}/`));
 };
 
-coreDataSource
+dataSource
   .initialize()
   .then(main)
   .catch((error) => console.log(error));
