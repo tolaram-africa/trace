@@ -1,19 +1,11 @@
 import { Column, Entity, Index, JoinColumn, OneToOne } from 'typeorm';
-import { Point } from 'geojson';
+import { Point, Geometry, GeometryType } from '@trace/common';
 import { TagEntity } from '@/common/entity/base.tag.entity';
-import { GeometryType, LocationAutoType } from '@/common/entity/enum.base';
+import { LocationAutoType } from '@/common/entity/enum.base';
 import { LocationCategory } from './';
 import { LocationType } from './location.enum';
 import { User } from '@/module/user/entity/user.entity';
-import {
-  GeometryExtended,
-  GeometryTransformer,
-} from '@/common/entity/base.util';
 
-// NOTE: https://github.com/typeorm/typeorm/issues/370
-// TODO: Custom spec type for geometry column
-// https://geoman.io/geojson-editor
-// https://docs.microsoft.com/en-us/azure/azure-maps/extend-geojson
 @Entity({ name: 'locations' })
 export class Location extends TagEntity {
   @Column({ default: false })
@@ -69,17 +61,16 @@ export class Location extends TagEntity {
   @Column({
     type: 'geometry',
     spatialFeatureType: 'Point',
-    transformer: new GeometryTransformer(),
+    srid: 4326,
     nullable: false,
   })
   public center: Point;
 
   @Column({
-    type: 'geometry',
-    transformer: new GeometryTransformer(),
+    type: 'jsonb',
     nullable: false,
   })
-  public shape: GeometryExtended;
+  public shape: Geometry;
 
   @Column({ type: 'jsonb', nullable: true })
   public metadata!: Record<string, unknown>;

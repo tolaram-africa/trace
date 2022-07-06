@@ -93,16 +93,6 @@ export enum LocationAutoType {
   COUNTRY = 'country',
 }
 
-export enum GeometryType {
-  POINT = 'Point',
-  MULTIPOINT = 'MultiPoint',
-  LINESTRING = 'LineString',
-  MULTILINESTRING = 'MultiLineString',
-  POLYGON = 'Polygon',
-  MULTIPOLYGON = 'MultiPolygon',
-  GEOMETRYCOLLECTION = 'GeometryCollection',
-}
-
 export enum FuelOption {
   GAS = 'gas',
   ELECTRIC = 'electric',

@@ -5,13 +5,13 @@ import {
   OneToOne,
   ManyToMany,
   JoinTable,
+  RelationId,
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { Location } from '@/module/location/entity/location.entity';
-import { LineString } from 'geojson';
-import { GeometryTransformer } from '@/common/entity/base.util';
+import { LineString } from '@trace/common';
 
 @Entity({ name: 'routes' })
 export class Route extends TagEntity {
@@ -38,20 +38,22 @@ export class Route extends TagEntity {
   @JoinColumn()
   public source: Location;
 
-  @Column({ nullable: true })
+  @RelationId((item: Route) => item.source)
+  @Column({ type: 'uuid', nullable: true })
   public sourceId!: string;
 
   @OneToOne(() => Location, { nullable: false })
   @JoinColumn()
   public destination: Location;
 
-  @Column({ nullable: true })
+  @RelationId((item: Route) => item.destination)
+  @Column({ type: 'uuid', nullable: true })
   public destinationId!: string;
 
   @Column({
     type: 'geometry',
     spatialFeatureType: 'LineString',
-    transformer: new GeometryTransformer(),
+    srid: 4326,
     nullable: false,
   })
   public polyline: LineString;

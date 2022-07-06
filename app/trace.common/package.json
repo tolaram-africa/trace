@@ -4,10 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "setup": "pnpm run rimraf node_modules && pnpm install",
+    "setup": "rimraf node_modules && pnpm install",
     "dev": "tsc -w",
     "build": "pnpm clean && tsc",
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist",
     "test": "NODE_ENV=unittest pnpm jest",
     "lint": "pnpm eslint --ext .js,.jsx,.ts,.tsx ./"
   },
@@ -42,5 +42,10 @@
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1",
     "pnpm": ">=3"
+  },
+  "dependencies": {
+    "@turf/turf": "^6.5.0",
+    "geojson": "^0.5.0",
+    "wkx": "^0.5.0"
   }
 }
