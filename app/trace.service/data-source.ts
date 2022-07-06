@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import 'dotenv/config';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { DataSourceOptions } from 'typeorm';
 import { extendDataSourceOptions, createDatabase } from 'typeorm-extension';
-import { dataSourceConfig } from './.orm.config';
+import { dataSource } from './.orm.config';
 import { SeederOptions } from 'typeorm-extension';
 
 const path = require('path');
@@ -13,15 +13,16 @@ const seeds = [
 ];
 const factories = [path.join(__dirname, root + '**/*.factory.{ts,js}')];
 
-const config: SeederOptions & DataSourceOptions = {
-  ...dataSourceConfig,
+const options = dataSource.options;
+const config: SeederOptions & DataSourceOptions & any = {
+  options,
   seeds,
   factories,
 };
-export const dataSource = new DataSource(config);
+dataSource.setOptions(config);
+export const source = dataSource.setOptions({ synchronize: false });
 (async () => {
-  dataSource.setOptions({ synchronize: false });
-  await dataSource.initialize();
+  await source.initialize();
   const options = await extendDataSourceOptions(dataSource.options);
   await createDatabase({
     ifNotExist: true,

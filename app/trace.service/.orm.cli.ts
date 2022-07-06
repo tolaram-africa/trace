@@ -1,17 +1,17 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { dataSourceConfig } from './.orm.config';
+import { dataSource } from './.orm.config';
 
 const path = require('path');
 const migrationsDir = path.join(__dirname, 'database/migrations');
 const subscribersDir = path.join(__dirname, 'database/subscribers');
 
+const options = dataSource.options;
 const config: DataSourceOptions & any = {
-  ...dataSourceConfig,
+  ...options,
   cli: {
     migrationsDir,
     subscribersDir,
   },
 };
-
-export const dataSource = new DataSource(config);
-dataSource.initialize();
+export const source = dataSource.setOptions(config);
+source.initialize();
