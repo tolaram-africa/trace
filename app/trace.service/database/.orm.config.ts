@@ -14,11 +14,11 @@ const path = require('path');
 const production = process.env.NODE_ENV === 'production';
 
 const entities = [
-  path.join(__dirname, '/libs/common/src/entity/**/*.entity.{ts,js}'),
-  path.join(__dirname, '/libs/module/src/**/*.entity.{ts,js}'),
+  path.join(__dirname, '../libs/common/src/entity/**/*.entity.{ts,js}'),
+  path.join(__dirname, '../libs/module/src/**/*.entity.{ts,js}'),
 ];
-const migrations = [path.join(__dirname, '/database/migrations/*.{ts,js}')];
-const subscribers = [path.join(__dirname, '/database/subscribers/*.{ts,js}')];
+const migrations = [path.join(__dirname, '/migrations/*.{ts,js}')];
+const subscribers = [path.join(__dirname, '/subscribers/*.{ts,js}')];
 
 export const dataSourceConfig: DataSourceOptions = {
   type: (String(process.env.POSTGRES_DB_TYPE) as DriverType) || 'postgres',

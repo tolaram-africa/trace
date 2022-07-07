@@ -6,9 +6,9 @@ import { dataSource } from './.orm.config';
 import { SeederOptions } from 'typeorm-extension';
 
 const path = require('path');
-const root = '/libs/module/src/';
+const root = '../libs/module/src/';
 const seeds = [
-  path.join(__dirname, '/database/seeds/**/*.{ts,js}'),
+  path.join(__dirname, '/seeds/**/*.{ts,js}'),
   path.join(__dirname, root + '**/*.seeder.{ts,js}'),
 ];
 const factories = [path.join(__dirname, root + '**/*.factory.{ts,js}')];
