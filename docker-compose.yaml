@@ -1,47 +1,123 @@
-version: "3.4"
+version: '3.9'
 
-################################################################################
-# SERVICES
-################################################################################
+networks:
+  app:
+    driver: bridge
+
+volumes:
+    postgres:
+    yugabyte:
+    pgadmin:
+    minio:
 services:
-  # ------------------------------------------------------------
-  # Backend API (NestJs Server)
-  # ------------------------------------------------------------
-  api:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile
-    user: "node"
-    working_dir: /bhnadapt
-    env_file: ./.env.dev
-    volumes:
-      - ./data/backend/content:/adapt/uploads:z
-      - ./data/backend/logs:/adapt/logs:z
-    ports:
-      - 3333:3333
-
-  # ------------------------------------------------------------
-  # Frontend SSR (NuxtJS)
-  # ------------------------------------------------------------
-  client:
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    user: "node"
-    working_dir: /adapt
-    env_file: ./.env.dev
-    ports:
-      - 4444:4444
-
-  # ------------------------------------------------------------
-  # Cache server (Redis Server)
-  # ------------------------------------------------------------
   redis:
     image: redis:5.0-alpine
+    container_name: redis
     restart: unless-stopped
     ports:
       - 6379:6379
+  minio:
+    image: minio/minio
+    container_name: minio
+    restart: "unless-stopped"
+    volumes:
+        - minio:/data
+    env_file: ./.env.minio
+    command: server --address 0.0.0.0:9000 --console-address ":9001" /data
+    ports:
+        - "9000:9000"
+        - "9001:9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+  postgres:
+    image: postgis/postgis:14-3.2-alpine
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data/pgdata
+    env_file:
+      - ./.env.postgres
+    networks:
+      - app
+  # yugabyte:
+  #   container_name: yugabyte
+  #   image: dev/yugabyte
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.yugabyte
+  #   restart: unless-stopped
+  #   ports:
+  #     - 9000:9000
+  #     - 7000:7000
+  #     - 5433:5433
+  #     - 9042:9042
+  #   volumes:
+  #     - yugabyte:/home/yugabyte/yb_data
+  #   command: bin/yugabyted start --base_dir=/home/yugabyte/yb_data --daemon=false
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    ports:
+      - 5435:80
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    env_file:
+      - ./.env.pgadmin
+    networks:
+      - app
+  valhalla:
+    image: gisops/valhalla:latest
+    container_name: valhalla
+    restart: unless-stopped
+    ports:
+      - 8072:8002
+    env_file:
+      - ./.env.valhalla
+    volumes:
+      - ~/valhalla:/custom_files
+  service-gateway:
+    image: trace/service-gateway:${APP_VERSION}
+    restart: unless-stopped
+    build:
+      context: ${SERVICE_ROOT}
+      dockerfile: Dockerfile.service
+      args:
+        SERVICE_NAME: gateway
+        APP_VERSION: ${APP_VERSION}
+    user: "node"
+    working_dir: /app
+    env_file:
+      - ./.env.development
+    volumes:
+      - ${SERVICE_ROOT}/config.dev.yaml:/app/config.yaml:ro
+      - ${SERVICE_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro
+    ports:
+      - 4560:4560
+    networks:
+      - app
+  client-vector:
+    image: trace/app-vector:${APP_VERSION}
+    restart: unless-stopped
+    build:
+      context: ${APP_ROOT}
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: vector
+        APP_VERSION: ${APP_VERSION}
+    user: "node"
+    working_dir: /app
+    env_file:
+      - ./.env.development
+    volumes:
+      - ${APP_ROOT}/.env.development:/app/.env:ro
+    ports:
+      - 4570:4570
+    networks:
+      - app
 
-  # ------------------------------------------------------------
-  # Limited use DB (Postgres Server)
-  # ------------------------------------------------------------
