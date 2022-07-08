@@ -10,6 +10,10 @@
   "generateOptions": {
     "spec": false
   },
+  "assets": [
+    "**/*.graphql"
+  ],
+  "watchAssets": true,
   "projects": {
     "gateway": {
       "type": "application",
