@@ -1,0 +1,4 @@
+service:
+  debug: true
+  host: localhost
+  port: 4562

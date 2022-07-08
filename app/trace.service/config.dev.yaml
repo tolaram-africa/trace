@@ -1,0 +1,26 @@
+app:
+  debug: true
+  name: Trace
+  secret: xx-xxx-xxx-xx
+  services:
+    - name: auth
+      url: http://localhost:4561
+    - name: app
+      url: http://localhost:4562
+    - name: navigation
+      url: http://localhost:4563
+    - name: integration
+      url: http://localhost:4564
+  database:
+    type: postgres
+    host: localhost
+    port: 5432
+    username: trace
+    password: trace
+    database: trace
+    logging: true
+    migrationsTableName: migrations
+    migrationsTransactionMode: each
+    synchronize: true
+    installExtensions: true
+    dropSchema: false
