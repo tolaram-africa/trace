@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import 'dotenv/config';
+import { join } from 'path';
 
 export declare type DriverType =
   | 'mysql'
@@ -10,15 +11,14 @@ export declare type DriverType =
   | 'mariadb'
   | 'mssql';
 
-const path = require('path');
 const production = process.env.NODE_ENV === 'production';
 
 const entities = [
-  path.join(__dirname, '../libs/common/src/entity/**/*.entity.{ts,js}'),
-  path.join(__dirname, '../libs/module/src/**/*.entity.{ts,js}'),
+  join(__dirname, '../libs/common/src/entity/**/*.entity.{ts,js}'),
+  join(__dirname, '../libs/module/src/**/*.entity.{ts,js}'),
 ];
-const migrations = [path.join(__dirname, '/migrations/*.{ts,js}')];
-const subscribers = [path.join(__dirname, '/subscribers/*.{ts,js}')];
+const migrations = [join(__dirname, '/migrations/*.{ts,js}')];
+const subscribers = [join(__dirname, '/subscribers/*.{ts,js}')];
 
 export const dataSourceConfig: DataSourceOptions = {
   type: (String(process.env.POSTGRES_DB_TYPE) as DriverType) || 'postgres',
@@ -45,3 +45,5 @@ export const dataSourceConfig: DataSourceOptions = {
 };
 
 export const dataSource = new DataSource(dataSourceConfig);
+// TODO: Use on app startup
+// dataSource.runMigrations()

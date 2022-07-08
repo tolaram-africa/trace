@@ -1,9 +1,9 @@
 import { DataSourceOptions } from 'typeorm';
 import { dataSource } from './.orm.config';
+import { join } from 'path';
 
-const path = require('path');
-const migrationsDir = path.join(__dirname, '/migrations');
-const subscribersDir = path.join(__dirname, '/subscribers');
+const migrationsDir = join(__dirname, '/migrations');
+const subscribersDir = join(__dirname, '/subscribers');
 const options = dataSource.options;
 const config: DataSourceOptions & any = {
   ...options,
