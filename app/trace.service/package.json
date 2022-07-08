@@ -77,6 +77,7 @@
     "graphql-ws": "^5.9.1",
     "ioredis": "^5.1.0",
     "jexl": "^2.3.0",
+    "js-yaml": "^4.1.0",
     "number-to-words": "^1.2.4",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
@@ -87,8 +88,7 @@
     "typeorm": "^0.3.7",
     "typeorm-extension": "^2.1.4",
     "typeorm-naming-strategies": "^4.1.0",
-    "typeorm-pg-adjacency-list-tree": "^1.1.0",
-    "yaml": "^2.1.1"
+    "typeorm-pg-adjacency-list-tree": "^1.1.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",
