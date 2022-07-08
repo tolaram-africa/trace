@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import 'reflect-metadata';
-import { dataSource } from '@root/.orm.config';
+import { dataSource } from '../.orm.config';
 import { validate } from 'class-validator';
 import AdminJS, { AdminJSOptions } from 'adminjs';
 import { Database, Resource } from '@adminjs/typeorm';
@@ -55,6 +55,7 @@ const main = async () => {
     },
     databases: [],
     dashboard: {
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       handler: async () => {},
       component: AdminJS.bundle('./dashboard'),
     },
