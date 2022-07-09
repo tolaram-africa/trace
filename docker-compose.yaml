@@ -27,6 +27,8 @@ services:
     ports:
         - "9000:9000"
         - "9001:9001"
+    networks:
+      - app
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
@@ -81,19 +83,18 @@ services:
       - ./.env.valhalla
     volumes:
       - ~/valhalla:/custom_files
-  service-gateway:
-    image: trace/service-gateway:${APP_VERSION}
+  service.gateway:
+    image: trace/service.gateway:${VERSION}
     restart: unless-stopped
     build:
-      context: ${SERVICE_ROOT}
+      context: .
       dockerfile: Dockerfile.service
       args:
+        VERSION: ${VERSION}
         SERVICE_NAME: gateway
-        APP_VERSION: ${APP_VERSION}
-    user: "node"
-    working_dir: /app
+        SERVICE_PORT: 4560
     env_file:
-      - ./.env.development
+      - ./app/trace.service/.env.development
     volumes:
       - ${SERVICE_ROOT}/config.dev.yaml:/app/config.yaml:ro
       - ${SERVICE_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro
@@ -101,21 +102,20 @@ services:
       - 4560:4560
     networks:
       - app
-  client-vector:
-    image: trace/app-vector:${APP_VERSION}
+  app.vector:
+    image: trace/app.vector:${VERSION}
     restart: unless-stopped
     build:
-      context: ${APP_ROOT}
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile.client
       args:
+        VERSION: ${VERSION}
         APP_NAME: vector
-        APP_VERSION: ${APP_VERSION}
-    user: "node"
-    working_dir: /app
+
     env_file:
-      - ./.env.development
+      - ./app/trace.service/.env.development
     volumes:
-      - ${APP_ROOT}/.env.development:/app/.env:ro
+      - ${APP_ROOT}/.env:/app/.env:ro
     ports:
       - 4570:4570
     networks:

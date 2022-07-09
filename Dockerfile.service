@@ -1,0 +1,41 @@
+FROM node:16-alpine as builder
+ARG SERVICE_NAME
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
+ENV PNPM_HOME=/usr/local
+ENV PATH=$PATH:$PNPM_HOME
+
+USER root
+RUN apk add build-base libc6-compat gcompat curl && \
+  npm install --global npm pnpm && \
+  pnpm -global add @nestjs/cli rimraf
+
+WORKDIR /home/node
+COPY --chown=node:node . .
+RUN pnpm install --filter ./app/trace.common \
+  --filter ./app/trace.service
+ENV NODE_ENV=production
+RUN cd /home/node/app/trace.service/ && \
+  NODE_ENV=production pnpm build ${SERVICE_NAME} && \
+  cd /home/node/ && pnpm run clean:packages && \
+  pnpm install --prod --filter ./app/trace.common --filter ./app/trace.service  && \
+  rimraf /home/node/app/trace.{client,website,docs}/*
+
+FROM node:16-alpine AS production
+ARG VERSION
+ARG NODE_ENV=production
+ARG SERVICE_NAME
+ARG SERVICE_PORT
+ENV SERVICE_PATH="app/trace.service/dist/apps/${SERVICE_NAME}"
+
+LABEL version=${VERSION}
+LABEL maintaner="Godwin peter .O <me@godwin.dev>"
+LABEL release-date="2022-07-09"
+
+WORKDIR /home/node
+USER node
+COPY --chown=node:node --from=builder "/home/node/" .
+
+WORKDIR "${SERVICE_PATH}/"
+EXPOSE ${SERVICE_PORT}
+CMD ["node",  "main"]
