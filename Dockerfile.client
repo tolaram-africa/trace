@@ -7,7 +7,7 @@ ENV PATH=$PATH:$PNPM_HOME
 
 USER root
 RUN apk add build-base libc6-compat gcompat curl && \
-  npm install --global npm pnpm && \
+  npm install --network-concurrency=48 --global npm pnpm && \
   pnpm -global add @quasar/cli rimraf
 
 WORKDIR /home/node
