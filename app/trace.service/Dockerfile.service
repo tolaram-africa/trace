@@ -1,7 +1,0 @@
-FROM nodejs:alpine as builder
-
-WORKDIR /app
-COPY . /app/
-RUN apk add build-base libc6-compat gcompat curl && \
-  curl -fsSL https://get.pnpm.io/install.sh | sh -
-RUN mv /root/.local/share/pnpm/pnpm /usr/bin/
