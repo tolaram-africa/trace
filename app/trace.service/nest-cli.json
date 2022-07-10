@@ -39,6 +39,7 @@
       "entryFile": "main",
       "sourceRoot": "apps/manager/src",
       "compilerOptions": {
+        "webpack": false,
         "tsConfigPath": "apps/manager/tsconfig.app.json"
       }
     },
