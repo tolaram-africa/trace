@@ -11,7 +11,7 @@ import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import { Order } from './order.entity';
 import { Tag } from '@/module/tag/entity/tag.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { Shipment } from '@/module/shipment/entity/shipment.entity';
 
 @Entity({ name: 'order_manifests' })

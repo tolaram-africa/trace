@@ -11,7 +11,7 @@ import { Driver } from '@/module/driver/entity/driver.entity';
 import { DriverGroup } from '@/module/driver/entity/driver.group.entity';
 import { SizeUnit } from '@/common/entity/enum.base';
 import { User } from '@/module/user/entity/user.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { TypeEntity } from '@/common/entity/base.type.entity';
 import { InsuranceClaim } from '@/module/insurance/entity/insurance.claim.entity';
 import { OrderFreight } from '@/module/order/entity/order.freight.entity';

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-empty-function */
 // const fetch = require('node-fetch');
+/*
 const polyline = require('@mapbox/polyline');
 const turf = require('@turf/turf');
 const fs = require('fs');
@@ -87,3 +88,4 @@ fetch('http://localhost:4568/api/routing/route', {
     fs.writeFile('test_sliced.json', JSON.stringify(turfNewLine), () => {});
   })
   .catch((err) => console.log(err));
+*/

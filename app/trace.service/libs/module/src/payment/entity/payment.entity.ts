@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { TransactionAccount } from './payment.transcation-account.entity';
 import { PaymentType } from './payment.type.entity';
 import { PaymentLoan } from './payment.loan.entity';

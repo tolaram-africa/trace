@@ -10,7 +10,7 @@ import { SoftDeleteEntity } from '@/common/entity';
 import { DriverExpenseRequest } from './driver.expense-request.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { Payment } from '@/module/payment/entity/payment.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 

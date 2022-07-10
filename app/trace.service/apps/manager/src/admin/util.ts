@@ -7,7 +7,7 @@ export type IResourceList = Array<IResource>;
 
 export const transformResources = (
   resources: Array<any>,
-  name: string = 'General',
+  name = 'General',
 ): IResourceList =>
   resources.map((resource) => {
     return { resource: resource, options: { parent: { name } } };

@@ -20,7 +20,7 @@ export default class TenantRquirementSeeder implements Seeder {
     for (let i = range - 1; i <= range; i++) {
       const count = toWords(i);
       const name = `Demo ${count}`;
-      const dns = `demo-${name}.trace.ng`.toLowerCase();
+      const dns = `demo-${count}.trace.ng`.toLowerCase();
 
       const setting = new TenantSetting();
       setting.Hour24Time = true;

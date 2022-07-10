@@ -9,7 +9,7 @@ import {
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { BankAccountType } from '@/common/entity/enum.base';
 import { Bank } from '@/module/system/entity/system.bank.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { ExtendedAddress } from '@/common/entity/base.address.entity';
 
 @Entity({ name: 'bank_accounts' })

@@ -7,7 +7,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { Driver } from './driver.entity';
 import { DriverGroup } from './driver.group.entity';
 import { User } from '@/module/user/entity/user.entity';

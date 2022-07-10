@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity';
 import { Currency } from '@/module/system/entity';
-import { File } from '@root/libs/module/src/file/entity';
+import { File } from '@/module/file/entity';
 import { User } from '@/module/user/entity';
 
 @Entity({ name: 'transaction_accounts' })

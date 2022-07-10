@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import 'dotenv/config';
 import { DataSourceOptions } from 'typeorm';
 import { extendDataSourceOptions, createDatabase } from 'typeorm-extension';
-import { dataSource } from './.orm.config';
+import { dataSource } from './connection';
 import { SeederOptions } from 'typeorm-extension';
 import { join } from 'path';
 

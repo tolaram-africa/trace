@@ -1,13 +1,32 @@
-import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  RelationId,
+} from 'typeorm';
 import { TagMember } from './tag.members.entity';
 import { Tree, TreeChildren, TreeParent } from 'typeorm-pg-adjacency-list-tree';
-import { TenantEntity } from '@/common/entity';
+import { Tenant } from '@/module/tenant/entity/tenant.entity';
+import { SoftDeleteEntity } from '@/common/entity';
 
 @Entity({ name: 'tags' })
 @Tree()
-export class Tag extends TenantEntity {
+export class Tag extends SoftDeleteEntity {
   @Column({ type: 'varchar', length: 128 })
   public name: string;
+
+  @Index('idx_tag_tenantid')
+  @OneToOne(() => Tenant, { nullable: true })
+  @JoinColumn()
+  public tenant!: Tenant;
+
+  @RelationId((item: Tag) => item.tenant)
+  @Column({ type: 'uuid', nullable: true })
+  public tenantId!: string;
+
   @OneToMany(() => TagMember, (tagMembers) => tagMembers.tag, {
     nullable: true,
   })
@@ -20,7 +39,8 @@ export class Tag extends TenantEntity {
   @TreeParent()
   public parent!: Tag;
 
-  @Column({ nullable: true })
+  @RelationId((item: Tag) => item.parent)
+  @Column({ type: 'uuid', nullable: true })
   public parentId!: string;
 
   @TreeChildren()

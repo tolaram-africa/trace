@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { MaintenanceRequestIssue } from './maintenance.request-issue.entity';
 import { MaintenanceRequest } from './maintenance.request.entity';
 import { Vehicle } from '@/module/asset/entity/asset.vehicle.entity';

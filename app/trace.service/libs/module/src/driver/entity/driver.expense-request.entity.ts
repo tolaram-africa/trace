@@ -2,7 +2,7 @@ import { SoftDeleteEntity } from '@/common/entity';
 import { User } from '@/module/user/entity/user.entity';
 import { Driver } from './driver.entity';
 import { DriverExpensePlan } from './driver.expense-plan.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { DriverExpenseType } from '@/module/driver/entity/driver.expense-type.entity';
 import { TaskRequest } from '@/module/task/entity/task.request.entity';

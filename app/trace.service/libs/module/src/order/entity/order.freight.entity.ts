@@ -7,7 +7,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { ProductModel } from '@/module/product/entity/product.model.entity';
 import { OrderRequest } from './order.request.entity';
 

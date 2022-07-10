@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, OneToOne, RelationId } from 'typeorm';
 import { ExtendedAddress, TenantEntity } from '@/common/entity';
 import { User } from './';
-import { File } from '@root/libs/module/src/file/entity';
+import { File } from '@/module/file/entity';
 
 export enum UserMaritalStatus {
   SINGLE = 'single',

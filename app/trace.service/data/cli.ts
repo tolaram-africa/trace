@@ -1,5 +1,5 @@
 import { DataSourceOptions } from 'typeorm';
-import { dataSource } from './.orm.config';
+import { dataSource } from './connection';
 import { join } from 'path';
 
 const migrationsDir = join(__dirname, '/migrations');

@@ -12,7 +12,7 @@ import {
   PayTransactionType,
 } from '@/common/entity';
 import { User } from '@/module/user/entity';
-import { File } from '@root/libs/module/src/file/entity';
+import { File } from '@/module/file/entity';
 import { PaymentType, Payment } from './';
 
 @Entity({ name: 'payment_requests' })

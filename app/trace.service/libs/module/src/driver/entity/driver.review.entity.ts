@@ -9,7 +9,7 @@ import {
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { Driver } from './driver.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { DriverReviewComment } from './driver.review.comment.entity';
 import { DriverReviewType } from './driver.review.type.entity';
 

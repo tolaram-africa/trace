@@ -7,7 +7,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { User } from '@/module/user/entity/user.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { CoreDeleteEntity } from '@/common/entity/base.core.soft-delete.entity';
 import { JoinColumn } from 'typeorm';
 

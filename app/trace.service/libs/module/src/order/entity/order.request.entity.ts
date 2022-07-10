@@ -12,7 +12,7 @@ import { Task } from '@/module/task/entity/task.entity';
 import { Ticket } from '@/module/ticket/entity/ticket.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { OrderFreight } from './order.freight.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { Order } from './order.entity';
 
 export enum OrderRequestStatus {

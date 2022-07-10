@@ -3,7 +3,7 @@ import { TagEntity } from '@/common/entity/base.tag.entity';
 import { Task } from './task.entity';
 import { TaskEventStatusType } from './task.event-status-type.entity';
 import { TaskEventType } from './task.event-type.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 
 @Entity({ name: 'task_events' })
 export class TaskEvent extends TagEntity {

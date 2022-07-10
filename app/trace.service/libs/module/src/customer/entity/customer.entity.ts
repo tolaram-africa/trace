@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { User } from '@/module/user/entity/user.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { CustomerGroup } from './customer.group.entity';
 import { CustomerContract } from './customer.contract.entity';
 import { CustomerClient } from './customer.client.entity';

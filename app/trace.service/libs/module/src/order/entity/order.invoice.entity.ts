@@ -13,7 +13,7 @@ import { Order } from './order.entity';
 import { Ticket } from '@/module/ticket/entity/ticket.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { TransactionAccount } from '@/module/payment/entity/payment.transcation-account.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 
 export enum OrderInvoiceStatus {
   PENDING = 'pending',

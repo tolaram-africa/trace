@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { StockWarehouse } from './stock.warehouse.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 import { StockChange } from './stock.change.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { ProductModel } from '@/module/product/entity/product.model.entity';

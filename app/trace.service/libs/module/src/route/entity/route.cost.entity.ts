@@ -13,7 +13,7 @@ import { Customer } from '@/module/customer/entity/customer.entity';
 import { CustomerGroup } from '@/module/customer/entity/customer.group.entity';
 import { VehicleType } from '@/common/entity/enum.object';
 import { RouteCostItem } from './route.cost-item.entity';
-import { TrailerType } from '@root/libs/module/src/asset/entity/asset.trailer.type.entity';
+import { TrailerType } from '@/module/asset/entity/asset.trailer.type.entity';
 import { User } from '@/module/user/entity/user.entity';
 import { CustomerContract } from '@/module/customer/entity/customer.contract.entity';
 import { Route } from './route.entity';

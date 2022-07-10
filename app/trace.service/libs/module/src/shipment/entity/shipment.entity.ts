@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
 import { ShipmentProvider } from '@/module/shipment/entity/shipment.provider.entity';
-import { File } from '@root/libs/module/src/file/entity/file.entity';
+import { File } from '@/module/file/entity/file.entity';
 
 @Entity({ name: 'shipments' })
 export class Shipment extends SoftDeleteEntity {
