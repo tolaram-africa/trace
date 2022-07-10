@@ -3,15 +3,27 @@ app:
   name: Trace
   secret: xx-xxx-xxx-xx
   services:
-    - name: auth
-      url: http://localhost:4561
-    - name: app
-      url: http://localhost:4562
-    - name: navigation
-      url: http://localhost:4563
+    - name: gateway
+      host: service.gateway
+      port: 4560
+    - name: identity
+      host: service.identity
+      port: 4561
+    - name: operation
+      host: service.operation
+      port: 4562
     - name: integration
-      url: http://localhost:4564
-  database:
+      host: service.integration
+      port: 4564
+    - name: navigation
+      host: service.navigation
+      port: 4565
+    - name: manager
+      host: service.manager
+      port: 4565
+
+database:
+  postgres:
     type: postgres
     host: localhost
     port: 5432
@@ -24,3 +36,9 @@ app:
     synchronize: true
     installExtensions: true
     dropSchema: false
+  mongodb:
+    type: mongodb
+    host: localhost
+    port: 27017
+    username: trace
+    synchronize: true

@@ -2,3 +2,4 @@ service:
   debug: true
   host: localhost
   port: 4561
+  secret: xx-xxx-xxx-xx

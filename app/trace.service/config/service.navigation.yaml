@@ -1,9 +1,5 @@
 service:
   debug: true
   host: localhost
-  port: 4563
-  database:
-    type: mongodb
-    host: localhost
-    port: 5432
-    username: trace
+  port: 4566
+  google-api-key: google
