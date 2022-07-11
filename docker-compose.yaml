@@ -1,7 +1,7 @@
 version: '3.9'
 
 networks:
-  app:
+  proxy:
     driver: bridge
 
 volumes:
@@ -16,19 +16,32 @@ services:
     restart: unless-stopped
     ports:
       - 6379:6379
+    networks:
+      - proxy
   minio:
     image: minio/minio
     container_name: minio
     restart: "unless-stopped"
     volumes:
-        - minio:/data
+      - minio:/data
     env_file: ./.env.minio
     command: server --address 0.0.0.0:9000 --console-address ":9001" /data
-    ports:
-        - "9000:9000"
-        - "9001:9001"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.services.minio.loadbalancer.server.port=9000
+      - traefik.http.services.minio-admin.loadbalancer.server.port=9001
+      - traefik.http.routers.minio.entrypoints=webinsecure
+      - traefik.http.routers.minio.service=minio@docker
+      - traefik.http.routers.minio.rule=Host(`cdn.trace.ng`)
+      - traefik.http.routers.minio-admin.entrypoints=webinsecure
+      - traefik.http.routers.minio-admin.service=minio-admin@docker
+      - traefik.http.routers.minio-admin.rule=Host(`minio.trace.ng`)
+    # ports:
+    #   - 9000:9000
+    #   - 9001:9001
     networks:
-      - app
+      - proxy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
@@ -40,12 +53,12 @@ services:
     restart: unless-stopped
     ports:
       - 5432:5432
+    networks:
+      - proxy
     volumes:
       - postgres:/var/lib/postgresql/data/pgdata
     env_file:
       - ./.env.postgres
-    networks:
-      - app
   # yugabyte:
   #   container_name: yugabyte
   #   image: dev/yugabyte
@@ -54,7 +67,7 @@ services:
   #     dockerfile: Dockerfile.yugabyte
   #   restart: unless-stopped
   #   ports:
-  #     - 9000:9000
+  #     - 9009:9000
   #     - 7000:7000
   #     - 5433:5433
   #     - 9042:9042
@@ -67,22 +80,64 @@ services:
     restart: unless-stopped
     ports:
       - 5435:80
+    networks:
+      - proxy
     volumes:
       - pgadmin:/var/lib/pgadmin
     env_file:
       - ./.env.pgadmin
-    networks:
-      - app
   valhalla:
     image: gisops/valhalla:latest
     container_name: valhalla
     restart: unless-stopped
     ports:
       - 8072:8002
+    networks:
+      - proxy
     env_file:
       - ./.env.valhalla
     volumes:
       - ~/valhalla:/custom_files
+  traefik:
+    image: traefik:v2.8
+    security_opt:
+      - no-new-privileges:true
+    command:
+      - --providers.docker=true
+      - --api.dashboard=true
+      - --api.insecure=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.webinsecure.address=:80
+      - --entrypoints.websecure.address=:443
+      # redirection to https
+      # - --entrypoints.webinsecure.http.redirections.entrypoint.to=websecure
+      # - --entrypoints.webinsecure.http.redirections.entrypoint.scheme=https
+      # certificatesresolvers
+      # - --certificatesresolvers.leresolver.acme.tlschallenge=true
+      # Email address used for registration
+      # - --certificatesresolvers.leresolver.acme.email=${TRAEFIK_CERT_EMAIL}
+      # - --certificatesresolvers.leresolver.acme.storage=/letsencrypt/acme.json
+    labels:
+      traefik.enable: true
+      traefik.docker.network: proxy
+      traefik.http.routers.dashboard.rule: Host(`localhost`)
+      traefik.http.services.traefik.loadbalancer.server.port: 8080
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.entrypoints: webinsecure
+      # - traefik.http.routers.traefik.tls.certresolver=leresolver
+      traefik.http.routers.traefik.middlewares: traefik-auth
+      traefik.http.middlewares.traefik-auth.basicauth.users: ${TRAEFIK_USERNAME}:${TRAEFIK_PASSWORD}
+    ports:
+      - "80:80"
+      # - "8080:8080"
+    networks:
+      - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # - ./data/traefik.yml:/traefik.yml:ro
+      # - ./data/acme.json:/acme.json
+
   service.gateway:
     image: trace/service.gateway:${VERSION}
     restart: unless-stopped
@@ -99,9 +154,19 @@ services:
       - ${SERVICE_ROOT}/config.dev.yaml:/app/config.yaml:ro
       - ${SERVICE_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro
     ports:
-      - 4560:4560
+      - 4560:3000
     networks:
-      - app
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.services.service-gateway.loadbalancer.server.port=3000
+      - traefik.http.routers.service-gateway.entrypoints=webinsecure
+      - traefik.http.routers.service-gateway.rule=Host(`graph.trace.ng`)
+      ## For prefixing only without dns
+      # - traefik.http.routers.service-gateway.rule=Host(`stage.trace.ng`) && PathPrefix(`/graphql`)
+      # - traefik.http.routers.service-gateway.middlewares=srv-gateway-prefix
+      # - traefik.http.middlewares.srv-gateway-prefix.stripprefix.prefixes=/graphql
   app.vector:
     image: trace/app.vector:${VERSION}
     restart: unless-stopped
@@ -111,13 +176,28 @@ services:
       args:
         VERSION: ${VERSION}
         APP_NAME: vector
-
     env_file:
-      - ./app/trace.service/.env.development
+      - ./app/trace.client/.env.development
     volumes:
       - ${APP_ROOT}/.env:/app/.env:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
-      - 4570:4570
+      - 4570:80
     networks:
-      - app
-
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.app-vector.entrypoints=webinsecure
+      - traefik.http.routers.app-vector.rule=Host(`stage.trace.ng`)
+      # - traefik.http.routers.app-vector.tls=true
+      # - traefik.http.routers.app-vector.tls.certresolver=le
+      - traefik.http.services.app-vector.loadbalancer.server.port=80
+      ## CatchAll error wildcards
+      - traefik.http.routers.error-router.rule=HostRegexp(`{host:.+}`)
+      - traefik.http.routers.error-router.priority=1
+      ## Source: https://imandrea.me/blog/traefik-custom-404/
+      # - traefik.http.routers.error-router.middlewares=error-pages-middleware
+      # - traefik.http.middlewares.error-pages-middleware.errors.status=400-599
+      # - traefik.http.middlewares.error-pages-middleware.errors.service=error-pages-service
+      # - traefik.http.middlewares.error-pages-middleware.errors.query=/{status}.html

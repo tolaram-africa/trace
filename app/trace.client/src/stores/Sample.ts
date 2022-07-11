@@ -1,22 +1,26 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore(
+export type TenantTestProfile = { name: string; id: number };
+
+export const useSampleStore = defineStore(
   'counter',
   () => {
-    const count = ref(0);
-    function increment() {
-      count.value++;
-    }
+    const tenant = ref<TenantTestProfile>();
+    const getTenant = () => tenant.value;
+    const setTenant = (payload: TenantTestProfile) => {
+      tenant.value = payload;
+    };
 
     return {
-      count,
-      increment,
+      tenant,
+      getTenant,
+      setTenant,
     };
-  },
-  {
-    persist: true,
   }
+  // {
+  //   persist: true,
+  // }
 );
 
 // import { useCounterStore } from '@/layouts/stores';

@@ -15,7 +15,7 @@ COPY --chown=node:node . .
 RUN pnpm install
 ENV NODE_ENV=production
 RUN cd /home/node/app/trace.client/ && \
-  NODE_ENV=production pnpm build
+  NODE_ENV=production pnpm build:pwa
 
 FROM nginx:stable-alpine as production
 COPY --from=builder "/home/node/app/trace.client/dist/pwa" /usr/share/nginx/html

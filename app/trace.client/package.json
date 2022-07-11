@@ -20,7 +20,7 @@
     "dev:android": "quasar dev -m capacitor -T android",
     "dev:pwa": "quasar dev -m pwa",
     "dev:ssr": "quasar dev -m ssr",
-    "build": "pnpm common build && quasar build -m pwa",
+    "build": "pnpm common build && quasar build",
     "build:android": "quasar build -m capacitor -T android",
     "build:pwa": "quasar build -m pwa",
     "build:ssr": "quasar build -m ssr",
