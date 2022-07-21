@@ -1,0 +1,82 @@
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /etc/ssl/traefik/cert.pem
+        keyFile: /etc/ssl/traefik/privkey.pem
+  certificates:
+    - certFile: /etc/ssl/traefik/cert.pem
+      keyFile: /etc/ssl/traefik/privkey.pem
+
+http:
+  ## Routers
+  routers:
+    sample:
+      entryPoints:
+        - 'web-secure'
+      rule: 'Host(`sample.traefik.me`) || Host(`sample.traefik.me`) && PathPrefix(`/api`)'
+      middlewares:
+        - default-headers
+        - https-redirect
+        - sample-cors
+        - sample-strip
+      tls: {}
+      service: sample
+
+  ## Services
+  services:
+    sample:
+      loadBalancer:
+        # scheme: https
+        servers:
+          - url: 'http://swarm.srv.bhn.ng:16080'
+        passHostHeader: true
+
+  ## Middlewares
+  middlewares:
+    https-redirect:
+      redirectScheme:
+        scheme: https
+        permanent: true
+    sample-strip:
+      stripPrefix:
+        prefixes:
+          - '/api,/api/'
+    sample-cors:
+      headers:
+        accessControlAllowMethods: GET,POST,PUT,OPTIONS
+        accessControlAllowOriginlist: '*'
+        accessControlMaxAge: 86400
+    default-headers:
+      headers:
+        frameDeny: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 15552000
+        customFrameOptionsValue: SAMEORIGIN
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+        customResponseHeaders:
+          ## Limits information.
+          server: ''
+          x-powered-by: ''
+    default-whitelist:
+      ipWhiteList:
+        sourceRange:
+          - '10.0.0.0/8'
+          - '192.168.0.0/16'
+          - '172.16.0.0/12'
+    secured:
+      chain:
+        middlewares:
+          - default-whitelist
+          - default-headers
+    basic-auth:
+      basicauth:
+        removeheader: true
+        usersfile: /basic-auth
+        realm: Trace-Auth
+        headerField: X-WebAuth-User
