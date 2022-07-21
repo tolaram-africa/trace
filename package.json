@@ -31,8 +31,8 @@
     "dev:service": "pnpm run service dev",
     "build": "pnpm -r --filter ./app run build",
     "clean": " pnpm clean:dist && pnpm clean:packages",
-    "clean:packages": "rimraf ./**/node_modules ./**/yarn* ./**/package-lock.* ./**/.pnpm-debug* ./**/pnpm-lock.yaml",
-    "clean:dist": "rimraf app/*/dist",
+    "clean:packages": "rimraf **/node_modules **/yarn* **/package-lock.* **/.pnpm-debug* **/pnpm-lock.yaml",
+    "clean:dist": "rimraf app/**/dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
