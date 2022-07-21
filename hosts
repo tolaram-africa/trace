@@ -1,0 +1,23 @@
+## traefik.me public endpoints
+127.0.0.1   stage.traefik.me
+127.0.0.1   manage.traefik.me
+127.0.0.1   support.traefik.me
+127.0.0.1   graph.traefik.me
+
+## Temp sample
+127.0.0.1   sample.traefik.me
+127.0.0.1   whoami.traefik.me
+127.0.0.1   local.traefik.me
+
+## traefik.me tenant sample
+127.0.0.1   demo-one.stage.traefik.me
+127.0.0.1   demo-one.stage.traefik.me
+127.0.0.1   trace-demo.traefik.me
+
+## traefik.me internal services
+127.0.0.1   service.gateway
+127.0.0.1   service.identity
+127.0.0.1   service.operation
+127.0.0.1   service.integration
+127.0.0.1   service.navigation
+127.0.0.1   service.manager
