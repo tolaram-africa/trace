@@ -12,12 +12,13 @@ volumes:
 
 configs:
   prov_conf:
-    file: ./stack.default.config.yml
+    file: ./stack.proxy.config.yml
 secrets:
   basic_auth:
     file: ./users.basic-auth
 
 services:
+  ## Development SSSL certificates pull.
   cert_pull:
     image: alpine
     command: sh -c "cd /etc/ssl/traefik
@@ -29,39 +30,46 @@ services:
       - proxy
   traefik:
     image: traefik:v2.8
+    env_file: ./.env
     command:
-      - --global.checkNewVersion=false
-      - --global.sendAnonymousUsage=false
-      - --api.insecure=true
-      - --accesslog=true
-      - --log.level=INFO
-      - --api.dashboard=true
-      - --providers.docker=true
-      - --providers.docker.watch=true
-      - --providers.docker.network=app-proxy
-      - --providers.docker.swarmMode=true
-      - --providers.docker.swarmModeRefreshSeconds=5
-      - --providers.docker.exposedbydefault=false
+      - '--global.checkNewVersion=false'
+      - '--global.sendAnonymousUsage=false'
+      - '--accesslog=true'
+      - '--log.level=INFO'
+      - '--api.dashboard=true'
+      - '--api.insecure=true'
+      - '--providers.docker=true'
+      - '--providers.docker.watch=true'
+      - '--providers.docker.network=app-proxy'
+      - '--providers.docker.swarmMode=true'
+      - '--providers.docker.swarmModeRefreshSeconds=5'
+      - '--providers.docker.exposedbydefault=false'
       - '--providers.docker.endpoint=unix:///var/run/docker.sock'
-      - '--providers.docker.defaultRule=HostRegexp(`{{ normalize .Name}}.traefik.me`)'
-      - --providers.file.filename=/config.yml
-      - --providers.file.watch=true
-      - --serversTransport.insecureSkipVerify=true
-      ## Configure entrypoint
-      - --entrypoints.web-insecure.address=:80
-      - --entrypoints.web-secure.address=:443
+      - '--providers.docker.defaultRule=HostRegexp(`{{ normalize .Name}}.${DOMAIN}`)'
+      - '--providers.file.filename=/config.yml'
+      - '--providers.file.watch=true'
+      - '--serversTransport.insecureSkipVerify=true'
+      ## Web entrypoints
+      - '--entrypoints.web-insecure.address=:80'
+      - '--entrypoints.web-secure.address=:443'
+      ## IOT entrypoints
+      - '--entrypoints.iot-gps103.address=:5001'
+      - '--entrypoints.iot-tk103.address=:5002'
+      - '--entrypoints.iot-h02.address=:5013'
+      - '--entrypoints.iot-gt06.address=:5023'
+      - '--entrypoints.iot-calamp.address=:5082'
       ## SSL certificates configuration
-      - --certificatesresolvers.leresolver.acme.email=me@godwin.dev
-      - --certificatesresolvers.leresolver.acme.storage=/letsencrypt/acme.json
+      - '--certificatesresolvers.leresolver.acme.email=me@godwin.dev'
+      - '--certificatesresolvers.leresolver.acme.storage=/letsencrypt/acme.json'
       - '--certificatesresolvers.leresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory'
-      - --certificatesresolvers.leresolver.acme.tlsChallenge=true
-      - --certificatesresolvers.leresolver.acme.httpchallenge=false
-      - --certificatesResolvers.leresolver.acme.httpchallenge.entryPoint=web-insecure
+      - '--certificatesresolvers.leresolver.acme.tlsChallenge=true'
+      - '--certificatesresolvers.leresolver.acme.httpchallenge=false'
+      - '--certificatesResolvers.leresolver.acme.httpchallenge.entryPoint=web-insecure'
       ## Global HTTP >> HTTPS
-      - --entrypoints.web-insecure.http.redirections.entryPoint.to=web-secure
-      - --entrypoints.web-insecure.http.redirections.entryPoint.scheme=https
-      - --entrypoints.web-insecure.http.redirections.entryPoint.permanent=true
-      - --entrypoints.web-secure.http.tls.certResolver=leresolver
+      - '--entrypoints.web-insecure.http.redirections.entryPoint.to=web-secure'
+      - '--entrypoints.web-insecure.http.redirections.entryPoint.scheme=https'
+      - '--entrypoints.web-insecure.http.redirections.entryPoint.permanent=true'
+      - '--entrypoints.web-secure.http.tls.certResolver=leresolver'
     deploy:
       labels:
         - 'traefik.enable=true'
@@ -69,17 +77,17 @@ services:
         - 'traefik.http.middlewares.traefik-prefix.stripprefix.prefixes=/status,/status/'
         - 'traefik.http.middlewares.traefik-prefix.stripprefix.forceSlash=true'
         - 'traefik.http.routers.traefik.entrypoints=web-insecure'
-        - 'traefik.http.routers.traefik.rule=Host(`local.traefik.me`) && PathPrefix(`/status`) || PathPrefix(`/api`)'
+        - 'traefik.http.routers.traefik.rule=Host(`local.${DOMAIN}`) && PathPrefix(`/status`) || PathPrefix(`/api`)'
         - 'traefik.http.routers.traefik.middlewares=https-redirect@file'
         - 'traefik.http.services.traefik.loadbalancer.server.port=8080'
-        - 'traefik.http.routers.traefik-secure.rule=Host(`local.traefik.me`) && PathPrefix(`/status`) || PathPrefix(`/api`)'
+        - 'traefik.http.routers.traefik-secure.rule=Host(`local.${DOMAIN}`) && PathPrefix(`/status`) || PathPrefix(`/api`)'
         - 'traefik.http.routers.traefik-secure.entrypoints=web-secure'
         - 'traefik.http.routers.traefik-secure.middlewares=traefik-prefix,basic-auth@file'
         - 'traefik.http.routers.traefik-secure.tls=true'
         - 'traefik.http.routers.traefik-secure.tls.certresolver=leresolver'
         - 'traefik.http.routers.traefik-secure.service=api@internal'
-        - 'traefik.http.routers.traefik-secure.tls.domains[0].main=local.traefik.me'
-        - 'traefik.http.routers.traefik-secure.tls.domains[0].sans=local-*.traefik.me'
+        - 'traefik.http.routers.traefik-secure.tls.domains[0].main=local.${DOMAIN}'
+        - 'traefik.http.routers.traefik-secure.tls.domains[0].sans=local-*.${DOMAIN}'
       placement:
         constraints: [node.role == manager]
       mode: global
@@ -94,7 +102,6 @@ services:
       - 80:80
       - 443:443
       - '443:443/udp'
-      # - 8080:8080
     networks:
       - proxy
     volumes:
@@ -103,7 +110,7 @@ services:
       - proxy:/letsencrypt
       - certs:/etc/ssl/traefik
       ## docker-compose!!!
-      # - ./stack.default.config.yml:/config.yml
+      # - ./stack.proxy.config.yml:/config.yml
       # - ./basic-auth:/basic-auth
     ## docker swarm!!!
     configs:
@@ -115,6 +122,7 @@ services:
 
   whoami:
     image: traefik/whoami
+    env_file: ./.env
     deploy:
       labels:
         - 'traefik.enable=true'
@@ -122,7 +130,7 @@ services:
         - 'traefik.http.middlewares.whoami-limit.ratelimit.average=100'
         - 'traefik.http.middlewares.whoami-limit.ratelimit.burst=50'
         - 'traefik.http.services.whoami.loadbalancer.server.port=80'
-        - 'traefik.http.routers.whoami.rule=Host(`whoami.traefik.me`)'
+        - 'traefik.http.routers.whoami.rule=Host(`whoami.${DOMAIN}`)'
         - 'traefik.http.routers.whoami.entrypoints=web-secure'
         - 'traefik.http.routers.whoami.tls.certresolver=leresolver'
         - 'traefik.http.routers.whoami.middlewares=whoami-limit'
