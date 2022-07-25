@@ -1,0 +1,41 @@
+version: '3.9'
+
+networks:
+  inter-net:
+    name: inter-net
+    driver: overlay
+    attachable: true
+
+services:
+  server:
+    image: crazymax/swarm-cronjob
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    environment:
+      - 'TZ=Africa/Lagos'
+      - 'LOG_LEVEL=info'
+      - 'LOG_JSON=false'
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - inter-net
+  prune:
+    image: docker
+    command: ['docker', 'system', 'prune', '--all', '--volumes', '--force']
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - 'swarm.cronjob.enable=true'
+        - 'swarm.cronjob.schedule=0 */25 * * * *'
+        - 'swarm.cronjob.skip-running=false'
+      restart_policy:
+        condition: none
+    networks:
+      - inter-net
