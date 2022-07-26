@@ -15,7 +15,7 @@ configs:
     file: ./stack.proxy.config.yml
 secrets:
   basic_auth:
-    file: ./users.basic-auth
+    file: ./admin.basic-auth
 
 services:
   cert_pull:
@@ -126,10 +126,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - proxy:/letsencrypt
       - certs:/etc/ssl/traefik
-      ## docker-compose!!!
-      # - ./stack.proxy.config.yml:/config.yml
-      # - ./basic-auth:/basic-auth
-    ## docker swarm!!!
     configs:
       - source: prov_conf
         target: /config.yml
@@ -137,23 +133,23 @@ services:
       - source: basic_auth
         target: /basic-auth
 
-  test-app:
+  test:
     image: traefik/whoami
     deploy:
       labels:
         - 'traefik.enable=true'
         ## 100 requests per second && 50 burst per second
-        - 'traefik.http.middlewares.test-app-limit.ratelimit.average=100'
-        - 'traefik.http.middlewares.test-app-limit.ratelimit.burst=50'
-        - 'traefik.http.services.test-app.loadbalancer.server.port=80'
-        - 'traefik.http.routers.test-app.rule=Host(`test-app.${DOMAIN}`)'
-        - 'traefik.http.routers.test-app.entrypoints=web-secure'
-        - 'traefik.http.routers.test-app.tls.certresolver=leresolver'
-        - 'traefik.http.routers.test-app.middlewares=test-app-limit'
+        - 'traefik.http.middlewares.test-limit.ratelimit.average=100'
+        - 'traefik.http.middlewares.test-limit.ratelimit.burst=50'
+        - 'traefik.http.services.test.loadbalancer.server.port=80'
+        - 'traefik.http.routers.test.rule=Host(`test.${DOMAIN}`)'
+        - 'traefik.http.routers.test.entrypoints=web-secure'
+        - 'traefik.http.routers.test.tls.certresolver=leresolver'
+        - 'traefik.http.routers.test.middlewares=test-limit'
         ## Sample catch-all route
         - 'traefik.http.routers.http-catchall.rule=HostRegexp(`{host:.+}`)'
         - 'traefik.http.routers.http-catchall.entrypoints=web-secure'
-        - 'traefik.http.routers.http-catchall.service=test-app'
+        - 'traefik.http.routers.http-catchall.service=test'
         - 'traefik.http.routers.http-catchall.priority=1'
     networks:
       - proxy

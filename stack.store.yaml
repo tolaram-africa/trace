@@ -2,10 +2,8 @@ version: '3.9'
 
 networks:
   proxy:
-    external: true
     name: service-proxy
 
-## mkdir -p ~/docker-temp/{postgres,minio}
 services:
   minio:
     image: minio/minio
@@ -20,19 +18,18 @@ services:
           memory: 32M
       labels:
         - traefik.enable=true
-        - traefik.docker.network=proxy
         - traefik.http.services.minio.loadbalancer.server.port=9000
         - traefik.http.services.minio-admin.loadbalancer.server.port=9001
         # - traefik.http.routers.minio.entrypoints=web-secure
         # - traefik.http.routers.minio.service=minio@docker
         # - traefik.http.routers.minio.rule=Host(`cdn.trace.ng`)
-        # - traefik.http.routers.minio-admin.entrypoints=webinsecure
+        # - traefik.http.routers.minio-admin.entrypoints=web-insecure
         # - traefik.http.routers.minio-admin.service=minio-admin@docker
         # - traefik.http.routers.minio-admin.rule=Host(`manage.trace.ng/storage`)
     volumes:
-      - '${STORE_ROOT}/minio:/data'
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - '${STORE_ROOT}/minio:/data'
     env_file: '${PWD}/.env.minio'
     command: server --address 0.0.0.0:9000 --console-address ":9001" /data
     networks:
@@ -80,6 +77,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+      - '${STORE_ROOT}/redis:/data'
     ports:
       - 6379:6379
     healthcheck:
