@@ -1,12 +1,13 @@
 ## traefik.me public endpoints
-127.0.0.1 stage.traefik.me
+127.0.0.1 staging.traefik.me
 127.0.0.1 manager.traefik.me
 127.0.0.1 support.traefik.me
 127.0.0.1 graph.traefik.me
 
 ## Temp sample
+127.0.0.1 registry.local
 127.0.0.1 sample.traefik.me
-127.0.0.1 test-app.traefik.me
+127.0.0.1 test.traefik.me
 127.0.0.1 local.traefik.me
 
 ## traefik.me tenant sample
