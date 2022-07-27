@@ -59,11 +59,11 @@ services:
       - '--entrypoints.web-insecure.address=:80'
       - '--entrypoints.web-secure.address=:443'
       ## IOT entrypoints
-      - '--entrypoints.iot-gps103.address=:5001'
-      - '--entrypoints.iot-tk103.address=:5002'
-      - '--entrypoints.iot-h02.address=:5013'
-      - '--entrypoints.iot-gt06.address=:5023'
-      - '--entrypoints.iot-calamp.address=:5082'
+      - '--entrypoints.iot-gps103.address=:17051'
+      - '--entrypoints.iot-tk103.address=:17052'
+      - '--entrypoints.iot-h02.address=:17053'
+      - '--entrypoints.iot-gt06.address=:17054'
+      - '--entrypoints.iot-calamp.address=:17055'
       ## SSL certificates configuration
       - '--certificatesresolvers.leresolver.acme.email=me@godwin.dev'
       - '--certificatesresolvers.leresolver.acme.storage=/letsencrypt/acme.json'
@@ -80,20 +80,20 @@ services:
       labels:
         - 'traefik.enable=true'
         - 'traefik.http.middlewares.sdefaultslheader.headers.customrequestheaders.X-Forwarded-Proto=https'
-        - 'traefik.http.middlewares.traefik-prefix.stripprefix.prefixes=/status,/status/'
+        - 'traefik.http.middlewares.traefik-prefix.stripprefix.prefixes=/proxy,/proxy/'
         - 'traefik.http.middlewares.traefik-prefix.stripprefix.forceSlash=true'
         - 'traefik.http.routers.traefik.entrypoints=web-insecure'
-        - 'traefik.http.routers.traefik.rule=Host(`local.${DOMAIN}`) && PathPrefix(`/status`) || PathPrefix(`/api`)'
+        - 'traefik.http.routers.traefik.rule=Host(`manage.${DOMAIN}`) && PathPrefix(`/proxy`) || PathPrefix(`/api`)'
         - 'traefik.http.routers.traefik.middlewares=https-redirect@file'
         - 'traefik.http.services.traefik.loadbalancer.server.port=8080'
-        - 'traefik.http.routers.traefik-secure.rule=Host(`local.${DOMAIN}`) && PathPrefix(`/status`) || PathPrefix(`/api`)'
+        - 'traefik.http.routers.traefik-secure.rule=Host(`manage.${DOMAIN}`) && PathPrefix(`/proxy`) || PathPrefix(`/api`)'
         - 'traefik.http.routers.traefik-secure.entrypoints=web-secure'
         - 'traefik.http.routers.traefik-secure.middlewares=traefik-prefix,basic-auth@file'
         - 'traefik.http.routers.traefik-secure.tls=true'
         - 'traefik.http.routers.traefik-secure.tls.certresolver=leresolver'
         - 'traefik.http.routers.traefik-secure.service=api@internal'
-        - 'traefik.http.routers.traefik-secure.tls.domains[0].main=local.${DOMAIN}'
-        - 'traefik.http.routers.traefik-secure.tls.domains[0].sans=local-*.${DOMAIN}'
+        - 'traefik.http.routers.traefik-secure.tls.domains[0].main=manage.${DOMAIN}'
+        - 'traefik.http.routers.traefik-secure.tls.domains[0].sans=manage-*.${DOMAIN}'
       placement:
         constraints: [node.role == manager]
       mode: global

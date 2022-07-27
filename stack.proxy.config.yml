@@ -28,7 +28,7 @@ http:
       middlewares:
         - default-headers
         - https-redirect
-        - sample-cors
+        - default-cors
         - sample-strip
       tls: {}
       service: sample
@@ -37,22 +37,21 @@ http:
   services:
     sample:
       loadBalancer:
-        # scheme: https
         servers:
-          - url: 'http://swarm.srv.bhn.ng:16080'
+          - url: 'http://navigation_iot:8082'
         passHostHeader: true
 
   ## Middlewares
   middlewares:
-    https-redirect:
-      redirectScheme:
-        scheme: https
-        permanent: true
     sample-strip:
       stripPrefix:
         prefixes:
           - '/api,/api/'
-    sample-cors:
+    https-redirect:
+      redirectScheme:
+        scheme: https
+        permanent: true
+    default-cors:
       headers:
         accessControlAllowMethods: GET,POST,PUT,OPTIONS
         accessControlAllowOriginlist: '*'
