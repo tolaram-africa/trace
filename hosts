@@ -1,8 +1,10 @@
 ## traefik.me public endpoints
 127.0.0.1 staging.traefik.me
-127.0.0.1 manager.traefik.me
+127.0.0.1 cdn.traefik.me
 127.0.0.1 support.traefik.me
-127.0.0.1 graph.traefik.me
+127.0.0.1 manage.traefik.me
+127.0.0.1 manage-iot.traefik.me
+127.0.0.1 manage.cdn.traefik.me
 
 ## Temp sample
 127.0.0.1 registry.local
