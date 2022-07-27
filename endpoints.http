@@ -1,0 +1,42 @@
+## Main front-end
+http://staging.traefik.me/
+## Wildcards && custom domain =>> http://***.**
+
+## GraphQl federation proxy
+http://staging.traefik.me/graphql
+
+## Object store proxy
+http://staging.traefik.me/cdn
+
+## Tracking api proxy
+http://staging.traefik.me/navigation/api
+
+## Navigation routing proxy
+http://staging.traefik.me/navigation/routing
+
+## Geocoding proxy
+http://staging.traefik.me/navigation/geocoding
+
+## Tracking data aquisition proxy
+http://staging.traefik.me/navigation/push
+
+## Main management front-end
+http://manage.traefik.me/
+
+## Proxy administration UI
+http://manage.traefik.me/proxy
+
+## Data administration UI
+http://manage.traefik.me/data-admin
+
+## Management GraphQl proxy/front-end
+http://manage.traefik.me/graphql
+
+## Object store management UI
+http://manage-storage.traefik.me/
+
+## Traccar management UI
+http://manage-iot.traefik.me/
+
+## Docs and support platform front-end
+http://support.traefik.me
