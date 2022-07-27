@@ -20,5 +20,5 @@ proxy:
   remoteurl: https://registry-1.docker.io
   # username: [username]
   # password: [password]
-#auth:
-#  false
+# auth:
+#   false

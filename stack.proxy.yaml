@@ -18,7 +18,7 @@ secrets:
     file: ./admin.basic-auth
 
 services:
-  cert_pull:
+  cert:
     image: alpine
     deploy:
       restart_policy:
@@ -31,7 +31,32 @@ services:
       && wget traefik.me/cert.pem -O cert.pem
       && wget traefik.me/privkey.pem -O privkey.pem"
     volumes:
-      - certs:/etc/ssl/traefik
+      - 'certs:/etc/ssl/traefik'
+    networks:
+      - proxy
+  registry:
+    image: registry:2.8
+    deploy:
+      labels:
+        - 'traefik.enable=true'
+        - 'traefik.http.services.registry.loadbalancer.server.port=5000'
+        - 'traefik.http.routers.registry.rule=Host(`registry.${DOMAIN}`) || Host(`registry.${DOMAIN}`) && PathPrefix(`/api`)'
+        - 'traefik.http.routers.registry.entrypoints=web-secure'
+        - 'traefik.http.routers.registry.middlewares=registry-strip'
+        - 'traefik.http.routers.registry.service=registry'
+        - 'traefik.http.middlewares.registry-strip.stripprefix.prefixes=/api,/api/'
+    ports:
+      - 5000:5000
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/.htpasswd
+      - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry
+    volumes:
+      - '${PWD}/registry.config.yaml:/etc/docker/registry/config.yml:ro'
+      - '${HOME}/docker-registry:/var/lib/registry:rw'
+      ## echo "admin" | htpasswd -iB registry.htpasswd admin
+      - '${PWD}/registry.basic-auth:/auth/.htpasswd'
     networks:
       - proxy
   traefik:
@@ -133,23 +158,23 @@ services:
       - source: basic_auth
         target: /basic-auth
 
-  test:
-    image: traefik/whoami
-    deploy:
-      labels:
-        - 'traefik.enable=true'
-        ## 100 requests per second && 50 burst per second
-        - 'traefik.http.middlewares.test-limit.ratelimit.average=100'
-        - 'traefik.http.middlewares.test-limit.ratelimit.burst=50'
-        - 'traefik.http.services.test.loadbalancer.server.port=80'
-        - 'traefik.http.routers.test.rule=Host(`test.${DOMAIN}`)'
-        - 'traefik.http.routers.test.entrypoints=web-secure'
-        - 'traefik.http.routers.test.tls.certresolver=leresolver'
-        - 'traefik.http.routers.test.middlewares=test-limit'
-        ## Sample catch-all route
-        - 'traefik.http.routers.http-catchall.rule=HostRegexp(`{host:.+}`)'
-        - 'traefik.http.routers.http-catchall.entrypoints=web-secure'
-        - 'traefik.http.routers.http-catchall.service=test'
-        - 'traefik.http.routers.http-catchall.priority=1'
-    networks:
-      - proxy
+  # test:
+  #   image: traefik/whoami
+  #   deploy:
+  #     labels:
+  #       - 'traefik.enable=true'
+  #       ## 100 requests per second && 50 burst per second
+  #       - 'traefik.http.middlewares.test-limit.ratelimit.average=100'
+  #       - 'traefik.http.middlewares.test-limit.ratelimit.burst=50'
+  #       - 'traefik.http.services.test.loadbalancer.server.port=80'
+  #       - 'traefik.http.routers.test.rule=Host(`test.${DOMAIN}`)'
+  #       - 'traefik.http.routers.test.entrypoints=web-secure'
+  #       - 'traefik.http.routers.test.tls.certresolver=leresolver'
+  #       - 'traefik.http.routers.test.middlewares=test-limit'
+  #       ## Sample catch-all route
+  #       - 'traefik.http.routers.http-catchall.rule=HostRegexp(`{host:.+}`)'
+  #       - 'traefik.http.routers.http-catchall.entrypoints=web-secure'
+  #       - 'traefik.http.routers.http-catchall.service=test'
+  #       - 'traefik.http.routers.http-catchall.priority=1'
+  #   networks:
+  #     - proxy

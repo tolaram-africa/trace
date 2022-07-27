@@ -7,10 +7,8 @@
 127.0.0.1 manage.cdn.traefik.me
 
 ## Temp sample
-127.0.0.1 registry.local
+127.0.0.1 registry.traefik.me
 127.0.0.1 sample.traefik.me
-127.0.0.1 test.traefik.me
-127.0.0.1 local.traefik.me
 
 ## traefik.me tenant sample
 127.0.0.1 demo-one.stage.traefik.me
