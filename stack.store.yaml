@@ -2,11 +2,16 @@ version: '3.9'
 
 networks:
   proxy:
+    external: true
     name: service-proxy
+  storage:
+    name: service-storage
+    driver: overlay
+    attachable: true
 
 services:
   minio:
-    image: minio/minio
+    image: 'minio/minio:RELEASE.2022-07-26T00-53-03Z'
     deploy:
       mode: replicated
       replicas: 1
@@ -17,23 +22,29 @@ services:
         reservations:
           memory: 32M
       labels:
-        - traefik.enable=true
-        - traefik.http.services.minio.loadbalancer.server.port=9000
-        - traefik.http.services.minio-admin.loadbalancer.server.port=9001
-        # - traefik.http.routers.minio.entrypoints=web-secure
-        # - traefik.http.routers.minio.service=minio@docker
-        # - traefik.http.routers.minio.rule=Host(`cdn.trace.ng`)
-        # - traefik.http.routers.minio-admin.entrypoints=web-insecure
-        # - traefik.http.routers.minio-admin.service=minio-admin@docker
-        # - traefik.http.routers.minio-admin.rule=Host(`manage.trace.ng/storage`)
+        - 'traefik.enable=true'
+        - 'traefik.http.middlewares.minio-strip.stripprefix.prefixes=/apx,/apx/'
+        ## Storage CDN access
+        - 'traefik.http.services.minio.loadbalancer.server.port=9000'
+        - 'traefik.http.routers.minio.entrypoints=web-secure'
+        - 'traefik.http.routers.minio.rule=Host(`cdn.${DOMAIN}`) || Host(`cdn.${DOMAIN}`) && PathPrefix(`/apx`)'
+        - 'traefik.http.routers.minio.service=minio'
+        - 'traefik.http.routers.minio.middlewares=minio-strip'
+        ## Storage admin interface
+        - 'traefik.http.services.minio-admin.loadbalancer.server.port=9001'
+        - 'traefik.http.routers.minio-admin.entrypoints=web-secure'
+        - 'traefik.http.routers.minio-admin.rule=Host(`manage-storage.${DOMAIN}`) || Host(`manage-storage.${DOMAIN}`) && PathPrefix(`/apx`)'
+        - 'traefik.http.routers.minio-admin.service=minio-admin'
+        - 'traefik.http.routers.minio-admin.middlewares=minio-strip'
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/etc/timezone:/etc/timezone:ro'
       - '${STORE_ROOT}/minio:/data'
     env_file: '${PWD}/.env.minio'
     command: server --address 0.0.0.0:9000 --console-address ":9001" /data
     networks:
       - proxy
+      - storage
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
       interval: 30s
@@ -52,9 +63,11 @@ services:
           memory: 32M
     ports:
       - 5432:5432
+    networks:
+      - storage
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/etc/timezone:/etc/timezone:ro'
       - '${STORE_ROOT}/postgres:/var/lib/postgresql/data/pgdata'
     env_file:
       - '${PWD}/.env.postgres'
@@ -75,9 +88,11 @@ services:
         reservations:
           memory: 32M
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/etc/timezone:/etc/timezone:ro'
       - '${STORE_ROOT}/redis:/data'
+    networks:
+      - storage
     ports:
       - 6379:6379
     healthcheck:
