@@ -20,7 +20,7 @@ services:
   #   env_file:
   #     - .env.pgadmin
   manager:
-    image: ${REGISTRY_URL}/manager:${VERSION}
+    image: ${REGISTRY_URL/manager:${VERSION}
     build:
       context: .
       dockerfile: Dockerfile.manager

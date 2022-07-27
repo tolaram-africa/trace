@@ -4,7 +4,8 @@ ENV NODE_ENV=${NODE_ENV}
 ENV PNPM_HOME=/usr/local
 ENV PATH=$PATH:$PNPM_HOME
 ENV APP_HOME="/home/node"
-ENV SERVICE_PATH="app/trace.service/dist/apps/manager"
+ENV PWA_OUTPUT="${APP_HOME}/app/trace.client/dist/pwa"
+ENV SERVICE_PATH="${APP_HOME}/app/trace.service/dist/apps/manager"
 
 USER root
 RUN apk add build-base libc6-compat gcompat curl && \
@@ -14,21 +15,19 @@ RUN apk add build-base libc6-compat gcompat curl && \
 WORKDIR "${APP_HOME}"
 COPY --chown=node:node . .
 RUN pnpm install --network-concurrency=48
+
 ENV NODE_ENV=production
 RUN cd "${APP_HOME}/app/trace.client/" && \
-  NODE_ENV=production pnpm build:pwa
-RUN cd "${APP_HOME}/app/trace.service/" && \
-  NODE_ENV=production pnpm build manager
+  NODE_ENV=production pnpm build:pwa && \
+  cd "${APP_HOME}/app/trace.service/" && \
+  pnpm build manager  && \
+  mkdir -p "${SERVICE_PATH}/static" && \
+  cp -r "${PWA_OUTPUT}/." "${SERVICE_PATH}/static/" && \
+  rimraf "${APP_HOME}/app/trace.{client,website,docs}/*"
+
 RUN cd "${APP_HOME}/" && pnpm run clean:packages && \
   pnpm install --network-concurrency=48 --prod --filter \
   ./app/trace.common --filter ./app/trace.service
-
-RUN mkdir -p "${SERVICE_PATH}/static" && \
-  echo 'List statics....' && ls -lash "${APP_HOME}/app/trace.client/dist/pwa/" && \
-  echo 'List sevices....' && ls -lash "${SERVICE_PATH}/" && \
-  cp -r "${APP_HOME}/app/trace.client/dist/pwa/*" "${SERVICE_PATH}/static"
-
-RUN rimraf "${APP_HOME}/app/trace.{client,website,docs}/*"
 
 FROM node:16-alpine AS production
 USER root
@@ -39,15 +38,14 @@ ARG VERSION
 ARG NODE_ENV=production
 ARG SERVICE_PORT
 ENV APP_HOME="/home/node"
-ENV SERVICE_PATH="app/trace.service/dist/apps/manager/src"
+ENV SERVICE_PATH="${APP_HOME}/app/trace.service/dist/apps/manager/src"
 
 LABEL version=${VERSION}
 LABEL maintaner="Godwin peter .O <me@godwin.dev>"
 LABEL release-date="2022-07-26"
 
 WORKDIR "${APP_HOME}"
-COPY --chown=node:node --from=builder ${APP_HOME} .
-COPY --chown=node:node --from=builder ${APP_HOME} .
+COPY --chown=node:node --from=builder "${APP_HOME}" .
 
 WORKDIR "${APP_HOME}/${SERVICE_PATH}/"
 EXPOSE ${SERVICE_PORT}
