@@ -1,0 +1,37 @@
+version: '3.9'
+
+networks:
+  proxy:
+    external: true
+    name: service-proxy
+
+volumes:
+  pgadmin:
+
+services:
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   ports:
+  #     - 5435:80
+  #   networks:
+  #     - proxy
+  #   volumes:
+  #     - pgadmin:/var/lib/pgadmin
+  #   env_file:
+  #     - .env.pgadmin
+  manager:
+    image: ${REGISTRY_URL}/manager:${VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile.manager
+      args:
+        VERSION: ${VERSION}
+        SERVICE_NAME: manager
+        SERVICE_PORT: 4680
+    env_file:
+      - '${PWD}/app/trace.client/.env.dev'
+    volumes:
+      - '${SRV_ROOT}/config.dev.yaml:/app/config.yaml:ro'
+      - '${SRV_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro'
+    networks:
+      - proxy
