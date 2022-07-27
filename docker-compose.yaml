@@ -12,7 +12,7 @@ volumes:
 
 configs:
   prov_conf:
-    file: ./stack.proxy.config.yml
+    file: ./stack.proxy.config.yaml
 secrets:
   basic_auth:
     file: ./admin.basic-auth
