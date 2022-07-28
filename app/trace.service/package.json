@@ -17,7 +17,7 @@
     "setup": "rimraf node_modules && pnpm install",
     "common": "pnpm -r --filter ../trace.common/",
     "prebuild": "rimraf dist",
-    "dev": "pnpm common dev && nest start --watch",
+    "dev": "pnpm common build && nest start --watch",
     "build": "pnpm common build && nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "ts-node src/index.ts",
