@@ -1,0 +1,33 @@
+version: '3.9'
+
+networks:
+  proxy:
+    external: true
+    name: service-proxy
+
+services:
+  gateway:
+    image: '${REGISTRY_URL}/service-gateway:${VERSION}'
+    build:
+      context: .
+      dockerfile: Dockerfile.service
+      args:
+        VERSION: '${VERSION}'
+        SERVICE_NAME: gateway
+        SERVICE_PORT: 4560
+    env_file:
+      - ./app/trace.service/.env.dev
+    volumes:
+      - '${SRV_ROOT}/config.dev.yaml:/app/config.yaml:ro'
+      - '${SRV_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro'
+    networks:
+      - proxy
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.services.service-gateway.loadbalancer.server.port=4560'
+      - 'traefik.http.routers.service-gateway.entrypoints=web-secure'
+      - 'traefik.http.routers.service-gateway.rule=Host(`staging.${DOMAIN}`)'
+      ## For prefixing only without dns
+      # - traefik.http.routers.service-gateway.rule=Host(`stage.trace.ng`) && PathPrefix(`/graphql`)
+      # - traefik.http.routers.service-gateway.middlewares=srv-gateway-prefix
+      # - traefik.http.middlewares.srv-gateway-prefix.stripprefix.prefixes=/graphql

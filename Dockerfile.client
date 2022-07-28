@@ -1,23 +1,27 @@
 FROM node:16-alpine as builder
 ARG APP_NAME
+ENV APP_NAME=${APP_NAME}
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
-ENV PNPM_HOME=/usr/local
+ENV PNPM_HOME="/usr/local"
 ENV PATH=$PATH:$PNPM_HOME
+ENV APP_HOME="/home/node"
 
 USER root
 RUN apk add build-base libc6-compat gcompat curl && \
   npm install --network-concurrency=48 --global npm pnpm && \
-  pnpm -global add @quasar/cli rimraf
+  pnpm add --global @quasar/cli rimraf
 
 WORKDIR /home/node
 COPY --chown=node:node . .
 RUN pnpm install
 ENV NODE_ENV=production
-RUN cd /home/node/app/trace.client/ && \
-  NODE_ENV=production pnpm build:pwa
+RUN cd "${APP_HOME}/app/trace.client/" && \
+  NODE_ENV=production APP_NAME="${APP_NAME}" pnpm build:pwa
 
-FROM nginx:stable-alpine as production
-COPY --from=builder "/home/node/app/trace.client/dist/pwa" /usr/share/nginx/html
+FROM nginx:1.22-alpine as production
+ENV DIST_SOURCE="/home/node/app/trace.client/dist/pwa"
+COPY --from=builder "${DIST_SOURCE}/" /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
