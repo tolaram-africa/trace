@@ -33,7 +33,7 @@ ARG NODE_ENV=production
 ARG SERVICE_NAME
 ARG SERVICE_PORT
 ENV APP_HOME="/home/node"
-ENV SERVICE_PATH="${APP_HOME}/app/trace.service/dist/apps/${SERVICE_NAME}"
+ENV SERVICE_PATH="app/trace.service/dist/apps/${SERVICE_NAME}"
 
 LABEL version=${VERSION}
 LABEL maintaner="Godwin peter .O <me@godwin.dev>"
