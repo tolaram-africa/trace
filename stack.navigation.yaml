@@ -59,7 +59,6 @@ services:
         - 'traefik.http.routers.iot-api.middlewares=iot-api-prefix'
         ## IOT Web push (osmand)
         - 'traefik.http.services.iot-osmand.loadbalancer.server.port=5055'
-        # - 'traefik.http.services.iot-osmand.loadbalancer.passHostHeader=false'
         - 'traefik.http.routers.iot-osmand.entrypoints=web-secure'
         - 'traefik.http.routers.iot-osmand.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/navigation/push`)'
         - 'traefik.http.routers.iot-osmand.service=iot-osmand'
