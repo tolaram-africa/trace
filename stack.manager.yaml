@@ -9,18 +9,8 @@ volumes:
   pgadmin:
 
 services:
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   ports:
-  #     - 5435:80
-  #   networks:
-  #     - proxy
-  #   volumes:
-  #     - pgadmin:/var/lib/pgadmin
-  #   env_file:
-  #     - .env.pgadmin
   manager:
-    image: ${REGISTRY_URL/manager:${VERSION}
+    image: ${REGISTRY_URL}/manager:${VERSION}
     build:
       context: .
       dockerfile: Dockerfile.manager
@@ -35,3 +25,13 @@ services:
       - '${SRV_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro'
     networks:
       - proxy
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   ports:
+  #     - 5435:80
+  #   networks:
+  #     - proxy
+  #   volumes:
+  #     - pgadmin:/var/lib/pgadmin
+  #   env_file:
+  #     - .env.pgadmin
