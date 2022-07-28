@@ -7,12 +7,12 @@ export const prodEnv = process.env.NODE_ENV === 'production';
 
 export enum ConfigConsumer {
   MAIN = 'config',
-  SRV_GATEWAY = 'service.gateway',
-  SRV_MANAGER = 'service.manager',
-  SRV_IDENTITY = 'service.identity',
-  SRV_INTEGRATION = 'service.integration',
-  SRV_OPERATION = 'service.operation',
-  SRV_NAVIGATION = 'service.navigation',
+  SRV_GATEWAY = 'gateway',
+  SRV_MANAGER = 'manager',
+  SRV_IDENTITY = 'identity',
+  SRV_INTEGRATION = 'integration',
+  SRV_OPERATION = 'operation',
+  SRV_NAVIGATION = 'navigation',
 }
 
 export const resolveConfig = (
@@ -39,10 +39,10 @@ export const resolveConfigPath = (service: ConfigConsumer): Array<string> => {
     : join(process.cwd(), DEV_CONFIG_ROOT);
 
   if (service === ConfigConsumer.MAIN) return resolvedConfig;
-  const serviceConfig = join(serviceConfigRoot, `${service}.yaml`);
+  const serviceConfig = join(serviceConfigRoot, `service.${service}.yaml`);
   existsSync(serviceConfig) ? resolvedConfig.push(serviceConfig) : null;
 
   return resolvedConfig;
 };
 
-// console.log(resolveConfig(ConfigConsumer.SRV_GATEWAY));
+console.log(resolveConfig(ConfigConsumer.SRV_GATEWAY));
