@@ -18,7 +18,7 @@
     "common": "pnpm -r --filter ../trace.common/",
     "dev": "pnpm common build && quasar dev",
     "dev:android": "quasar dev -m capacitor -T android",
-    "dev:pwa": "quasar dev -m pwa",
+    "dev:pwa": "pnpm common build && quasar dev -m pwa",
     "dev:ssr": "quasar dev -m ssr",
     "build": "pnpm common build && quasar build",
     "build:android": "quasar build -m capacitor -T android",
