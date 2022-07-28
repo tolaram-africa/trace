@@ -59,7 +59,7 @@ services:
       - '${PWD}/registry.basic-auth:/auth/.htpasswd'
     networks:
       - proxy
-  traefik:
+  proxy:
     image: traefik:v2.8
     env_file: '${PWD}/.env'
     command:
