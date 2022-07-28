@@ -19,12 +19,15 @@ services:
         SERVICE_NAME: manager
         SERVICE_PORT: 4680
     env_file:
-      - '${PWD}/app/trace.client/.env.dev'
+      - '${PWD}/app/trace.service/.env.dev'
     volumes:
+      # - '${PWD}/app/trace.service/.env.dev:/home/node/app/trace.service/dist/apps/manager/src/.env'
       - '${SRV_ROOT}/config.dev.yaml:/app/config.yaml:ro'
       - '${SRV_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro'
-    networks:
-      - proxy
+    ports:
+      - 4680:4680
+    # networks:
+    #   - proxy
   # pgadmin:
   #   image: dpage/pgadmin4
   #   ports:
