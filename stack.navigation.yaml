@@ -16,7 +16,6 @@ services:
     image: gisops/valhalla:latest
     deploy:
       labels:
-        ## Domain config
         - 'traefik.enable=true'
         - 'traefik.http.routers.routing.entrypoints=web-secure'
         - 'traefik.http.routers.routing.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/navigation/routing`)'
@@ -25,12 +24,17 @@ services:
         - 'traefik.http.middlewares.routing-prefix.stripprefix.prefixes=/navigation/routing'
       mode: replicated
       replicas: 1
-    ports:
-      - 8072:8002
     networks:
       - proxy
-    env_file:
-      - .env.valhalla
+    environment:
+      tile_urls: 'https://download.geofabrik.de/africa/nigeria-latest.osm.pbf'
+      server_threads: 8
+      use_tiles_ignore_pbf: 'True'
+      build_elevation: 'True'
+      build_admins: 'True'
+      build_time_zones: 'True'
+      build_tar: 'True'
+      force_rebuild: 'False'
     volumes:
       - '${STORE_ROOT}/valhalla:/custom_files'
   iot:

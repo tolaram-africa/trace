@@ -47,9 +47,9 @@ services:
       MINIO_ROOT_USER: trace
       MINIO_ROOT_PASSWORD: trace@1234
       MINIO_SITE_NAME: trace-cdn-00
-      MINIO_DOMAIN: 'cdn.traefik.me,manage.traefik.me,manage-storage.traefik.me'
-      MINIO_BROWSER_REDIRECT_URL: https://manage-storage.traefik.me
-      # MINIO_SERVER_URL: https://cdn.traefik.me
+      MINIO_DOMAIN: 'cdn.${DOMAIN},manage.${DOMAIN},manage-storage.${DOMAIN}'
+      MINIO_BROWSER_REDIRECT_URL: 'https://manage-storage.${DOMAIN}'
+      # MINIO_SERVER_URL: 'https://cdn.${DOMAIN}'
     command: server --address 0.0.0.0:9000 --console-address ":9001" /data
     networks:
       - proxy
@@ -78,8 +78,11 @@ services:
       - '/etc/localtime:/etc/localtime:ro'
       - '/etc/timezone:/etc/timezone:ro'
       - '${STORE_ROOT}/postgres:/var/lib/postgresql/data/pgdata'
-    env_file:
-      - '${PWD}/.env.postgres'
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: trace
+      POSTGRES_PASSWORD: trace
+      POSTGRES_DB: trace
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}']
       interval: 10s
