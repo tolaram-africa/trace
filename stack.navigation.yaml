@@ -109,8 +109,8 @@ services:
       - NET_ADMIN
       - NET_RAW
     volumes:
-      - '${STORE_ROOT}/traccar/logs:/opt/traccar/logs:rw'
-      - '${STORE_ROOT}/traccar/data:/opt/traccar/data:rw'
+      - '${STORE_ROOT}/traccar-logs:/opt/traccar/logs:rw'
+      - '${STORE_ROOT}/traccar-data:/opt/traccar/data:rw'
       - '/etc/timezone:/etc/timezone:ro'
       - '/etc/localtime:/etc/localtime:ro'
     configs:
