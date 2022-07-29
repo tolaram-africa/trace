@@ -49,7 +49,7 @@ module.exports = configure(function (/* ctx */) {
         node: 'node16'
       },
 
-      vueRouterMode: 'hash',
+      vueRouterMode: 'history',
       env: config,
       // vueRouterBase,
       // vueDevtools,
