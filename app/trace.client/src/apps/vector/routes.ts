@@ -11,19 +11,21 @@ import SettingsModule from './modules/Settings';
 import ShortageModule from './modules/Shortage';
 import TrackModule from './modules/Track';
 
-const appRoutes = [AccountRoutes, NotificationRoute];
+const APP_NAME = 'vec';
+const MODULE_ROOT = 'm';
+const SharedRoutes = [AccountRoutes, NotificationRoute];
 
 export default {
-  path: 'vector',
-  name: 'vec',
+  path: '',
+  name: APP_NAME,
   component: () => import('./App.vue'),
   children: [
     IdentityRoutes,
     {
-      path: 'm',
+      path: MODULE_ROOT,
       component: () => import('./shared/layouts/AppLayout.vue'),
       children: [
-        ...appRoutes,
+        ...SharedRoutes,
         BillingModule,
         DriverModule,
         OverviewModule,
