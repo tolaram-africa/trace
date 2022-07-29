@@ -26,8 +26,8 @@ services:
       - '${SRV_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro'
     ports:
       - 4680:4680
-    # networks:
-    #   - proxy
+    networks:
+      - proxy
   # pgadmin:
   #   image: dpage/pgadmin4
   #   ports:
@@ -36,5 +36,8 @@ services:
   #     - proxy
   #   volumes:
   #     - pgadmin:/var/lib/pgadmin
-  #   env_file:
-  #     - .env.pgadmin
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: 'trace@${DOMAIN}'
+  #     PGADMIN_DEFAULT_PASSWORD: 'trace'
+  #     PGADMIN_LISTEN_ADDRESS: '0.0.0.0'
+  #     PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 10
