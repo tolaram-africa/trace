@@ -11,7 +11,7 @@ networks:
 
 services:
   minio:
-    image: 'minio/minio:RELEASE.2022-07-26T00-53-03Z'
+    image: 'minio/minio'
     deploy:
       mode: replicated
       replicas: 1
@@ -40,7 +40,16 @@ services:
       - '/etc/localtime:/etc/localtime:ro'
       - '/etc/timezone:/etc/timezone:ro'
       - '${STORE_ROOT}/minio:/data'
-    env_file: '${PWD}/.env.minio'
+    ports:
+      - 9001:9001
+    environment:
+      MINIO_UPDATE: 'off'
+      MINIO_ROOT_USER: trace
+      MINIO_ROOT_PASSWORD: trace@1234
+      MINIO_SITE_NAME: trace-cdn-00
+      MINIO_DOMAIN: 'cdn.traefik.me,manage.traefik.me,manage-storage.traefik.me'
+      MINIO_BROWSER_REDIRECT_URL: https://manage-storage.traefik.me
+      # MINIO_SERVER_URL: https://cdn.traefik.me
     command: server --address 0.0.0.0:9000 --console-address ":9001" /data
     networks:
       - proxy
