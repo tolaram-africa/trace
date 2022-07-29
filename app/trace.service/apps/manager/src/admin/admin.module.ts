@@ -48,11 +48,11 @@ dataSource.initialize();
     AdminJsModule.createAdminAsync({
       useFactory: () => ({
         adminJsOptions: <AdminJSOptions>{
-          rootPath: '/admin',
-          loginPath: '/admin/auth/login',
+          rootPath: '/data-admin',
+          loginPath: '/data-admin/auth/login',
           branding: {
             logo: false,
-            companyName: 'Trace Admin',
+            companyName: 'Data Admin',
             softwareBrothers: false,
           },
           databases: [],
