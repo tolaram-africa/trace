@@ -13,7 +13,7 @@ services:
       dockerfile: Dockerfile.client
       args:
         VERSION: '${VERSION}'
-        APP_NAME: vector
+        APP_VARIANT: vector
     env_file:
       - ${PWD}/app/trace.client/.env.dev
     networks:

@@ -1,6 +1,6 @@
 FROM node:16-alpine as builder
-ARG APP_NAME
-ENV APP_NAME=${APP_NAME}
+ARG APP_VARIANT
+ENV APP_VARIANT=${APP_VARIANT}
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 ENV PNPM_HOME="/usr/local"
@@ -17,7 +17,7 @@ COPY --chown=node:node . .
 RUN pnpm install
 ENV NODE_ENV=production
 RUN cd "${APP_HOME}/app/trace.client/" && \
-  NODE_ENV=production APP_NAME="${APP_NAME}" pnpm build:pwa
+  NODE_ENV=production APP_VARIANT="${APP_VARIANT}" pnpm build:pwa
 
 FROM nginx:1.22-alpine as production
 ENV DIST_SOURCE="/home/node/app/trace.client/dist/pwa"

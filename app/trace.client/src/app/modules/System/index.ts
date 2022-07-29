@@ -1,25 +1,25 @@
-import vectorPaths from '@/libs/paths';
+import SharedPaths from '@/libs/paths';
 
 // TODO: Remove temporary redirection to first module
 export const rootRoute = {
   path: '',
-  name: vectorPaths.root.name,
-  redirect: { name: vectorPaths.root.redirect },
+  name: SharedPaths.root.name,
+  redirect: { name: SharedPaths.root.redirect },
   component: () => import('./pages/RootPage.vue'),
 };
 
 export const NotificationRoute = {
-  path: vectorPaths.notification.root.path,
+  path: SharedPaths.notification.root.path,
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: vectorPaths.notification.root.name,
+      name: SharedPaths.notification.root.name,
       component: () => import('./pages/NotificationPage.vue'),
     },
     {
-      path: vectorPaths.notification.view.path,
-      name: vectorPaths.notification.view.name,
+      path: SharedPaths.notification.view.path,
+      name: SharedPaths.notification.view.name,
       component: () => import('./pages/NotificationPage.vue'),
     },
   ],
