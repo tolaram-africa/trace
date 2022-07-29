@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
-import { ManagerController } from './manager.controller';
 import { ManagerService } from './manager.service';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { dataSourceConfig } from '@@/data/connection';
 import { AdminModule } from './admin/admin.module';
+import { ClientModule } from './client/client.module';
 
 @Module({
   imports: [
+    ClientModule,
     TypeOrmModule.forRootAsync({
       useFactory: async () =>
         <TypeOrmModuleOptions>{
@@ -18,7 +19,7 @@ import { AdminModule } from './admin/admin.module';
     }),
     AdminModule,
   ],
-  controllers: [ManagerController],
+  controllers: [],
   providers: [ManagerService],
 })
 export class ManagerModule {}

@@ -2,9 +2,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ManagerModule } from './manager.module';
 
-async function bootstrap() {
+(async () => {
   const app = await NestFactory.create(ManagerModule);
-
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -13,8 +12,11 @@ async function bootstrap() {
   );
 
   const PORT = 3000;
-  await app.listen(PORT);
-  console.log(`Trace Admin is under http://localhost:${PORT}/admin`);
-}
+  const HOSTNAME = 'service.manager';
+  const url = `http://${HOSTNAME}:${PORT}`;
 
-bootstrap();
+  await app.listen(PORT, HOSTNAME, () => null);
+  console.log(`Trace Manager is under ${url}/`);
+  console.log(`Data Admin is under ${url}/data-admin/`);
+  console.log(`GraphQL is under ${url}/graphql/`);
+})();
