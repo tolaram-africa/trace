@@ -40,11 +40,9 @@ services:
       labels:
         - 'traefik.enable=true'
         - 'traefik.http.services.registry.loadbalancer.server.port=5000'
-        - 'traefik.http.routers.registry.rule=Host(`registry.${DOMAIN}`) || Host(`registry.${DOMAIN}`) && PathPrefix(`/api`)'
+        - 'traefik.http.routers.registry.rule=Host(`registry.${DOMAIN}`)'
         - 'traefik.http.routers.registry.entrypoints=web-secure'
-        - 'traefik.http.routers.registry.middlewares=registry-strip'
         - 'traefik.http.routers.registry.service=registry'
-        - 'traefik.http.middlewares.registry-strip.stripprefix.prefixes=/api,/api/'
     ports:
       - 5000:5000
     environment:
@@ -108,10 +106,10 @@ services:
         - 'traefik.http.middlewares.traefik-prefix.stripprefix.prefixes=/proxy,/proxy/'
         - 'traefik.http.middlewares.traefik-prefix.stripprefix.forceSlash=true'
         - 'traefik.http.routers.traefik.entrypoints=web-insecure'
-        - 'traefik.http.routers.traefik.rule=Host(`manage.${DOMAIN}`) && PathPrefix(`/proxy`) || PathPrefix(`/api`)'
+        - 'traefik.http.routers.traefik.rule=Host(`manage.${DOMAIN}`) && PathPrefix(`/proxy`) || Host(`manage.${DOMAIN}`) && PathPrefix(`/api`)'
         - 'traefik.http.routers.traefik.middlewares=https-redirect@file'
         - 'traefik.http.services.traefik.loadbalancer.server.port=8080'
-        - 'traefik.http.routers.traefik-secure.rule=Host(`manage.${DOMAIN}`) && PathPrefix(`/proxy`) || PathPrefix(`/api`)'
+        - 'traefik.http.routers.traefik-secure.rule=Host(`manage.${DOMAIN}`) && PathPrefix(`/proxy`) || Host(`manage.${DOMAIN}`) && PathPrefix(`/api`)'
         - 'traefik.http.routers.traefik-secure.entrypoints=web-secure'
         - 'traefik.http.routers.traefik-secure.middlewares=traefik-prefix,basic-auth@file'
         - 'traefik.http.routers.traefik-secure.tls=true'

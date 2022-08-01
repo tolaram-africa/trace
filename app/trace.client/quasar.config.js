@@ -96,25 +96,25 @@ module.exports = configure(function (/* ctx */) {
             'Accept': '*/*',
           }
         },
-        '/api/storage/': {
+        '/service/storage/': {
           target: config.SERVER_API_STORAGE,
-          rewrite: (pathValue) => pathValue.replace(/^\/api\/storage\//, ''),
+          rewrite: (pathValue) => pathValue.replace(/^\/service\/storage\//, ''),
           changeOrigin: true,
           headers: {
             'Accept': '*/*',
           }
         },
-        '/api/routing/': {
+        '/service/routing/': {
           target: config.SERVER_API_ROUTING,
-          rewrite: (pathValue) => pathValue.replace(/^\/api\/routing\//, ''),
+          rewrite: (pathValue) => pathValue.replace(/^\/service\/routing\//, ''),
           changeOrigin: true,
           headers: {
             'Accept': '*/*',
           }
         },
-        '/api/geocoding/': {
+        '/service/geocoding/': {
           target: config.SERVER_API_GEOCODING,
-          rewrite: (pathValue) => pathValue.replace(/^\/api\/geocoding\//, ''),
+          rewrite: (pathValue) => pathValue.replace(/^\/service\/geocoding\//, ''),
           changeOrigin: true,
           headers: {
             'Accept': '*/*',

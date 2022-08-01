@@ -21,20 +21,36 @@ tls:
 http:
   ## Routers
   routers:
-    sample:
+    geocoding:
       entryPoints:
         - 'web-secure'
-      rule: 'Host(`sample.traefik.me`) || Host(`sample.traefik.me`) && PathPrefix(`/api`)'
+      rule: Host(`staging.traefik.me`) && PathPrefix(`/service/geocoding`)
       middlewares:
         - default-headers
         - https-redirect
         - default-cors
-        - sample-strip
+        - geocoding-strip
+      tls: {}
+      service: geocoding
+    sample:
+      entryPoints:
+        - 'web-secure'
+      rule: Host(`sample.traefik.me`) # || Host(`sample.traefik.me`) && PathPrefix(`/api`)
+      middlewares:
+        - default-headers
+        - https-redirect
+        - default-cors
+        # - sample-strip
       tls: {}
       service: sample
 
   ## Services
   services:
+    geocoding:
+      loadBalancer:
+        servers:
+          - url: 'http://srv-cx-00.11s.cloud:8054'
+        passHostHeader: true
     sample:
       loadBalancer:
         servers:
@@ -43,10 +59,15 @@ http:
 
   ## Middlewares
   middlewares:
+    geocoding-strip:
+      stripPrefix:
+        prefixes:
+          - '/service/geocoding'
     sample-strip:
       stripPrefix:
         prefixes:
-          - '/api,/api/'
+          - '/api'
+          - '/api/'
     https-redirect:
       redirectScheme:
         scheme: https

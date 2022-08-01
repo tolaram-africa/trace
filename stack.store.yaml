@@ -11,7 +11,7 @@ networks:
 
 services:
   minio:
-    image: 'minio/minio'
+    image: minio/minio
     deploy:
       mode: replicated
       replicas: 1
@@ -23,19 +23,18 @@ services:
           memory: 32M
       labels:
         - 'traefik.enable=true'
-        - 'traefik.http.middlewares.minio-strip.stripprefix.prefixes=/apx,/apx/'
+        - 'traefik.http.middlewares.minio-strip.stripprefix.prefixes=/service/storage,/service/storage/'
         ## Storage CDN access
         - 'traefik.http.services.minio.loadbalancer.server.port=9000'
         - 'traefik.http.routers.minio.entrypoints=web-secure'
-        - 'traefik.http.routers.minio.rule=Host(`cdn.${DOMAIN}`) || Host(`cdn.${DOMAIN}`) && PathPrefix(`/apx`)'
+        - 'traefik.http.routers.minio.rule=Host(`storage.${DOMAIN}`) || Host(`staging.${DOMAIN}`) && PathPrefix(`/service/storage`)'
         - 'traefik.http.routers.minio.service=minio'
         - 'traefik.http.routers.minio.middlewares=minio-strip'
         ## Storage admin interface
         - 'traefik.http.services.minio-admin.loadbalancer.server.port=9001'
         - 'traefik.http.routers.minio-admin.entrypoints=web-secure'
-        - 'traefik.http.routers.minio-admin.rule=Host(`manage-storage.${DOMAIN}`) || Host(`manage-storage.${DOMAIN}`) && PathPrefix(`/apx`)'
+        - 'traefik.http.routers.minio-admin.rule=Host(`manage-storage.${DOMAIN}`)'
         - 'traefik.http.routers.minio-admin.service=minio-admin'
-        - 'traefik.http.routers.minio-admin.middlewares=minio-strip'
     volumes:
       - '/etc/localtime:/etc/localtime:ro'
       - '/etc/timezone:/etc/timezone:ro'
@@ -47,9 +46,9 @@ services:
       MINIO_ROOT_USER: trace
       MINIO_ROOT_PASSWORD: trace@1234
       MINIO_SITE_NAME: trace-cdn-00
-      MINIO_DOMAIN: 'cdn.${DOMAIN},manage.${DOMAIN},manage-storage.${DOMAIN}'
+      MINIO_DOMAIN: 'storage.${DOMAIN},manage.${DOMAIN},manage-storage.${DOMAIN}'
       MINIO_BROWSER_REDIRECT_URL: 'https://manage-storage.${DOMAIN}'
-      # MINIO_SERVER_URL: 'https://cdn.${DOMAIN}'
+      # MINIO_SERVER_URL: 'https://storage.${DOMAIN}'
     command: server --address 0.0.0.0:9000 --console-address ":9001" /data
     networks:
       - proxy

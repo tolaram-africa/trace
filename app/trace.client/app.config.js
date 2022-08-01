@@ -18,9 +18,9 @@ module.exports = {
   SERVER_API_GEOCODING: env.SERVER_API_GEOCODING || 'https://nominatim.openstreetmap.org/',
   /* API Paths */
   API_ROOT_PATH: env.API_ROOT_PATH || '/graphql/',
-  API_STORAGE_PATH: env.API_STORAGE_PATH || '/api/storage/',
-  API_ROUTING_PATH: env.API_ROUTING_PATH || '/api/routing/',
-  API_GEOCODING_PATH: env.API_GEOCODING_PATH || '/api/geocoding/',
+  API_STORAGE_PATH: env.API_STORAGE_PATH || '/service/storage/',
+  API_ROUTING_PATH: env.API_ROUTING_PATH || '/service/routing/',
+  API_GEOCODING_PATH: env.API_GEOCODING_PATH || '/service/geocoding/',
   /* App brading */
   APP_NAME: env.APP_NAME || 'Trace',
   APP_ID: env.APP_ID || 'ng.trace.vector',

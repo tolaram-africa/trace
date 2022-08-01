@@ -18,12 +18,14 @@ services:
       labels:
         - 'traefik.enable=true'
         - 'traefik.http.routers.routing.entrypoints=web-secure'
-        - 'traefik.http.routers.routing.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/navigation/routing`)'
+        - 'traefik.http.routers.routing.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/service/routing`)'
         - 'traefik.http.services.routing.loadbalancer.server.port=8002'
         - 'traefik.http.routers.routing.middlewares=routing-prefix'
-        - 'traefik.http.middlewares.routing-prefix.stripprefix.prefixes=/navigation/routing'
+        - 'traefik.http.middlewares.routing-prefix.stripprefix.prefixes=/service/routing'
       mode: replicated
       replicas: 1
+    ports:
+      - 8072:8002
     networks:
       - proxy
     environment:
@@ -50,21 +52,15 @@ services:
         # ## Domain config
         - 'traefik.enable=true'
         - 'traefik.http.services.iot.loadbalancer.server.port=8082'
-        - 'traefik.http.middlewares.iot-api-prefix.stripprefix.prefixes=/navigation,/navigation/'
-        - 'traefik.http.middlewares.osmand-prefix.stripprefix.prefixes=/navigation/push,/navigation/push/'
+        - 'traefik.http.middlewares.osmand-prefix.stripprefix.prefixes=/service/movement,/service/movement/'
         # ## IOT management UI
         - 'traefik.http.routers.iot-admin.entrypoints=web-secure'
-        - 'traefik.http.routers.iot-admin.rule=Host(`manage-iot.${DOMAIN}`) || Host(`manage-iot.${DOMAIN}`) && PathPrefix(`/modern`)'
+        - 'traefik.http.routers.iot-admin.rule=Host(`manage-iot.${DOMAIN}`)'
         - 'traefik.http.routers.iot-admin.service=iot'
-        ## IOT backend API
-        - 'traefik.http.routers.iot-api.entrypoints=web-secure'
-        - 'traefik.http.routers.iot-api.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/navigation/api`)'
-        - 'traefik.http.routers.iot-api.service=iot'
-        - 'traefik.http.routers.iot-api.middlewares=iot-api-prefix'
         ## IOT Web push (osmand)
         - 'traefik.http.services.iot-osmand.loadbalancer.server.port=5055'
         - 'traefik.http.routers.iot-osmand.entrypoints=web-secure'
-        - 'traefik.http.routers.iot-osmand.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/navigation/push`)'
+        - 'traefik.http.routers.iot-osmand.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/service/movement`)'
         - 'traefik.http.routers.iot-osmand.service=iot-osmand'
         - 'traefik.http.routers.iot-osmand.middlewares=osmand-prefix'
         ## IOT GPS-103 endpoint
