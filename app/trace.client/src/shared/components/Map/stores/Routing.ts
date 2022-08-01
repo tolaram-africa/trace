@@ -73,8 +73,8 @@ export const useRouting = defineStore('app.map.routing', () => {
       routeSourceDestination.value.push(e.latlng);
     if (routeSourceDestination.value.length === 2) {
       /** Clear selection markers */
-      routeMarkers.value.forEach(function (marker) {
-        mapState.mapInstance.removeLayer(marker);
+      routeMarkers.value.forEach(function (markerValue) {
+        mapState.mapInstance.removeLayer(markerValue);
       });
       routeMarkers.value = [];
 

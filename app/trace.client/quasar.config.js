@@ -88,17 +88,33 @@ module.exports = configure(function (/* ctx */) {
       open: false,
       port: config.PORT,
       proxy: {
+        '/graphql/': {
+          target: config.SERVER_API_ROOT,
+          rewrite: (pathValue) => pathValue.replace(/^\/graphql\//, ''),
+          changeOrigin: true,
+          headers: {
+            'Accept': '*/*',
+          }
+        },
+        '/api/storage/': {
+          target: config.SERVER_API_STORAGE,
+          rewrite: (pathValue) => pathValue.replace(/^\/api\/storage\//, ''),
+          changeOrigin: true,
+          headers: {
+            'Accept': '*/*',
+          }
+        },
         '/api/routing/': {
-          target: config.API_ROUTING_SERVER,
-          rewrite: (path) => path.replace(/^\/api\/routing\//, ''),
+          target: config.SERVER_API_ROUTING,
+          rewrite: (pathValue) => pathValue.replace(/^\/api\/routing\//, ''),
           changeOrigin: true,
           headers: {
             'Accept': '*/*',
           }
         },
         '/api/geocoding/': {
-          target: config.API_GEOCODING_SERVER,
-          rewrite: (path) => path.replace(/^\/api\/geocoding\//, ''),
+          target: config.SERVER_API_GEOCODING,
+          rewrite: (pathValue) => pathValue.replace(/^\/api\/geocoding\//, ''),
           changeOrigin: true,
           headers: {
             'Accept': '*/*',
@@ -172,8 +188,6 @@ module.exports = configure(function (/* ctx */) {
     },
 
     electron: {
-      // extendElectronMainConf (esbuildConf)
-      // extendElectronPreloadConf (esbuildConf)
       inspectPort: 5858,
       bundler: 'packager', // 'packager' or 'builder'
       packager: {
