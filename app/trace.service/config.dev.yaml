@@ -20,7 +20,7 @@ app:
       port: 4565
     - name: manager
       host: service.manager
-      port: 4565
+      port: 4570
 
 database:
   postgres:
