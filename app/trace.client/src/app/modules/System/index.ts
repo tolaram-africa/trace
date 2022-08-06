@@ -1,10 +1,9 @@
 import SharedPaths from '@/libs/paths';
 
-// TODO: Remove temporary redirection to first module
+// TODO: Use auth check and conditional redirection later
 export const rootRoute = {
   path: '',
   name: SharedPaths.root.name,
-  redirect: { name: SharedPaths.root.redirect },
   component: () => import('./pages/RootPage.vue'),
 };
 

@@ -88,7 +88,7 @@ module.exports = configure(function (/* ctx */) {
       open: false,
       port: config.PORT,
       proxy: {
-        '/graphql/': {
+        '/graphql': {
           target: config.SERVER_API_ROOT,
           rewrite: (pathValue) => pathValue.replace(/^\/graphql\//, ''),
           changeOrigin: true,
@@ -96,7 +96,7 @@ module.exports = configure(function (/* ctx */) {
             'Accept': '*/*',
           }
         },
-        '/service/storage/': {
+        '/service/storage': {
           target: config.SERVER_API_STORAGE,
           rewrite: (pathValue) => pathValue.replace(/^\/service\/storage\//, ''),
           changeOrigin: true,
@@ -104,7 +104,7 @@ module.exports = configure(function (/* ctx */) {
             'Accept': '*/*',
           }
         },
-        '/service/routing/': {
+        '/service/routing': {
           target: config.SERVER_API_ROUTING,
           rewrite: (pathValue) => pathValue.replace(/^\/service\/routing\//, ''),
           changeOrigin: true,
@@ -112,7 +112,7 @@ module.exports = configure(function (/* ctx */) {
             'Accept': '*/*',
           }
         },
-        '/service/geocoding/': {
+        '/service/geocoding': {
           target: config.SERVER_API_GEOCODING,
           rewrite: (pathValue) => pathValue.replace(/^\/service\/geocoding\//, ''),
           changeOrigin: true,

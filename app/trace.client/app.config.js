@@ -11,6 +11,7 @@ module.exports = {
   API_SECRET: env.API_SECRET || 'secret',
   PORT: env.PORT || 4580,
   BASE_URL: env.BASE_URL || 'http://localhost:4580/',
+  APP_VARIANT: env.APP_VARIANT,
   /* Backend Server urls */
   SERVER_API_ROOT: env.SERVER_API_ROOT || 'http://127.0.0.1:4560/',
   SERVER_API_STORAGE: env.SERVER_API_STORAGE || 'http://127.0.0.1:9000/',
