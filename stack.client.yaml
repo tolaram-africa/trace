@@ -5,21 +5,28 @@ networks:
     external: true
     name: service-proxy
 
+x-app-instance: &app-instance
+  build: &app-build
+    context: .
+    dockerfile: Dockerfile.client
+    args: &app-args
+      VERSION: '${VERSION}'
+  env_file:
+    - ${PWD}/app/trace.client/.env.dev
+  networks:
+    - proxy
+  healthcheck:
+    test: ['CMD', 'service', 'nginx', 'status']
+    interval: 30s
+    timeout: 20s
+    retries: 5
+
 services:
-  app.vector:
+  vector:
+    <<: *app-instance
     image: ${REGISTRY_URL}/app-vector:${VERSION}
     build:
-      context: .
-      dockerfile: Dockerfile.client
+      <<: *app-build
       args:
-        VERSION: '${VERSION}'
+        <<: *app-args
         APP_VARIANT: vector
-    env_file:
-      - ${PWD}/app/trace.client/.env.dev
-    networks:
-      - proxy
-    healthcheck:
-      test: ['CMD', 'service', 'nginx', 'status']
-      interval: 30s
-      timeout: 20s
-      retries: 5

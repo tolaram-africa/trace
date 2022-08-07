@@ -4,30 +4,49 @@ networks:
   proxy:
     external: true
     name: service-proxy
+  storage:
+    name: service-storage
+    external: true
+
+## Service configurations
+configs:
+  shared:
+    file: '${SRV_ROOT}/config.dev.yaml'
+  gateway:
+    file: '${SRV_ROOT}/config/service.gateway.yaml'
+
+x-service-instance: &service-instance
+  build: &service-build
+    context: .
+    dockerfile: Dockerfile.service
+    args: &service-args
+      VERSION: '${VERSION}'
+  env_file:
+    - ./app/trace.service/.env.dev
+  networks:
+    - proxy
+    - storage
 
 services:
   gateway:
+    <<: *service-instance
     image: '${REGISTRY_URL}/service-gateway:${VERSION}'
     build:
-      context: .
-      dockerfile: Dockerfile.service
+      <<: *service-build
       args:
-        VERSION: '${VERSION}'
+        <<: *service-args
         SERVICE_NAME: gateway
         SERVICE_PORT: 4560
-    env_file:
-      - ./app/trace.service/.env.dev
-    volumes:
-      - '${SRV_ROOT}/config.dev.yaml:/app/config.yaml:ro'
-      - '${SRV_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro'
-    networks:
-      - proxy
-    labels:
-      - 'traefik.enable=true'
-      - 'traefik.http.services.service-gateway.loadbalancer.server.port=4560'
-      - 'traefik.http.routers.service-gateway.entrypoints=web-secure'
-      - 'traefik.http.routers.service-gateway.rule=Host(`staging.${DOMAIN}`)'
-      ## For prefixing only without dns
-      # - traefik.http.routers.service-gateway.rule=Host(`stage.trace.ng`) && PathPrefix(`/graphql`)
-      # - traefik.http.routers.service-gateway.middlewares=srv-gateway-prefix
-      # - traefik.http.middlewares.srv-gateway-prefix.stripprefix.prefixes=/graphql
+    configs:
+      - source: shared
+        target: '/app/config.yaml'
+      - source: gateway
+        target: '/app/service.yaml'
+    deploy:
+      labels:
+        - 'traefik.enable=true'
+        - 'traefik.http.middlewares.srv-gateway-prefix.stripprefix.prefixes=/graphql'
+        - 'traefik.http.services.srv-gateway.loadbalancer.server.port=4560'
+        - 'traefik.http.routers.srv-gateway.entrypoints=web-secure'
+        - 'traefik.http.routers.srv-gateway.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/graphql`)'
+        - 'traefik.http.routers.srv-gateway.middlewares=srv-gateway-prefix'
