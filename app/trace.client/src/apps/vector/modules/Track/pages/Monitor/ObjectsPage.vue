@@ -68,16 +68,13 @@ const getObjectResource = (resourceValue: string) => {
 };
 
 const computedObjectResource = computed(() => {
-  const values = computedResourceTagValue.value.map((resourceItem) => {
-    const items = getObjectResource(resourceItem.id);
+  return computedResourceTagValue.value.map((resourceItem) => {
     return {
       id: resourceItem.id,
       name: resourceItem.name,
-      items,
+      items: getObjectResource(resourceItem.id),
     };
   });
-
-  return values;
 });
 
 const getMovementStateColor = (value: string) => {
@@ -247,7 +244,6 @@ export default {
         <q-separator v-show="isObjectReady" spaced inset />
       </template>
     </q-expansion-item>
-    <!-- </transition> -->
   </q-list>
   <div class="col-1 border-radius-sm bg-app-background q-mx-xs q-mb-xs">
     <switcher-status
