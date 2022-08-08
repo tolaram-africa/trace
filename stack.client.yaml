@@ -8,7 +8,7 @@ networks:
 x-app-instance: &app-instance
   build: &app-build
     context: .
-    dockerfile: Dockerfile.client
+    dockerfile: docker/Dockerfile.client
     args: &app-args
       VERSION: '${VERSION}'
   env_file:

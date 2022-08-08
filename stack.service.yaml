@@ -18,7 +18,7 @@ configs:
 x-service-instance: &service-instance
   build: &service-build
     context: .
-    dockerfile: Dockerfile.service
+    dockerfile: docker/Dockerfile.service
     args: &service-args
       VERSION: '${VERSION}'
   env_file:

@@ -40,7 +40,10 @@ services:
     volumes:
       - '${STORE_ROOT}/valhalla:/custom_files'
   iot:
-    image: traccar/traccar:5.2
+    image: '${REGISTRY_URL}/traccar:5.3'
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.iot
     deploy:
       mode: replicated
       replicas: 1
@@ -52,13 +55,13 @@ services:
         # ## Domain config
         - 'traefik.enable=true'
         - 'traefik.http.services.iot.loadbalancer.server.port=8082'
+        - 'traefik.http.services.iot-osmand.loadbalancer.server.port=5055'
         - 'traefik.http.middlewares.osmand-prefix.stripprefix.prefixes=/service/movement,/service/movement/'
         # ## IOT management UI
         - 'traefik.http.routers.iot-admin.entrypoints=web-secure'
         - 'traefik.http.routers.iot-admin.rule=Host(`manage-iot.${DOMAIN}`)'
         - 'traefik.http.routers.iot-admin.service=iot'
         ## IOT Web push (osmand)
-        - 'traefik.http.services.iot-osmand.loadbalancer.server.port=5055'
         - 'traefik.http.routers.iot-osmand.entrypoints=web-secure'
         - 'traefik.http.routers.iot-osmand.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/service/movement`)'
         - 'traefik.http.routers.iot-osmand.service=iot-osmand'

@@ -13,7 +13,7 @@ services:
     image: ${REGISTRY_URL}/manager:${VERSION}
     build:
       context: .
-      dockerfile: Dockerfile.manager
+      dockerfile: docker/Dockerfile.manager
       args:
         VERSION: ${VERSION}
         SERVICE_NAME: manager
