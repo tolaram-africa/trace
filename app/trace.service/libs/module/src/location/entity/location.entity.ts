@@ -1,8 +1,15 @@
-import { Column, Entity, Index, JoinColumn, OneToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  OneToOne,
+  RelationId,
+} from 'typeorm';
 import { Point, Geometry, GeometryType } from '@trace/common';
 import { TagEntity } from '@/common/entity/base.tag.entity';
 import { LocationAutoType } from '@/common/entity/enum.base';
-import { LocationCategory } from './';
+import { LocationCategory } from './location.category.entity';
 import { LocationType } from './location.enum';
 import { User } from '@/module/user/entity/user.entity';
 
@@ -22,15 +29,20 @@ export class Location extends TagEntity {
   @JoinColumn()
   public approvedBy!: User;
 
+  @RelationId((item: Location) => item.approvedBy)
+  @Column({ type: 'uuid', nullable: true })
+  public approvedById!: string;
+
   @Column({ type: 'timestamptz', nullable: true })
   public timeApproved!: Date;
 
   @Index('idx_location_categoryid')
-  @OneToOne(() => LocationCategory, { nullable: false })
+  @OneToOne(() => LocationCategory, { nullable: true })
   @JoinColumn()
-  public category: LocationCategory;
+  public category!: LocationCategory;
 
-  @Column({ nullable: true })
+  @RelationId((item: Location) => item.category)
+  @Column({ type: 'uuid', nullable: true })
   public categoryId!: string;
 
   @Column({ type: 'enum', enum: LocationType, default: LocationType.LANDMARK })
