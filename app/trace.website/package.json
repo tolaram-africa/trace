@@ -4,7 +4,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/elevenClouds/trace.git"
+    "url": "https://github.com/11Clouds/trace.git"
   },
   "keywords": [
     "gps",
@@ -13,7 +13,7 @@
   "author": "radioActive DROID <me@godwin.dev>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/elevenClouds/trace/issues"
+    "url": "https://github.com/11Clouds/trace/issues"
   },
   "homepage": "https://trace.ng",
   "scripts": {

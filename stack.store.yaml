@@ -1,0 +1,113 @@
+version: '3.9'
+
+networks:
+  proxy:
+    external: true
+    name: service-proxy
+  storage:
+    name: service-storage
+    driver: overlay
+    attachable: true
+
+services:
+  minio:
+    image: minio/minio
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          memory: 32M
+      labels:
+        - 'traefik.enable=true'
+        - 'traefik.http.middlewares.minio-strip.stripprefix.prefixes=/service/storage,/service/storage/'
+        ## Storage CDN access
+        - 'traefik.http.services.minio.loadbalancer.server.port=9000'
+        - 'traefik.http.routers.minio.entrypoints=web-secure'
+        - 'traefik.http.routers.minio.rule=Host(`storage.${DOMAIN}`) || Host(`staging.${DOMAIN}`) && PathPrefix(`/service/storage`)'
+        - 'traefik.http.routers.minio.service=minio'
+        - 'traefik.http.routers.minio.middlewares=minio-strip'
+        ## Storage admin interface
+        - 'traefik.http.services.minio-admin.loadbalancer.server.port=9001'
+        - 'traefik.http.routers.minio-admin.entrypoints=web-secure'
+        - 'traefik.http.routers.minio-admin.rule=Host(`manage-storage.${DOMAIN}`)'
+        - 'traefik.http.routers.minio-admin.service=minio-admin'
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/etc/timezone:/etc/timezone:ro'
+      - '${STORE_ROOT}/minio:/data'
+    ports:
+      - 9001:9001
+    environment:
+      MINIO_UPDATE: 'off'
+      MINIO_ROOT_USER: trace
+      MINIO_ROOT_PASSWORD: trace@1234
+      MINIO_SITE_NAME: trace-cdn-00
+      MINIO_DOMAIN: 'storage.${DOMAIN},manage.${DOMAIN},manage-storage.${DOMAIN}'
+      MINIO_BROWSER_REDIRECT_URL: 'https://manage-storage.${DOMAIN}'
+      # MINIO_SERVER_URL: 'https://storage.${DOMAIN}'
+    command: server --address 0.0.0.0:9000 --console-address ":9001" /data
+    networks:
+      - proxy
+      - storage
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
+      interval: 30s
+      timeout: 20s
+      retries: 5
+  postgres:
+    image: postgis/postgis:13-3.2-alpine
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128M
+        reservations:
+          memory: 32M
+    ports:
+      - 5432:5432
+    networks:
+      - storage
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/etc/timezone:/etc/timezone:ro'
+      - '${STORE_ROOT}/postgres:/var/lib/postgresql/data/pgdata'
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: trace
+      POSTGRES_PASSWORD: trace
+      POSTGRES_DB: trace
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  redis:
+    image: redis:5.0-alpine
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128M
+        reservations:
+          memory: 32M
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/etc/timezone:/etc/timezone:ro'
+      - '${STORE_ROOT}/redis:/data'
+    networks:
+      - storage
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: ['CMD-SHELL', 'redis-cli ping | grep PONG']
+      interval: 1s
+      timeout: 3s
+      retries: 5

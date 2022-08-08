@@ -1,0 +1,5 @@
+service:
+  debug: true
+  host: localhost
+  port: 4566
+  google-api-key: google

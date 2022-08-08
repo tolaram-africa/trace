@@ -24,7 +24,7 @@ export const useRouting = defineStore('app.map.routing', () => {
     routeInstance.value = L.Routing.control({
       // @ts-ignore
       router: L.Routing.mapzen('API_KEY', {
-        serviceUrl: process.env.API_ROUTING_SERVER + '/route?',
+        serviceUrl: process.env.API_ROUTING_PATH + 'route?',
         timeout: 45 * 1000,
         costing: 'truck',
         costing_options: {
@@ -44,7 +44,7 @@ export const useRouting = defineStore('app.map.routing', () => {
       formatter: new L.Routing.mapzenFormatter(),
       // @ts-ignore
       geocoder: L.Control.Geocoder.nominatim({
-        serviceUrl: process.env.API_GEOCODING_SERVER,
+        serviceUrl: process.env.API_GEOCODING_PATH,
       }),
       collapsible: false,
       summaryTemplate:
@@ -73,8 +73,8 @@ export const useRouting = defineStore('app.map.routing', () => {
       routeSourceDestination.value.push(e.latlng);
     if (routeSourceDestination.value.length === 2) {
       /** Clear selection markers */
-      routeMarkers.value.forEach(function (marker) {
-        mapState.mapInstance.removeLayer(marker);
+      routeMarkers.value.forEach(function (markerValue) {
+        mapState.mapInstance.removeLayer(markerValue);
       });
       routeMarkers.value = [];
 

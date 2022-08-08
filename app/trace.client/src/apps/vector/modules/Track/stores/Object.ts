@@ -43,7 +43,7 @@ export const useObjectState = defineStore('vec.track.object', () => {
       objectValue.value = objectListData;
       setObjectLoading(false);
       setObjectLoaded(true);
-    }, 3000);
+    }, 1500);
   };
 
   return {

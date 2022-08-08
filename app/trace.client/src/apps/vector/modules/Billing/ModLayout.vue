@@ -4,7 +4,7 @@ import vectorPaths from '@/vector/paths';
 
 const moduleItems: Array<IModule> = [
   vectorPaths.billing.summary,
-  vectorPaths.billing.trip,
+  vectorPaths.billing.order,
   vectorPaths.invoice.root,
   vectorPaths.billing.override,
   vectorPaths.billing.manifest,
@@ -13,8 +13,6 @@ const moduleItems: Array<IModule> = [
 
 <template>
   <layout-wrapper :module-items="moduleItems">
-    <q-page class="row items-center justify-evenly">
-      <router-view />
-    </q-page>
+    <router-view />
   </layout-wrapper>
 </template>

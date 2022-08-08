@@ -65,7 +65,7 @@ export default {
           </q-menu>
         </q-icon>
         <!-- Quick new items triggers-->
-        <q-icon
+        <!-- <q-icon
           color="primary"
           name="bi-plus"
           size="lg"
@@ -79,7 +79,7 @@ export default {
           >
             <command-list :items="props.qucikCommands" />
           </q-menu>
-        </q-icon>
+        </q-icon> -->
         <q-btn
           no-caps
           size="lg"

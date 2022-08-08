@@ -4,21 +4,19 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "setup": "pnpm run rimraf node_modules && pnpm install",
     "dev": "tsc -w",
-    "build": "pnpm clean && tsc",
-    "clean": "rm -rf dist",
+    "build": "tsc",
     "test": "NODE_ENV=unittest pnpm jest",
     "lint": "pnpm eslint --ext .js,.jsx,.ts,.tsx ./"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/elevenClouds/trace.git"
+    "url": "https://github.com/11Clouds/trace.git"
   },
   "author": "radioActive DROID <me@godwin.dev>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/elevenClouds/trace/issues"
+    "url": "https://github.com/11Clouds/trace/issues"
   },
   "homepage": "https://trace.ng",
   "devDependencies": {
@@ -42,5 +40,10 @@
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1",
     "pnpm": ">=3"
+  },
+  "dependencies": {
+    "@turf/turf": "^6.5.0",
+    "geojson": "^0.5.0",
+    "wkx": "^0.5.0"
   }
 }

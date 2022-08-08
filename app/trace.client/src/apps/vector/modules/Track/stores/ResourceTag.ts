@@ -14,7 +14,7 @@ export const useResourceTagState = defineStore('app.track.resource-tag', () => {
       resourceTagValue.value = resourceTagData;
       resourceIsLoading.value = false;
       resourceIsLoaded.value = true;
-    }, 1000);
+    }, 700);
   };
 
   return {

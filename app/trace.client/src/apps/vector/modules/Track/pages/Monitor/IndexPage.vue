@@ -8,16 +8,20 @@ const contextOptions = {
     title: 'Object Monitor',
   },
 };
+
+const ready = typeof window !== 'undefined';
 </script>
 
 <template>
   <page-wrapper :options="contextOptions">
     <q-page class="row">
-      <map-live class="col" style="height: 100vh">
-        <l-control :disable-scroll-propagation="true" position="topleft">
-          <track-panel-window />
-        </l-control>
-      </map-live>
+      <q-no-ssr>
+        <map-live v-show="ready" class="col" style="height: 100vh">
+          <l-control :disable-scroll-propagation="true" position="topleft">
+            <track-panel-window />
+          </l-control>
+        </map-live>
+      </q-no-ssr>
     </q-page>
   </page-wrapper>
 </template>

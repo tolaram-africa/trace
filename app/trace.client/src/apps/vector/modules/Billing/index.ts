@@ -16,15 +16,15 @@ export default {
       component: () => import('./pages/SummaryPage.vue'),
     },
     {
-      path: vectorPaths.billing.trip.path,
-      name: vectorPaths.billing.trip.name,
+      path: vectorPaths.billing.order.path,
+      name: vectorPaths.billing.order.name,
       component: () => import('./pages/LayoutDefault.vue'),
-      redirect: { name: vectorPaths.billing.trip.name + '.index' },
+      redirect: { name: vectorPaths.billing.order.name + '.index' },
       children: [
         {
           path: '',
-          name: vectorPaths.billing.trip.name + '.index',
-          component: () => import('./pages/Trip/IndexPage.vue'),
+          name: vectorPaths.billing.order.name + '.index',
+          component: () => import('./pages/Order/IndexPage.vue'),
         },
       ],
     },

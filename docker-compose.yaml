@@ -1,47 +1,184 @@
-version: "3.4"
+version: '3.9'
 
-################################################################################
-# SERVICES
-################################################################################
+networks:
+  proxy:
+    name: service-proxy
+    driver: overlay
+    attachable: true
+
+volumes:
+  certs:
+  proxy:
+
+configs:
+  prov_conf:
+    file: ./stack.proxy.config.yaml
+secrets:
+  basic_auth:
+    file: ./admin.basic-auth
+
 services:
-  # ------------------------------------------------------------
-  # Backend API (NestJs Server)
-  # ------------------------------------------------------------
-  api:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile
-    user: "node"
-    working_dir: /bhnadapt
-    env_file: ./.env.dev
+  cert:
+    image: alpine
+    deploy:
+      restart_policy:
+        condition: none
+      labels:
+        - 'swarm.cronjob.enable=true'
+        - 'swarm.cronjob.schedule=0 */25 * * * *'
+        - 'swarm.cronjob.skip-running=false'
+    command: sh -c "cd /etc/ssl/traefik
+      && wget traefik.me/cert.pem -O cert.pem
+      && wget traefik.me/privkey.pem -O privkey.pem"
     volumes:
-      - ./data/backend/content:/adapt/uploads:z
-      - ./data/backend/logs:/adapt/logs:z
+      - 'certs:/etc/ssl/traefik'
+    networks:
+      - proxy
+  registry:
+    image: registry:2.8
+    deploy:
+      labels:
+        - 'traefik.enable=true'
+        - 'traefik.http.services.registry.loadbalancer.server.port=5000'
+        - 'traefik.http.routers.registry.rule=Host(`registry.${DOMAIN}`)'
+        - 'traefik.http.routers.registry.entrypoints=web-secure'
+        - 'traefik.http.routers.registry.service=registry'
     ports:
-      - 3333:3333
-
-  # ------------------------------------------------------------
-  # Frontend SSR (NuxtJS)
-  # ------------------------------------------------------------
-  client:
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    user: "node"
-    working_dir: /adapt
-    env_file: ./.env.dev
+      - 5000:5000
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/.htpasswd
+      - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry
+    volumes:
+      - '${PWD}/registry.config.yaml:/etc/docker/registry/config.yml:ro'
+      - '${HOME}/docker-registry:/var/lib/registry:rw'
+      ## echo "admin" | htpasswd -iB registry.htpasswd admin
+      - '${PWD}/registry.basic-auth:/auth/.htpasswd'
+    networks:
+      - proxy
+  proxy:
+    image: traefik:v2.8
+    env_file: '${PWD}/.env'
+    command:
+      - '--global.checkNewVersion=false'
+      - '--global.sendAnonymousUsage=false'
+      - '--accesslog=true'
+      - '--log.level=INFO'
+      - '--api.dashboard=true'
+      - '--api.insecure=true'
+      - '--providers.docker=true'
+      - '--providers.docker.watch=true'
+      - '--providers.docker.network=service-proxy'
+      - '--providers.docker.swarmMode=true'
+      - '--providers.docker.swarmModeRefreshSeconds=5'
+      - '--providers.docker.exposedbydefault=false'
+      - '--providers.docker.endpoint=unix:///var/run/docker.sock'
+      - '--providers.docker.defaultRule=HostRegexp(`{{ normalize .Name}}.${DOMAIN}`)'
+      - '--providers.file.filename=/config.yml'
+      - '--providers.file.watch=true'
+      - '--serversTransport.insecureSkipVerify=true'
+      ## Web entrypoints
+      - '--entrypoints.web-insecure.address=:80'
+      - '--entrypoints.web-secure.address=:443'
+      ## IOT entrypoints
+      - '--entrypoints.iot-gps103.address=:17051'
+      - '--entrypoints.iot-tk103.address=:17052'
+      - '--entrypoints.iot-h02.address=:17053'
+      - '--entrypoints.iot-gt06.address=:17054'
+      - '--entrypoints.iot-calamp.address=:17055'
+      ## SSL certificates configuration
+      - '--certificatesresolvers.leresolver.acme.email=me@godwin.dev'
+      - '--certificatesresolvers.leresolver.acme.storage=/letsencrypt/acme.json'
+      - '--certificatesresolvers.leresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory'
+      - '--certificatesresolvers.leresolver.acme.tlsChallenge=true'
+      - '--certificatesresolvers.leresolver.acme.httpchallenge=false'
+      - '--certificatesResolvers.leresolver.acme.httpchallenge.entryPoint=web-insecure'
+      ## Global HTTP >> HTTPS
+      - '--entrypoints.web-insecure.http.redirections.entryPoint.to=web-secure'
+      - '--entrypoints.web-insecure.http.redirections.entryPoint.scheme=https'
+      - '--entrypoints.web-insecure.http.redirections.entryPoint.permanent=true'
+      - '--entrypoints.web-secure.http.tls.certResolver=leresolver'
+    deploy:
+      labels:
+        - 'traefik.enable=true'
+        - 'traefik.http.middlewares.sdefaultslheader.headers.customrequestheaders.X-Forwarded-Proto=https'
+        - 'traefik.http.middlewares.traefik-prefix.stripprefix.prefixes=/proxy,/proxy/'
+        - 'traefik.http.middlewares.traefik-prefix.stripprefix.forceSlash=true'
+        - 'traefik.http.routers.traefik.entrypoints=web-insecure'
+        - 'traefik.http.routers.traefik.rule=Host(`manage.${DOMAIN}`) && PathPrefix(`/proxy`) || Host(`manage.${DOMAIN}`) && PathPrefix(`/api`)'
+        - 'traefik.http.routers.traefik.middlewares=https-redirect@file'
+        - 'traefik.http.services.traefik.loadbalancer.server.port=8080'
+        - 'traefik.http.routers.traefik-secure.rule=Host(`manage.${DOMAIN}`) && PathPrefix(`/proxy`) || Host(`manage.${DOMAIN}`) && PathPrefix(`/api`)'
+        - 'traefik.http.routers.traefik-secure.entrypoints=web-secure'
+        - 'traefik.http.routers.traefik-secure.middlewares=traefik-prefix,basic-auth@file'
+        - 'traefik.http.routers.traefik-secure.tls=true'
+        - 'traefik.http.routers.traefik-secure.tls.certresolver=leresolver'
+        - 'traefik.http.routers.traefik-secure.service=api@internal'
+        - 'traefik.http.routers.traefik-secure.tls.domains[0].main=manage.${DOMAIN}'
+        - 'traefik.http.routers.traefik-secure.tls.domains[0].sans=manage-*.${DOMAIN}'
+      placement:
+        constraints: [node.role == manager]
+      mode: global
+      restart_policy:
+        condition: none
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 64M
+    ulimits:
+      rtprio: 95
+      memlock: -1
+      nproc: 1024000
+      nofile:
+        soft: 1024000
+        hard: 1024000
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
     ports:
-      - 4444:4444
+      - 80:80
+      - 443:443
+      - '443:443/udp'
+      - 17050:17050
+      - 17051:17051
+      - 17052:17052
+      - 17053:17053
+      - 17054:17054
+      - 17055:17055
+    networks:
+      - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - proxy:/letsencrypt
+      - certs:/etc/ssl/traefik
+    configs:
+      - source: prov_conf
+        target: /config.yml
+    secrets:
+      - source: basic_auth
+        target: /basic-auth
 
-  # ------------------------------------------------------------
-  # Cache server (Redis Server)
-  # ------------------------------------------------------------
-  redis:
-    image: redis:5.0-alpine
-    restart: unless-stopped
-    ports:
-      - 6379:6379
-
-  # ------------------------------------------------------------
-  # Limited use DB (Postgres Server)
-  # ------------------------------------------------------------
+  # test:
+  #   image: traefik/whoami
+  #   deploy:
+  #     labels:
+  #       - 'traefik.enable=true'
+  #       ## 100 requests per second && 50 burst per second
+  #       - 'traefik.http.middlewares.test-limit.ratelimit.average=100'
+  #       - 'traefik.http.middlewares.test-limit.ratelimit.burst=50'
+  #       - 'traefik.http.services.test.loadbalancer.server.port=80'
+  #       - 'traefik.http.routers.test.rule=Host(`test.${DOMAIN}`)'
+  #       - 'traefik.http.routers.test.entrypoints=web-secure'
+  #       - 'traefik.http.routers.test.tls.certresolver=leresolver'
+  #       - 'traefik.http.routers.test.middlewares=test-limit'
+  #       ## Sample catch-all route
+  #       - 'traefik.http.routers.http-catchall.rule=HostRegexp(`{host:.+}`)'
+  #       - 'traefik.http.routers.http-catchall.entrypoints=web-secure'
+  #       - 'traefik.http.routers.http-catchall.service=test'
+  #       - 'traefik.http.routers.http-catchall.priority=1'
+  #   networks:
+  #     - proxy

@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/elevenClouds/trace.git"
+    "url": "https://github.com/11Clouds/trace.git"
   },
   "keywords": [
     "gps",
@@ -14,12 +14,11 @@
   "author": "radioActive DROID <me@godwin.dev>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/elevenClouds/trace/issues"
+    "url": "https://github.com/11Clouds/trace/issues"
   },
   "homepage": "https://trace.ng",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "setup": "pnpm run clean && pnpm install",
     "client": "pnpm -r --filter ./app/trace.client run",
     "common": "pnpm -r --filter ./app/trace.common run",
     "docs": "pnpm -r --filter ./app/trace.docs run",
@@ -30,13 +29,11 @@
     "dev:common": "pnpm run common dev",
     "dev:docs": "pnpm run docs dev",
     "dev:service": "pnpm run service dev",
-    "build": "pnpm clean:packages && pnpm -r --filter ./app run build",
-    "clean": " pnpm -r --filter ./app --parallel run clean && pnpm clean:packages && rimraf ./app/*/node_modules, ./app/trace.client/*/node_modules ./app/*/yarn* ./app/*/package-lock.json ./app/*/.pnpm-debug*",
-    "clean:packages": "rimraf app/*/dist node_modules",
+    "build": "pnpm -r --filter ./app run build",
+    "clean": " pnpm clean:dist && pnpm clean:packages",
+    "clean:packages": "rimraf **/node_modules **/yarn* **/package-lock.* **/.pnpm-debug* **/pnpm-lock.yaml",
+    "clean:dist": "rimraf app/**/dist",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "@trace/app": "workspace:*",
@@ -46,8 +43,7 @@
     "@trace/service": "workspace:*",
     "@trace/website": "workspace:*",
     "pnpm": "^6.32.3",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.6.2"
+    "rimraf": "^3.0.2"
   },
   "engines": {
     "node": "^18 || ^16 || ^14",

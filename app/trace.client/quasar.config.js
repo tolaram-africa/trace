@@ -49,7 +49,7 @@ module.exports = configure(function (/* ctx */) {
         node: 'node16'
       },
 
-      vueRouterMode: 'hash',
+      vueRouterMode: 'history',
       env: config,
       // vueRouterBase,
       // vueDevtools,
@@ -86,7 +86,41 @@ module.exports = configure(function (/* ctx */) {
 
     devServer: {
       open: false,
-      port: config.PORT
+      port: config.PORT,
+      proxy: {
+        '/graphql': {
+          target: config.SERVER_API_ROOT,
+          rewrite: (pathValue) => pathValue.replace(/^\/graphql\//, ''),
+          changeOrigin: true,
+          headers: {
+            'Accept': '*/*',
+          }
+        },
+        '/service/storage': {
+          target: config.SERVER_API_STORAGE,
+          rewrite: (pathValue) => pathValue.replace(/^\/service\/storage\//, ''),
+          changeOrigin: true,
+          headers: {
+            'Accept': '*/*',
+          }
+        },
+        '/service/routing': {
+          target: config.SERVER_API_ROUTING,
+          rewrite: (pathValue) => pathValue.replace(/^\/service\/routing\//, ''),
+          changeOrigin: true,
+          headers: {
+            'Accept': '*/*',
+          }
+        },
+        '/service/geocoding': {
+          target: config.SERVER_API_GEOCODING,
+          rewrite: (pathValue) => pathValue.replace(/^\/service\/geocoding\//, ''),
+          changeOrigin: true,
+          headers: {
+            'Accept': '*/*',
+          }
+        },
+      }
     },
 
     framework: {
@@ -154,8 +188,6 @@ module.exports = configure(function (/* ctx */) {
     },
 
     electron: {
-      // extendElectronMainConf (esbuildConf)
-      // extendElectronPreloadConf (esbuildConf)
       inspectPort: 5858,
       bundler: 'packager', // 'packager' or 'builder'
       packager: {

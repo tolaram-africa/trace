@@ -112,11 +112,11 @@ export default {
       name: 'vec.billing.override',
       path: 'override',
     },
-    trip: {
-      title: 'Trips',
+    order: {
+      title: 'Orders',
       icon: 'bi-upc-scan',
-      name: 'vec.billing.trip',
-      path: 'trip',
+      name: 'vec.billing.order',
+      path: 'order',
     },
     manifest: {
       title: 'Manifest',

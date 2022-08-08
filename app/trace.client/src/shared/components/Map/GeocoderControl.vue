@@ -4,6 +4,7 @@
 import { nextTick, onMounted, onBeforeUnmount } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useMapState } from '@/components/Map/stores';
+import * as L from 'leaflet';
 import Geocoder from 'leaflet-control-geocoder';
 import 'leaflet-control-geocoder';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
@@ -14,8 +15,13 @@ const { mapInstance, mapPluginReady } = storeToRefs(mapState);
 onMounted(async () => {
   if (mapPluginReady.value) {
     await nextTick();
+    // @ts-ignore
+    const nominatim = L.Control.Geocoder.nominatim({
+      serviceUrl: process.env.API_GEOCODING_PATH,
+    });
     const geocoder = new Geocoder({
       defaultMarkGeocode: false,
+      geocoder: nominatim,
     });
 
     geocoder.on('markgeocode', (e: any) => {

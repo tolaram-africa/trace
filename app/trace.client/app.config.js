@@ -3,30 +3,26 @@ require('dotenv').config();
 
 let env = process.env;
 if (env.MODE === undefined) {
-  require('dotenv').config({ path: './.env.development' });
+  require('dotenv').config({ path: './.env.dev' });
   env = process.env;
 }
 
-// const defaultCoords = [12.726085, 2.654738];
-const defaultServerHost = 'http://localhost:4567';
-/*
-const convertToCoords = (coords) => {
-  if (!coords) return defaultCoords;
-  const [lat, lng] = coords.split(',').map(Number);
-  return [lat, lng];
-};
-*/
-
 module.exports = {
   API_SECRET: env.API_SECRET || 'secret',
-  PORT: env.PORT || 4568,
-  BASE_URL: env.BASE_URL || 'http://localhost:4568/',
-  API_ROOT: env.API_ROOT || `${defaultServerHost}/api/v1/`,
-  API_STORAGE: env.API_STORAGE || `${defaultServerHost}/api/storage/v1/`,
-  API_AUTH: env.API_AUTH || `${defaultServerHost}/api/auth/v1/`,
-  API_ROUTING_SERVER: env.API_ROUTING_SERVER || '',
-  API_GEOCODING_SERVER: env.API_GEOCODING_SERVER || 'https://nominatim.openstreetmap.org/',
-
+  PORT: env.PORT || 4580,
+  BASE_URL: env.BASE_URL || 'http://localhost:4580/',
+  APP_VARIANT: env.APP_VARIANT,
+  /* Backend Server urls */
+  SERVER_API_ROOT: env.SERVER_API_ROOT || 'http://127.0.0.1:4560/',
+  SERVER_API_STORAGE: env.SERVER_API_STORAGE || 'http://127.0.0.1:9000/',
+  SERVER_API_ROUTING: env.SERVER_API_ROUTING || '',
+  SERVER_API_GEOCODING: env.SERVER_API_GEOCODING || 'https://nominatim.openstreetmap.org/',
+  /* API Paths */
+  API_ROOT_PATH: env.API_ROOT_PATH || '/graphql/',
+  API_STORAGE_PATH: env.API_STORAGE_PATH || '/service/storage/',
+  API_ROUTING_PATH: env.API_ROUTING_PATH || '/service/routing/',
+  API_GEOCODING_PATH: env.API_GEOCODING_PATH || '/service/geocoding/',
+  /* App brading */
   APP_NAME: env.APP_NAME || 'Trace',
   APP_ID: env.APP_ID || 'ng.trace.vector',
   APP_DESCRIPTION: env.APP_DESCRIPTION || 'Trace',
