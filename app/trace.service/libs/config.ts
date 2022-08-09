@@ -4,8 +4,7 @@ import { load } from 'js-yaml';
 import { getObjectValue } from './util/objectHelper';
 
 const DEV_CONFIG_ROOT = '/config';
-
-const prodEnv = process.env.NODE_ENV === 'production';
+const PROD_ENV = process.env.NODE_ENV === 'production';
 
 export enum SERVICE_PROFILE {
   SRV_GATEWAY = 'gateway',
@@ -17,7 +16,7 @@ export enum SERVICE_PROFILE {
 }
 
 export const getConfigPath = (): string => {
-  const file = prodEnv ? 'config.yaml' : 'config.dev.yaml';
+  const file = PROD_ENV ? 'config.yaml' : 'config.dev.yaml';
   const config = join(process.cwd(), file);
   try {
     if (existsSync(config)) return config;
@@ -28,12 +27,12 @@ export const getConfigPath = (): string => {
 };
 
 export const getServicePath = (service: SERVICE_PROFILE): string => {
-  const serviceRoot = prodEnv
+  const serviceRoot = PROD_ENV
     ? process.cwd()
     : join(process.cwd(), DEV_CONFIG_ROOT);
   const serviceConfig = join(
     serviceRoot,
-    prodEnv ? 'service.yaml' : `service.${service}.yaml`,
+    PROD_ENV ? 'service.yaml' : `service.${service}.yaml`,
   );
   try {
     if (existsSync(serviceConfig)) return serviceConfig;
