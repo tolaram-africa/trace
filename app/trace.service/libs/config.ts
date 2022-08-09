@@ -7,8 +7,7 @@ const DEV_CONFIG_ROOT = '/config';
 
 const prodEnv = process.env.NODE_ENV === 'production';
 
-export enum ConfigConsumer {
-  MAIN = 'config',
+export enum SERVICE_PROFILE {
   SRV_GATEWAY = 'gateway',
   SRV_MANAGER = 'manager',
   SRV_IDENTITY = 'identity',
@@ -28,7 +27,7 @@ export const getConfigPath = (): string => {
   return file;
 };
 
-export const getServicePath = (service: ConfigConsumer): string => {
+export const getServicePath = (service: SERVICE_PROFILE): string => {
   const serviceRoot = prodEnv
     ? process.cwd()
     : join(process.cwd(), DEV_CONFIG_ROOT);
@@ -56,7 +55,7 @@ export const getConfig = (): Record<string, unknown> => {
 };
 
 export const getServiceConfig = (
-  service: ConfigConsumer,
+  service: SERVICE_PROFILE,
 ): Record<string, unknown> => {
   let config: Record<string, unknown>;
   try {
@@ -82,7 +81,7 @@ export const getConfigValue = (text: string): Record<string, unknown> => {
 };
 
 export const getServiceValue = (
-  service: ConfigConsumer,
+  service: SERVICE_PROFILE,
   text: string,
 ): Record<string, unknown> => {
   let config: Record<string, unknown>;
