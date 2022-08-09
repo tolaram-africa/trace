@@ -5,15 +5,30 @@
   "root": "apps/gateway",
   "compilerOptions": {
     "webpack": true,
-    "tsConfigPath": "apps/gateway/tsconfig.app.json"
+    "tsConfigPath": "apps/gateway/tsconfig.app.json",
+    "watchAssets": true,
+    "assets": [
+      {
+        "include": "**/*.graphql",
+        "watchAssets": true
+      },
+      {
+        "include": "**/*.yaml",
+        "watchAssets": true
+      },
+      {
+        "include": "**/*.yml",
+        "watchAssets": true
+      },
+      {
+        "include": "**/*.html",
+        "watchAssets": true
+      }
+    ]
   },
   "generateOptions": {
     "spec": false
   },
-  "assets": [
-    "**/*.graphql"
-  ],
-  "watchAssets": true,
   "projects": {
     "gateway": {
       "type": "application",
