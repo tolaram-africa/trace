@@ -1,18 +1,26 @@
-export declare type DriverType =
+export declare type SourceType =
   | 'mysql'
   | 'postgres'
   | 'cockroachdb'
   | 'mariadb'
-  | 'mssql';
+  | 'mssql'
+  | 'mongodb';
 
-export interface IDataOperation {
-  type: DriverType;
+export interface IBaseSource {
+  type: SourceType;
   host: string;
   port: number;
+  database: string;
+  synchronize: boolean;
+  logging: boolean;
+  entities?: Array<string>;
+  migrations?: Array<string>;
+  subscribers?: Array<string>;
+}
+
+export interface IOperationSource extends IBaseSource {
   username: string;
   password: string;
-  database: string;
-  logging: boolean;
   entityPrefix: string;
   migrationsTableName: string;
   migrationsTransactionMode: 'all' | 'none' | 'each';
@@ -20,3 +28,5 @@ export interface IDataOperation {
   installExtensions: boolean;
   dropSchema: boolean;
 }
+
+export type IDocumentSource = IBaseSource;

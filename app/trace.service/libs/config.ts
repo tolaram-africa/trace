@@ -74,7 +74,7 @@ export const getServiceConfig = (
 export const getConfigValue = (text: string): Record<string, unknown> => {
   let config: Record<string, unknown>;
   try {
-    config = getObjectValue(text, getConfig());
+    config = getObjectValue(getConfig(), text);
   } catch (error) {
     throw error;
   }
@@ -87,7 +87,7 @@ export const getServiceValue = (
 ): Record<string, unknown> => {
   let config: Record<string, unknown>;
   try {
-    config = getObjectValue(text, getServiceConfig(service));
+    config = getObjectValue(getServiceConfig(service), text);
   } catch (error) {
     throw error;
   }

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ManagerService } from './manager.service';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { dataSourceConfig } from '@@/data/connection';
+import { OperationSource } from '@@/data/operation';
 import { AdminModule } from './admin/admin.module';
 import { ClientModule } from './client/client.module';
 
@@ -14,7 +14,7 @@ import { ClientModule } from './client/client.module';
           retryAttempts: 5,
           retryDelay: 3000,
           autoLoadEntities: true,
-          ...dataSourceConfig,
+          ...OperationSource,
         },
     }),
     AdminModule,

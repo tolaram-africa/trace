@@ -81,6 +81,7 @@
     "ioredis": "^5.1.0",
     "jexl": "^2.3.0",
     "js-yaml": "^4.1.0",
+    "mongodb": "^4.8.1",
     "number-to-words": "^1.2.4",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",

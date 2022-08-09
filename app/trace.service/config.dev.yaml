@@ -36,9 +36,10 @@ database:
     synchronize: true
     installExtensions: true
     dropSchema: false
-  mongodb:
+  document:
     type: mongodb
     host: localhost
     port: 27017
-    username: trace
+    database: mongodb;
     synchronize: true
+    logging: true;
