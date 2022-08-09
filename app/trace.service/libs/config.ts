@@ -1,6 +1,7 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { load } from 'js-yaml';
+import { getObjectValue } from './util/objectHelper';
 
 const DEV_CONFIG_ROOT = '/config';
 
@@ -43,7 +44,7 @@ export const getServicePath = (service: ConfigConsumer): string => {
   return serviceConfig;
 };
 
-export const configValue = (): Record<string, unknown> => {
+export const getConfig = (): Record<string, unknown> => {
   let config: Record<string, unknown>;
   try {
     const file = readFileSync(getConfigPath(), 'utf8');
@@ -61,11 +62,34 @@ export const getServiceConfig = (
   try {
     const file = readFileSync(getServicePath(service), 'utf8');
     config = {
-      ...configValue(),
+      ...getConfig(),
       service: load(file) as Record<string, unknown>,
     };
   } catch (err) {
     throw err;
+  }
+  return config;
+};
+
+export const getConfigValue = (text: string): Record<string, unknown> => {
+  let config: Record<string, unknown>;
+  try {
+    config = getObjectValue(text, getConfig());
+  } catch (error) {
+    throw error;
+  }
+  return config;
+};
+
+export const getServiceValue = (
+  service: ConfigConsumer,
+  text: string,
+): Record<string, unknown> => {
+  let config: Record<string, unknown>;
+  try {
+    config = getObjectValue(text, getServiceConfig(service));
+  } catch (error) {
+    throw error;
   }
   return config;
 };

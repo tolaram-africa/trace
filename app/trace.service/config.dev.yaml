@@ -4,26 +4,26 @@ app:
   secret: xx-xxx-xxx-xx
   services:
     - name: gateway
-      host: service.gateway
+      host: service_gateway
       port: 4560
     - name: identity
-      host: service.identity
+      host: service_identity
       port: 4561
     - name: operation
-      host: service.operation
+      host: service_operation
       port: 4562
     - name: integration
-      host: service.integration
+      host: service_integration
       port: 4564
     - name: navigation
-      host: service.navigation
+      host: service_navigation
       port: 4565
     - name: manager
-      host: service.manager
+      host: service_manager
       port: 4570
 
 database:
-  postgres:
+  operation:
     type: postgres
     host: localhost
     port: 5432
