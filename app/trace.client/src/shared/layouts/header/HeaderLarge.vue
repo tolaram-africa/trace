@@ -9,7 +9,7 @@ import NotificationList from './NotificationList.vue';
 import { IModuleCommands } from '@/libs/Menu';
 
 interface IProps {
-  qucikCommands: Array<IModuleCommands>;
+  quickCommands: Array<IModuleCommands>;
 }
 
 const props = defineProps<IProps>();
@@ -77,7 +77,7 @@ export default {
             transition-hide="scale"
             class="border-radius-sm q-pa-sm"
           >
-            <command-list :items="props.qucikCommands" />
+            <command-list :items="props.quickCommands" />
           </q-menu>
         </q-icon> -->
         <q-btn
@@ -95,7 +95,7 @@ export default {
             transition-hide="scale"
             class="border-radius-sm q-pa-sm"
           >
-            <command-list :items="props.qucikCommands" />
+            <command-list :items="props.quickCommands" />
           </q-menu>
         </q-btn>
       </div>

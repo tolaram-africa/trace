@@ -37,7 +37,7 @@ export default {
   >
     <template #header>
       <header-mobile
-        :qucik-commands="quickNewItems"
+        :quick-commands="quickNewItems"
         :module-list="appMobileMenuString"
       ></header-mobile>
     </template>
@@ -63,7 +63,7 @@ export default {
     <template #header>
       <header-large
         v-show="showHeader"
-        :qucik-commands="quickNewItems"
+        :quick-commands="quickNewItems"
       ></header-large>
     </template>
     <slot>
