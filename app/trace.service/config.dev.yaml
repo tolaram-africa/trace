@@ -2,25 +2,31 @@ app:
   debug: true
   name: Trace
   secret: xx-xxx-xxx-xx
-  services:
-    - name: gateway
-      host: service_gateway
-      port: 4560
-    - name: identity
-      host: service_identity
-      port: 4561
-    - name: operation
-      host: service_operation
-      port: 4562
-    - name: integration
-      host: service_integration
-      port: 4564
-    - name: navigation
-      host: service_navigation
-      port: 4565
-    - name: manager
-      host: service_manager
-      port: 4570
+services:
+  gateway:
+    name: gateway
+    host: service_gateway
+    port: 4560
+  identity:
+    name: identity
+    host: service_identity
+    port: 4561
+  operation:
+    name: operation
+    host: service_operation
+    port: 4562
+  integration:
+    name: integration
+    host: service_integration
+    port: 4564
+  navigation:
+    name: navigation
+    host: service_navigation
+    port: 4565
+  manager:
+    name: manager
+    host: service_manager
+    port: 4570
 
 database:
   ## Core application database.

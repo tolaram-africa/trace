@@ -1,4 +1,3 @@
 debug: true
-host: localhost
-port: 4566
+secret: xx-xxx-xxx-xx
 google-api-key: google

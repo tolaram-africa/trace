@@ -1,22 +1,25 @@
-import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ManagerModule } from './manager.module';
+import { Logger } from '@nestjs/common';
+import { getStartupConfig, SERVICE_PROFILE } from '@@/libs/config';
 
 (async () => {
   const app = await NestFactory.create(ManagerModule);
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-      whitelist: true,
-    }),
-  );
+  app.useLogger(['debug', 'log', 'warn', 'error']);
+  const logger = new Logger();
+  const config = getStartupConfig(app, SERVICE_PROFILE.SRV_MANAGER);
+  const url = `http://${config.host}:${config.port}`;
 
-  const PORT = 3000;
-  const HOSTNAME = 'service.manager';
-  const url = `http://${HOSTNAME}:${PORT}`;
-
-  await app.listen(PORT, HOSTNAME, () => null);
-  console.log(`Trace Manager is under ${url}/`);
-  console.log(`Data Admin is under ${url}/data-admin/`);
-  console.log(`GraphQL is under ${url}/graphql/`);
+  /* Try starting up server. */
+  logger.log(`Starting service ${config.name}...`);
+  try {
+    await app.listen(config.port, config.host, () => {
+      logger.log('Service startup completed...');
+      logger.log(`Trace Manager is listening on ${url}/`);
+      logger.log(`Data Admin is listening on ${url}/data-admin/`);
+      logger.log(`GraphQL is listening on ${url}/graphql/`);
+    });
+  } catch (error) {
+    logger.error('A Fatal error occurred', error);
+  }
 })();
