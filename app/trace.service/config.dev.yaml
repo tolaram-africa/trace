@@ -1,6 +1,6 @@
 app:
   debug: true
-  logLevel: ['debug', 'log', 'warn', 'error']
+  logLevel: ['debug', 'log', 'warn', 'error', 'verbose']
   name: Trace
   secret: xx-xxx-xxx-xx
 services:
