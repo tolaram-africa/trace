@@ -5,26 +5,32 @@ app:
   secret: xx-xxx-xxx-xx
 services:
   gateway:
+    proxy: true
     name: gateway
     host: service_gateway
     port: 4560
   identity:
+    proxy: false
     name: identity
     host: service_identity
     port: 4561
   operation:
+    proxy: false
     name: operation
     host: service_operation
     port: 4562
   integration:
+    proxy: false
     name: integration
     host: service_integration
     port: 4564
   navigation:
+    proxy: false
     name: navigation
     host: service_navigation
     port: 4565
   manager:
+    proxy: true
     name: manager
     host: service_manager
     port: 4570
