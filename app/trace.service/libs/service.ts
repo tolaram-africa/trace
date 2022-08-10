@@ -18,28 +18,22 @@ interface IServiceInstance {
   logger?: Logger;
 }
 
-export const getStartupConfig = (
-  app: INestApplication,
-  name: SERVICE_PROFILE,
-): IServiceConfig => {
-  const configService = app.get<ConfigService>(ConfigService);
-  return configService.getOrThrow<IServiceConfig>('services.' + name);
-};
-
 export const getServiceInstance = (
   app: INestApplication,
   name: SERVICE_PROFILE,
 ): IServiceInstance => {
   const configService = app.get<ConfigService>(ConfigService);
+  const config = configService.getOrThrow<IServiceConfig>('services.' + name);
   const logMode = (
-    PROD_ENV ? ['log', 'warn', 'error'] : ['debug', 'log', 'warn', 'error']
+    PROD_ENV
+      ? ['log', 'warn', 'error']
+      : ['debug', 'log', 'warn', 'error', 'verbose']
   ) as Array<LogLevel>;
   const logOptions =
     configService.getOrThrow<Array<LogLevel>>('app.logLevel') || logMode;
   app.useLogger(logOptions);
   app.useGlobalPipes(new ValidationPipe());
   const logger = new Logger();
-  const config = getStartupConfig(app, name);
 
   /* Try starting up server. */
   logger.log(`Starting service ${config.name}...`);
@@ -54,16 +48,11 @@ export const getServiceInstance = (
 };
 
 export const bootstrapService = async (
-  service: INestApplication,
-  profile: SERVICE_PROFILE,
-  extra = false,
+  context: IServiceInstance,
+  optinalContext = true,
 ): Promise<void> => {
-  const { app, name, host, port, logger, url } = getServiceInstance(
-    service,
-    profile,
-  );
-  if (!extra) app.enableCors();
-  else {
+  const { app, name, host, port, logger, url } = context;
+  if (optinalContext) {
     app.use(graphqlUploadExpress({ maxFileSize: 1000000, maxFiles: 10 }));
     app.enableCors({
       exposedHeaders: 'X-Document-Name',
@@ -73,7 +62,6 @@ export const bootstrapService = async (
     app.use(helmet.hidePoweredBy());
     app.use(helmet.contentSecurityPolicy());
   }
-
   try {
     await app.listen(port, host, () => {
       logger.log('Service startup completed...');
