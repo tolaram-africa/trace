@@ -27,7 +27,7 @@ import { PROD_ENV } from '@@/libs/config';
           autoSchemaFile: join(
             process.cwd(),
             `graphql/${configService.get<string>(
-              'services.' + SharedGraphQlModule.SERVICE_NAME + '.name',
+              'services.' + SharedGraphQLModule.SERVICE_NAME + '.name',
             )}.gql`,
           ),
           context: ({ req }: any) => ({ req }),
@@ -46,14 +46,14 @@ import { PROD_ENV } from '@@/libs/config';
     }),
   ],
 })
-export class SharedGraphQlModule {
+export class SharedGraphQLModule {
   public static SERVICE_NAME: SERVICE_PROFILE;
 
   static register(name: SERVICE_PROFILE): DynamicModule {
-    SharedGraphQlModule.SERVICE_NAME = name;
+    SharedGraphQLModule.SERVICE_NAME = name;
 
     return {
-      module: SharedGraphQlModule,
+      module: SharedGraphQLModule,
       providers: [],
       exports: [],
     };
