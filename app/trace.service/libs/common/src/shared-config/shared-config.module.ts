@@ -11,7 +11,6 @@ import { getServiceConfig, SERVICE_PROFILE } from '@@/libs/config';
   ],
 })
 export class SharedConfigModule {
-  public config: Record<string, unknown>;
   public static SERVICE_NAME: SERVICE_PROFILE;
 
   static register(name: SERVICE_PROFILE): DynamicModule {
