@@ -1,9 +1,17 @@
 import { Module } from '@nestjs/common';
+import { DatabaseModule } from '@root/libs/common/src/database.module';
+import { SharedConfigModule } from '@root/libs/common/src/shared-config.module';
+import { SharedGraphQlModule } from '@root/libs/common/src/shared-graph-ql.module';
+import { SERVICE_PROFILE } from '@root/libs/config';
 import { IntegrationController } from './integration.controller';
 import { IntegrationService } from './integration.service';
 
 @Module({
-  imports: [],
+  imports: [
+    DatabaseModule,
+    SharedGraphQlModule.register(SERVICE_PROFILE.SRV_INTEGRATION),
+    SharedConfigModule.register(SERVICE_PROFILE.SRV_INTEGRATION),
+  ],
   controllers: [IntegrationController],
   providers: [IntegrationService],
 })

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { SharedConfigModule } from '@/common/shared-config/shared-config.module';
+import { SharedConfigModule } from '@/common/shared-config.module';
 import { GatewayController } from './gateway.controller';
 import { GatewayService } from './gateway.service';
 import { SERVICE_PROFILE } from '@@/libs/config';
