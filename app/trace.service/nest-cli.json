@@ -66,6 +66,42 @@
       "compilerOptions": {
         "tsConfigPath": "libs/module/tsconfig.lib.json"
       }
+    },
+    "identity": {
+      "type": "application",
+      "root": "apps/identity",
+      "entryFile": "main",
+      "sourceRoot": "apps/identity/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/identity/tsconfig.app.json"
+      }
+    },
+    "operation": {
+      "type": "application",
+      "root": "apps/operation",
+      "entryFile": "main",
+      "sourceRoot": "apps/operation/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/operation/tsconfig.app.json"
+      }
+    },
+    "navigation": {
+      "type": "application",
+      "root": "apps/navigation",
+      "entryFile": "main",
+      "sourceRoot": "apps/navigation/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/navigation/tsconfig.app.json"
+      }
+    },
+    "integration": {
+      "type": "application",
+      "root": "apps/integration",
+      "entryFile": "main",
+      "sourceRoot": "apps/integration/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/integration/tsconfig.app.json"
+      }
     }
   }
 }
