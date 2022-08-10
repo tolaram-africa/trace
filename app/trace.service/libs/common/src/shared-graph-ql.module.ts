@@ -7,7 +7,7 @@ import { DynamicModule, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { SERVICE_PROFILE } from '@@/libs/config';
-import { ServiceStateModule } from '../service-state/service-state.module';
+import { ServiceStateModule } from './service-state/service-state.module';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PROD_ENV } from '@@/libs/config';
