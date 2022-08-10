@@ -1,23 +1,29 @@
 import { Module } from '@nestjs/common';
 import { ManagerService } from './manager.service';
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { dataSourceConfig } from '@@/data/connection';
 import { AdminModule } from './admin/admin.module';
 import { ClientModule } from './client/client.module';
+import { DatabaseModule } from '@/common/database/database.module';
+import { SharedConfigModule } from '@/common/shared-config/shared-config.module';
+import { SERVICE_PROFILE } from '@@/libs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
+import { SampleModule } from './sample/sample.module';
 
 @Module({
   imports: [
     ClientModule,
-    TypeOrmModule.forRootAsync({
-      useFactory: async () =>
-        <TypeOrmModuleOptions>{
-          retryAttempts: 5,
-          retryDelay: 3000,
-          autoLoadEntities: true,
-          ...dataSourceConfig,
-        },
-    }),
     AdminModule,
+    DatabaseModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      installSubscriptionHandlers: true,
+      autoSchemaFile: join(process.cwd(), 'graphql/manager.gql'),
+      debug: false,
+      playground: true,
+    }),
+    SharedConfigModule.register(SERVICE_PROFILE.SRV_MANAGER),
+    SampleModule,
   ],
   controllers: [],
   providers: [ManagerService],

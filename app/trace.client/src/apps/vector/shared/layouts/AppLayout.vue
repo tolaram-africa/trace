@@ -29,47 +29,45 @@ export default {
 </script>
 
 <template>
-  <fragment>
-    <mobile-layout
-      v-if="$q.platform.is.mobile"
-      :identity-items="identityMenu"
-      :user-profile="sampleUserProfile"
-      :root-app-items="sampleRootApps"
-    >
-      <template #header>
-        <header-mobile
-          :qucik-commands="quickNewItems"
-          :module-list="appMobileMenuString"
-        ></header-mobile>
-      </template>
-      <slot>
-        <router-view></router-view>
-      </slot>
-      <template #footer>
-        <tab-mobile
-          :tab-items="appMobileMenu"
-          :tab-extended-items="appMobileMenuExtended"
-        ></tab-mobile>
-      </template>
-    </mobile-layout>
+  <mobile-layout
+    v-if="$q.platform.is.mobile"
+    :identity-items="identityMenu"
+    :user-profile="sampleUserProfile"
+    :root-app-items="sampleRootApps"
+  >
+    <template #header>
+      <header-mobile
+        :quick-commands="quickNewItems"
+        :module-list="appMobileMenuString"
+      ></header-mobile>
+    </template>
+    <slot>
+      <router-view></router-view>
+    </slot>
+    <template #footer>
+      <tab-mobile
+        :tab-items="appMobileMenu"
+        :tab-extended-items="appMobileMenuExtended"
+      ></tab-mobile>
+    </template>
+  </mobile-layout>
 
-    <desktop-layout
-      v-else
-      :overview-items="overviewMenu"
-      :module-items="appModuleMenu"
-      :identity-items="identityMenu"
-      :user-profile="sampleUserProfile"
-      :root-app-items="sampleRootApps"
-    >
-      <template #header>
-        <header-large
-          v-show="showHeader"
-          :qucik-commands="quickNewItems"
-        ></header-large>
-      </template>
-      <slot>
-        <router-view></router-view>
-      </slot>
-    </desktop-layout>
-  </fragment>
+  <desktop-layout
+    v-else
+    :overview-items="overviewMenu"
+    :module-items="appModuleMenu"
+    :identity-items="identityMenu"
+    :user-profile="sampleUserProfile"
+    :root-app-items="sampleRootApps"
+  >
+    <template #header>
+      <header-large
+        v-show="showHeader"
+        :quick-commands="quickNewItems"
+      ></header-large>
+    </template>
+    <slot>
+      <router-view></router-view>
+    </slot>
+  </desktop-layout>
 </template>

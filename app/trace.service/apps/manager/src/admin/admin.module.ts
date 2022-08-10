@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import AdminJS, { AdminJSOptions } from 'adminjs';
 import { AdminModule as AdminJsModule } from '@adminjs/nestjs';
 import { validate } from 'class-validator';
-import { dataSource } from '@@/data/connection';
+import { dataSource } from '@@/data/operation';
 import {
   AdminTenantModule,
   AdminSystemModule,

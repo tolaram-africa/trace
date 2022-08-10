@@ -11,14 +11,14 @@
 127.0.0.1 sample.traefik.me
 
 ## traefik.me tenant sample
-127.0.0.1 demo-one.stage.traefik.me
-127.0.0.1 demo-one.stage.traefik.me
+127.0.0.1 demo-one.traefik.me
+127.0.0.1 demo-one.traefik.me
 127.0.0.1 trace-demo.traefik.me
 
 ## traefik.me internal services
-127.0.0.1 service.gateway
-127.0.0.1 service.identity
-127.0.0.1 service.operation
-127.0.0.1 service.integration
-127.0.0.1 service.navigation
-127.0.0.1 service.manager
+127.0.0.1 service_gateway
+127.0.0.1 service_identity
+127.0.0.1 service_operation
+127.0.0.1 service_integration
+127.0.0.1 service_navigation
+127.0.0.1 service_manager

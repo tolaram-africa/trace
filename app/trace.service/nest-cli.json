@@ -5,15 +5,30 @@
   "root": "apps/gateway",
   "compilerOptions": {
     "webpack": true,
-    "tsConfigPath": "apps/gateway/tsconfig.app.json"
+    "tsConfigPath": "apps/gateway/tsconfig.app.json",
+    "watchAssets": true,
+    "assets": [
+      {
+        "include": "**/*.graphql",
+        "watchAssets": true
+      },
+      {
+        "include": "**/*.yaml",
+        "watchAssets": true
+      },
+      {
+        "include": "**/*.yml",
+        "watchAssets": true
+      },
+      {
+        "include": "**/*.html",
+        "watchAssets": true
+      }
+    ]
   },
   "generateOptions": {
     "spec": false
   },
-  "assets": [
-    "**/*.graphql"
-  ],
-  "watchAssets": true,
   "projects": {
     "gateway": {
       "type": "application",
@@ -43,15 +58,6 @@
         "tsConfigPath": "apps/manager/tsconfig.app.json"
       }
     },
-    "core": {
-      "type": "application",
-      "root": "apps/core",
-      "entryFile": "main",
-      "sourceRoot": "apps/core/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/core/tsconfig.app.json"
-      }
-    },
     "module": {
       "type": "library",
       "root": "libs/module",
@@ -59,6 +65,42 @@
       "sourceRoot": "libs/module/src",
       "compilerOptions": {
         "tsConfigPath": "libs/module/tsconfig.lib.json"
+      }
+    },
+    "identity": {
+      "type": "application",
+      "root": "apps/identity",
+      "entryFile": "main",
+      "sourceRoot": "apps/identity/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/identity/tsconfig.app.json"
+      }
+    },
+    "operation": {
+      "type": "application",
+      "root": "apps/operation",
+      "entryFile": "main",
+      "sourceRoot": "apps/operation/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/operation/tsconfig.app.json"
+      }
+    },
+    "navigation": {
+      "type": "application",
+      "root": "apps/navigation",
+      "entryFile": "main",
+      "sourceRoot": "apps/navigation/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/navigation/tsconfig.app.json"
+      }
+    },
+    "integration": {
+      "type": "application",
+      "root": "apps/integration",
+      "entryFile": "main",
+      "sourceRoot": "apps/integration/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/integration/tsconfig.app.json"
       }
     }
   }

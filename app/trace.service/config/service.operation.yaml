@@ -1,4 +1,2 @@
-service:
-  debug: true
-  host: localhost
-  port: 4562
+debug: true
+secret: xx-xxx-xxx-xx

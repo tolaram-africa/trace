@@ -11,7 +11,7 @@ import BottomSheet from '../navigation/BottomSheet.vue';
 import CommandList from '../navigation/CommandList.vue';
 
 interface IProps {
-  qucikCommands: Array<IModuleCommands>;
+  quickCommands: Array<IModuleCommands>;
   moduleList: Array<string>;
 }
 
@@ -105,7 +105,7 @@ export default {
     <bottom-sheet v-model:visible="swipeModalState" :threshold="150">
       <command-list
         @update:visible="swipeModalState = false"
-        :items="props.qucikCommands"
+        :items="props.quickCommands"
       />
     </bottom-sheet>
     <q-dialog class="shadow-0" v-model="moduleDialogState">

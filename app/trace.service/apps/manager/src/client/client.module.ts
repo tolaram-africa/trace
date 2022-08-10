@@ -6,6 +6,7 @@ import { join } from 'path';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../static'),
+      exclude: ['/graphql', '/data-admin'],
     }),
   ],
   controllers: [],

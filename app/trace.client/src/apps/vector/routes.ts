@@ -1,6 +1,4 @@
-import AccountRoutes from '@/app/modules/Account';
 import IdentityRoutes from '@/app/modules/Identity';
-import { NotificationRoute } from '@/app/modules/System';
 import BillingModule from './modules/Billing';
 import DriverModule from './modules/Driver';
 import OverviewModule from './modules/Overview';
@@ -10,10 +8,10 @@ import ResourceModule from './modules/Resource';
 import SettingsModule from './modules/Settings';
 import ShortageModule from './modules/Shortage';
 import TrackModule from './modules/Track';
+import { SharedBaseRoutes } from '@/app/modules';
 
 const APP_NAME = 'vec';
 const MODULE_ROOT = 'm';
-const SharedRoutes = [AccountRoutes, NotificationRoute];
 
 export default {
   path: '',
@@ -25,7 +23,7 @@ export default {
       path: MODULE_ROOT,
       component: () => import('./shared/layouts/AppLayout.vue'),
       children: [
-        ...SharedRoutes,
+        ...SharedBaseRoutes,
         BillingModule,
         DriverModule,
         OverviewModule,

@@ -1,12 +1,18 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { load } from 'js-yaml';
+import { getObjectValue } from './util/objectHelper';
 
 const DEV_CONFIG_ROOT = '/config';
-export const prodEnv = process.env.NODE_ENV === 'production';
+export const PROD_ENV = process.env.NODE_ENV === 'production';
 
-export enum ConfigConsumer {
-  MAIN = 'config',
+export interface IServiceConfig {
+  name: string;
+  host: string;
+  port: number;
+}
+
+export enum SERVICE_PROFILE {
   SRV_GATEWAY = 'gateway',
   SRV_MANAGER = 'manager',
   SRV_IDENTITY = 'identity',
@@ -15,34 +21,79 @@ export enum ConfigConsumer {
   SRV_NAVIGATION = 'navigation',
 }
 
-export const resolveConfig = (
-  service: ConfigConsumer,
-): Record<string, unknown> => {
-  let configValue = {} as Record<string, unknown>;
-  const paths = resolveConfigPath(service);
-  paths.forEach((path: string) => {
-    const file = readFileSync(path, 'utf8');
-    const parsedFile = load(file) as Record<string, unknown>;
-    configValue = { ...configValue, ...parsedFile };
-  });
-
-  return configValue;
+export const getConfigPath = (): string => {
+  const file = PROD_ENV ? 'config.yaml' : 'config.dev.yaml';
+  const config = join(process.cwd(), file);
+  try {
+    if (existsSync(config)) return config;
+  } catch (err) {
+    throw err;
+  }
+  return file;
 };
 
-export const resolveConfigPath = (service: ConfigConsumer): Array<string> => {
-  const resolvedConfig: Array<string> = [];
-  const mainConfig = prodEnv ? 'config.yaml' : 'config.dev.yaml';
-  resolvedConfig.push(join(process.cwd(), mainConfig));
-
-  const serviceConfigRoot = prodEnv
+export const getServicePath = (service: SERVICE_PROFILE): string => {
+  const serviceRoot = PROD_ENV
     ? process.cwd()
     : join(process.cwd(), DEV_CONFIG_ROOT);
-
-  if (service === ConfigConsumer.MAIN) return resolvedConfig;
-  const serviceConfig = join(serviceConfigRoot, `service.${service}.yaml`);
-  existsSync(serviceConfig) ? resolvedConfig.push(serviceConfig) : null;
-
-  return resolvedConfig;
+  const serviceConfig = join(
+    serviceRoot,
+    PROD_ENV ? 'service.yaml' : `service.${service}.yaml`,
+  );
+  try {
+    if (existsSync(serviceConfig)) return serviceConfig;
+  } catch (err) {
+    throw err;
+  }
+  return serviceConfig;
 };
 
-console.log(resolveConfig(ConfigConsumer.SRV_GATEWAY));
+export const getConfig = (): Record<string, unknown> => {
+  let config: Record<string, unknown>;
+  try {
+    const file = readFileSync(getConfigPath(), 'utf8');
+    config = load(file) as Record<string, unknown>;
+  } catch (err) {
+    throw err;
+  }
+  return config;
+};
+
+export const getServiceConfig = (
+  service: SERVICE_PROFILE,
+): Record<string, unknown> => {
+  let config: Record<string, unknown>;
+  try {
+    const file = readFileSync(getServicePath(service), 'utf8');
+    config = {
+      ...getConfig(),
+      service: load(file) as Record<string, unknown>,
+    };
+  } catch (err) {
+    throw err;
+  }
+  return config;
+};
+
+export const getConfigValue = (text: string): Record<string, unknown> => {
+  let config: Record<string, unknown>;
+  try {
+    config = getObjectValue(getConfig(), text);
+  } catch (error) {
+    throw error;
+  }
+  return config;
+};
+
+export const getServiceValue = (
+  service: SERVICE_PROFILE,
+  text: string,
+): Record<string, unknown> => {
+  let config: Record<string, unknown>;
+  try {
+    config = getObjectValue(getServiceConfig(service), text);
+  } catch (error) {
+    throw error;
+  }
+  return config;
+};
