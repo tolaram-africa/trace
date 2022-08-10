@@ -2,11 +2,9 @@ import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { load } from 'js-yaml';
 import { getObjectValue } from './util/objectHelper';
-import { INestApplication } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 
 const DEV_CONFIG_ROOT = '/config';
-const PROD_ENV = process.env.NODE_ENV === 'production';
+export const PROD_ENV = process.env.NODE_ENV === 'production';
 
 export interface IServiceConfig {
   name: string;
@@ -98,12 +96,4 @@ export const getServiceValue = (
     throw error;
   }
   return config;
-};
-
-export const getStartupConfig = (
-  app: INestApplication,
-  name: SERVICE_PROFILE,
-): IServiceConfig => {
-  const configService = app.get<ConfigService>(ConfigService);
-  return configService.getOrThrow<IServiceConfig>('services.' + name);
 };
