@@ -7,6 +7,7 @@ const DEV_CONFIG_ROOT = '/config';
 export const PROD_ENV = process.env.NODE_ENV === 'production';
 
 export interface IServiceConfig {
+  proxy: boolean;
   name: string;
   host: string;
   port: number;

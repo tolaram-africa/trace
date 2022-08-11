@@ -2,25 +2,36 @@ import { Module } from '@nestjs/common';
 import { ManagerService } from './manager.service';
 import { AdminModule } from './admin/admin.module';
 import { ClientModule } from './client/client.module';
-import { DatabaseModule } from '@/common/database/database.module';
-import { SharedConfigModule } from '@/common/shared-config/shared-config.module';
-import { SERVICE_PROFILE } from '@@/libs/config';
+import { DatabaseModule } from '@/common/database.module';
+import { SharedConfigModule } from '@/common/shared-config.module';
+import { PROD_ENV, SERVICE_PROFILE } from '@@/libs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { SampleModule } from './sample/sample.module';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     ClientModule,
     AdminModule,
     DatabaseModule,
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
-      installSubscriptionHandlers: true,
-      autoSchemaFile: join(process.cwd(), 'graphql/manager.gql'),
-      debug: false,
-      playground: true,
+      useFactory: async (configService: ConfigService) => {
+        const debug = configService.get<boolean>('app.debug') || !PROD_ENV;
+        return {
+          installSubscriptionHandlers: true,
+          autoSchemaFile: join(
+            process.cwd(),
+            `graphql/${SERVICE_PROFILE.SRV_GATEWAY}.gql`,
+          ),
+          path: '/graphql',
+          debug,
+          playground: debug,
+        };
+      },
+      inject: [ConfigService],
     }),
     SharedConfigModule.register(SERVICE_PROFILE.SRV_MANAGER),
     SampleModule,

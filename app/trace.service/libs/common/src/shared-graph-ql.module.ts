@@ -4,10 +4,10 @@ import {
   ApolloFederationDriverConfig,
 } from '@nestjs/apollo';
 import { DynamicModule, Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLModule as GraphQLFederationModule } from '@nestjs/graphql';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { SERVICE_PROFILE } from '@@/libs/config';
-import { ServiceStateModule } from '../service-state/service-state.module';
+import { ServiceStateModule } from './service-state/service-state.module';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PROD_ENV } from '@@/libs/config';
@@ -15,7 +15,7 @@ import { PROD_ENV } from '@@/libs/config';
 @Module({
   imports: [
     ServiceStateModule,
-    GraphQLModule.forRootAsync<ApolloFederationDriverConfig>({
+    GraphQLFederationModule.forRootAsync<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
@@ -24,10 +24,12 @@ import { PROD_ENV } from '@@/libs/config';
           debug,
           playground: debug,
           uploads: false,
+          path: '/',
+          installSubscriptionHandlers: false,
           autoSchemaFile: join(
             process.cwd(),
             `graphql/${configService.get<string>(
-              'services.' + SharedGraphQlModule.SERVICE_NAME + '.name',
+              'services.' + SharedGraphQLModule.SERVICE_NAME + '.name',
             )}.gql`,
           ),
           context: ({ req }: any) => ({ req }),
@@ -46,14 +48,14 @@ import { PROD_ENV } from '@@/libs/config';
     }),
   ],
 })
-export class SharedGraphQlModule {
+export class SharedGraphQLModule {
   public static SERVICE_NAME: SERVICE_PROFILE;
 
   static register(name: SERVICE_PROFILE): DynamicModule {
-    SharedGraphQlModule.SERVICE_NAME = name;
+    SharedGraphQLModule.SERVICE_NAME = name;
 
     return {
-      module: SharedGraphQlModule,
+      module: SharedGraphQLModule,
       providers: [],
       exports: [],
     };

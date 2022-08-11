@@ -1,8 +1,13 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { bootstrapService, getServiceInstance } from '@@/libs/service';
 import { NavigationModule } from './navigation.module';
+import { SERVICE_PROFILE } from '@@/libs/config';
 
-async function bootstrap() {
-  const app = await NestFactory.create(NavigationModule);
-  await app.listen(3000);
-}
-bootstrap();
+(async () => {
+  const service = await NestFactory.create<NestExpressApplication>(
+    NavigationModule,
+  );
+  const context = getServiceInstance(service, SERVICE_PROFILE.SRV_NAVIGATION);
+  await bootstrapService(context);
+})();
