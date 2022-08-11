@@ -1,15 +1,65 @@
-import { Module } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Module,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { SharedConfigModule } from '@/common/shared-config.module';
-import { GatewayController } from './gateway.controller';
 import { GatewayService } from './gateway.service';
-import { IServiceConfig, PROD_ENV, SERVICE_PROFILE } from '@@/libs/config';
+import {
+  getConfigValue,
+  IServiceConfig,
+  PROD_ENV,
+  SERVICE_PROFILE,
+} from '@@/libs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { RemoteGraphQLDataSource, IntrospectAndCompose } from '@apollo/gateway';
 import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
 import { ConfigService } from '@nestjs/config';
+import { INVALID_AUTH_TOKEN, INVALID_BEARER_TOKEN } from './gateway.constants';
+import { verify } from 'jsonwebtoken';
 
-const handleAuth = () => {
-  return {};
+const getToken = (authToken: string): string => {
+  console.log(authToken);
+  const match = authToken.match(/^Bearer (.*)$/);
+  if (!match || match.length < 2) {
+    throw new HttpException(
+      { message: INVALID_BEARER_TOKEN },
+      HttpStatus.UNAUTHORIZED,
+    );
+  }
+  return match[1];
+};
+
+const decodeToken = (tokenString: string) => {
+  const secret = getConfigValue('app.secret') as unknown as string;
+  const decoded = verify(tokenString, secret);
+  if (!decoded) {
+    throw new HttpException(
+      { message: INVALID_AUTH_TOKEN },
+      HttpStatus.UNAUTHORIZED,
+    );
+  }
+  return decoded;
+};
+
+const handleAuth = ({ req }) => {
+  try {
+    if (req.headers.authorization) {
+      const token = getToken(req.headers.authorization);
+      const decoded: any = decodeToken(token);
+      return {
+        tenantId: decoded.tenantId,
+        userId: decoded.userId,
+        permissions: decoded.permissions,
+        authorization: `${req.headers.authorization}`,
+      };
+    }
+  } catch (err) {
+    throw new UnauthorizedException(
+      'User unauthorized with invalid authorization Headers',
+    );
+  }
 };
 
 @Module({
@@ -38,13 +88,15 @@ const handleAuth = () => {
         );
 
         return {
-          debug,
           server: {
+            debug,
+            path: '/',
+            cors: true,
+            playground: debug,
             context: handleAuth,
           },
           gateway: {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            buildService: ({ name, url }) => {
+            buildService: ({ url }) => {
               return new RemoteGraphQLDataSource({
                 url,
                 willSendRequest({ request, context }: any) {
@@ -66,7 +118,7 @@ const handleAuth = () => {
       },
     }),
   ],
-  controllers: [GatewayController],
+  controllers: [],
   providers: [GatewayService],
 })
 export class GatewayModule {}

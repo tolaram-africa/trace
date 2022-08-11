@@ -11,6 +11,7 @@ import { getServiceInstance } from '@@/libs/service';
   );
 
   try {
+    app.enableCors();
     await app.listen(port, host, () => {
       logger.log('Service startup completed...');
       logger.log(`${name.toUpperCase()} service is listening on ${url}/`);

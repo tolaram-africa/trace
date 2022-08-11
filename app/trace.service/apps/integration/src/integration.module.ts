@@ -3,7 +3,6 @@ import { DatabaseModule } from '@root/libs/common/src/database.module';
 import { SharedConfigModule } from '@root/libs/common/src/shared-config.module';
 import { SharedGraphQLModule } from '@root/libs/common/src/shared-graph-ql.module';
 import { SERVICE_PROFILE } from '@root/libs/config';
-import { IntegrationController } from './integration.controller';
 import { IntegrationService } from './integration.service';
 
 @Module({
@@ -12,7 +11,7 @@ import { IntegrationService } from './integration.service';
     SharedGraphQLModule.register(SERVICE_PROFILE.SRV_INTEGRATION),
     SharedConfigModule.register(SERVICE_PROFILE.SRV_INTEGRATION),
   ],
-  controllers: [IntegrationController],
+  controllers: [],
   providers: [IntegrationService],
 })
 export class IntegrationModule {}

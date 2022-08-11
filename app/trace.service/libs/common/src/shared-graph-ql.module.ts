@@ -4,7 +4,7 @@ import {
   ApolloFederationDriverConfig,
 } from '@nestjs/apollo';
 import { DynamicModule, Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLModule as GraphQLFederationModule } from '@nestjs/graphql';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { SERVICE_PROFILE } from '@@/libs/config';
 import { ServiceStateModule } from './service-state/service-state.module';
@@ -15,7 +15,7 @@ import { PROD_ENV } from '@@/libs/config';
 @Module({
   imports: [
     ServiceStateModule,
-    GraphQLModule.forRootAsync<ApolloFederationDriverConfig>({
+    GraphQLFederationModule.forRootAsync<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => {
@@ -24,6 +24,8 @@ import { PROD_ENV } from '@@/libs/config';
           debug,
           playground: debug,
           uploads: false,
+          path: '/',
+          installSubscriptionHandlers: false,
           autoSchemaFile: join(
             process.cwd(),
             `graphql/${configService.get<string>(

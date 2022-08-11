@@ -7,7 +7,6 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { IServiceConfig, PROD_ENV, SERVICE_PROFILE } from './config';
 import { graphqlUploadExpress } from 'graphql-upload';
-import * as helmet from 'helmet';
 
 interface IServiceInstance {
   name: string;
@@ -57,10 +56,6 @@ export const bootstrapService = async (
     app.enableCors({
       exposedHeaders: 'X-Document-Name',
     });
-    app.use(helmet());
-    app.use(helmet.noSniff());
-    app.use(helmet.hidePoweredBy());
-    app.use(helmet.contentSecurityPolicy());
   }
   try {
     await app.listen(port, host, () => {
