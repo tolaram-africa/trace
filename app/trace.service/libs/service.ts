@@ -32,7 +32,7 @@ export const getServiceInstance = (
     configService.getOrThrow<Array<LogLevel>>('app.logLevel') || logMode;
   app.useLogger(logOptions);
   app.useGlobalPipes(new ValidationPipe());
-  const logger = new Logger();
+  const logger = new Logger('bootstrap');
 
   /* Try starting up server. */
   logger.log(`Starting service ${config.name}...`);

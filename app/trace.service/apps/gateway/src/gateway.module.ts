@@ -4,14 +4,14 @@ import {
   Module,
   UnauthorizedException,
 } from '@nestjs/common';
-import { SharedConfigModule } from '@/common/shared-config.module';
-import { GatewayService } from './gateway.service';
 import {
   getConfigValue,
   IServiceConfig,
   PROD_ENV,
   SERVICE_PROFILE,
 } from '@@/libs/config';
+import { SharedConfigModule } from '@/common/shared-config.module';
+import { GatewayService } from './gateway.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { RemoteGraphQLDataSource, IntrospectAndCompose } from '@apollo/gateway';
 import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
