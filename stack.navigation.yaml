@@ -1,13 +1,13 @@
 version: '3.9'
 
 networks:
-  gateway:
-    external: true
-    name: gateway-net
   navigation:
     driver: overlay
     attachable: true
     name: navigation-net
+  gateway:
+    external: true
+    name: gateway-net
 
 volumes:
   traccar:
@@ -46,10 +46,10 @@ services:
     volumes:
       - '${STORE_ROOT}/valhalla:/custom_files'
   iot:
-    image: '${REGISTRY_URL}/traccar:5.3'
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.iot
+    image: 'traccar/traccar:5.3-alpine'
+    # build:
+    #   context: .
+    #   dockerfile: docker/Dockerfile.iot
     deploy:
       mode: replicated
       replicas: 1
