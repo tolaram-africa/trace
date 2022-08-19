@@ -56,6 +56,6 @@ database:
     type: mongodb
     host: localhost
     port: 27017
-    database: mongodb;
+    database: mongodb
     synchronize: true
     logging: true;
