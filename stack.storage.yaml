@@ -1,16 +1,16 @@
 version: '3.9'
 
 networks:
-  proxy:
+  gateway:
     external: true
-    name: service-proxy
+    name: gateway-net
   storage:
-    name: service-storage
     driver: overlay
     attachable: true
+    name: storage-net
 
 services:
-  minio:
+  file:
     image: minio/minio
     deploy:
       mode: replicated
@@ -39,8 +39,6 @@ services:
       - '/etc/localtime:/etc/localtime:ro'
       - '/etc/timezone:/etc/timezone:ro'
       - '${STORE_ROOT}/minio:/data'
-    ports:
-      - 9001:9001
     environment:
       MINIO_UPDATE: 'off'
       MINIO_ROOT_USER: trace
@@ -51,43 +49,14 @@ services:
       # MINIO_SERVER_URL: 'https://storage.${DOMAIN}'
     command: server --address 0.0.0.0:9000 --console-address ":9001" /data
     networks:
-      - proxy
+      - gateway
       - storage
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
       interval: 30s
       timeout: 20s
       retries: 5
-  postgres:
-    image: postgis/postgis:13-3.2-alpine
-    deploy:
-      mode: replicated
-      replicas: 1
-      resources:
-        limits:
-          cpus: '0.2'
-          memory: 128M
-        reservations:
-          memory: 32M
-    ports:
-      - 5432:5432
-    networks:
-      - storage
-    volumes:
-      - '/etc/localtime:/etc/localtime:ro'
-      - '/etc/timezone:/etc/timezone:ro'
-      - '${STORE_ROOT}/postgres:/var/lib/postgresql/data/pgdata'
-    environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_USER: trace
-      POSTGRES_PASSWORD: trace
-      POSTGRES_DB: trace
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}']
-      interval: 10s
-      timeout: 5s
-      retries: 5
-  redis:
+  cache:
     image: redis:5.0-alpine
     deploy:
       mode: replicated

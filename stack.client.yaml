@@ -1,9 +1,9 @@
 version: '3.9'
 
 networks:
-  proxy:
+  gateway:
     external: true
-    name: service-proxy
+    name: gateway-net
 
 x-app-instance: &app-instance
   build: &app-build
@@ -14,7 +14,7 @@ x-app-instance: &app-instance
   env_file:
     - ${PWD}/app/trace.client/.env.dev
   networks:
-    - proxy
+    - gateway
   healthcheck:
     test: ['CMD', 'service', 'nginx', 'status']
     interval: 30s

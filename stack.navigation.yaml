@@ -1,14 +1,19 @@
 version: '3.9'
 
 networks:
-  proxy:
+  gateway:
     external: true
-    name: service-proxy
+    name: gateway-net
+  navigation:
+    driver: overlay
+    attachable: true
+    name: navigation-net
+
 volumes:
   traccar:
 
 configs:
-  iot-config:
+  iot:
     file: ./stack.navigation.iot.xml
 
 services:
@@ -27,7 +32,8 @@ services:
     ports:
       - 8072:8002
     networks:
-      - proxy
+      - gateway
+      - navigation
     environment:
       tile_urls: 'https://download.geofabrik.de/africa/nigeria-latest.osm.pbf'
       server_threads: 8
@@ -117,12 +123,13 @@ services:
       - '/etc/timezone:/etc/timezone:ro'
       - '/etc/localtime:/etc/localtime:ro'
     configs:
-      - source: iot-config
+      - source: iot
         target: /opt/traccar/conf/traccar.xml
     ports:
       - 8082:8082
     networks:
-      - proxy
+      - gateway
+      - navigation
     healthcheck:
       test:
         ['CMD', 'printf', "\"GET / HTTP/1.1\n\n\" > /dev/tcp/127.0.0.1/5055"]

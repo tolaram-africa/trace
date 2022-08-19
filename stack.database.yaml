@@ -1,0 +1,38 @@
+version: '3.9'
+
+networks:
+  database:
+    driver: overlay
+    attachable: true
+    name: database-net
+
+services:
+  operation:
+    image: postgis/postgis:13-3.2-alpine
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128M
+        reservations:
+          memory: 32M
+    ports:
+      - 5432:5432
+    networks:
+      - database
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/etc/timezone:/etc/timezone:ro'
+      - '${STORE_ROOT}/postgres:/var/lib/postgresql/data/pgdata'
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: trace
+      POSTGRES_PASSWORD: trace
+      POSTGRES_DB: trace
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5

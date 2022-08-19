@@ -1,10 +1,7 @@
 version: '3.9'
 
 networks:
-  inter:
-    name: inter-loop
-    driver: overlay
-    attachable: true
+  none:
 
 services:
   server:
@@ -21,7 +18,7 @@ services:
       placement:
         constraints: [node.role == manager]
     networks:
-      - inter
+      - none
   prune:
     image: docker
     command: ['docker', 'system', 'prune', '--all', '--volumes', '--force']
@@ -38,4 +35,4 @@ services:
       restart_policy:
         condition: none
     networks:
-      - inter
+      - none
