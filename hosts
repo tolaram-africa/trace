@@ -1,4 +1,4 @@
-## traefik.me public endpoints
+## public endpoints
 127.0.0.1 staging.traefik.me
 127.0.0.1 storage.traefik.me
 127.0.0.1 support.traefik.me
@@ -10,15 +10,24 @@
 127.0.0.1 registry.traefik.me
 127.0.0.1 sample.traefik.me
 
-## traefik.me tenant sample
+## tenant sample
 127.0.0.1 demo-one.traefik.me
 127.0.0.1 demo-one.traefik.me
 127.0.0.1 trace-demo.traefik.me
 
-## traefik.me internal services
+## internal services
 127.0.0.1 service_gateway
 127.0.0.1 service_identity
 127.0.0.1 service_operation
 127.0.0.1 service_integration
 127.0.0.1 service_navigation
 127.0.0.1 service_manager
+
+## service dependencies
+127.0.0.1 database_operation
+127.0.0.1 database_stream
+127.0.0.1 storage_file
+127.0.0.1 storage_cache
+127.0.0.1 navigation_iot
+127.0.0.1 navigation_routing
+127.0.0.1 navigation_gecoding

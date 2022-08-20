@@ -8,9 +8,12 @@ export declare type SourceType =
 
 export interface IBaseSource {
   type: SourceType;
-  host: string;
-  port: number;
-  database: string;
+  name?: string;
+  host?: string;
+  port?: number;
+  username?: string;
+  password?: string;
+  database?: string;
   synchronize: boolean;
   logging: boolean;
   entities?: Array<string>;
@@ -19,8 +22,6 @@ export interface IBaseSource {
 }
 
 export interface IOperationSource extends IBaseSource {
-  username: string;
-  password: string;
   entityPrefix: string;
   migrationsTableName: string;
   migrationsTransactionMode: 'all' | 'none' | 'each';
@@ -29,4 +30,6 @@ export interface IOperationSource extends IBaseSource {
   dropSchema: boolean;
 }
 
-export type IDocumentSource = IBaseSource;
+export interface IDocumentSource extends IBaseSource {
+  url?: string;
+}
