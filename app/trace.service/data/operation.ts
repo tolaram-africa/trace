@@ -4,22 +4,24 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import 'dotenv/config';
 import { join } from 'path';
 import { getConfigValue } from '@root/libs/config';
-import { IOperationSource } from './IConnection';
+import { IOperationSource } from './data-source.types';
 
+const SOURCE_NAME = 'operation';
 const production = process.env.NODE_ENV === 'production';
 const config = getConfigValue(
-  'database.operation',
+  'database.' + SOURCE_NAME,
 ) as unknown as IOperationSource;
 
 const entities = [
-  join(__dirname, '../libs/common/src/entity/**/*.entity.{ts,js}'),
-  join(__dirname, '../libs/module/src/**/*.entity.{ts,js}'),
+  join(__dirname, '../libs/common/src/entity/**/*.entity.{ts}'),
+  join(__dirname, '../libs/module/src/**/entity/*.entity.{ts}'),
 ];
-const migrations = [join(__dirname, '/migrations/*.{ts,js}')];
-const subscribers = [join(__dirname, '/subscribers/*.{ts,js}')];
+const migrations = [join(__dirname, '/migrations/*.{ts}')];
+const subscribers = [join(__dirname, '/subscribers/*.{ts}')];
 
 export const OperationSource: DataSourceOptions = {
   type: config.type || 'postgres',
+  name: config.name || SOURCE_NAME,
   host: config.host || '127.0.0.1',
   port: config.port || 5432,
   username: config.username || 'trace',

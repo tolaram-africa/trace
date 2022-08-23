@@ -1,9 +1,9 @@
 version: '3.9'
 
 networks:
-  proxy:
+  gateway:
     external: true
-    name: service-proxy
+    name: gateway-net
 
 volumes:
   pgadmin:
@@ -27,7 +27,7 @@ services:
     ports:
       - 4680:4680
     networks:
-      - proxy
+      - gateway
   # pgadmin:
   #   image: dpage/pgadmin4
   #   ports:

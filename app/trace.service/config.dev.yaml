@@ -39,7 +39,7 @@ database:
   ## Core application database.
   operation:
     type: postgres
-    host: localhost
+    host: 127.0.0.1
     port: 5432
     username: trace
     password: trace
@@ -52,10 +52,13 @@ database:
     dropSchema: false
   ## Shared document database for
   ## flat data with high traffic.
-  document:
+  ## TODO: https://progressivecoder.com/guide-to-typeorm-mongodb-integration/
+  stream:
     type: mongodb
-    host: localhost
+    host: 127.0.0.1
     port: 27017
-    database: mongodb;
+    # database: trace
+    username: trace
+    password: trace
     synchronize: true
     logging: true;

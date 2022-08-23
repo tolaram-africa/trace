@@ -1,14 +1,20 @@
 version: '3.9'
 
 networks:
-  proxy:
+  service:
+    driver: overlay
+    attachable: true
+    name: service-net
+  gateway:
     external: true
-    name: service-proxy
+    name: gateway-net
+  database:
+    external: true
+    name: database-net
   storage:
-    name: service-storage
     external: true
+    name: storage-net
 
-## Service configurations
 configs:
   shared:
     file: '${SRV_ROOT}/config.dev.yaml'
@@ -23,9 +29,6 @@ x-service-instance: &service-instance
       VERSION: '${VERSION}'
   env_file:
     - ./app/trace.service/.env.dev
-  networks:
-    - proxy
-    - storage
 
 services:
   gateway:
@@ -42,6 +45,9 @@ services:
         target: '/app/config.yaml'
       - source: gateway
         target: '/app/service.yaml'
+    networks:
+      - service
+      - gateway
     deploy:
       labels:
         - 'traefik.enable=true'

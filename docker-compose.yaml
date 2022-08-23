@@ -1,20 +1,21 @@
 version: '3.9'
 
 networks:
-  proxy:
-    name: service-proxy
+  none:
+  gateway:
     driver: overlay
     attachable: true
+    name: gateway-net
 
 volumes:
   certs:
   proxy:
 
 configs:
-  prov_conf:
+  proxy:
     file: ./stack.proxy.config.yaml
 secrets:
-  basic_auth:
+  auth:
     file: ./admin.basic-auth
 
 services:
@@ -33,7 +34,7 @@ services:
     volumes:
       - 'certs:/etc/ssl/traefik'
     networks:
-      - proxy
+      - none
   registry:
     image: registry:2.8
     deploy:
@@ -53,13 +54,27 @@ services:
     volumes:
       - '${PWD}/registry.config.yaml:/etc/docker/registry/config.yml:ro'
       - '${HOME}/docker-registry:/var/lib/registry:rw'
-      ## echo "admin" | htpasswd -iB registry.htpasswd admin
       - '${PWD}/registry.basic-auth:/auth/.htpasswd'
     networks:
-      - proxy
+      - gateway
   proxy:
     image: traefik:v2.8
     env_file: '${PWD}/.env'
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    ports:
+      - 80:80
+      - 443:443
+      - '443:443/udp'
+      - 17050:17050
+      - 17051:17051
+      - 17052:17052
+      - 17053:17053
+      - 17054:17054
+      - 17055:17055
+    networks:
+      - gateway
     command:
       - '--global.checkNewVersion=false'
       - '--global.sendAnonymousUsage=false'
@@ -69,7 +84,7 @@ services:
       - '--api.insecure=true'
       - '--providers.docker=true'
       - '--providers.docker.watch=true'
-      - '--providers.docker.network=service-proxy'
+      - '--providers.docker.network=gateway-net'
       - '--providers.docker.swarmMode=true'
       - '--providers.docker.swarmModeRefreshSeconds=5'
       - '--providers.docker.exposedbydefault=false'
@@ -134,21 +149,6 @@ services:
       nofile:
         soft: 1024000
         hard: 1024000
-    cap_add:
-      - NET_ADMIN
-      - NET_RAW
-    ports:
-      - 80:80
-      - 443:443
-      - '443:443/udp'
-      - 17050:17050
-      - 17051:17051
-      - 17052:17052
-      - 17053:17053
-      - 17054:17054
-      - 17055:17055
-    networks:
-      - proxy
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -156,10 +156,10 @@ services:
       - proxy:/letsencrypt
       - certs:/etc/ssl/traefik
     configs:
-      - source: prov_conf
+      - source: proxy
         target: /config.yml
     secrets:
-      - source: basic_auth
+      - source: auth
         target: /basic-auth
 
   # test:
@@ -181,4 +181,4 @@ services:
   #       - 'traefik.http.routers.http-catchall.service=test'
   #       - 'traefik.http.routers.http-catchall.priority=1'
   #   networks:
-  #     - proxy
+  #     - gateway

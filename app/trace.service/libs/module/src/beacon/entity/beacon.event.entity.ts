@@ -3,7 +3,6 @@ import { TenantEntity } from '@/common/entity/base.tenant.entity';
 import { Beacon } from './beacon.entity';
 import { BeaconPosition } from './beacon.position.entity';
 import { Location } from '@/module/location/entity/location.entity';
-import { Tenant } from '@/module/tenant/entity/tenant.entity';
 
 export enum BeaconEventType {
   ALARM = 'alarm',
