@@ -1,7 +1,7 @@
 import { Column, JoinColumn, OneToOne } from 'typeorm';
 import { SystemFeature } from '@/module/system/entity/system.feature.entity';
 import { TenantEntity } from '@/common/entity/base.tenant.entity';
-import { RBACPermission } from '@/common/entity/enum.user';
+import { PermissionOption } from '@/common/entity/enum.user';
 
 export abstract class BasePermission extends TenantEntity {
   @OneToOne(() => SystemFeature)
@@ -10,9 +10,9 @@ export abstract class BasePermission extends TenantEntity {
 
   @Column({
     type: 'enum',
-    enum: RBACPermission,
+    enum: PermissionOption,
     array: true,
-    default: [RBACPermission.READ],
+    default: [PermissionOption.READ],
   })
-  public actions: RBACPermission[];
+  public actions: PermissionOption[];
 }

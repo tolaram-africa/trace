@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
-import { UserType } from '@/common/entity/enum.user';
+import { RoleType } from '@/common/entity/enum.user';
 import { UserPermission } from './user.permission.entity';
 
 @Entity({ name: 'user_roles' })
@@ -17,11 +17,11 @@ export class UserRole extends SoftDeleteEntity {
 
   @Column({
     type: 'enum',
-    enum: UserType,
-    default: [UserType.ALL],
+    enum: RoleType,
+    default: [RoleType.ALL],
     array: true,
   })
-  public userTypes: UserType[];
+  public userTypes: RoleType[];
 
   @Column({ type: 'varchar', length: 512, nullable: true })
   public description!: string;

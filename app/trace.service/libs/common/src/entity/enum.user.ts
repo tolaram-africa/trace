@@ -11,7 +11,7 @@ export enum SystemLevel {
   SYSTEM = 'system',
 }
 
-export enum UserType {
+export enum RoleType {
   /** Block in tenant service */
   SYSTEM = 'system',
   /** Customer Accounts */
@@ -28,18 +28,18 @@ export enum UserType {
   TENANT_WAREHOUSE_MANAGER = 'tenant.warehouse',
   TENANT_DRIVER_MANAGER = 'tenant.driver-manager',
   TENANT_DRIVER_SUPERVISOR = 'tenant.driver-supervisor',
-  TENANT_DRIVER = 'tenant.driver',
   TENANT_LOADER = 'tenant.loader',
+  TENANT_DRIVER = 'tenant.driver',
 }
 
-export enum SystemUser {
+export enum SystemRole {
   /** Overlords account types */
   SUPER_ADMIN = 'system.super-admin',
   ADMIN = 'system.admin',
   OPERATOR = 'system.operator',
 }
 
-export enum RBACPermission {
+export enum PermissionOption {
   READ = 'read',
   CREATE = 'create',
   UPDATE = 'update',

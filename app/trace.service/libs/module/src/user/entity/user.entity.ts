@@ -10,7 +10,7 @@ import {
   Index,
   RelationId,
 } from 'typeorm';
-import { TenantEntity, SystemLevel, UserType } from '@/common/entity';
+import { TenantEntity, SystemLevel, RoleType } from '@/common/entity';
 import { UserProfile, UserAlert, UserSetting, UserPassport } from './';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
 import { BankAccount } from '@/module/payment/entity/payment.bank-account.entity';
@@ -30,10 +30,10 @@ export class User extends TenantEntity {
 
   @Column({
     type: 'enum',
-    enum: UserType,
-    default: UserType.CLIENT,
+    enum: RoleType,
+    default: RoleType.CLIENT,
   })
-  public userType: UserType;
+  public userType: RoleType;
 
   @Column({ default: true })
   public active: boolean;
