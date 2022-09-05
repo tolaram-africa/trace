@@ -14,7 +14,7 @@ volumes:
 
 configs:
   iot:
-    file: ./stack.navigation.iot.xml
+    file: ./configs/iot.config.xml
 
 services:
   routing:
