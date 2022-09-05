@@ -1,0 +1,112 @@
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /etc/ssl/traefik/cert.pem
+        keyFile: /etc/ssl/traefik/privkey.pem
+  certificates:
+    - certFile: /etc/ssl/traefik/cert.pem
+      keyFile: /etc/ssl/traefik/privkey.pem
+  options:
+    default:
+      minVersion: VersionTLS13 #VersionTLS12
+      cipherSuites:
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+
+http:
+  ## Routers
+  routers:
+    geocoding:
+      entryPoints:
+        - 'web-secure'
+      rule: Host(`staging.traefik.me`) && PathPrefix(`/service/geocoding`)
+      middlewares:
+        - default-headers
+        - https-redirect
+        - default-cors
+        - geocoding-strip
+      tls: {}
+      service: geocoding
+    sample:
+      entryPoints:
+        - 'web-secure'
+      rule: Host(`sample.traefik.me`) # || Host(`sample.traefik.me`) && PathPrefix(`/api`)
+      middlewares:
+        - default-headers
+        - https-redirect
+        - default-cors
+        # - sample-strip
+      tls: {}
+      service: sample
+
+  ## Services
+  services:
+    geocoding:
+      loadBalancer:
+        servers:
+          - url: 'http://srv-cx-00.11s.cloud:8054'
+        passHostHeader: true
+    sample:
+      loadBalancer:
+        servers:
+          - url: 'http://navigation_iot:8082'
+        passHostHeader: true
+
+  ## Middlewares
+  middlewares:
+    geocoding-strip:
+      stripPrefix:
+        prefixes:
+          - '/service/geocoding'
+    sample-strip:
+      stripPrefix:
+        prefixes:
+          - '/api'
+          - '/api/'
+    https-redirect:
+      redirectScheme:
+        scheme: https
+        permanent: true
+    default-cors:
+      headers:
+        accessControlAllowMethods: GET,POST,PUT,OPTIONS
+        accessControlAllowOriginlist: '*'
+        accessControlMaxAge: 86400
+    default-headers:
+      headers:
+        frameDeny: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 15552000
+        customFrameOptionsValue: SAMEORIGIN
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+        customResponseHeaders:
+          ## Limits information.
+          server: ''
+          x-powered-by: ''
+    default-whitelist:
+      ipWhiteList:
+        sourceRange:
+          - '10.0.0.0/8'
+          - '192.168.0.0/16'
+          - '172.16.0.0/12'
+    secured:
+      chain:
+        middlewares:
+          - default-whitelist
+          - default-headers
+    basic-auth:
+      basicauth:
+        removeheader: true
+        usersfile: /basic-auth
+        realm: Trace-Auth
+        headerField: X-WebAuth-User

@@ -13,7 +13,7 @@ volumes:
 
 configs:
   proxy:
-    file: ./stack.proxy.config.yaml
+    file: ./configs/proxy.config.yaml
 secrets:
   auth:
     file: ./admin.basic-auth
@@ -37,13 +37,13 @@ services:
       - none
   registry:
     image: registry:2.8
-    deploy:
-      labels:
-        - 'traefik.enable=true'
-        - 'traefik.http.services.registry.loadbalancer.server.port=5000'
-        - 'traefik.http.routers.registry.rule=Host(`registry.${DOMAIN}`)'
-        - 'traefik.http.routers.registry.entrypoints=web-secure'
-        - 'traefik.http.routers.registry.service=registry'
+    # deploy:
+    #   labels:
+    #     - 'traefik.enable=true'
+    #     - 'traefik.http.services.registry.loadbalancer.server.port=5000'
+    #     - 'traefik.http.routers.registry.rule=Host(`registry.${DOMAIN}`)'
+    #     - 'traefik.http.routers.registry.entrypoints=web-secure'
+    #     - 'traefik.http.routers.registry.service=registry'
     ports:
       - 5000:5000
     environment:
@@ -52,11 +52,11 @@ services:
       - REGISTRY_AUTH_HTPASSWD_PATH=/auth/.htpasswd
       - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry
     volumes:
-      - '${PWD}/registry.config.yaml:/etc/docker/registry/config.yml:ro'
+      - '${PWD}/configs/registry.config.yaml:/etc/docker/registry/config.yml:ro'
       - '${HOME}/docker-registry:/var/lib/registry:rw'
       - '${PWD}/registry.basic-auth:/auth/.htpasswd'
-    networks:
-      - gateway
+    # networks:
+    #   - gateway
   proxy:
     image: traefik:v2.8
     env_file: '${PWD}/.env'
@@ -119,7 +119,7 @@ services:
         - 'traefik.enable=true'
         - 'traefik.http.middlewares.sdefaultslheader.headers.customrequestheaders.X-Forwarded-Proto=https'
         - 'traefik.http.middlewares.traefik-prefix.stripprefix.prefixes=/proxy,/proxy/'
-        - 'traefik.http.middlewares.traefik-prefix.stripprefix.forceSlash=true'
+        - 'traefik.http.middlewares.trastackefik-prefix.stripprefix.forceSlash=true'
         - 'traefik.http.routers.traefik.entrypoints=web-insecure'
         - 'traefik.http.routers.traefik.rule=Host(`manage.${DOMAIN}`) && PathPrefix(`/proxy`) || Host(`manage.${DOMAIN}`) && PathPrefix(`/api`)'
         - 'traefik.http.routers.traefik.middlewares=https-redirect@file'
@@ -151,7 +151,7 @@ services:
         hard: 1024000
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      # - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - proxy:/letsencrypt
       - certs:/etc/ssl/traefik
