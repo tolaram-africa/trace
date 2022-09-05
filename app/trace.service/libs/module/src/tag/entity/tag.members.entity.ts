@@ -8,7 +8,7 @@ import {
   OneToOne,
   RelationId,
 } from 'typeorm';
-import { RBACPermission } from '@/common/entity/enum.user';
+import { PermissionOption } from '@/common/entity/enum.user';
 import { Tag } from './tag.entity';
 import { User } from '@/module/user/entity/user.entity';
 
@@ -40,11 +40,11 @@ export class TagMember extends TenantEntity {
 
   @Column({
     type: 'enum',
-    enum: RBACPermission,
+    enum: PermissionOption,
     array: true,
-    default: [RBACPermission.READ],
+    default: [PermissionOption.READ],
   })
-  public permission: RBACPermission[];
+  public permission: PermissionOption[];
 
   @Column({
     type: 'timestamptz',

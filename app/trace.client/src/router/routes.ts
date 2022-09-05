@@ -5,8 +5,6 @@ import TrackAppRoutes from '@/direct/routes';
 import EasyAppRoutes from '@/easy/routes';
 import ManagerAppRoutes from '@/manager/routes';
 
-type IVariant = 'easy' | 'manager' | 'track' | 'vector';
-
 enum Variant {
   EASY = 'easy',
   MANAGER = 'manager',
@@ -14,10 +12,10 @@ enum Variant {
   VECTOR = 'vector',
 }
 
-const selectedApp: IVariant =
-  (process.env.APP_VARIANT as IVariant) || Variant.VECTOR;
+const selectedApp: Variant =
+  (process.env.APP_VARIANT as Variant) || Variant.VECTOR;
 
-const getCurrentApp = (app: IVariant): RouteRecordRaw => {
+const getCurrentApp = (app: Variant): RouteRecordRaw => {
   switch (app) {
     case Variant.VECTOR:
       return VectorAppRoutes;

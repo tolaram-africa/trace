@@ -4,20 +4,18 @@ export enum AuthProvider {
   LOCAL = 'local',
 }
 
-export enum UserAccountType {
-  CUSTOMER_CLIENT = 'customer-client',
+export enum SystemLevel {
+  CLIENT = 'client',
   CUSTOMER = 'customer',
   TENANT = 'tenant',
   SYSTEM = 'system',
 }
 
-export enum UserType {
-  /** All users */
-  ALL = 'all',
+export enum RoleType {
   /** Block in tenant service */
-  OVERLORD = 'overlord',
+  SYSTEM = 'system',
   /** Customer Accounts */
-  CUSTOMER_CLIENT = 'customer.client',
+  CLIENT = 'client',
   CUSTOMER_OPERATOR = 'customer.operator',
   CUSTOMER_ADMIN = 'customer.admin',
   CUSTOMER_LOADER = 'customer.loader',
@@ -30,22 +28,20 @@ export enum UserType {
   TENANT_WAREHOUSE_MANAGER = 'tenant.warehouse',
   TENANT_DRIVER_MANAGER = 'tenant.driver-manager',
   TENANT_DRIVER_SUPERVISOR = 'tenant.driver-supervisor',
+  TENANT_LOADER = 'tenant.loader',
   TENANT_DRIVER = 'tenant.driver',
 }
 
-export enum SystemUserType {
-  /** All users */
-  ALL = 'all',
-  /** Overloads account types */
+export enum SystemRole {
+  /** Overlords account types */
   SUPER_ADMIN = 'system.super-admin',
   ADMIN = 'system.admin',
   OPERATOR = 'system.operator',
 }
 
-export enum RBACPermission {
-  ALL = 'all',
-  CREATE = 'create',
+export enum PermissionOption {
   READ = 'read',
+  CREATE = 'create',
   UPDATE = 'update',
   DELETE = 'delete',
 }

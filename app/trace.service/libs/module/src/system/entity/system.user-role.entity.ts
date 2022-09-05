@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
 import { SoftDeleteEntity } from '@/common/entity/base.soft-delete.entity';
-import { SystemUserType } from '@/common/entity/enum.user';
+import { SystemRole } from '@/common/entity/enum.user';
 import { SystemUserPermission } from './system.user-permission.entity';
 
 @Entity({ name: 'system_user_roles' })
@@ -17,11 +17,11 @@ export class SystemUserRole extends SoftDeleteEntity {
 
   @Column({
     type: 'enum',
-    enum: SystemUserType,
-    default: [SystemUserType.ALL],
+    enum: SystemRole,
+    default: [SystemRole.OPERATOR],
     array: true,
   })
-  public userTypes: SystemUserType[];
+  public userTypes: SystemRole[];
 
   @Column({ type: 'varchar', length: 512, nullable: true })
   public description!: string;

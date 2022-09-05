@@ -1,6 +1,6 @@
 import { Entity, Column } from 'typeorm';
 import { TagEntity } from '@/common/entity/base.tag.entity';
-import { UserType } from '@/common/entity/enum.user';
+import { RoleType } from '@/common/entity/enum.user';
 
 @Entity({ name: 'payment_types' })
 export class PaymentType extends TagEntity {
@@ -15,9 +15,9 @@ export class PaymentType extends TagEntity {
 
   @Column({
     type: 'enum',
-    enum: UserType,
-    default: [UserType.ALL],
+    enum: RoleType,
+    default: [RoleType.ALL],
     array: true,
   })
-  public userTypes: UserType[];
+  public userTypes: RoleType[];
 }

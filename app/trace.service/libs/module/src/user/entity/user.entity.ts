@@ -10,7 +10,7 @@ import {
   Index,
   RelationId,
 } from 'typeorm';
-import { TenantEntity, UserAccountType, UserType } from '@/common/entity';
+import { TenantEntity, SystemLevel, RoleType } from '@/common/entity';
 import { UserProfile, UserAlert, UserSetting, UserPassport } from './';
 import { Schedule } from '@/module/schedule/entity/schedule.entity';
 import { BankAccount } from '@/module/payment/entity/payment.bank-account.entity';
@@ -23,17 +23,17 @@ import { UserNavigation } from './user.navigation.entity';
 export class User extends TenantEntity {
   @Column({
     type: 'enum',
-    enum: UserAccountType,
-    default: UserAccountType.CUSTOMER_CLIENT,
+    enum: SystemLevel,
+    default: SystemLevel.CLIENT,
   })
-  public serviceGroup: UserAccountType;
+  public serviceGroup: SystemLevel;
 
   @Column({
     type: 'enum',
-    enum: UserType,
-    default: UserType.CUSTOMER_CLIENT,
+    enum: RoleType,
+    default: RoleType.CLIENT,
   })
-  public userType: UserType;
+  public userType: RoleType;
 
   @Column({ default: true })
   public active: boolean;
