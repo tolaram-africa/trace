@@ -16,7 +16,7 @@ export class PaymentType extends TagEntity {
   @Column({
     type: 'enum',
     enum: RoleType,
-    default: [RoleType.ALL],
+    default: [RoleType.CLIENT],
     array: true,
   })
   public userTypes: RoleType[];

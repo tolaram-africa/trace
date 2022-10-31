@@ -5,6 +5,7 @@ export enum AuthProvider {
 }
 
 export enum SystemLevel {
+  BOT = 'bot',
   CLIENT = 'client',
   CUSTOMER = 'customer',
   TENANT = 'tenant',
@@ -13,6 +14,7 @@ export enum SystemLevel {
 
 export enum RoleType {
   /** Block in tenant service */
+  BOT = 'bot',
   SYSTEM = 'system',
   /** Customer Accounts */
   CLIENT = 'client',
@@ -34,6 +36,7 @@ export enum RoleType {
 
 export enum SystemRole {
   /** Overlords account types */
+  BOT = 'bot',
   SUPER_ADMIN = 'system.super-admin',
   ADMIN = 'system.admin',
   OPERATOR = 'system.operator',
