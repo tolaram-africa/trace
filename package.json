@@ -42,7 +42,7 @@
     "@trace/docs": "workspace:*",
     "@trace/service": "workspace:*",
     "@trace/website": "workspace:*",
-    "pnpm": "^6.32.3",
+    "pnpm": "^7.18.2",
     "rimraf": "^3.0.2"
   },
   "engines": {
