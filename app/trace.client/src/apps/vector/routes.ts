@@ -1,4 +1,3 @@
-import IdentityRoutes from '@/app/modules/Identity';
 import BillingModule from './modules/Billing';
 import DriverModule from './modules/Driver';
 import OverviewModule from './modules/Overview';
@@ -9,16 +8,16 @@ import SettingsModule from './modules/Settings';
 import ShortageModule from './modules/Shortage';
 import TrackModule from './modules/Track';
 import { SharedBaseRoutes } from '@/app/modules';
+import { ServiceVariant } from '@/shared/libs/Service';
 
 const APP_NAME = 'vec';
 const MODULE_ROOT = 'm';
 
 export default {
-  path: '',
+  path: ServiceVariant.VECTOR,
   name: APP_NAME,
   component: () => import('./App.vue'),
   children: [
-    IdentityRoutes,
     {
       path: MODULE_ROOT,
       component: () => import('./shared/layouts/AppLayout.vue'),
