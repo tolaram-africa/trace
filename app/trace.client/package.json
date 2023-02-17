@@ -1,7 +1,7 @@
 {
   "name": "@trace/client",
   "version": "0.0.1",
-  "description": "Trace navigation system",
+  "description": "Trace logistics platform",
   "productName": "Trace",
   "private": true,
   "repository": {
@@ -16,11 +16,9 @@
   "homepage": "https://trace.ng",
   "scripts": {
     "common": "pnpm -r --filter ../trace.common/",
-    "dev": "pnpm common build && quasar dev",
-    "dev:vector": "APP_VARIANT=vector pnpm quasar dev",
-    "dev:track": "APP_VARIANT=track pnpm quasar dev",
+    "dev": "pnpm common build && pnpm dev:sass",
+    "dev:sass": "APP_VARIANT=default pnpm quasar dev",
     "dev:manager": "APP_VARIANT=manager pnpm quasar dev",
-    "dev:easy": "APP_VARIANT=easy pnpm quasar dev",
     "dev:android": "quasar dev -m capacitor -T android",
     "dev:pwa": "pnpm common build && quasar dev -m pwa",
     "dev:ssr": "quasar dev -m ssr",
