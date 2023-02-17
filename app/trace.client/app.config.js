@@ -8,6 +8,7 @@ if (env.MODE === undefined) {
 }
 
 module.exports = {
+  NODE_ENV: env.NODE_ENV,
   API_SECRET: env.API_SECRET || 'secret',
   PORT: env.PORT || 4580,
   BASE_URL: env.BASE_URL || 'http://localhost:4580/',

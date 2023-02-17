@@ -18,7 +18,7 @@ export class UserRole extends SoftDeleteEntity {
   @Column({
     type: 'enum',
     enum: RoleType,
-    default: [RoleType.ALL],
+    default: [RoleType.CLIENT],
     array: true,
   })
   public userTypes: RoleType[];
