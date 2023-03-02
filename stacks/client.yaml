@@ -12,7 +12,7 @@ x-app-instance: &app-instance
     args: &app-args
       VERSION: '${VERSION}'
   env_file:
-    - ${PWD}/app/trace.client/.env.dev
+    - ${PWD}/app/trace.client/.env.sample
   networks:
     - gateway
   healthcheck:
