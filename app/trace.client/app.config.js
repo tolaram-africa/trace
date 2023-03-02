@@ -3,7 +3,7 @@ require('dotenv').config();
 
 let env = process.env;
 if (env.MODE === undefined) {
-  require('dotenv').config({ path: './.env.dev' });
+  require('dotenv').config({ path: './.env.sample' });
   env = process.env;
 }
 
