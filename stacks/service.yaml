@@ -28,7 +28,7 @@ x-service-instance: &service-instance
     args: &service-args
       VERSION: '${VERSION}'
   env_file:
-    - ./app/trace.service/.env.dev
+    - ./app/trace.service/.env.sample
 
 services:
   gateway:

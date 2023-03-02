@@ -1,3 +1,5 @@
+import { DefaultNamingStrategy } from 'typeorm';
+
 export declare type SourceType =
   | 'mysql'
   | 'postgres'
@@ -25,9 +27,12 @@ export interface IOperationSource extends IBaseSource {
   entityPrefix: string;
   migrationsTableName: string;
   migrationsTransactionMode: 'all' | 'none' | 'each';
+  migrationsRun: boolean;
+  namingStrategy: DefaultNamingStrategy;
   synchronize: boolean;
   installExtensions: boolean;
   dropSchema: boolean;
+  extra: object;
 }
 
 export interface IDocumentSource extends IBaseSource {

@@ -29,7 +29,7 @@ services:
     volumes:
       - '${STORE_ROOT}/mongodb:/data/db'
   operation:
-    image: postgis/postgis:13-3.2-alpine
+    image: postgis/postgis:13-3.3
     deploy:
       mode: replicated
       replicas: 1
@@ -44,9 +44,8 @@ services:
     networks:
       - database
     volumes:
-      - '/etc/localtime:/etc/localtime:ro'
-      - '/etc/timezone:/etc/timezone:ro'
-      - '${STORE_ROOT}/postgres:/var/lib/postgresql/data/pgdata'
+      - /etc/localtime:/etc/localtime:ro
+      - ${STORE_ROOT}/postgres:/var/lib/postgresql/data/pgdata
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: trace

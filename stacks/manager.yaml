@@ -19,9 +19,9 @@ services:
         SERVICE_NAME: manager
         SERVICE_PORT: 4680
     env_file:
-      - '${PWD}/app/trace.service/.env.dev'
+      - '${PWD}/app/trace.service/.env.sample'
     volumes:
-      # - '${PWD}/app/trace.service/.env.dev:/home/node/app/trace.service/dist/apps/manager/src/.env'
+      # - '${PWD}/app/trace.service/.env.sample:/home/node/app/trace.service/dist/apps/manager/src/.env'
       - '${SRV_ROOT}/config.dev.yaml:/app/config.yaml:ro'
       - '${SRV_ROOT}/config/service.gateway.yaml:/app/service.yaml:ro'
     ports:

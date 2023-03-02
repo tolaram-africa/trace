@@ -13,13 +13,13 @@ const config = getConfigValue(
 ) as unknown as IOperationSource;
 
 const entities = [
-  join(__dirname, '../libs/common/src/entity/**/*.entity.{ts}'),
-  join(__dirname, '../libs/module/src/**/entity/*.entity.{ts}'),
+  join(__dirname, '../libs/common/src/entity/**/*.entity.ts'),
+  join(__dirname, '../libs/module/src/**/entity/*.entity.ts'),
 ];
-const migrations = [join(__dirname, '/migrations/*.{ts}')];
-const subscribers = [join(__dirname, '/subscribers/*.{ts}')];
+const migrations = [join(__dirname, '/migrations/*.ts')];
+const subscribers = [join(__dirname, '/subscribers/*.ts')];
 
-export const OperationSource: DataSourceOptions = {
+export const OperationSource: IOperationSource = {
   type: config.type || 'postgres',
   name: config.name || SOURCE_NAME,
   host: config.host || '127.0.0.1',
@@ -44,4 +44,4 @@ export const OperationSource: DataSourceOptions = {
   },
 };
 
-export const dataSource = new DataSource(OperationSource);
+export const dataSource = new DataSource(OperationSource as DataSourceOptions);
