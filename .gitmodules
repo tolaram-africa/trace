@@ -1,0 +1,5 @@
+[submodule "proxy"]
+path = proxy
+url = ../trace-proxy.git
+branch = main
+ignore = all
