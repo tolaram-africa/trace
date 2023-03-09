@@ -3,3 +3,8 @@ path = proxy
 url = ../trace-proxy.git
 branch = main
 ignore = all
+[submodule "lib"]
+path = lib
+url = ../Proton.Common.git
+branch = main
+ignore = all
