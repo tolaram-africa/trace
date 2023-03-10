@@ -9,5 +9,7 @@ url = ../Proton.Common.git
 branch = main
 ignore = all
 [submodule "docs"]
-	path = docs
-	url = https://github.com/gpproton/trace-docs.git
+path = docs
+url = ../trace-docs.git
+branch = main
+ignore = all
