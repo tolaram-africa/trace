@@ -1,0 +1,43 @@
+# Trace Features
+
+
+- [ ] Asset
+- [ ] Beacon
+- [ ] Customer
+  - [ ] Contract
+  - [ ] Clients
+  - [ ] Locations
+  - [ ] Subscriptions
+  - [ ] Groups
+- [ ] Driver
+  - [ ] Groups
+  - [ ] Incentives
+  - [ ] Expense
+  - [ ] Rating
+  - [ ] Payments
+  - [ ] Violations
+- [ ] Employee
+- [ ] Event
+- [ ] File
+- [ ] Form
+- [ ] Insurance
+- [ ] Location
+- [ ] Maintenance
+- [ ] Sim Card
+- [ ] Trip Order
+- [ ] Payments
+- [ ] Products
+- [ ] Rating
+- [ ] Route
+- [ ] Schedule
+- [ ] Shipment
+- [ ] Shortage
+- [ ] Stock
+- [ ] Subscriptions
+- [ ] Suppliers
+- [ ] Support
+- [ ] Tags
+- [ ] Templates
+- [ ] Tenant
+- [ ] Ticket
+- [ ] Warehouse
