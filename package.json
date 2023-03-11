@@ -12,7 +12,7 @@
     "track"
   ],
   "author": "radioActive DROID <me@godwin.dev>",
-  "license": "ISC",
+  "license": "AGPL",
   "bugs": {
     "url": "https://github.com/11Clouds/trace/issues"
   },
@@ -20,12 +20,10 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "client": "pnpm -r --filter ./app/trace.client run",
-    "common": "pnpm -r --filter ./app/trace.common run",
     "docs": "pnpm -r --filter ./app/trace.docs run",
     "website": "pnpm -r --filter ./app/trace.website run",
     "dev": "pnpm -r --filter ./app --parallel run dev",
     "dev:client": "pnpm run client dev",
-    "dev:common": "pnpm run common dev",
     "dev:docs": "pnpm run docs dev",
     "build": "pnpm -r --filter ./app run build",
     "clean": " pnpm clean:dist && pnpm clean:packages",
@@ -36,7 +34,6 @@
   "devDependencies": {
     "@trace/app": "workspace:*",
     "@trace/client": "workspace:*",
-    "@trace/common": "workspace:*",
     "@trace/docs": "workspace:*",
     "@trace/website": "workspace:*",
     "pnpm": "^7.18.2",
