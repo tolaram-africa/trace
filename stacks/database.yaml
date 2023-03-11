@@ -8,7 +8,7 @@ networks:
 
 services:
   operation:
-    image: postgis/postgis:13-3.3
+    image: postgis/postgis:15-3.3
     deploy:
       mode: replicated
       replicas: 1
