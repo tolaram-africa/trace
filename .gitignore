@@ -476,7 +476,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+.idea
 .output
 pnpm-lock.yaml
-app/trace.client/.env
 .env
