@@ -7,27 +7,6 @@ networks:
     name: database-net
 
 services:
-  # stream:
-  #   image: mongo:5.0-focal
-  #   environment:
-  #     MONGO_INITDB_DATABASE: trace
-  #     MONGO_INITDB_ROOT_USERNAME: trace
-  #     MONGO_INITDB_ROOT_PASSWORD: trace
-  #   deploy:
-  #     mode: replicated
-  #     replicas: 1
-  #     resources:
-  #       limits:
-  #         cpus: '0.1'
-  #         memory: 128M
-  #       reservations:
-  #         memory: 32M
-  #   ports:
-  #     - 27017:27017
-  #   networks:
-  #     - database
-  #   volumes:
-  #     - '${STORE_ROOT}/mongodb:/data/db'
   operation:
     image: postgis/postgis:13-3.3
     deploy:
