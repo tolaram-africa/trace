@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import AppLogo from '@/assets/vectors/logo.svg';
-import IconUnfoldMore from '@/assets/vectors/icon/google-font-unfold-more.svg';
-import MenuGridRoute from '@/layouts/navigation/MenuGridRoute.vue';
 import { IModule } from '@/libs/Menu';
 
 interface IProps {
@@ -11,12 +9,6 @@ interface IProps {
 }
 
 const props = defineProps<IProps>();
-const emits = defineEmits<{
-  (eventName: 'update:modelValue', value: boolean): void;
-}>();
-const setModelValue = (value: boolean) => {
-  emits('update:modelValue', value);
-};
 </script>
 
 <Script lang="ts">
@@ -43,21 +35,7 @@ export default {
           </div>
           <div class="text-accent-more">{{ 'Workspace' }}</div>
         </div>
-        <div class="col-2 column justify-center">
-          <icon-unfold-more class="icon-unfold-more"></icon-unfold-more>
-        </div>
       </div>
-      <q-menu
-        transition-show="scale"
-        transition-hide="scale"
-        anchor="center middle"
-        self="center middle"
-        :class="props.modelValue ? 'shadow-2' : 'shadow-0'"
-        @mouseover="setModelValue(false)"
-        fit
-      >
-        <menu-grid-route :items="props.rootItems" />
-      </q-menu>
     </div>
   </q-toolbar>
 </template>

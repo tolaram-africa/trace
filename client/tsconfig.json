@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "allowJs": true,
+    "types": ["vite/client"],
     "paths": {
       "src/*": ["src/*"],
       "@/*": ["src/*"],
@@ -28,7 +29,6 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
-    "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.json",
     "components.d.ts",

@@ -31,11 +31,13 @@
     "clean:dist": "rimraf app/**/dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
+  "dependencies": {
     "@trace/app": "workspace:*",
     "@trace/client": "workspace:*",
     "@trace/docs": "workspace:*",
-    "@trace/website": "workspace:*",
+    "@trace/website": "workspace:*"
+  },
+  "devDependencies": {
     "pnpm": "^7.18.2",
     "rimraf": "^3.0.2"
   },
