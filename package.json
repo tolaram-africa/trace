@@ -1,5 +1,5 @@
 {
-  "name": "@trace/main",
+  "name": "@trace/core",
   "version": "0.0.1",
   "description": "Trace logistics system",
   "main": "index.js",
