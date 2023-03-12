@@ -1,0 +1,40 @@
+version: '3.9'
+
+networks:
+  routing:
+    driver: overlay
+    attachable: true
+    name: routing-net
+  gateway:
+    external: true
+    name: gateway-net
+
+services:
+  server:
+    image: gisops/valhalla:latest
+    deploy:
+      labels:
+        - 'traefik.enable=true'
+        - 'traefik.http.routers.routing.entrypoints=web-secure'
+        - 'traefik.http.routers.routing.rule=Host(`staging.${DOMAIN}`) && PathPrefix(`/service/routing`)'
+        - 'traefik.http.services.routing.loadbalancer.server.port=8002'
+        - 'traefik.http.routers.routing.middlewares=routing-prefix'
+        - 'traefik.http.middlewares.routing-prefix.stripprefix.prefixes=/service/routing'
+      mode: replicated
+      replicas: 1
+    ports:
+      - 8072:8002
+    networks:
+      - gateway
+      - routing
+    environment:
+      tile_urls: 'https://download.geofabrik.de/africa/nigeria-latest.osm.pbf'
+      server_threads: 8
+      use_tiles_ignore_pbf: 'True'
+      build_elevation: 'True'
+      build_admins: 'True'
+      build_time_zones: 'True'
+      build_tar: 'True'
+      force_rebuild: 'False'
+    volumes:
+      - '${STORE_ROOT}/valhalla:/custom_files'

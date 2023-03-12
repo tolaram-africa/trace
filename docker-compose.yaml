@@ -16,7 +16,7 @@ configs:
     file: ./configs/proxy.config.yaml
 secrets:
   auth:
-    file: ./admin.basic-auth
+    file: ./configs/admin.basic-auth
 
 services:
   cert:
@@ -54,7 +54,7 @@ services:
     volumes:
       - '${PWD}/configs/registry.config.yaml:/etc/docker/registry/config.yml:ro'
       - '${HOME}/docker-registry:/var/lib/registry:rw'
-      - '${PWD}/registry.basic-auth:/auth/.htpasswd'
+      - '${PWD}/configs/registry.basic-auth:/auth/.htpasswd'
     # networks:
     #   - gateway
   proxy:

@@ -20,14 +20,15 @@
 127.0.0.1 service_identity
 127.0.0.1 service_operation
 127.0.0.1 service_integration
-127.0.0.1 service_navigation
+127.0.0.1 service_track
+127.0.0.1 service_route
 127.0.0.1 service_manager
 
 ## service dependencies
 127.0.0.1 database_operation
-127.0.0.1 database_stream
-127.0.0.1 storage_file
-127.0.0.1 storage_cache
-127.0.0.1 navigation_iot
-127.0.0.1 navigation_routing
-127.0.0.1 navigation_gecoding
+127.0.0.1 database_cache
+127.0.0.1 storage_server
+127.0.0.1 scylla_server
+127.0.0.1 traccar_server
+127.0.0.1 routing_server
+127.0.0.1 nominatim_server

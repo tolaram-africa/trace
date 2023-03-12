@@ -1,3 +1,5 @@
 packages:
-  - 'app/*'
-  - 'app/trace.client/*'
+  - 'client'
+  - 'client/*'
+  - 'docs'
+  - 'website'
