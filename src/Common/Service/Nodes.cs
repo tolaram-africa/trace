@@ -18,5 +18,5 @@ public static class Nodes {
     public const string Operation = "operation";
     public const string Route = "route";
     public const string Track = "track";
-    public const string Manager = "manager";
+    public const string Manage = "manage";
 }
