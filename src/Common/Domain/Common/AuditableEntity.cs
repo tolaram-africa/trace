@@ -1,8 +1,10 @@
 namespace Trace.Common.Domain.Common;
 
 public class AuditableEntity {
-    public string CreatedBy { get; set; } = String.Empty;
-    public DateTime CreatedAt { get; set; }
-    public string? UpdatedBy { get; set; }
+    public Guid? CreatedBy { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public Guid? UpdatedBy { get; set; }
     public DateTime? UpdatedAt { get; set; }
+    public Guid? DeletedBy { get; set; }
+    public DateTime? DeletedAt { get; set; }
 }
