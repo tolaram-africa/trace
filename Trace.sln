@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Identity", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Integration", "src\Service\Integration\Trace.Service.Integration.csproj", "{64967B52-9496-4120-AE3F-8E5BD3A1328A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Manager", "src\Service\Manager\Trace.Service.Manager.csproj", "{1135C0CA-0C67-47FF-B919-9EAA5068B809}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Manage", "src\Service\Manager\Trace.Service.Manage.csproj", "{1135C0CA-0C67-47FF-B919-9EAA5068B809}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Operation", "src\Service\Operation\Trace.Service.Operation.csproj", "{DEC38774-BFB9-4338-A64A-750F0E5D7B72}"
 EndProject
