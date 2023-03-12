@@ -7,27 +7,48 @@ Trace is license under the [AGPLv3 Licence](./LICENSE)
 
 [![AGPLv3 License](https://img.shields.io/badge/license-AGPLv3-blue.svg?style=flat-square)](http://www.fsf.org)
 
+## Features
+
+Some of the available features include:
+
+- Real-time GPS tracking
+
+## Modules
+
+There are a some modules supported. Most of them are configurable via the web
+interface or mobile app. A few of them are:
+
+- [ ] Asset
+- [ ] Beacon
+- [ ] Customer
+- [ ] Document
+- [ ] Driver
+- [ ] Employee
+- [ ] Event
+- [ ] Form
+- [ ] Insurance
+- [ ] Location
+- [ ] Maintenance
+- [ ] Trip Order
+- [ ] Trip Invoice
+- [ ] Payments
+- [ ] Products
+- [ ] Route
+- [ ] Schedule
+- [ ] Shipment
+- [ ] Shortage
+- [ ] Stock
+- [ ] Suppliers
+- [ ] Support
+- [ ] Tags
+- [ ] Templates
+- [ ] Ticket
+- [ ] Warehouse
+
 
 ## Support
 
 To get free support, use github issue tab.
-
-There are a some features supported. Most of them are configurable via the web
-interface or mobile app. A few of them are:
-
-- Customers
-  - Contract
-  - Clients
-  - Locations
-  - Subscriptions
-  - Groups
-- Drivers
-  - Groups
-  - Incentives
-  - Expense
-  - Rating
-  - Payments
-  - Violations
 
 ## Prerequisites
 
@@ -35,6 +56,11 @@ In order to run Trace, you need the following configured, secured  and
 working Basic Operating System (Linux).
 
 The project uses Docker, dotnet, PostgreSQL, vueJs and leaflet.
+
+## Team
+
+- Agboola Solomon ([agboolas@outlook.com](mailto:agboolas@outlook.com))
+- Godwin peter .O ([me@godwin.dev](mailto:me@godwin.dev))
 
 ## Contributing
 
