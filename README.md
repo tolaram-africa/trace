@@ -21,30 +21,27 @@ interface or mobile app. A few of them are:
 - [ ] Asset
 - [ ] Beacon
 - [ ] Customer
+- [ ] Document
 - [ ] Driver
 - [ ] Employee
 - [ ] Event
-- [ ] File
 - [ ] Form
 - [ ] Insurance
 - [ ] Location
 - [ ] Maintenance
-- [ ] Sim Card
 - [ ] Trip Order
+- [ ] Trip Invoice
 - [ ] Payments
 - [ ] Products
-- [ ] Rating
 - [ ] Route
 - [ ] Schedule
 - [ ] Shipment
 - [ ] Shortage
 - [ ] Stock
-- [ ] Subscriptions
 - [ ] Suppliers
 - [ ] Support
 - [ ] Tags
 - [ ] Templates
-- [ ] Tenant
 - [ ] Ticket
 - [ ] Warehouse
 
