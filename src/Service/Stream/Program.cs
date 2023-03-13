@@ -3,7 +3,7 @@ using HotChocolate.Types;
 using StackExchange.Redis;
 using Trace.Common.Service;
 using Trace.Common.Service.Extensions;
-using Trace.Service.Track;
+using Trace.Service.Stream;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ builder.Services
 .AddGraphQLServer()
 .AddTraceDefaults()
 .PublishSchemaDefinition(c => {
-    c.SetName(Nodes.Track)
+    c.SetName(Nodes.Stream)
     .PublishToRedis(Nodes.GroupName, sp => sp.GetRequiredService<ConnectionMultiplexer>());
 })
 .AddType<UploadType>()
@@ -29,7 +29,7 @@ builder.Services
 
 
 var app = builder.Build();
-app.MapGet("/", () => "Service.Track");
+app.MapGet("/", () => "Service.Stream");
 app.UseRouting();
 app.UseAuthorization();
 app.UseWebSockets();

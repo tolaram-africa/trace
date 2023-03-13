@@ -5,7 +5,7 @@
     <toRun name="Trace.Service.Integration: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Operation: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Route: http" type="LaunchSettings" />
-    <toRun name="Trace.Service.Track: http" type="LaunchSettings" />
+    <toRun name="Trace.Service.Stream: http" type="LaunchSettings" />
     <method v="2" />
   </configuration>
 </component>

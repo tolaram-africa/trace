@@ -24,9 +24,9 @@ builder.Services
 .AddType<GeoJsonPositionType>()
 .AddType<GeoJsonCoordinatesType>();
 
-// Set Spatial type for track service
+// Set Spatial type for stream service
 builder.Services
-.AddGraphQL(Nodes.Track)
+.AddGraphQL(Nodes.Stream)
 .AddType<GeoJsonPositionType>()
 .AddType<GeoJsonCoordinatesType>();
 
