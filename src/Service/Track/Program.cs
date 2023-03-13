@@ -2,6 +2,7 @@ using HotChocolate;
 using HotChocolate.Types;
 using StackExchange.Redis;
 using Trace.Common.Service;
+using Trace.Common.Service.Extensions;
 using Trace.Service.Track;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,6 +1,7 @@
 using HotChocolate.Types.Spatial;
 using StackExchange.Redis;
 using Trace.Common.Service;
+using Trace.Common.Service.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
