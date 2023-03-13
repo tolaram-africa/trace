@@ -1,12 +1,14 @@
 using StackExchange.Redis;
 using Trace.Common.Service;
-using Trace.Service.Identity;
+using Trace.Common.Service.Extensions;
+using Trace.Service.Identity.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
 .AddAuthorization()
-.RegisterRedis(builder.Configuration);
+.RegisterRedis(builder.Configuration)
+.RegisterHangfire();
 
 builder.Services
 .AddMemoryCache()
@@ -17,9 +19,10 @@ builder.Services
     .PublishToRedis(Nodes.GroupName,
         sp => sp.GetRequiredService<ConnectionMultiplexer>());
 })
-.AddQueryType<Query>()
-.AddSubscriptionType<Subscription>()
 .AddQueryableCursorPagingProvider()
+.AddQueryType<QueryRoot>()
+.AddMutationType<MutationRoot>()
+.AddSubscriptionType<SubscriptionRoot>()
 .RegisterObjectExtensions(typeof(Program).Assembly);
 
 var app = builder.Build();
@@ -29,5 +32,6 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseWebSockets();
 app.MapGraphQL();
+app.RegisterHangfireApp(builder.Configuration);
 
 app.Run();
