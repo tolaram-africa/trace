@@ -2,9 +2,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 
-namespace Trace.Common.Service;
+namespace Trace.Common.Service.Extensions;
 
-public static class ServiceCollectionExtensions {
+public static class ServiceCollectionExtension {
     public static IServiceCollection RegisterRedis(this IServiceCollection services, IConfiguration config) {
         var redisConnectionString = config.GetValue<string>("Database:Redis");
         return services.AddSingleton(sp => {

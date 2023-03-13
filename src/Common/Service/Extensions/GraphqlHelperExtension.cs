@@ -2,10 +2,10 @@ using System.Reflection;
 using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Trace.Common.Service;
+namespace Trace.Common.Service.Extensions;
 
-public static class TypeExtensions {
-    public static IEnumerable<Type> DiscoverObjectExtensions(this Assembly assembly) {
+public static class GraphqlHelperExtension {
+    private static IEnumerable<Type> DiscoverObjectExtensions(this Assembly assembly) {
         return assembly.GetTypes()
         .Where(x => x.CustomAttributes
         .Any(y => y.AttributeType == typeof(ExtendObjectTypeAttribute)));

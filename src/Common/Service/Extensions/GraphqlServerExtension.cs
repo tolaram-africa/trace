@@ -1,9 +1,9 @@
 using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Trace.Common.Service;
+namespace Trace.Common.Service.Extensions;
 
-public static class GraphqlServerExtensions {
+public static class GraphqlServerExtension {
     public static IRequestExecutorBuilder AddTraceDefaults(this IRequestExecutorBuilder services) {
         return services
         .InitializeOnStartup()
