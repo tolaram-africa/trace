@@ -15,22 +15,22 @@ public static class HangfireExtension {
             .UseRecommendedSerializerSettings();
         });
         services.AddHangfireServer();
-        
+
         return services;
     }
-    
+
     public static IApplicationBuilder RegisterHangfireApp(this IApplicationBuilder app, IConfiguration config) {
         var endpoint = config.GetValue<string>("Hangfire:Endpoint") ?? "/schedule";
         app.UseHangfireDashboard(endpoint, new DashboardOptions {
             DashboardTitle = "Trace Schedule",
-            Authorization = new [] {
+            Authorization = new[] {
                 new HangfireCustomBasicAuthenticationFilter{
                     User = config.GetValue<string>("Hangfire:Username") ?? "trace",
                     Pass = config.GetValue<string>("Hangfire:Password") ?? "trace"
                 }
             }
         });
-        
+
         return app;
     }
 }
