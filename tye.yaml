@@ -1,16 +1,75 @@
 name: trace
 solution: Trace.sln
+extensions:
+  - name: zipkin
+  - name: seq
+    logPath: ./.logs
 services:
+- name: client-app
+  tags:
+    - client
+  executable: pnpm
+  workingDirectory: client
+  args: 'run dev'
+  bindings:
+    - protocol: http
+      port: 4580
+- name: service-gateway
+  tags:
+    - service
+  replicas: 1
+  build: true
+  project: src/Gateway/Trace.Service.Gateway.csproj
+  bindings:
+    - port: 4570
+- name: service-identity
+  tags:
+    - service
+  build: true
+  project: src/Service/Identity/Trace.Service.Identity.csproj
+- name: service-integration
+  tags:
+    - service
+  build: true
+  project: src/Service/Integration/Trace.Service.Integration.csproj
+- name: service-operation
+  tags:
+    - service
+  build: true
+  project: src/Service/Operation/Trace.Service.Operation.csproj
+- name: service-route
+  tags:
+    - service
+  build: true
+  project: src/Service/Route/Trace.Service.Route.csproj
+- name: service-stream
+  tags:
+    - service
+  build: true
+  project: src/Service/Stream/Trace.Service.Stream.csproj
+- name: service-manage
+  tags:
+    - service
+  build: true
+  project: src/Service/Manager/Trace.Service.Manage.csproj
 - name: redis
-  image: redis:7-alpine
+  image: docker.io/library/redis:7-alpine
+  tags:
+    - service
+    - docker
   volumes:
     - source: /etc/localtime
       target: /etc/localtime
+    - source: ./.docker/redis
+      target: /data
   bindings:
     - port: 6379
       connectionString: "${host}:${port},abortConnect=false"
 - name: postgres
-  image: postgis/postgis:15-3.3
+  image: docker.io/postgis/postgis:15-3.3
+  tags:
+    - service
+    - docker
   env:
     - name: PGDATA
       value: /var/lib/postgresql/data/pgdata
@@ -23,32 +82,8 @@ services:
   volumes:
     - source: /etc/localtime
       target: /etc/localtime
-    - source: /home/leanny/docker.temp/postgres
+    - source: ./.docker/postgres
       target: /var/lib/postgresql/data/pgdata
   bindings:
     - port: 5432
       connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
-- name: service-gateway
-  replicas: 1
-  build: true
-  project: src/Gateway/Trace.Service.Gateway.csproj
-  bindings:
-    - port: 4570
-- name: service-identity
-  build: true
-  project: src/Service/Identity/Trace.Service.Identity.csproj
-- name: service-integration
-  build: true
-  project: src/Service/Integration/Trace.Service.Integration.csproj
-- name: service-operation
-  build: true
-  project: src/Service/Operation/Trace.Service.Operation.csproj
-- name: service-route
-  build: true
-  project: src/Service/Route/Trace.Service.Route.csproj
-- name: service-stream
-  build: true
-  project: src/Service/Stream/Trace.Service.Stream.csproj
-- name: service-manage
-  build: true
-  project: src/Service/Manager/Trace.Service.Manage.csproj
