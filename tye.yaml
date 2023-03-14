@@ -1,0 +1,54 @@
+name: trace
+solution: Trace.sln
+services:
+- name: redis
+  image: redis:7-alpine
+  volumes:
+    - source: /etc/localtime
+      target: /etc/localtime
+  bindings:
+    - port: 6379
+      connectionString: "${host}:${port},abortConnect=false"
+- name: postgres
+  image: postgis/postgis:15-3.3
+  env:
+    - name: PGDATA
+      value: /var/lib/postgresql/data/pgdata
+    - name: POSTGRES_USER
+      value: trace
+    - name: POSTGRES_PASSWORD
+      value: trace
+    - name: POSTGRES_DB
+      value: trace
+  volumes:
+    - source: /etc/localtime
+      target: /etc/localtime
+    - source: /home/leanny/docker.temp/postgres
+      target: /var/lib/postgresql/data/pgdata
+  bindings:
+    - port: 5432
+      connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
+- name: service-gateway
+  replicas: 1
+  build: true
+  project: src/Gateway/Trace.Service.Gateway.csproj
+  bindings:
+    - port: 4570
+- name: service-identity
+  build: true
+  project: src/Service/Identity/Trace.Service.Identity.csproj
+- name: service-integration
+  build: true
+  project: src/Service/Integration/Trace.Service.Integration.csproj
+- name: service-operation
+  build: true
+  project: src/Service/Operation/Trace.Service.Operation.csproj
+- name: service-route
+  build: true
+  project: src/Service/Route/Trace.Service.Route.csproj
+- name: service-stream
+  build: true
+  project: src/Service/Stream/Trace.Service.Stream.csproj
+- name: service-manage
+  build: true
+  project: src/Service/Manager/Trace.Service.Manage.csproj
