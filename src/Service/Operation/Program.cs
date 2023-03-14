@@ -8,7 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
 .AddAuthorization()
-.RegisterRedis(builder.Configuration);
+.RegisterRedis(builder.Configuration)
+.RegisterDistributedCache(builder.Configuration)
+.RegisterHangfire(Nodes.Operation);
 
 builder.Services
 .AddMemoryCache()
@@ -29,5 +31,6 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseWebSockets();
 app.MapGraphQL();
+app.UseHangfireDashboard(builder.Configuration, Nodes.Operation);
 
 app.Run();

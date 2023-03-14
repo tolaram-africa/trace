@@ -1,34 +1,47 @@
 using Hangfire;
+using Hangfire.Redis;
 using HangfireBasicAuthenticationFilter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nextended.Core.Extensions;
 using StackExchange.Redis;
 
 namespace Trace.Common.Service.Extensions;
 
 public static class HangfireExtension {
-    public static IServiceCollection RegisterHangfire(this IServiceCollection services) {
+    public static IServiceCollection RegisterHangfire(this IServiceCollection services, string serviceName) {
         services.AddHangfire((sp, config) => {
-            config.UseRedisStorage(sp.GetRequiredService<ConnectionMultiplexer>())
+            config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
             .UseSimpleAssemblyNameTypeSerializer()
-            .UseRecommendedSerializerSettings();
+            .UseRecommendedSerializerSettings()
+            .UseRedisStorage(sp.GetRequiredService<ConnectionMultiplexer>(),
+                new RedisStorageOptions {
+                    Prefix = $"Job:{serviceName}",
+                });
         });
-        services.AddHangfireServer();
+
+        services.AddHangfireServer(options => {
+            const string name = "Main";
+            options.ServerName = name;
+            options.WorkerCount = 5;
+            options.Queues = new string[] { name };
+            options.SchedulePollingInterval = TimeSpan.FromMinutes(1);
+        });
 
         return services;
     }
 
-    public static IApplicationBuilder RegisterHangfireApp(this IApplicationBuilder app, IConfiguration config) {
+    public static IApplicationBuilder UseHangfireDashboard(this IApplicationBuilder app, IConfiguration config, string serviceName) {
         var endpoint = config.GetValue<string>("Hangfire:Endpoint") ?? "/schedule";
         app.UseHangfireDashboard(endpoint, new DashboardOptions {
-            DashboardTitle = "Trace Schedule",
+            DashboardTitle = $"{serviceName.Capitalize()} Schedule",
             Authorization = new[] {
                 new HangfireCustomBasicAuthenticationFilter{
                     User = config.GetValue<string>("Hangfire:Username") ?? "trace",
                     Pass = config.GetValue<string>("Hangfire:Password") ?? "trace"
                 }
-            }
+            },
         });
 
         return app;

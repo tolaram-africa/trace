@@ -6,11 +6,15 @@ using Trace.Common.Service.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 var endpoints = Nodes.All.ToDictionary(schema => schema,
-    schema => builder.Configuration.GetValue<Uri>($"Services:{schema}") ??
+    schema => builder.Configuration.GetServiceUri($"service-{schema}") ??
               throw new ArgumentException($"{schema} must provide a uri endpoint.")
     );
-builder.Services.RegisterSchemaHttpClients(endpoints);
-builder.Services.AddSingleton(ConnectionMultiplexer.Connect("localhost:6379"));
+
+builder.Services
+.AddAuthorization()
+.RegisterSchemaHttpClients(endpoints)
+.RegisterRedis(builder.Configuration)
+.RegisterDistributedCache(builder.Configuration);
 
 builder.Services
 .AddGraphQLServer()
@@ -35,4 +39,5 @@ var app = builder.Build();
 app.MapGet("/", () => "Trace.Gateway");
 app.MapGraphQL();
 app.MapGraphQLWebSocket();
+
 app.Run();
