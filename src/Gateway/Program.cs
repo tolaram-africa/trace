@@ -1,20 +1,22 @@
 using HotChocolate.Types.Spatial;
 using StackExchange.Redis;
+using Steeltoe.Common.Discovery;
+using Steeltoe.Discovery;
+using Steeltoe.Discovery.Client;
 using Trace.Common.Service;
 using Trace.Common.Service.Extensions;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
 
 var endpoints = Nodes.All.ToDictionary(schema => schema,
-    schema => builder.Configuration.GetServiceUri($"service-{schema}") ??
-              throw new ArgumentException($"{schema} must provide a uri endpoint.")
+    schema => new Uri($"http://service-{schema}")
     );
 
 builder.Services
 .AddAuthorization()
-.RegisterSchemaHttpClients(endpoints)
 .RegisterRedis(builder.Configuration)
-.RegisterDistributedCache(builder.Configuration);
+.RegisterDistributedCache(builder.Configuration)
+.RegisterSchemaHttpClients(endpoints);
 
 builder.Services
 .AddGraphQLServer()
@@ -34,7 +36,7 @@ builder.Services
 .AddType<GeoJsonPositionType>()
 .AddType<GeoJsonCoordinatesType>();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.MapGet("/", () => "Trace.Gateway");
 app.MapGraphQL();

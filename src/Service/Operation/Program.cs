@@ -1,10 +1,12 @@
 using HotChocolate.Types;
 using StackExchange.Redis;
+using Steeltoe.Connector;
+using Steeltoe.Discovery.Client;
 using Trace.Common.Service;
 using Trace.Common.Service.Extensions;
 using Trace.Service.Operation;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
 
 builder.Services
 .AddAuthorization()

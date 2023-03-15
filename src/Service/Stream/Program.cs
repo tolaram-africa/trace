@@ -5,7 +5,7 @@ using Trace.Common.Service;
 using Trace.Common.Service.Extensions;
 using Trace.Service.Stream;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
 
 builder.Services
 .AddAuthorization()
@@ -28,7 +28,6 @@ builder.Services
 .AddSpatialProjections()
 .AddQueryableCursorPagingProvider()
 .RegisterObjectExtensions(typeof(Program).Assembly);
-
 
 var app = builder.Build();
 app.MapGet("/", () => "Service.Stream");

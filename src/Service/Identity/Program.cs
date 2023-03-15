@@ -3,7 +3,7 @@ using Trace.Common.Service;
 using Trace.Common.Service.Extensions;
 using Trace.Service.Identity.Modules;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
 
 builder.Services
 .AddAuthorization()
