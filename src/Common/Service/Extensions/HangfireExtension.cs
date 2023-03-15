@@ -18,6 +18,7 @@ public static class HangfireExtension {
             .UseRedisStorage(sp.GetRequiredService<ConnectionMultiplexer>(),
                 new RedisStorageOptions {
                     Prefix = $"Job:{serviceName}",
+                    ExpiryCheckInterval = TimeSpan.FromHours(1),
                 });
         });
 
