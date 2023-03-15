@@ -3,6 +3,7 @@
     <toRun name="Trace.Service.Gateway: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Identity: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Integration: http" type="LaunchSettings" />
+    <toRun name="Trace.Service.Manage: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Operation: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Route: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Stream: http" type="LaunchSettings" />
