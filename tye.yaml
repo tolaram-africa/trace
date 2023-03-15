@@ -81,7 +81,6 @@ services:
     image: docker.io/postgis/postgis:15-3.3
     tags:
       - service
-      - infra
     env:
       - name: PGDATA
         value: /var/lib/postgresql/data/pgdata
@@ -98,6 +97,19 @@ services:
       - port: 5433
         containerPort: 5432
         connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
+  - name: scylla
+    image: scylladb/scylla:5.1
+    tags:
+      - service
+      - infra
+    bindings:
+      - name: one
+        port: 9042
+      - name: two
+        port: 9160
+    volumes:
+      - source: ./.docker/scylla
+        target: /var/lib/scylla
   - name: zipkin
     image: openzipkin/zipkin:2
     bindings:
