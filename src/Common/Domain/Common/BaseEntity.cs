@@ -3,8 +3,6 @@ using Trace.Common.Domain.Interfaces;
 
 namespace Trace.Common.Domain.Common;
 
-public abstract class BaseEntity<TKey> : AuditableEntity, IHasKey<TKey> {
-    [Key]
-    public TKey Id { get; set; } = default!;
+public abstract class BaseEntity<TKey> : CoreEntity<TKey> {
     public string Attributes { get; set; } = null!;
 }

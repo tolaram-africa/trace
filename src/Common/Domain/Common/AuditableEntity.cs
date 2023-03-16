@@ -1,6 +1,6 @@
 namespace Trace.Common.Domain.Common;
 
-public class AuditableEntity {
+public abstract class AuditableEntity<TKey> : BaseEntity<TKey> {
     public Guid? CreatedBy { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public Guid? UpdatedBy { get; set; }
