@@ -1,6 +1,6 @@
 using HotChocolate.Types;
 
-namespace Trace.Service.Identity.Modules.State.Mutations;
+namespace Trace.Service.Identity.Features.State.Mutations;
 
 [ExtendObjectType(typeof(MutationRoot))]
 public class StateMutations {

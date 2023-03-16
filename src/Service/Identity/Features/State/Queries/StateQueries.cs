@@ -1,6 +1,6 @@
 using HotChocolate.Types;
 
-namespace Trace.Service.Identity.Modules.State.Queries;
+namespace Trace.Service.Identity.Features.State.Queries;
 
 [ExtendObjectType(typeof(QueryRoot))]
 public class StateQueries {
