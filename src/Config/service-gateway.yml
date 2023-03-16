@@ -1,15 +1,7 @@
-spring:
-  rabbitMq:
-    addresses: amqp://admin:secret@localhost
 consul:
   discovery:
     register: true
     healthCheckPath: '/health'
-redis: localhost:6379,abortConnect=false
-hangfire:
-  endpoint: '/schedule'
-  username: trace
-  password: trace
 Logging:
   LogLevel:
     Default: Information
@@ -22,6 +14,7 @@ Kestrel:
     Default:
       Path: localhost.pfx
       Password: ''
-database:
-  operation: Server=localhost;Port=5432;Userid=trace;Password=trace;Database=trace
-  state: Server=localhost;Port=5433;Userid=trace;Password=trace;Database=trace
+hangfire:
+  endpoint: '/schedule'
+  username: trace
+  password: trace

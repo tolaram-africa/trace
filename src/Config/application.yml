@@ -1,3 +1,8 @@
+---
+spring:
+  config:
+    activate:
+      on-profile: Production
 AppSettings:
   SiteTitle: trace
   CacheDbResults: true
@@ -13,36 +18,32 @@ Kestrel:
     Default:
       Path: localhost.pfx
       Password: ''
-consul:
-  discovery:
-    register: true
-    healthCheckPath: '/health'
-management:
-  endpoints:
-    actuator:
-      exposure:
-        include: ['*']
-  tracing:
-    alwaysSample: true
-    useShortTraceIds: true
-    exporterEndpoint: http://localhost:9411/api/v2/spans
-redis:
-  client:
-    host: localhost:6379,abortConnect=false
-
----
-spring:
-  config:
-    activate:
-      on-profile: Docker
-consul:
-  client:
-    serviceUrl: http://consul:8500
 management:
   tracing:
     exporter:
       zipkin:
-        endpoint: http://zipkin:9411/api/v2/spans
-redis:
-  client:
-    host: redis
+        endpoint: http://localhost:9411/api/v2/spans
+Consul:
+  Host: localhost
+  Port: 8500
+  Discovery:
+    Register: true
+    HealthCheckPath: '/health'
+Redis:
+  Client:
+    ConnectionString: localhost:6379,abortConnect=false
+RabbitMq:
+  Client:
+    Uri: amqp://admin:secret@localhost:5672
+Postgres:
+  Client:
+    ConnectionString: Server=localhost;Port=5432;Userid=trace;Password=trace;Database=trace
+    # Host: localhost
+    # Port: 5432
+    # Username: trace
+    # Password: trace
+    # Database: trace
+Hangfire:
+  Endpoint: '/schedule'
+  Username: trace
+  Password: trace
