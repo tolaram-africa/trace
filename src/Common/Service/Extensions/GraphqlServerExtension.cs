@@ -1,11 +1,13 @@
 using HotChocolate.Execution.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nextended.Core.Extensions;
+using StackExchange.Redis;
 
 namespace Trace.Common.Service.Extensions;
 
 public static class GraphqlServerExtension {
-    public static IRequestExecutorBuilder AddTraceDefaults(this IRequestExecutorBuilder services) {
-        return services
+    public static IRequestExecutorBuilder AddGraphqlDefaults(this IRequestExecutorBuilder services, string? name = null) {
+        services
         .InitializeOnStartup()
         .AddSorting()
         .AddFiltering()
@@ -21,5 +23,14 @@ public static class GraphqlServerExtension {
             opt.Complexity.DefaultComplexity = 1;
             opt.Complexity.DefaultResolverComplexity = 5;
         });
+
+        if (name is not null)
+            services.PublishSchemaDefinition(c => {
+                c.SetName(Nodes.Identity)
+                .PublishToRedis(name,
+                    sp => sp.GetRequiredService<ConnectionMultiplexer>());
+            });
+
+        return services;
     }
 }
