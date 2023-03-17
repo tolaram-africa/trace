@@ -27,6 +27,9 @@ services:
       - service
   - name: rabbitmq
     image: rabbitmq:3-management-alpine
+    tags:
+      - infra
+      - service
     env:
       - name: RABBITMQ_DEFAULT_USER
         value: admin
@@ -37,7 +40,7 @@ services:
         port: 5672
         containerPort: 5672
         protocol: rabbitmq
-      - name: rabbit-http  
+      - name: rabbit-http
         port: 8005
         containerPort: 8080
         protocol: http
