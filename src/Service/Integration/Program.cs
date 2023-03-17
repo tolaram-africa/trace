@@ -1,4 +1,3 @@
-using HotChocolate.Types;
 using Trace.Common.Infrastructure;
 using Trace.Common.Infrastructure.Extensions;
 using Trace.Service.Integration;
@@ -11,7 +10,6 @@ builder.Services
 .RegisterSharedDataConnector(builder.Configuration);
 
 builder.Services
-.AddMemoryCache()
 .AddGraphQLServer()
 .AddGraphqlDefaults(Nodes.Integration)
 .AddQueryType<Query>()

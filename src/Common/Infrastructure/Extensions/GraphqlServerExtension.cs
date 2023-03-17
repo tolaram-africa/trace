@@ -15,7 +15,7 @@ public static class GraphqlServerExtension {
         .AddProjections()
         .AddType<UploadType>()
         .UseAutomaticPersistedQueryPipeline()
-        .AddInMemoryQueryStorage()
+        .AddRedisQueryStorage(sp => sp.GetRequiredService<ConnectionMultiplexer>().GetDatabase())
         .RegisterDbContext<OperationContext>()
         .AddApolloTracing()
         .AddMutationConventions(applyToAllMutations: true)

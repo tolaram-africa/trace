@@ -10,7 +10,6 @@ builder.Services
 .RegisterSharedDataConnector(builder.Configuration);
 
 builder.Services
-.AddMemoryCache()
 .AddGraphQLServer()
 .AddGraphqlDefaults(Nodes.Operation)
 .AddQueryType<Query>()

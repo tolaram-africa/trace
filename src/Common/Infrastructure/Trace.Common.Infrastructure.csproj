@@ -25,6 +25,7 @@
     <PackageReference Include="HotChocolate.Data.Spatial" Version="13.0.5" />
     <PackageReference Include="HotChocolate.Diagnostics" Version="13.0.5" />
     <PackageReference Include="HotChocolate.PersistedQueries.InMemory" Version="13.0.5" />
+    <PackageReference Include="HotChocolate.PersistedQueries.Redis" Version="13.0.5" />
     <PackageReference Include="HotChocolate.Stitching" Version="13.0.5" />
     <PackageReference Include="HotChocolate.Stitching.Redis" Version="13.0.5" />
     <PackageReference Include="HotChocolate.Subscriptions.Redis" Version="13.0.5" />
