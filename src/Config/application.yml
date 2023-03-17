@@ -20,6 +20,20 @@ Logging:
     Microsoft.AspNetCore: Warning
     Steeltoe: Debug
     Hangfire: Information
+Serilog:
+  IncludeScopes: false
+  Enrich:
+    - FromLogContext
+    - WithMachineName
+    - WithThreadId
+  WriteTo:
+    - Name: Console
+    - Name: File
+      Args:
+        path: logs/trace.log.txt
+        rollingInterval: Day
+        rollOnFileSizeLimit: true
+        outputTemplate: '[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext}: {Properties} {NewLine} {EventId} {Message:lj}{NewLine}{Exception}'
 AllowedHosts: '*'
 Kestrel:
   Certificates:

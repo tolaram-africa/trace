@@ -10,6 +10,7 @@ using Steeltoe.Connector.Redis;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery.Consul;
 using Steeltoe.Extensions.Configuration.ConfigServer;
+using Steeltoe.Extensions.Logging.DynamicSerilog;
 using Steeltoe.Management.Endpoint;
 using Steeltoe.Management.Tracing;
 
@@ -52,7 +53,7 @@ public static class ServiceCollectionExtension {
 
     public static WebApplicationBuilder RegisterSharedArchitecture(this WebApplicationBuilder builder) {
         var env = builder.Environment;
-
+        
         builder.Configuration.SetBasePath(env.ContentRootPath)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
@@ -66,8 +67,7 @@ public static class ServiceCollectionExtension {
         builder.Services.AddDistributedRedisCache(builder.Configuration);
         builder.Services.RegisterDistributedCache();
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
-
-        builder.Services.AddDistributedTracing();
+        
         builder.Services.AddDistributedTracingAspNetCore();
         builder.Services.AddAllActuators();
         builder.Services.AddSpringBootAdminClient();

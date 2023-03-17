@@ -3,7 +3,9 @@ using Trace.Common.Infrastructure;
 using Trace.Common.Infrastructure.Extensions;
 using Trace.Service.Stream;
 
-var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
+var builder = WebApplication.CreateBuilder(args)
+.RegisterSharedArchitecture()
+.RegisterMqttService();
 
 builder.Services
 .AddAuthorization()
@@ -24,5 +26,6 @@ var app = builder.Build();
 app.MapGet("/", () => "Service.Stream");
 app.UseSharedEndpoint();
 app.UseHangfireDashboard(builder.Configuration, Nodes.Stream);
+app.UseMqtt(builder.Configuration);
 
 app.Run();
