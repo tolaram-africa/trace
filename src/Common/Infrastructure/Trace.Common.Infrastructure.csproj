@@ -32,6 +32,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" Version="7.0.3" />
     <PackageReference Include="Steeltoe.Connector.ConnectorCore" Version="3.2.3" />
     <PackageReference Include="Steeltoe.Connector.EFCore" Version="3.2.3" />
+    <PackageReference Include="Steeltoe.Messaging.RabbitMQ" Version="3.2.3" />
   </ItemGroup>
 
   <ItemGroup>

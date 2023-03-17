@@ -27,9 +27,10 @@
         <PackageReference Include="Steeltoe.Discovery.ClientCore" Version="3.2.3" />
         <PackageReference Include="Steeltoe.Discovery.Consul" Version="3.2.3" />
         <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="3.2.3" />
+        <PackageReference Include="Steeltoe.Extensions.Logging.DynamicSerilogCore" Version="3.2.3" />
         <PackageReference Include="Steeltoe.Management.EndpointCore" Version="3.2.3" />
+        <PackageReference Include="Steeltoe.Management.TaskCore" Version="3.2.3" />
         <PackageReference Include="Steeltoe.Management.TracingCore" Version="3.2.3" />
-        <PackageReference Include="Steeltoe.Messaging.RabbitMQ" Version="3.2.3" />
     </ItemGroup>
 
     <ItemGroup>

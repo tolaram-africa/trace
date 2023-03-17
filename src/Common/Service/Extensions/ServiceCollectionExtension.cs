@@ -4,22 +4,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Debug;
 using StackExchange.Redis;
 using Steeltoe.Bootstrap.Autoconfig;
 using Steeltoe.Common.Http.Discovery;
-using Steeltoe.Connector;
-using Steeltoe.Connector.MongoDb;
-using Steeltoe.Connector.PostgreSql;
-using Steeltoe.Connector.RabbitMQ;
 using Steeltoe.Connector.Redis;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery.Consul;
 using Steeltoe.Extensions.Configuration.ConfigServer;
+using Steeltoe.Extensions.Logging.DynamicSerilog;
 using Steeltoe.Management.Endpoint;
 using Steeltoe.Management.Tracing;
-using Steeltoe.Messaging.RabbitMQ.Config;
-using Steeltoe.Messaging.RabbitMQ.Extensions;
 
 namespace Trace.Common.Service.Extensions;
 
@@ -38,7 +32,7 @@ public static class ServiceCollectionExtension {
         return services;
     }
 
-    private static IServiceCollection RegisterDistributedCache(this IServiceCollection services, IConfiguration config) {
+    private static void RegisterDistributedCache(this IServiceCollection services) {
         var sp = services.BuildServiceProvider();
         services.AddDataProtection()
         .SetApplicationName(Nodes.GroupName)
@@ -56,14 +50,10 @@ public static class ServiceCollectionExtension {
             // o.Cookie.HttpOnly = true;
         });
 
-        return services;
     }
 
     public static WebApplicationBuilder RegisterSharedArchitecture(this WebApplicationBuilder builder) {
         var env = builder.Environment;
-        LoggerFactory loggerFactory = new LoggerFactory(new List<ILoggerProvider> {
-            new DebugLoggerProvider()
-        });
         
         builder.Configuration.SetBasePath(env.ContentRootPath)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -72,25 +62,28 @@ public static class ServiceCollectionExtension {
         .AddEnvironmentVariables();
         
         // Adds connections
-        builder.AddSteeltoe(loggerFactory: loggerFactory);
+        builder.AddSteeltoe();
         builder.Services.AddDiscoveryClient(builder.Configuration);
         builder.Services.AddRedisConnectionMultiplexer(builder.Configuration);
-        builder.Services.AddRabbitMQConnection(builder.Configuration);
 
         builder.Services.AddDistributedRedisCache(builder.Configuration);
-        builder.Services.RegisterDistributedCache(builder.Configuration);
+        builder.Services.RegisterDistributedCache();
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
         
         builder.Services.AddDistributedTracing();
         builder.Services.AddDistributedTracingAspNetCore();
         builder.Services.AddAllActuators();
-        
-        builder.Services.AddRabbitServices();
-        builder.Services.AddRabbitAdmin();
-        builder.Services.AddRabbitTemplate();
-        builder.Services.AddRabbitQueue(new Queue("default"));
-        
 
         return builder;
+    }
+
+    public static WebApplication UseSharedEndpoint(this WebApplication app) {
+        app.UseRouting();
+        app.UseAuthorization();
+        app.UseWebSockets();
+        app.MapGraphQL();
+        app.MapGraphQLWebSocket();
+
+        return app;
     }
 }
