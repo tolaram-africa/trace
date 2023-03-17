@@ -2,6 +2,7 @@ using HotChocolate.Execution.Configuration;
 using HotChocolate.Types;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
+using Trace.Common.Infrastructure.Persistence.Context;
 
 namespace Trace.Common.Infrastructure.Extensions;
 
@@ -15,6 +16,7 @@ public static class GraphqlServerExtension {
         .AddType<UploadType>()
         .UseAutomaticPersistedQueryPipeline()
         .AddInMemoryQueryStorage()
+        .RegisterDbContext<OperationContext>()
         .AddApolloTracing()
         .AddMutationConventions(applyToAllMutations: true)
         .AddRedisSubscriptions(sp => sp.GetRequiredService<ConnectionMultiplexer>())
