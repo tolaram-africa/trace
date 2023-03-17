@@ -1,0 +1,42 @@
+﻿services:
+  trace.service.identity:
+    image: trace.service.identity
+    build:
+      context: .
+      dockerfile: src/Service/Identity/Dockerfile
+
+  trace.service.integration:
+    image: trace.service.integration
+    build:
+      context: .
+      dockerfile: src/Service/Integration/Dockerfile
+
+  trace.service.manage:
+    image: trace.service.manage
+    build:
+      context: .
+      dockerfile: src/Service/Manager/Dockerfile
+
+  trace.service.operation:
+    image: trace.service.operation
+    build:
+      context: .
+      dockerfile: src/Service/Operation/Dockerfile
+
+  trace.service.route:
+    image: trace.service.route
+    build:
+      context: .
+      dockerfile: src/Service/Route/Dockerfile
+
+  trace.service.stream:
+    image: trace.service.stream
+    build:
+      context: .
+      dockerfile: src/Service/Stream/Dockerfile
+
+  trace.service.gateway:
+    image: trace.service.gateway
+    build:
+      context: .
+      dockerfile: src/Gateway/Dockerfile

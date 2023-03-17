@@ -1,15 +1,20 @@
 using HotChocolate.Types.Spatial;
 using StackExchange.Redis;
+using Steeltoe.Common.Discovery;
+using Steeltoe.Discovery;
+using Steeltoe.Discovery.Client;
 using Trace.Common.Service;
+using Trace.Common.Service.Extensions;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
 
 var endpoints = Nodes.All.ToDictionary(schema => schema,
-    schema => builder.Configuration.GetValue<Uri>($"Services:{schema}") ??
-              throw new ArgumentException($"{schema} must provide a uri endpoint.")
+    schema => new Uri($"http://service-{schema}")
     );
-builder.Services.RegisterSchemaHttpClients(endpoints);
-builder.Services.AddSingleton(ConnectionMultiplexer.Connect("localhost:6379"));
+
+builder.Services
+.AddAuthorization()
+.RegisterSchemaHttpClients(endpoints);
 
 builder.Services
 .AddGraphQLServer()
@@ -23,15 +28,17 @@ builder.Services
 .AddType<GeoJsonPositionType>()
 .AddType<GeoJsonCoordinatesType>();
 
-// Set Spatial type for track service
+// Set Spatial type for stream service
 builder.Services
-.AddGraphQL(Nodes.Track)
+.AddGraphQL(Nodes.Stream)
 .AddType<GeoJsonPositionType>()
 .AddType<GeoJsonCoordinatesType>();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.MapGet("/", () => "Trace.Gateway");
+app.UseWebSockets();
 app.MapGraphQL();
 app.MapGraphQLWebSocket();
+
 app.Run();

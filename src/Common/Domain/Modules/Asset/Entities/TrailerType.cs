@@ -1,5 +1,3 @@
-using Trace.Common.Domain.Common;
-
 namespace Trace.Common.Domain.Modules.Asset.Entities;
 
 public sealed class TrailerType : TenantEntity<Guid> {

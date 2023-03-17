@@ -16,13 +16,13 @@
 127.0.0.1 trace-demo.traefik.me
 
 ## internal services
-127.0.0.1 service_gateway
-127.0.0.1 service_identity
-127.0.0.1 service_operation
-127.0.0.1 service_integration
-127.0.0.1 service_track
-127.0.0.1 service_route
-127.0.0.1 service_manager
+127.0.0.1 service-gateway
+127.0.0.1 service-identity
+127.0.0.1 service-operation
+127.0.0.1 service-integration
+127.0.0.1 service-track
+127.0.0.1 service-route
+127.0.0.1 service-manager
 
 ## service dependencies
 127.0.0.1 database_operation

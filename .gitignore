@@ -475,7 +475,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
+.docker
+.logs
 .idea
 .output
 pnpm-lock.yaml

@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Common.Standard", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Common.Infrastructure", "src\Common\Infrastructure\Trace.Common.Infrastructure.csproj", "{AA25DFA3-D796-4724-B43D-B9A89213E1D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Data", "src\Data\Trace.Data.csproj", "{3231B615-FCDB-4996-A85A-0B686F7C4EA4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Gateway", "src\Gateway\Trace.Service.Gateway.csproj", "{93BD6E17-520B-4BC8-AB06-DDBD98071B03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{FE3A2C65-67CE-400F-8C10-8D98BFC70C22}"
@@ -29,11 +27,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Operation", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Route", "src\Service\Route\Trace.Service.Route.csproj", "{51D8B505-4BAB-477A-B818-60C80FA12A92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Track", "src\Service\Track\Trace.Service.Track.csproj", "{9AA60DF2-530E-43FE-B213-2A7D191B4E3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Stream", "src\Service\Stream\Trace.Service.Stream.csproj", "{9AA60DF2-530E-43FE-B213-2A7D191B4E3F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Common.Service", "src\Common\Service\Trace.Common.Service.csproj", "{88496493-6B29-4C28-9258-C0C102F8406A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Client", "client\Trace.Client.csproj", "{416967BF-9637-48DB-A1DF-11026548B843}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A870AF4E-C158-44ED-8D5F-B173FB8944BB}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,10 +59,6 @@ Global
 		{AA25DFA3-D796-4724-B43D-B9A89213E1D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA25DFA3-D796-4724-B43D-B9A89213E1D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA25DFA3-D796-4724-B43D-B9A89213E1D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3231B615-FCDB-4996-A85A-0B686F7C4EA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3231B615-FCDB-4996-A85A-0B686F7C4EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3231B615-FCDB-4996-A85A-0B686F7C4EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3231B615-FCDB-4996-A85A-0B686F7C4EA4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93BD6E17-520B-4BC8-AB06-DDBD98071B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93BD6E17-520B-4BC8-AB06-DDBD98071B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93BD6E17-520B-4BC8-AB06-DDBD98071B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -102,7 +101,6 @@ Global
 		{B1B3ADFE-E7C6-41EE-A0F0-4418D1123A33} = {BE1F813C-828E-48FE-A2F3-F6D06A996132}
 		{F6317DB0-B824-4447-8641-3F9E6F1640B4} = {BE1F813C-828E-48FE-A2F3-F6D06A996132}
 		{AA25DFA3-D796-4724-B43D-B9A89213E1D2} = {BE1F813C-828E-48FE-A2F3-F6D06A996132}
-		{3231B615-FCDB-4996-A85A-0B686F7C4EA4} = {66C945EF-10E6-4A4D-8BA9-2C8C337027DD}
 		{93BD6E17-520B-4BC8-AB06-DDBD98071B03} = {66C945EF-10E6-4A4D-8BA9-2C8C337027DD}
 		{FE3A2C65-67CE-400F-8C10-8D98BFC70C22} = {66C945EF-10E6-4A4D-8BA9-2C8C337027DD}
 		{85E52FAC-FE26-4B12-AE56-5591EAD5D083} = {FE3A2C65-67CE-400F-8C10-8D98BFC70C22}

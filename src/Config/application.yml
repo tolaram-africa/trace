@@ -1,0 +1,52 @@
+---
+spring:
+  config:
+    activate:
+      on-profile: Production
+AppSettings:
+  SiteTitle: trace
+  CacheDbResults: true
+Logging:
+  LogLevel:
+    Default: Information
+    Microsoft.AspNetCore: Warning
+    Steeltoe: Debug
+    Hangfire: Information
+AllowedHosts: '*'
+Kestrel:
+  Certificates:
+    Default:
+      Path: localhost.pfx
+      Password: ''
+Management:
+  Endpoints:
+    Actuator:
+      Exposure:
+        Include:
+          - '*'
+        Exclude:
+          - env
+          - refresh
+  Tracing:
+    Exporter:
+      Zipkin:
+        Endpoint: http://localhost:9411/api/v2/spans
+Consul:
+  Host: localhost
+  Port: 8500
+  Discovery:
+    Register: true
+    HealthCheckPath: '/health'
+Redis:
+  Client:
+    ConnectionString: localhost:6379,abortConnect=false
+RabbitMq:
+  Client:
+    Uri: amqp://admin:secret@localhost:5672
+Postgres:
+  Client:
+    ConnectionString: Server=localhost;Port=5432;Userid=trace;Password=trace;Database=trace
+Hangfire:
+  Endpoint: '/schedule'
+  Username: trace
+  Password: trace

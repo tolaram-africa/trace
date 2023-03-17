@@ -15,9 +15,15 @@
       ]
     },
     "dotnet-ef": {
-      "version": "7.0.3",
+      "version": "7.0.4",
       "commands": [
         "dotnet-ef"
+      ]
+    },
+    "microsoft.tye": {
+      "version": "0.11.0-alpha.22111.1",
+      "commands": [
+        "tye"
       ]
     }
   }

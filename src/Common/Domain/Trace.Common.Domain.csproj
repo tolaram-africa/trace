@@ -9,11 +9,12 @@
   <ItemGroup>
     <Folder Include="Events\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Modules\Tenant\Enum\" />
     <Folder Include="ValueObjects\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NetTopologySuite" Version="2.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.4" />
   </ItemGroup>
 
 </Project>
