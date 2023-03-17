@@ -27,6 +27,7 @@
     <PackageReference Include="HotChocolate.PersistedQueries.InMemory" Version="13.0.5" />
     <PackageReference Include="HotChocolate.Stitching" Version="13.0.5" />
     <PackageReference Include="HotChocolate.Stitching.Redis" Version="13.0.5" />
+    <PackageReference Include="HotChocolate.Subscriptions.Redis" Version="13.0.5" />
     <PackageReference Include="HotChocolate.Types" Version="13.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="7.0.3" />

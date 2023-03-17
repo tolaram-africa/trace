@@ -13,7 +13,6 @@ builder.Services
 .AddMemoryCache()
 .AddGraphQLServer()
 .AddGraphqlDefaults(Nodes.Manage)
-.AddType<UploadType>()
 .AddQueryType<Query>()
 .AddQueryableCursorPagingProvider()
 .RegisterObjectExtensions(typeof(Program).Assembly);

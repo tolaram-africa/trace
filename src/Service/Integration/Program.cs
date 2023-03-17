@@ -1,3 +1,4 @@
+using HotChocolate.Types;
 using Trace.Common.Infrastructure;
 using Trace.Common.Infrastructure.Extensions;
 using Trace.Service.Integration;
@@ -13,7 +14,6 @@ builder.Services
 .AddMemoryCache()
 .AddGraphQLServer()
 .AddGraphqlDefaults(Nodes.Integration)
-.AddType<UploadType>()
 .AddQueryType<Query>()
 .AddQueryableCursorPagingProvider()
 .RegisterObjectExtensions(typeof(Program).Assembly);

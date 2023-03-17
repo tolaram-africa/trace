@@ -1,3 +1,4 @@
+using HotChocolate;
 using Trace.Common.Infrastructure;
 using Trace.Common.Infrastructure.Extensions;
 using Trace.Service.Stream;
@@ -13,7 +14,6 @@ builder.Services
 .AddMemoryCache()
 .AddGraphQLServer()
 .AddGraphqlDefaults(Nodes.Stream)
-.AddType<UploadType>()
 .AddQueryType<Query>()
 .AddSpatialTypes()
 .AddSpatialFiltering()

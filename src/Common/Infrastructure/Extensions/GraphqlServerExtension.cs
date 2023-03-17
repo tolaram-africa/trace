@@ -17,7 +17,7 @@ public static class GraphqlServerExtension {
         .AddInMemoryQueryStorage()
         .AddApolloTracing()
         .AddMutationConventions(applyToAllMutations: true)
-        // .AddRedisSubscriptions(sp => sp.GetRequiredService<ConnectionMultiplexer>())
+        .AddRedisSubscriptions(sp => sp.GetRequiredService<ConnectionMultiplexer>())
         .ModifyRequestOptions(opt => {
             opt.Complexity.ApplyDefaults = true;
             opt.Complexity.DefaultComplexity = 1;
