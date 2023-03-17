@@ -26,8 +26,8 @@ public static class GraphqlServerExtension {
 
         if (name is not null)
             services.PublishSchemaDefinition(c => {
-                c.SetName(Nodes.Identity)
-                .PublishToRedis(name,
+                c.SetName(name)
+                .PublishToRedis(Nodes.GroupName,
                     sp => sp.GetRequiredService<ConnectionMultiplexer>());
             });
 

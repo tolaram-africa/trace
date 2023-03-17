@@ -34,8 +34,6 @@ builder.Services
 WebApplication app = builder.Build();
 
 app.MapGet("/", () => "Trace.Gateway");
-app.UseWebSockets();
-app.MapGraphQL();
-app.MapGraphQLWebSocket();
+app.UseSharedEndpoint();
 
 app.Run();
