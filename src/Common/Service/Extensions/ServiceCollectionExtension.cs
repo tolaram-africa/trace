@@ -54,13 +54,13 @@ public static class ServiceCollectionExtension {
 
     public static WebApplicationBuilder RegisterSharedArchitecture(this WebApplicationBuilder builder) {
         var env = builder.Environment;
-        
+
         builder.Configuration.SetBasePath(env.ContentRootPath)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
         .AddConfigServer()
         .AddEnvironmentVariables();
-        
+
         // Adds connections
         builder.AddSteeltoe();
         builder.Services.AddDiscoveryClient(builder.Configuration);
@@ -69,7 +69,7 @@ public static class ServiceCollectionExtension {
         builder.Services.AddDistributedRedisCache(builder.Configuration);
         builder.Services.RegisterDistributedCache();
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
-        
+
         builder.Services.AddDistributedTracing();
         builder.Services.AddDistributedTracingAspNetCore();
         builder.Services.AddAllActuators();
