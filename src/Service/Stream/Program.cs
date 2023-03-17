@@ -1,8 +1,6 @@
 using HotChocolate;
-using HotChocolate.Types;
+using Trace.Common.Infrastructure;
 using Trace.Common.Infrastructure.Extensions;
-using Trace.Common.Service;
-using Trace.Common.Service.Extensions;
 using Trace.Service.Stream;
 
 var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
@@ -13,10 +11,8 @@ builder.Services
 .RegisterSharedDataConnector(builder.Configuration);
 
 builder.Services
-.AddMemoryCache()
 .AddGraphQLServer()
 .AddGraphqlDefaults(Nodes.Stream)
-.AddType<UploadType>()
 .AddQueryType<Query>()
 .AddSpatialTypes()
 .AddSpatialFiltering()

@@ -1,8 +1,9 @@
 using System.Reflection;
 using HotChocolate.Execution.Configuration;
+using HotChocolate.Types;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Trace.Common.Service.Extensions;
+namespace Trace.Common.Infrastructure.Extensions;
 
 public static class GraphqlHelperExtension {
     private static IEnumerable<Type> DiscoverObjectExtensions(this Assembly assembly) {

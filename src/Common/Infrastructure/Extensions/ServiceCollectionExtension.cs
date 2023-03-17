@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
 using Steeltoe.Bootstrap.Autoconfig;
 using Steeltoe.Common.Http.Discovery;
@@ -11,11 +10,10 @@ using Steeltoe.Connector.Redis;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery.Consul;
 using Steeltoe.Extensions.Configuration.ConfigServer;
-using Steeltoe.Extensions.Logging.DynamicSerilog;
 using Steeltoe.Management.Endpoint;
 using Steeltoe.Management.Tracing;
 
-namespace Trace.Common.Service.Extensions;
+namespace Trace.Common.Infrastructure.Extensions;
 
 public static class ServiceCollectionExtension {
     public static IServiceCollection RegisterSchemaHttpClients(this IServiceCollection services,
@@ -54,14 +52,13 @@ public static class ServiceCollectionExtension {
 
     public static WebApplicationBuilder RegisterSharedArchitecture(this WebApplicationBuilder builder) {
         var env = builder.Environment;
-        
+
         builder.Configuration.SetBasePath(env.ContentRootPath)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
         .AddConfigServer()
         .AddEnvironmentVariables();
-        
-        // Adds connections
+
         builder.AddSteeltoe();
         builder.Services.AddDiscoveryClient(builder.Configuration);
         builder.Services.AddRedisConnectionMultiplexer(builder.Configuration);
@@ -69,10 +66,11 @@ public static class ServiceCollectionExtension {
         builder.Services.AddDistributedRedisCache(builder.Configuration);
         builder.Services.RegisterDistributedCache();
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
-        
+
         builder.Services.AddDistributedTracing();
         builder.Services.AddDistributedTracingAspNetCore();
         builder.Services.AddAllActuators();
+        builder.Services.AddSpringBootAdminClient();
 
         return builder;
     }

@@ -1,9 +1,10 @@
 using HotChocolate.Execution.Configuration;
+using HotChocolate.Types;
 using Microsoft.Extensions.DependencyInjection;
-using Nextended.Core.Extensions;
 using StackExchange.Redis;
+using Trace.Common.Infrastructure.Persistence.Context;
 
-namespace Trace.Common.Service.Extensions;
+namespace Trace.Common.Infrastructure.Extensions;
 
 public static class GraphqlServerExtension {
     public static IRequestExecutorBuilder AddGraphqlDefaults(this IRequestExecutorBuilder services, string? name = null) {
@@ -14,10 +15,11 @@ public static class GraphqlServerExtension {
         .AddProjections()
         .AddType<UploadType>()
         .UseAutomaticPersistedQueryPipeline()
-        .AddInMemoryQueryStorage()
+        .AddRedisQueryStorage(sp => sp.GetRequiredService<ConnectionMultiplexer>().GetDatabase())
+        .RegisterDbContext<OperationContext>()
         .AddApolloTracing()
         .AddMutationConventions(applyToAllMutations: true)
-        // .AddRedisSubscriptions(sp => sp.GetRequiredService<ConnectionMultiplexer>())
+        .AddRedisSubscriptions(sp => sp.GetRequiredService<ConnectionMultiplexer>())
         .ModifyRequestOptions(opt => {
             opt.Complexity.ApplyDefaults = true;
             opt.Complexity.DefaultComplexity = 1;
@@ -26,8 +28,8 @@ public static class GraphqlServerExtension {
 
         if (name is not null)
             services.PublishSchemaDefinition(c => {
-                c.SetName(Nodes.Identity)
-                .PublishToRedis(name,
+                c.SetName(name)
+                .PublishToRedis(Nodes.GroupName,
                     sp => sp.GetRequiredService<ConnectionMultiplexer>());
             });
 

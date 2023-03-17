@@ -1,6 +1,5 @@
+using Trace.Common.Infrastructure;
 using Trace.Common.Infrastructure.Extensions;
-using Trace.Common.Service;
-using Trace.Common.Service.Extensions;
 using Trace.Service.Identity.Features;
 
 var builder = WebApplication
@@ -13,7 +12,6 @@ builder.Services
 .RegisterSharedDataConnector(builder.Configuration);
 
 builder.Services
-.AddMemoryCache()
 .AddGraphQLServer()
 .AddGraphqlDefaults(Nodes.Identity)
 .AddQueryableCursorPagingProvider()

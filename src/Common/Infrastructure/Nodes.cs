@@ -1,4 +1,4 @@
-namespace Trace.Common.Service;
+namespace Trace.Common.Infrastructure;
 
 public static class Nodes {
     public const string GroupName = "Trace";

@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Nextended.Core.Extensions;
 using StackExchange.Redis;
 
-namespace Trace.Common.Service.Extensions;
+namespace Trace.Common.Infrastructure.Extensions;
 
 public static class HangfireExtension {
     public static IServiceCollection RegisterHangfire(this IServiceCollection services, string serviceName) {

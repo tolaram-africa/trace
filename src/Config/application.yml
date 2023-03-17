@@ -3,6 +3,14 @@ spring:
   config:
     activate:
       on-profile: Production
+  Boot:
+    Admin:
+      Client:
+        Url: http://localhost:1111
+        ValidateCertificates: false
+        Metadata:
+          user.name: trace
+          user.password: trace
 AppSettings:
   SiteTitle: trace
   CacheDbResults: true
