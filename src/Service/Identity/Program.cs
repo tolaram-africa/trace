@@ -1,25 +1,21 @@
-using StackExchange.Redis;
+using Trace.Common.Infrastructure.Extensions;
 using Trace.Common.Service;
 using Trace.Common.Service.Extensions;
-using Trace.Service.Identity.Modules;
+using Trace.Service.Identity.Features;
 
-var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
+var builder = WebApplication
+.CreateBuilder(args)
+.RegisterSharedArchitecture();
 
 builder.Services
 .AddAuthorization()
-.RegisterRedis(builder.Configuration)
-.RegisterDistributedCache(builder.Configuration)
-.RegisterHangfire(Nodes.Identity);
+.RegisterHangfire(Nodes.Identity)
+.RegisterSharedDataConnector(builder.Configuration);
 
 builder.Services
 .AddMemoryCache()
 .AddGraphQLServer()
-.AddTraceDefaults()
-.PublishSchemaDefinition(c => {
-    c.SetName(Nodes.Identity)
-    .PublishToRedis(Nodes.GroupName,
-        sp => sp.GetRequiredService<ConnectionMultiplexer>());
-})
+.AddGraphqlDefaults(Nodes.Identity)
 .AddQueryableCursorPagingProvider()
 .AddQueryType<QueryRoot>()
 .AddMutationType<MutationRoot>()
@@ -29,10 +25,7 @@ builder.Services
 var app = builder.Build();
 
 app.MapGet("/", () => "Service.Identity");
-app.UseRouting();
-app.UseAuthorization();
-app.UseWebSockets();
-app.MapGraphQL();
+app.UseSharedEndpoint();
 app.UseHangfireDashboard(builder.Configuration, Nodes.Identity);
 
 app.Run();

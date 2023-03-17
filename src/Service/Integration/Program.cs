@@ -1,5 +1,5 @@
 using HotChocolate.Types;
-using StackExchange.Redis;
+using Trace.Common.Infrastructure.Extensions;
 using Trace.Common.Service;
 using Trace.Common.Service.Extensions;
 using Trace.Service.Integration;
@@ -8,18 +8,13 @@ var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
 
 builder.Services
 .AddAuthorization()
-.RegisterRedis(builder.Configuration)
-.RegisterDistributedCache(builder.Configuration)
-.RegisterHangfire(Nodes.Integration);
+.RegisterHangfire(Nodes.Integration)
+.RegisterSharedDataConnector(builder.Configuration);
 
 builder.Services
 .AddMemoryCache()
 .AddGraphQLServer()
-.AddTraceDefaults()
-.PublishSchemaDefinition(c => {
-    c.SetName(Nodes.Integration)
-    .PublishToRedis(Nodes.GroupName, sp => sp.GetRequiredService<ConnectionMultiplexer>());
-})
+.AddGraphqlDefaults(Nodes.Integration)
 .AddType<UploadType>()
 .AddQueryType<Query>()
 .AddQueryableCursorPagingProvider()
@@ -27,10 +22,7 @@ builder.Services
 
 var app = builder.Build();
 app.MapGet("/", () => "Service.Integration");
-app.UseRouting();
-app.UseAuthorization();
-app.UseWebSockets();
-app.MapGraphQL();
+app.UseSharedEndpoint();
 app.UseHangfireDashboard(builder.Configuration, Nodes.Integration);
 
 app.Run();

@@ -14,8 +14,6 @@ var endpoints = Nodes.All.ToDictionary(schema => schema,
 
 builder.Services
 .AddAuthorization()
-.RegisterRedis(builder.Configuration)
-.RegisterDistributedCache(builder.Configuration)
 .RegisterSchemaHttpClients(endpoints);
 
 builder.Services
@@ -39,6 +37,7 @@ builder.Services
 WebApplication app = builder.Build();
 
 app.MapGet("/", () => "Trace.Gateway");
+app.UseWebSockets();
 app.MapGraphQL();
 app.MapGraphQLWebSocket();
 
