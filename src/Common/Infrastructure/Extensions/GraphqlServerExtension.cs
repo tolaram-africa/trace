@@ -1,9 +1,9 @@
 using HotChocolate.Execution.Configuration;
+using HotChocolate.Types;
 using Microsoft.Extensions.DependencyInjection;
-using Nextended.Core.Extensions;
 using StackExchange.Redis;
 
-namespace Trace.Common.Service.Extensions;
+namespace Trace.Common.Infrastructure.Extensions;
 
 public static class GraphqlServerExtension {
     public static IRequestExecutorBuilder AddGraphqlDefaults(this IRequestExecutorBuilder services, string? name = null) {

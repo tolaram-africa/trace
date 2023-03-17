@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Common\Service\Trace.Common.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="HotChocolate.AspNetCore" Version="13.0.5" />
+  </ItemGroup>
+
 </Project>

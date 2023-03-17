@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
 using Steeltoe.Bootstrap.Autoconfig;
 using Steeltoe.Common.Http.Discovery;
@@ -11,11 +10,10 @@ using Steeltoe.Connector.Redis;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery.Consul;
 using Steeltoe.Extensions.Configuration.ConfigServer;
-using Steeltoe.Extensions.Logging.DynamicSerilog;
 using Steeltoe.Management.Endpoint;
 using Steeltoe.Management.Tracing;
 
-namespace Trace.Common.Service.Extensions;
+namespace Trace.Common.Infrastructure.Extensions;
 
 public static class ServiceCollectionExtension {
     public static IServiceCollection RegisterSchemaHttpClients(this IServiceCollection services,

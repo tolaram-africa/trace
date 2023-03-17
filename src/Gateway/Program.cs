@@ -1,10 +1,7 @@
 using HotChocolate.Types.Spatial;
 using StackExchange.Redis;
-using Steeltoe.Common.Discovery;
-using Steeltoe.Discovery;
-using Steeltoe.Discovery.Client;
-using Trace.Common.Service;
-using Trace.Common.Service.Extensions;
+using Trace.Common.Infrastructure;
+using Trace.Common.Infrastructure.Extensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
 
