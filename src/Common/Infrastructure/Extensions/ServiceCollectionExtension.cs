@@ -59,7 +59,6 @@ public static class ServiceCollectionExtension {
         .AddConfigServer()
         .AddEnvironmentVariables();
 
-        // Adds connections
         builder.AddSteeltoe();
         builder.Services.AddDiscoveryClient(builder.Configuration);
         builder.Services.AddRedisConnectionMultiplexer(builder.Configuration);
@@ -71,6 +70,7 @@ public static class ServiceCollectionExtension {
         builder.Services.AddDistributedTracing();
         builder.Services.AddDistributedTracingAspNetCore();
         builder.Services.AddAllActuators();
+        builder.Services.AddSpringBootAdminClient();
 
         return builder;
     }

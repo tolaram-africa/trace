@@ -16,6 +16,23 @@ services:
       - port: 8888
         containerPort: 8888
         protocol: http
+  - name: spring-boot-admin
+    image: slydeveloper/spring-boot-admin
+    tags:
+      - infra
+      - service
+    env:
+      - name: SPRING_BOOT_ADMIN_TITLE
+        value: Trace
+      - name: SPRING_BOOT_ADMIN_USER_NAME
+        value: trace
+      - name: SPRING_BOOT_ADMIN_USER_PASSWORD
+        value: trace
+      - name: SPRING_BOOT_ADMIN_SECURITY_ENABLED
+        value: 'false'
+    bindings:
+      - port: 1111
+        # containerPort: 8080
   - name: consul
     image: hashicorp/consul:1.15
     bindings:
