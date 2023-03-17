@@ -1,5 +1,17 @@
-# Trace
-An end to end logistics B2C platform
+# Trace (Experiment)
+An end to end logistics B2C platform, for handling all processes in the logistics process,
+while focusing 100% on the user experience.
+
+# Goals
+* Unify all logistics data source
+* Single client UI for logistics processes
+* Combine multiple map data to handle order routing
+
+
+# Status
+This is an experimental platform; however the logic and ideas have been previously tested
+in different forms of disjointed applications.
+
 
 ## License
 
