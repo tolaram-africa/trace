@@ -13,6 +13,7 @@ using Steeltoe.Extensions.Configuration.ConfigServer;
 using Steeltoe.Extensions.Logging.DynamicSerilog;
 using Steeltoe.Management.Endpoint;
 using Steeltoe.Management.Tracing;
+using Steeltoe.Security.DataProtection;
 
 namespace Trace.Common.Infrastructure.Extensions;
 
@@ -31,22 +32,25 @@ public static class ServiceCollectionExtension {
         return services;
     }
 
-    private static void RegisterDistributedCache(this IServiceCollection services) {
+    private static void RegisterDistributedCache(this IServiceCollection services, IConfiguration config) {
         var sp = services.BuildServiceProvider();
-        services.AddDataProtection()
-        .SetApplicationName(Nodes.GroupName)
-        .PersistKeysToStackExchangeRedis(sp.GetRequiredService<ConnectionMultiplexer>(), "DataProtection-Keys");
+        
+        services.AddDistributedRedisCache(config);
+        services
+        .AddDataProtection()
+        .PersistKeysToRedis()
+        .SetApplicationName(Nodes.GroupName);
 
         services.AddStackExchangeRedisCache(options => {
             options.Configuration = sp.GetRequiredService<ConnectionMultiplexer>().Configuration;
             options.InstanceName = "";
         });
-
+        
         services.AddSession(o => {
             o.Cookie.Name = Nodes.GroupName;
             o.Cookie.SameSite = SameSiteMode.None;
             o.IdleTimeout = TimeSpan.FromMinutes(10);
-            // o.Cookie.HttpOnly = true;
+            o.Cookie.HttpOnly = true;
         });
 
     }
@@ -63,11 +67,9 @@ public static class ServiceCollectionExtension {
         builder.AddSteeltoe();
         builder.Services.AddDiscoveryClient(builder.Configuration);
         builder.Services.AddRedisConnectionMultiplexer(builder.Configuration);
-
-        builder.Services.AddDistributedRedisCache(builder.Configuration);
-        builder.Services.RegisterDistributedCache();
-        builder.Services.AddServiceDiscovery(o => o.UseConsul());
         
+        builder.Services.RegisterDistributedCache(builder.Configuration);
+        builder.Services.AddServiceDiscovery(o => o.UseConsul());
         builder.Services.AddDistributedTracingAspNetCore();
         builder.Services.AddAllActuators();
         builder.Services.AddSpringBootAdminClient();

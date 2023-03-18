@@ -57,6 +57,7 @@
     <PackageReference Include="Steeltoe.Management.TaskCore" Version="3.2.3" />
     <PackageReference Include="Steeltoe.Management.TracingCore" Version="3.2.3" />
     <PackageReference Include="Steeltoe.Messaging.RabbitMQ" Version="3.2.3" />
+    <PackageReference Include="Steeltoe.Security.DataProtection.RedisCore" Version="3.2.3" />
   </ItemGroup>
 
   <ItemGroup>
