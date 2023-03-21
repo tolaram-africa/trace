@@ -33,13 +33,15 @@ public static class HangfireExtension {
         return services;
     }
 
-    public static IApplicationBuilder UseHangfireDashboard(this IApplicationBuilder app, IConfiguration config, string serviceName) {
-        var endpoint = config.GetValue<string>("Hangfire:Endpoint") ?? "/schedule";
+    public static IApplicationBuilder UseHangfireDashboard(this WebApplication app, string serviceName) {
+        var config = app.Services.GetService<IConfiguration>();
+        var endpoint = config!.GetValue<string>("Hangfire:Endpoint") ?? "/schedule";
+        
         app.UseHangfireDashboard(endpoint, new DashboardOptions {
             DashboardTitle = $"{serviceName.Capitalize()} Schedule",
             Authorization = new[] {
                 new HangfireCustomBasicAuthenticationFilter{
-                    User = config.GetValue<string>("Hangfire:Username") ?? "trace",
+                    User = config!.GetValue<string>("Hangfire:Username") ?? "trace",
                     Pass = config.GetValue<string>("Hangfire:Password") ?? "trace"
                 }
             },

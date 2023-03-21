@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args)
 builder.Services
 .AddAuthorization()
 .RegisterHangfire(Nodes.Stream)
-.RegisterSharedDataConnector(builder.Configuration);
+.RegisterSharedDataConnector();
 
 builder.Services
 .AddGraphQLServer()
@@ -25,7 +25,7 @@ builder.Services
 var app = builder.Build();
 app.MapGet("/", () => "Service.Stream");
 app.UseSharedEndpoint();
-app.UseHangfireDashboard(builder.Configuration, Nodes.Stream);
-app.UseMqtt(builder.Configuration);
+app.UseHangfireDashboard(Nodes.Stream);
+app.UseMqtt();
 
 app.Run();

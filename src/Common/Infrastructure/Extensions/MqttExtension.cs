@@ -26,8 +26,9 @@ public static class MqttExtension {
         return builder;
     }
 
-    public static void UseMqtt(this WebApplication app, IConfiguration config) {
-        var path = config.GetValue<string>("Mqtt:Path");
+    public static void UseMqtt(this WebApplication app) {
+        var config = app.Services.GetService<IConfiguration>();
+        var path = config!.GetValue<string>("Mqtt:Path");
         
         app.MapMqtt(path);
         app.UseMqttServer(server => {

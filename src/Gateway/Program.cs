@@ -15,9 +15,9 @@ builder.Services
 
 builder.Services
 .AddGraphQLServer()
+.AddRemoteSchemasFromRedis(Nodes.GroupName, sp => sp.GetRequiredService<ConnectionMultiplexer>())
 .AddType<GeoJsonPositionType>()
-.AddType<GeoJsonCoordinatesType>()
-.AddRemoteSchemasFromRedis(Nodes.GroupName, sp => sp.GetRequiredService<ConnectionMultiplexer>());
+.AddType<GeoJsonCoordinatesType>();
 
 // Set Spatial type for route service
 builder.Services
