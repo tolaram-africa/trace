@@ -1,6 +1,6 @@
 using Trace.Common.Infrastructure;
 using Trace.Common.Infrastructure.Extensions;
-using Trace.Service.Identity.Features;
+using Trace.Common.Infrastructure.GraphqlRoot;
 
 var builder = WebApplication
 .CreateBuilder(args)
