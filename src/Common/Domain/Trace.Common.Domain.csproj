@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Events\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Modules\Tenant\Enum\" />
     <Folder Include="ValueObjects\" />
   </ItemGroup>
 
@@ -17,6 +16,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.4" />
     <PackageReference Include="NetTopologySuite" Version="2.5.0" />
     <PackageReference Include="Nextended.Core" Version="7.0.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Standard\Trace.Common.Standard.csproj" />
   </ItemGroup>
 
 </Project>

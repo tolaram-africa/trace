@@ -14,9 +14,9 @@ public abstract class AssetEntity : TenantEntity<Guid> {
 
     public int? YearManufactured { get; set; }
 
-    public DateTime? Deployed { get; set; }
+    public DateTimeOffset? Deployed { get; set; }
 
-    public DateTime? Decommissioned { get; set; }
+    public DateTimeOffset? Decommissioned { get; set; }
 
     // public string? Images { get; set; }
 

@@ -1,4 +1,5 @@
 using HotChocolate.Types;
+using Trace.Common.Infrastructure.GraphqlRoot;
 
 namespace Trace.Service.Identity.Features.State.Queries;
 

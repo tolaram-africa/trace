@@ -1,6 +1,6 @@
 using Trace.Common.Infrastructure;
 using Trace.Common.Infrastructure.Extensions;
-using Trace.Service.Identity.Features;
+using Trace.Common.Infrastructure.GraphqlRoot;
 
 var builder = WebApplication
 .CreateBuilder(args)
@@ -9,7 +9,7 @@ var builder = WebApplication
 builder.Services
 .AddAuthorization()
 .RegisterHangfire(Nodes.Identity)
-.RegisterSharedDataConnector(builder.Configuration);
+.RegisterSharedDataConnector();
 
 builder.Services
 .AddGraphQLServer()
@@ -24,6 +24,6 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Service.Identity");
 app.UseSharedEndpoint();
-app.UseHangfireDashboard(builder.Configuration, Nodes.Identity);
+app.UseHangfireDashboard(Nodes.Stream);
 
 app.Run();

@@ -9,8 +9,5 @@
   <ItemGroup>
     <PackageReference Include="Scrutor" Version="4.2.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Trace.Common.Domain.csproj" />
-  </ItemGroup>
+  
 </Project>
