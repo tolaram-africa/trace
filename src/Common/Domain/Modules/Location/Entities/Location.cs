@@ -14,7 +14,7 @@ public class Location : TenantEntity<Guid> {
     
     public string? Address { get; set; }
 
-    public DateTime? ApprovedAt { get; set; }
+    public DateTimeOffset? ApprovedAt { get; set; }
     
     public string? ApprovedBy { get; set; }
     
