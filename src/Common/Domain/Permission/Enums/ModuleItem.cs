@@ -1,6 +1,9 @@
-namespace Trace.Common.Domain.Identity.Enums;
+namespace Trace.Common.Domain.Permission.Enums;
 
-public enum ModuleIdentity {
+public enum ModuleItem {
+    System,
+    Tenant,
+    ControlCenter,
     Asset,
     Beacon,
     Branch,
