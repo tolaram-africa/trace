@@ -1,0 +1,33 @@
+namespace Trace.Common.Domain.Identity.Enums;
+
+public enum ModuleIdentity {
+    Asset,
+    Beacon,
+    Branch,
+    Contact,
+    Customer,
+    Dashboard,
+    Document,
+    Driver,
+    Employee,
+    Event,
+    Form,
+    Insurance,
+    Invoice,
+    Location,
+    Maintenance,
+    Order,
+    Payment,
+    Product,
+    Route,
+    Schedule,
+    Shipment,
+    Shortage,
+    Stock,
+    Supplier,
+    Support,
+    Tag,
+    Task,
+    Template,
+    Warehouse
+}

@@ -31,18 +31,21 @@ There are a some modules supported. Most of them are configurable via the web
 interface or mobile app. A few of them are:
 
 - [ ] Asset
-- [ ] Beacon
+- [ ] Beacon (GPS, RFID, Radio, etc)
+- [ ] Branch
+- [ ] Contact
 - [ ] Customer
+- [ ] Dashboard
 - [ ] Document
 - [ ] Driver
 - [ ] Employee
 - [ ] Event
 - [ ] Form
 - [ ] Insurance
+- [ ] Invoice
 - [ ] Location
 - [ ] Maintenance
-- [ ] Trip Order
-- [ ] Trip Invoice
+- [ ] Order
 - [ ] Payments
 - [ ] Products
 - [ ] Route
@@ -53,8 +56,8 @@ interface or mobile app. A few of them are:
 - [ ] Suppliers
 - [ ] Support
 - [ ] Tags
+- [ ] Tasks
 - [ ] Templates
-- [ ] Ticket
 - [ ] Warehouse
 
 
