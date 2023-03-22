@@ -15,9 +15,9 @@ in different forms of disjointed applications.
 
 ## License
 
-Trace is license under the [AGPLv3 Licence](./LICENSE)
+Trace is license under the [Reciprocal Public License 1.5](./LICENSE)
 
-[![AGPLv3 License](https://img.shields.io/badge/license-AGPLv3-blue.svg?style=flat-square)](http://www.fsf.org)
+[![Reciprocal Public License 1.5](https://img.shields.io/badge/license-RPL--1.5-blue.svg?style=flat-square)](http://www.fsf.org)
 
 ## Features
 
