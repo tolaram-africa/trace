@@ -1,8 +1,6 @@
 [submodule "proxy"]
 path = proxy
 url = ../trace-proxy.git
-branch = main
-ignore = all
 [submodule "lib"]
 path = lib
 url = ../Proton.Common.git
@@ -11,10 +9,6 @@ ignore = all
 [submodule "docs"]
 path = docs
 url = ../trace-docs.git
-branch = main
-ignore = all
 [submodule "website"]
 path = website
 url = ../trace-website.git
-branch = main
-ignore = all
