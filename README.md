@@ -6,7 +6,7 @@ while focusing 100% on the user experience.
 
 Trace is license under the [Reciprocal Public License 1.5](./LICENSE)
 
-[![Reciprocal Public License 1.5](https://img.shields.io/badge/license-RPL--1.5-blue.svg?style=flat-square)](http://www.fsf.org)
+[![Reciprocal Public License 1.5](https://img.shields.io/badge/license-RPL--1.5-blue.svg?style=flat-square)](https://opensource.org/license/rpl1-5-txt)
 
 - Agboola Solomon ([agboolas@outlook.com](mailto:agboolas@outlook.com))
 - Godwin peter .O ([me@godwin.dev](mailto:me@godwin.dev))
