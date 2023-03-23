@@ -2,22 +2,26 @@
 An end to end logistics B2C platform, for handling all processes in the logistics process,
 while focusing 100% on the user experience.
 
-# Goals
-* Unify all logistics data source
-* Single client UI for logistics processes
-* Combine multiple map data to handle order routing
-
-
-# Status
-This is an experimental platform; however the logic and ideas have been previously tested
-in different forms of disjointed applications.
-
-
 ## License
 
 Trace is license under the [Reciprocal Public License 1.5](./LICENSE)
 
 [![Reciprocal Public License 1.5](https://img.shields.io/badge/license-RPL--1.5-blue.svg?style=flat-square)](http://www.fsf.org)
+
+- Agboola Solomon ([agboolas@outlook.com](mailto:agboolas@outlook.com))
+- Godwin peter .O ([me@godwin.dev](mailto:me@godwin.dev))
+
+## Goals
+* Unify all logistics data source
+* Single client UI for logistics processes
+* Combine multiple map data to handle order routing
+
+
+## Status
+This is an experimental platform; however the logic and ideas have been previously tested
+in different forms of disjointed applications.
+
+
 
 ## Features
 
@@ -71,11 +75,6 @@ In order to run Trace, you need the following configured, secured  and
 working Basic Operating System (Linux).
 
 The project uses Docker, dotnet, PostgreSQL, vueJs and leaflet.
-
-## Team
-
-- Agboola Solomon ([agboolas@outlook.com](mailto:agboolas@outlook.com))
-- Godwin peter .O ([me@godwin.dev](mailto:me@godwin.dev))
 
 ## Contributing
 
