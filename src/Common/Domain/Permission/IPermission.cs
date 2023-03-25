@@ -1,5 +1,5 @@
 namespace Trace.Common.Domain.Permission;
 
-public interface IPermissionTemplate {
+public interface IPermission {
     IEnumerable<PermissionItem> Result();
 }

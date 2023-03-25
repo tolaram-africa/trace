@@ -1,9 +1,8 @@
-namespace Trace.Common.Domain.Permission.Enums;
+namespace Trace.Common.Domain.Enums;
 
-public enum ModuleItem {
+public enum Module {
     System,
     Tenant,
-    ControlCenter,
     Asset,
     Beacon,
     Branch,
@@ -12,9 +11,11 @@ public enum ModuleItem {
     Dashboard,
     Document,
     Driver,
+    DriverGroup,
     Employee,
     Event,
     Form,
+    Identity,
     Insurance,
     Invoice,
     Location,
@@ -27,10 +28,15 @@ public enum ModuleItem {
     Shipment,
     Shortage,
     Stock,
+    Store,
     Supplier,
     Support,
     Tag,
     Task,
     Template,
-    Warehouse
+    Trailer,
+    TripPass,
+    Vehicle,
+    Warehouse,
+    Waybill
 }

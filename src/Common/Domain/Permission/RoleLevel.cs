@@ -1,12 +1,13 @@
-namespace Trace.Common.Domain.Permission.Enums;
+namespace Trace.Common.Domain.Permission;
 
-public enum UserRoleLevel {
-    // System roles
+public enum RoleLevel {
+    // Default roles
+    Default,
     Anonymous,
     Bot,
 
     // Customer roles
-    Client,
+    CustomerClient,
     CustomerBasic,
     CustomerOperator,
     CustomerAdministrator,
@@ -21,5 +22,11 @@ public enum UserRoleLevel {
     TenantFleetLead,
     TenantFleetManager,
     TenantAdministrator,
-    TenantSuperAdministrator
+    TenantSuperAdministrator,
+    
+    // System roles
+    SystemBot,
+    SystemOperator,
+    SystemAdministrator,
+    SystemSuperAdministrator
 }
