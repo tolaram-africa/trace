@@ -9,16 +9,12 @@
 // limitations under the License.
 
 using Microsoft.EntityFrameworkCore;
-using Trace.Common.Domain.Common;
-using Trace.Common.Domain.Modules;
 
-namespace Trace.Common.Infrastructure.Persistence.Context;
+namespace Trace.Common.Domain.Modules;
 
-public class OperationContext : BaseContext {
-    public OperationContext() { }
-    private static DbContextOptions<T> ChangeOptionsType<T>(DbContextOptions options) where T : DbContext 
-        => (DbContextOptions<T>)options;
-    public OperationContext(DbContextOptions<OperationContext> options) : base(ChangeOptionsType<OperationContext>(options)) { }
+public abstract partial class BaseContext : DbContext {
+    protected BaseContext() {}
+    protected BaseContext(DbContextOptions options) : base(options) { }
     
     protected override void OnModelCreating(ModelBuilder builder) {
         builder.ApplyConfigurationsFromAssembly(typeof(CoreEntity<>).Assembly);
