@@ -1,6 +1,8 @@
 # Trace [Experimental]
-An end to end logistics B2C platform, for handling all processes in the logistics process,
-while focusing 100% on the user experience.
+
+Trace is an end to end logistics B2C platform, for handling all processes in the logistics process,
+manages the entire logistics cycle from procurement and distribution to transport,
+delivery to the customer and ending with return logistics.
 
 ## License
 
