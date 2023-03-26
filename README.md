@@ -1,4 +1,4 @@
-# Trace (Experiment)
+# Trace [Experimental]
 An end to end logistics B2C platform, for handling all processes in the logistics process,
 while focusing 100% on the user experience.
 
