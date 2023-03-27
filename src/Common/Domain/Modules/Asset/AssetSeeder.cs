@@ -10,9 +10,14 @@
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Trace.Common.Domain.Modules;
+namespace Trace.Common.Domain.Modules.Asset;
 
-public abstract partial class BaseContext : DbContext {
-    protected BaseContext() {}
-    protected BaseContext(DbContextOptions options) : base(options) { }
+public class AssetSeeder : DefaultSeeder {
+    new public virtual void Run() {
+        var assets = new List<Entities.Asset> {
+            new Entities.Asset { Id = Guid.NewGuid(), Name = "Asset-001" }
+        };
+        
+        Builder?.Entity<Entities.Asset>().HasData(assets);
+    }
 }

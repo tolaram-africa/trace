@@ -1,11 +1,10 @@
 namespace Trace.Common.Standard;
 
 public static class FactoryLoader {
-    public static IEnumerable<T> Load<T>() {
-        return typeof(T).Assembly
+    public static IEnumerable<T> Load<T>() =>
+    typeof(T).Assembly
         .GetTypes()
-        .Where(p => p.IsClass && p.IsAssignableTo(typeof(T)))
+        .Where(p => p is { IsClass: true, IsAbstract: false } && p.IsAssignableTo(typeof(T)))
         .Select(Activator.CreateInstance)
         .Cast<T>();
-    }
 }

@@ -8,11 +8,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.EntityFrameworkCore;
+namespace Trace.Common.Domain.Modules.Beacon;
 
-namespace Trace.Common.Domain.Modules;
-
-public abstract partial class BaseContext : DbContext {
-    protected BaseContext() {}
-    protected BaseContext(DbContextOptions options) : base(options) { }
+public class BeaconSeeder : DefaultSeeder {
+    new public virtual void Run() {
+        Load(new List<Entities.Beacon> {
+            new Entities.Beacon { Id = Guid.NewGuid(), CreatedAt = DateTimeOffset.Now }
+        });
+    }
 }

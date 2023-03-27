@@ -9,8 +9,10 @@
 // limitations under the License.
 
 using Microsoft.EntityFrameworkCore;
+using Trace.Common.Domain;
 using Trace.Common.Domain.Common;
 using Trace.Common.Domain.Modules;
+using Trace.Common.Standard;
 
 namespace Trace.Common.Infrastructure.Persistence.Context;
 
@@ -25,7 +27,13 @@ public sealed class OperationContext : BaseContext {
     public OperationContext(DbContextOptions options) : base(options) { }
     
     protected override void OnModelCreating(ModelBuilder builder) {
+        // Apply entities configs
         builder.ApplyConfigurationsFromAssembly(typeof(CoreEntity<>).Assembly);
+        
+        // Apply Seeds for ISeeder
+        foreach (var seed in FactoryLoader.Load<ISeeder>())
+            seed.Initialize(builder).Run();
+        
         base.OnModelCreating(builder);
     }
 }
