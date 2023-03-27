@@ -16,7 +16,10 @@ public static class PersistenceExtensions {
         services.AddPostgresConnection(config);
         services.AddDbContext<OperationContext>(options => 
             options.UseNpgsql(config!.GetConnectionString("Postgres"),
-                b => b.MigrationsAssembly(typeof(OperationContext).Assembly.FullName))
+                b => b
+                .MigrationsAssembly(typeof(OperationContext).Assembly.FullName)
+                .UseNetTopologySuite()
+                .EnableRetryOnFailure())
             .UseSnakeCaseNamingConvention());
         services.AddPostgresHealthContributor(config);
         services.AddRabbitServices(true);
