@@ -15,7 +15,8 @@ public static class PersistenceExtensions {
         services.AddRabbitMQConnection(config);
         services.AddPostgresConnection(config);
         services.AddDbContext<OperationContext>(options => 
-            options.UseNpgsql(config!.GetConnectionString("Postgres"))
+            options.UseNpgsql(config!.GetConnectionString("Postgres"),
+                b => b.MigrationsAssembly(typeof(OperationContext).Assembly.FullName))
             .UseSnakeCaseNamingConvention());
         services.AddPostgresHealthContributor(config);
         services.AddRabbitServices(true);
