@@ -8,7 +8,7 @@ public class OperationContextFactory : IDesignTimeDbContextFactory<OperationCont
     public OperationContext CreateDbContext(string[] args) {
         var optionsBuilder = new DbContextOptionsBuilder<OperationContext>();
         var config = new ConfigurationBuilder().Build();
-        var connectionString = config.GetConnectionString("ConnectionStrings:DefaultConnection");
+        var connectionString = config.GetConnectionString("DefaultConnection");
         optionsBuilder.UseNpgsql(connectionString).UseSnakeCaseNamingConvention();
 
         return new OperationContext(optionsBuilder.Options);
