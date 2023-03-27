@@ -8,8 +8,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trace.Common.Domain.Modules.Asset.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public sealed class AssetType : TypeEntity<Guid> {
-    public string? Color { get; set; }
+namespace Trace.Common.Domain.Modules.Beacon.Config;
+
+public class BeaconConfig : IEntityTypeConfiguration<Entities.Beacon> {
+    public void Configure(EntityTypeBuilder<Entities.Beacon> builder) { }
 }

@@ -8,8 +8,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trace.Common.Domain.Modules.Asset.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public sealed class AssetType : TypeEntity<Guid> {
-    public string? Color { get; set; }
+namespace Trace.Common.Domain.Modules.Asset.Config;
+
+public class AssetConfig : IEntityTypeConfiguration<Entities.Asset> {
+
+    public void Configure(EntityTypeBuilder<Entities.Asset> builder) {
+        builder.Property(b => b.Id)
+        .IsRequired()
+        .HasMaxLength(256);
+    }
 }
