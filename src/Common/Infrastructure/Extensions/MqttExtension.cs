@@ -11,7 +11,7 @@ public static class MqttExtension {
     public static WebApplicationBuilder RegisterMqttService(this WebApplicationBuilder builder) {
         var port = builder.Configuration.GetValue<int>("Mqtt:Port");
         var backlogCount = builder.Configuration.GetValue<int>("Mqtt:BacklogCount");
-        
+
         builder.Services.AddHostedMqttServer(options => {
             options
             .WithPersistentSessions()
@@ -22,14 +22,14 @@ public static class MqttExtension {
         .AddMqttConnectionHandler()
         .AddConnections()
         .AddMqttTcpServerAdapter();
-        
+
         return builder;
     }
 
     public static void UseMqtt(this WebApplication app) {
         var config = app.Services.GetService<IConfiguration>();
         var path = config!.GetValue<string>("Mqtt:Path");
-        
+
         app.MapMqtt(path);
         app.UseMqttServer(server => {
             server.ValidatingConnectionAsync += QueueController.ValidateConnection;
@@ -40,9 +40,11 @@ public static class MqttExtension {
                         var msg = new MqttApplicationMessageBuilder().WithPayload("welcome to mqtt").WithTopic("start");
                         msg.Build();
                         msg.WithPayload("you are welcome to mqtt");
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e) {
                         Console.WriteLine(e);
-                    } finally {
+                    }
+                    finally {
                         await Task.Delay(TimeSpan.FromSeconds(5));
                     }
                 }

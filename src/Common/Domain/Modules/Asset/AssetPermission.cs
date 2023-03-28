@@ -8,15 +8,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trace.Common.Domain.Enums;
+using Trace.Common.Domain.Permission;
 
-public enum FuelType {
-    Petrol = 0,
-    Cng = 1,
-    Diesel = 2,
-    Electric = 3,
-    Gas = 4,
-    Hydrogen = 5,
-    Lpg = 6,
-    Other = 7
+namespace Trace.Common.Domain.Modules.Asset;
+
+public class AssetPermission : IPermission {
+    private const string Id = "asset";
+    private const RoleLevel Role = RoleLevel.Default;
+    private const Module DefaultModule = Module.Asset;
+    public IEnumerable<PermissionItem> Result() => new List<PermissionItem> {
+        new PermissionItem(DefaultModule, $"{Id}.overview", Role, new []{ true, false, false, false })
+    };
 }

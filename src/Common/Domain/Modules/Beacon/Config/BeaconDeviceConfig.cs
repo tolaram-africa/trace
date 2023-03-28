@@ -8,15 +8,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trace.Common.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Trace.Common.Domain.Modules.Beacon.Entities;
 
-public enum FuelType {
-    Petrol = 0,
-    Cng = 1,
-    Diesel = 2,
-    Electric = 3,
-    Gas = 4,
-    Hydrogen = 5,
-    Lpg = 6,
-    Other = 7
+namespace Trace.Common.Domain.Modules.Beacon.Config;
+
+public class BeaconDeviceConfig : IEntityTypeConfiguration<BeaconDevice> {
+    public void Configure(EntityTypeBuilder<BeaconDevice> builder) { }
 }

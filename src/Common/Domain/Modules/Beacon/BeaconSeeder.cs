@@ -8,15 +8,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trace.Common.Domain.Enums;
+using Trace.Common.Domain.Context;
 
-public enum FuelType {
-    Petrol = 0,
-    Cng = 1,
-    Diesel = 2,
-    Electric = 3,
-    Gas = 4,
-    Hydrogen = 5,
-    Lpg = 6,
-    Other = 7
+namespace Trace.Common.Domain.Modules.Beacon;
+
+public class BeaconSeeder : DefaultSeeder {
+    new public virtual void Run() {
+        Load(new List<Entities.Beacon> {
+            new Entities.Beacon { Id = Guid.NewGuid(), CreatedAt = DateTimeOffset.Now }
+        });
+    }
 }

@@ -10,13 +10,9 @@
 
 namespace Trace.Common.Domain.Enums;
 
-public enum FuelType {
-    Petrol = 0,
-    Cng = 1,
-    Diesel = 2,
-    Electric = 3,
-    Gas = 4,
-    Hydrogen = 5,
-    Lpg = 6,
-    Other = 7
+public enum PriorityLevel {
+    None = 0,
+    Low = 1,
+    Medium = 2,
+    High = 3
 }

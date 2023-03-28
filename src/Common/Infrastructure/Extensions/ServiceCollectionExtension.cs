@@ -34,7 +34,7 @@ public static class ServiceCollectionExtension {
     private static void RegisterDistributedCache(this IServiceCollection services) {
         var sp = services.BuildServiceProvider();
         var config = sp.GetService<IConfiguration>();
-        
+
         services.AddDistributedRedisCache(config);
         services
         .AddDataProtection()
@@ -45,7 +45,7 @@ public static class ServiceCollectionExtension {
             options.Configuration = sp.GetRequiredService<ConnectionMultiplexer>().Configuration;
             options.InstanceName = "";
         });
-        
+
         services.AddSession(o => {
             o.Cookie.Name = Nodes.GroupName;
             o.Cookie.SameSite = SameSiteMode.None;
@@ -67,7 +67,7 @@ public static class ServiceCollectionExtension {
         builder.AddSteeltoe();
         builder.Services.AddDiscoveryClient(builder.Configuration);
         builder.Services.AddRedisConnectionMultiplexer(builder.Configuration);
-        
+
         builder.Services.RegisterDistributedCache();
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
         builder.Services.AddDistributedTracingAspNetCore();

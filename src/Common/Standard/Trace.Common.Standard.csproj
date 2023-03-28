@@ -9,5 +9,9 @@
   <ItemGroup>
     <PackageReference Include="Scrutor" Version="4.2.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\lib\src\standard\Proton.Common.Standard.csproj" />
+  </ItemGroup>
   
 </Project>

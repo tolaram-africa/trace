@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "dotnet format ./Trace.sln",
     "build": "dotnet build --configuration Debug",
-    "opt:migrate": "dotnet ef migrations add --project src/Common/Infrastructure/Trace.Common.Infrastructure.csproj --startup-project src/Common/Infrastructure/Trace.Common.Infrastructure.csproj --context Trace.Common.Infrastructure.Persistence.Context.OperationContext --configuration Debug Initial --output-dir Persistence/Migrations",
-    "opt:update": "dotnet ef database update --project src/Common/Infrastructure/Trace.Common.Infrastructure.csproj --startup-project src/Common/Infrastructure/Trace.Common.Infrastructure.csproj --context Trace.Common.Infrastructure.Persistence.Context.OperationContext --configuration Debug"
+    "opt:migrate": "dotnet ef migrations add --project src/Common/Domain/Trace.Common.Domain.csproj --startup-project src/Common/Domain/Trace.Common.Domain.csproj --context Trace.Common.Domain.Context.OperationContext --configuration Debug Initial --output-dir Migrations",
+    "opt:update": "dotnet ef database update --project src/Common/Domain/Trace.Common.Domain.csproj --startup-project src/Common/Domain/Trace.Common.Domain.csproj --context Trace.Common.Domain.Context.OperationContext --configuration Debug"
   }
 }

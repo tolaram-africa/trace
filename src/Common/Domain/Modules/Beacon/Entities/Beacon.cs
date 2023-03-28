@@ -8,15 +8,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trace.Common.Domain.Enums;
+namespace Trace.Common.Domain.Modules.Beacon.Entities;
 
-public enum FuelType {
-    Petrol = 0,
-    Cng = 1,
-    Diesel = 2,
-    Electric = 3,
-    Gas = 4,
-    Hydrogen = 5,
-    Lpg = 6,
-    Other = 7
+public class Beacon : TenantEntity<Guid> {
+    public BeaconDevice? Device { get; set; }
+
+    public Guid? DeviceId { get; set; }
 }
