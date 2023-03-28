@@ -7,7 +7,7 @@ public class PermissionItem {
         this.Role = role;
         this.Actions = actions;
     }
-    
+
     public Module Module { get; init; }
     public string FeatureId { get; init; }
     public RoleLevel Role { get; init; }

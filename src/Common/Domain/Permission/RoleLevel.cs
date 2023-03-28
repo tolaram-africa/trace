@@ -11,7 +11,7 @@ public enum RoleLevel {
     CustomerBasic,
     CustomerOperator,
     CustomerAdministrator,
-    
+
     // Tenant roles
     TenantDriver,
     TenantLoadSupervisor,
@@ -23,7 +23,7 @@ public enum RoleLevel {
     TenantFleetManager,
     TenantAdministrator,
     TenantSuperAdministrator,
-    
+
     // System roles
     SystemBot,
     SystemOperator,

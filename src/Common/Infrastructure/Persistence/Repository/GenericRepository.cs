@@ -19,18 +19,18 @@ namespace Trace.Common.Infrastructure.Persistence.Repository;
 
 public class GenericRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepository<T> where T : class, IAggregateRoot {
     private readonly OperationContext _context;
-    
+
     public GenericRepository(OperationContext context) : base(context) {
         _context = context;
     }
     public IQueryable<T> GetAll(CancellationToken cancellationToken = default) =>
         _context.Set<T>().AsQueryable();
-    
+
     public IQueryable<T> GetAll(ISpecification<T> specification, CancellationToken cancellationToken = default) =>
-        ApplySpecification(specification).AsQueryable(); 
-    
+        ApplySpecification(specification).AsQueryable();
+
     public IEnumerable<T> Find(Expression<Func<T, bool>> expression) => _context.Set<T>().Where(expression);
-    
+
     public async Task<T?> FirstOrDefaultAsync(CancellationToken cancellationToken = default) =>
         await _context.Set<T>().FirstOrDefaultAsync(cancellationToken);
 }

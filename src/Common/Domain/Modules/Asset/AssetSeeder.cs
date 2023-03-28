@@ -17,7 +17,7 @@ public class AssetSeeder : DefaultSeeder {
         var assets = new List<Entities.Asset> {
             new Entities.Asset { Id = Guid.NewGuid(), Name = "Asset-001" }
         };
-        
+
         Builder?.Entity<Entities.Asset>().HasData(assets);
     }
 }

@@ -36,7 +36,7 @@ public static class HangfireExtension {
     public static IApplicationBuilder UseHangfireDashboard(this WebApplication app, string serviceName) {
         var config = app.Services.GetService<IConfiguration>();
         var endpoint = config!.GetValue<string>("Hangfire:Endpoint") ?? "/schedule";
-        
+
         app.UseHangfireDashboard(endpoint, new DashboardOptions {
             DashboardTitle = $"{serviceName.Capitalize()} Schedule",
             Authorization = new[] {

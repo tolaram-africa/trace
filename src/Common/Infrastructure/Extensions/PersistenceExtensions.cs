@@ -20,13 +20,13 @@ public static class PersistenceExtensions {
         services.AddRabbitServices(true);
         services.AddRabbitAdmin();
         services.AddRabbitTemplate();
-        services.AddDbContext<OperationContext>(options => 
+        services.AddDbContext<OperationContext>(options =>
         options.UseSnakeCaseNamingConvention()
         .UseNpgsql(b => b
             .MigrationsAssembly(typeof(OperationContext).Assembly.FullName)
             .EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorCodesToAdd: null)
             .UseNetTopologySuite()));
-        
+
         services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         services.AddScoped(typeof(IReadRepository<>), typeof(GenericRepository<>));
 

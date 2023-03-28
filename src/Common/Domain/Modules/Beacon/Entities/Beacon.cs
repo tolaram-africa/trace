@@ -12,6 +12,6 @@ namespace Trace.Common.Domain.Modules.Beacon.Entities;
 
 public class Beacon : TenantEntity<Guid> {
     public BeaconDevice? Device { get; set; }
-    
+
     public Guid? DeviceId { get; set; }
 }

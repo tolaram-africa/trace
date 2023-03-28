@@ -4,7 +4,7 @@ namespace Trace.Common.Domain;
 
 public abstract class DefaultSeeder : ISeeder {
     protected ModelBuilder? Builder;
-    
+
     public DateTimeOffset Time => DateTimeOffset.Now;
 
     public ISeeder Initialize(ModelBuilder builder) {
@@ -15,10 +15,10 @@ public abstract class DefaultSeeder : ISeeder {
 
     protected List<T> Load<T>(List<T> value) {
         Builder?.Entity<List<T>>().HasData(value);
-        
+
         return value;
     }
 
-    
+
     public void Run() { }
 }

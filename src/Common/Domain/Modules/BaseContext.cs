@@ -13,6 +13,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Trace.Common.Domain.Modules;
 
 public abstract partial class BaseContext : DbContext {
-    protected BaseContext() {}
+    protected BaseContext() { }
     protected BaseContext(DbContextOptions options) : base(options) { }
 }

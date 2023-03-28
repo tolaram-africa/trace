@@ -13,7 +13,7 @@ using Trace.Common.Domain.Modules.Tag.Entities;
 
 namespace Trace.Common.Domain.Modules;
 
-public abstract partial class BaseContext  {
+public abstract partial class BaseContext {
     public DbSet<Tag.Entities.Tag> Tags { get; set; } = default!;
     public DbSet<TagMember> TagMembers { get; set; } = default!;
 }
