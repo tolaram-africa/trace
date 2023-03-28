@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Trace.Common.Domain;
+namespace Trace.Common.Domain.Context;
 
 public abstract class DefaultSeeder : ISeeder {
     protected ModelBuilder? Builder;

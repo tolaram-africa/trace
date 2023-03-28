@@ -2,7 +2,7 @@ using HotChocolate.Execution.Configuration;
 using HotChocolate.Types;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
-using Trace.Common.Infrastructure.Persistence.Context;
+using Trace.Common.Domain.Context;
 
 namespace Trace.Common.Infrastructure.Extensions;
 

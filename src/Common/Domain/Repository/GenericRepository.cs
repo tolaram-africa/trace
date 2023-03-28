@@ -8,14 +8,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Proton.Common.Entity;
+using Proton.Common.Entity.Interfaces;
 using Trace.Common.Domain.Context;
 
-namespace Trace.Common.Domain.Modules.Beacon;
+namespace Trace.Common.Domain.Repository;
 
-public class BeaconSeeder : DefaultSeeder {
-    new public virtual void Run() {
-        Load(new List<Entities.Beacon> {
-            new Entities.Beacon { Id = Guid.NewGuid(), CreatedAt = DateTimeOffset.Now }
-        });
-    }
+public class GenericRepository<T> : GenericBaseRepository<T, OperationContext> where T : class, IAggregateRoot {
+    public GenericRepository(OperationContext context) : base(context) { }
 }

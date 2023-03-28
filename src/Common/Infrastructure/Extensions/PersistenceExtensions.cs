@@ -5,8 +5,8 @@ using Proton.Common.Entity.Interfaces;
 using Steeltoe.Connector.PostgreSql;
 using Steeltoe.Connector.RabbitMQ;
 using Steeltoe.Messaging.RabbitMQ.Extensions;
-using Trace.Common.Infrastructure.Persistence.Context;
-using Trace.Common.Infrastructure.Persistence.Repository;
+using Trace.Common.Domain.Context;
+using Trace.Common.Domain.Repository;
 
 namespace Trace.Common.Infrastructure.Extensions;
 

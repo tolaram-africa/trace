@@ -10,12 +10,9 @@
 
 using Microsoft.EntityFrameworkCore;
 using Proton.Common.Standard.Helpers;
-using Trace.Common.Domain;
-using Trace.Common.Domain.Interfaces;
 using Trace.Common.Domain.Modules;
-using Trace.Common.Standard;
 
-namespace Trace.Common.Infrastructure.Persistence.Context;
+namespace Trace.Common.Domain.Context;
 
 public sealed class OperationContext : BaseContext {
     public OperationContext() { }

@@ -9,6 +9,7 @@
 // limitations under the License.
 
 using Microsoft.EntityFrameworkCore;
+using Trace.Common.Domain.Context;
 
 namespace Trace.Common.Domain.Modules.Asset;
 
