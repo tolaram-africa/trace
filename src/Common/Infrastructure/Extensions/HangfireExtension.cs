@@ -42,7 +42,7 @@ public static class HangfireExtension {
             Authorization = new[] {
                 new HangfireCustomBasicAuthenticationFilter{
                     User = config!.GetValue<string>("Hangfire:Username") ?? "trace",
-                    Pass = config.GetValue<string>("Hangfire:Password") ?? "trace"
+                    Pass = config!.GetValue<string>("Hangfire:Password") ?? "trace"
                 }
             },
         });
