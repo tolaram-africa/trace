@@ -9,9 +9,7 @@
   <ItemGroup>
     <Folder Include="FIles\" />
     <Folder Include="Identity\" />
-    <Folder Include="Persistence\Mappings\" />
     <Folder Include="Persistence\Migrations\" />
-    <Folder Include="Persistence\Repository\" />
   </ItemGroup>
 
   <ItemGroup>

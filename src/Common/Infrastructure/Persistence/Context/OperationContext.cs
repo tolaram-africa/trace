@@ -9,8 +9,9 @@
 // limitations under the License.
 
 using Microsoft.EntityFrameworkCore;
+using Proton.Common.Standard.Helpers;
 using Trace.Common.Domain;
-using Trace.Common.Domain.Common;
+using Trace.Common.Domain.Interfaces;
 using Trace.Common.Domain.Modules;
 using Trace.Common.Standard;
 
@@ -28,7 +29,7 @@ public sealed class OperationContext : BaseContext {
     
     protected override void OnModelCreating(ModelBuilder builder) {
         // Apply entities configs
-        builder.ApplyConfigurationsFromAssembly(typeof(CoreEntity<>).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(ITenant).Assembly);
         
         // Apply Seeds for ISeeder
         foreach (var seed in FactoryLoader.Load<ISeeder>())

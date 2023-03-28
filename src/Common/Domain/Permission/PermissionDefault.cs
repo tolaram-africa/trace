@@ -1,3 +1,4 @@
+using Proton.Common.Standard.Helpers;
 using Trace.Common.Standard;
 
 namespace Trace.Common.Domain.Permission;

@@ -7,18 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Events\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="ValueObjects\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
+    <PackageReference Include="Ardalis.Result" Version="7.0.0" />
     <PackageReference Include="NetTopologySuite" Version="2.5.0" />
-    <PackageReference Include="Nextended.Core" Version="7.0.21" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\lib\src\entity\Proton.Common.Entity.csproj" />
     <ProjectReference Include="..\Standard\Trace.Common.Standard.csproj" />
   </ItemGroup>
 

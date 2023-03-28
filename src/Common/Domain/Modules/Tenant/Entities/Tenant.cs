@@ -1,3 +1,4 @@
+using Proton.Common.Entity.Base;
 using Trace.Common.Domain.Modules.Tenant.Enum;
 
 namespace Trace.Common.Domain.Modules.Tenant.Entities;
