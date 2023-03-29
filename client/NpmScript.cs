@@ -44,12 +44,12 @@ public class NpmScript : IDisposable
         };
 
         _process = Process.Start(info);
-        _process.EnableRaisingEvents = true;
+        _process!.EnableRaisingEvents = true;
         _process.BeginOutputReadLine();
         _process.BeginErrorReadLine();
         _process.OutputDataReceived += (sender, eventArgs) =>
         {
-          output?.Invoke(eventArgs.Data);
+          output?.Invoke(eventArgs.Data!);
 
           if (!string.IsNullOrEmpty(eventArgs.Data) && string.IsNullOrEmpty(Url))
           {
@@ -64,7 +64,7 @@ public class NpmScript : IDisposable
 
         _process.ErrorDataReceived += (sender, args) =>
         {
-          output?.Invoke(args.Data);
+          output?.Invoke(args.Data!);
           if (!_signal.Task.IsCompleted)
           {
             _signal.SetException(new Exception("npm web server failed to start"));
