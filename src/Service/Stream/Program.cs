@@ -23,7 +23,7 @@ builder.Services
 .RegisterObjectExtensions(typeof(Program).Assembly);
 
 var app = builder.Build();
-app.MapGet("/", () => "Service.Stream");
+// app.MapGet("/", () => "Service.Stream");
 app.UseSharedEndpoint();
 app.UseHangfireDashboard(Nodes.Stream);
 app.UseMqtt();
