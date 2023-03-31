@@ -22,7 +22,7 @@ export const useRouteStore = defineStore(
       services.value = svs;
     };
 
-    const getService = (): ServiceVariant => service.value;
+    const getService = (): ServiceVariant => process.env.APP_VARIANT === 'manager' ? ServiceVariant.MANAGER : service.value;
 
     const setService = (sv: ServiceVariant): void => {
       service.value = sv;

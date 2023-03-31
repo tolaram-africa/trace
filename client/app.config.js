@@ -10,8 +10,7 @@ if (env.MODE === undefined) {
 module.exports = {
   NODE_ENV: env.NODE_ENV,
   API_SECRET: env.API_SECRET || 'secret',
-  PORT: env.PORT || 4580,
-  BASE_URL: env.BASE_URL || 'http://localhost:4580/',
+  PORT: env.PORT || 4582,
   APP_VARIANT: env.APP_VARIANT,
   /* Backend Server urls */
   SERVER_API_ROOT: env.SERVER_API_ROOT || 'http://127.0.0.1:4560/',
@@ -23,7 +22,7 @@ module.exports = {
   API_STORAGE_PATH: env.API_STORAGE_PATH || '/service/storage/',
   API_ROUTING_PATH: env.API_ROUTING_PATH || '/service/routing/',
   API_GEOCODING_PATH: env.API_GEOCODING_PATH || '/service/geocoding/',
-  /* App brading */
+  /* App branding */
   APP_NAME: env.APP_NAME || 'Trace',
   APP_ID: env.APP_ID || 'ng.trace.vector',
   APP_DESCRIPTION: env.APP_DESCRIPTION || 'Trace',
