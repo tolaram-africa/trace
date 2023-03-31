@@ -22,7 +22,7 @@ public sealed class OperationContext : BaseContext {
 
     public OperationContext(DbContextOptions<OperationContext> options) : base(ChangeOptionsType<OperationContext>(options)) { }
 
-    public OperationContext(DbContextOptions options) : base(options) { }
+    // public OperationContext(DbContextOptions options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder builder) {
         // Apply entities configs

@@ -3,7 +3,7 @@ using Trace.Common.Infrastructure.Extensions;
 using Trace.Service.Manage;
 
 var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
-
+builder.Services.AddControllersWithViews();
 builder.Services
 .AddAuthorization()
 .RegisterHangfire(Nodes.Manage)
@@ -17,7 +17,12 @@ builder.Services
 .RegisterObjectExtensions(typeof(Program).Assembly);
 
 var app = builder.Build();
-app.MapGet("/", () => "Service.Manage");
+if (!app.Environment.IsDevelopment())
+    app.UseHsts();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.MapFallbackToFile("index.html");
+
 app.UseSharedEndpoint();
 app.UseHangfireDashboard(Nodes.Stream);
 

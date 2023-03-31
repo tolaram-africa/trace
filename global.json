@@ -1,10 +1,12 @@
 {
   "sdk": {
-    "version": "7.0.201",
+    "version": "8.*",
     "rollForward": "latestPatch"
   },
   "scripts": {
     "lint": "dotnet format ./Trace.sln",
+    "install": "dotnet restore && dotnet build",
+    "clean": "dotnet clean && pnpm clean && rm -rf ./**/{bin,obj} && pnpm store prune",
     "build": "dotnet build --configuration Debug",
     "opt:migrate": "dotnet ef migrations add --project src/Common/Domain/Trace.Common.Domain.csproj --startup-project src/Common/Domain/Trace.Common.Domain.csproj --context Trace.Common.Domain.Context.OperationContext --configuration Debug Initial --output-dir Migrations",
     "opt:update": "dotnet ef database update --project src/Common/Domain/Trace.Common.Domain.csproj --startup-project src/Common/Domain/Trace.Common.Domain.csproj --context Trace.Common.Domain.Context.OperationContext --configuration Debug"
