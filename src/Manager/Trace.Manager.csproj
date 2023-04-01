@@ -27,6 +27,9 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
+    <Content Include="..\..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
@@ -66,12 +69,6 @@
     <ProjectReference Include="..\Common\Infrastructure\Trace.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\Common\Standard\Trace.Common.Standard.csproj" />
     <ProjectReference Include="..\Common\Service\Trace.Common.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="..\..\.dockerignore">
-      <Link>.dockerignore</Link>
-    </Content>
   </ItemGroup>
 
 </Project>

@@ -11,12 +11,6 @@
       context: .
       dockerfile: src/Service/Integration/Dockerfile
 
-  trace.service.manage:
-    image: trace.service.manage
-    build:
-      context: .
-      dockerfile: src/Service/Manager/Dockerfile
-
   trace.service.operation:
     image: trace.service.operation
     build:
@@ -35,8 +29,24 @@
       context: .
       dockerfile: src/Service/Stream/Dockerfile
 
-  trace.service.gateway:
-    image: trace.service.gateway
+  trace.gateway:
+    image: trace.gateway
     build:
       context: .
       dockerfile: src/Gateway/Dockerfile
+      
+  trace.manager:
+    image: trace.manager
+    environment:
+      ASPNETCORE_HOSTINGSTARTUPASSEMBLIES: Microsoft.AspNetCore.SpaProxy
+    build:
+      context: .
+      dockerfile: src/Manager/Dockerfile
+    
+  trace.client:
+    image: trace.client
+    environment:
+      ASPNETCORE_HOSTINGSTARTUPASSEMBLIES: Microsoft.AspNetCore.SpaProxy
+    build:
+      context: .
+      dockerfile: src/Client/Dockerfile

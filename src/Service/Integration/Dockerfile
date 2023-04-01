@@ -1,11 +1,17 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["src/Service/Integration/Trace.Service.Integration.csproj", "src/Service/Integration/"]
+COPY ["src/Common/Domain/Trace.Common.Domain.csproj", "src/Common/Domain/"]
+COPY ["lib/src/entity/Proton.Common.Entity.csproj", "lib/src/entity/"]
+COPY ["lib/src/standard/Proton.Common.Standard.csproj", "lib/src/standard/"]
+COPY ["src/Common/Standard/Trace.Common.Standard.csproj", "src/Common/Standard/"]
+COPY ["src/Common/Infrastructure/Trace.Common.Infrastructure.csproj", "src/Common/Infrastructure/"]
+COPY ["src/Common/Service/Trace.Common.Service.csproj", "src/Common/Service/"]
 RUN dotnet restore "src/Service/Integration/Trace.Service.Integration.csproj"
 COPY . .
 WORKDIR "/src/src/Service/Integration"

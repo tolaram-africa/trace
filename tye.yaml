@@ -139,15 +139,6 @@ services:
     tags:
       - infra
       - service
-  - name: service-gateway
-    tags:
-      - service
-    replicas: 1
-    build: true
-    workingDirectory: src/Gateway/
-    project: src/Gateway/Trace.Service.Gateway.csproj
-    bindings:
-      - port: 4570
   - name: service-identity
     tags:
       - service
@@ -173,8 +164,28 @@ services:
       - service
     build: true
     project: src/Service/Stream/Trace.Service.Stream.csproj
-  - name: service-manage
+  - name: gateway
+    tags:
+      - service
+    replicas: 1
+    build: true
+    workingDirectory: src/Gateway/
+    project: src/Gateway/Trace.Gateway.csproj
+    bindings:
+      - port: 4570
+  - name: manager
     tags:
       - service
     build: true
-    project: src/Service/Manager/Trace.Service.Manage.csproj
+    project: src/Manager/Trace.Manager.csproj
+    env:
+      - name: ASPNETCORE_HOSTINGSTARTUPASSEMBLIES
+        value: Microsoft.AspNetCore.SpaProxy
+  - name: client
+    tags:
+      - service
+    build: true
+    project: src/Client/Trace.Client.csproj
+    env:
+      - name: ASPNETCORE_HOSTINGSTARTUPASSEMBLIES
+        value: Microsoft.AspNetCore.SpaProxy
