@@ -1,14 +1,20 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["src/Service/Track/Trace.Service.Stream.csproj", "src/Service/Track/"]
-RUN dotnet restore "src/Service/Track/Trace.Service.Stream.csproj"
+COPY ["src/Service/Stream/Trace.Service.Stream.csproj", "src/Service/Stream/"]
+COPY ["src/Common/Domain/Trace.Common.Domain.csproj", "src/Common/Domain/"]
+COPY ["lib/src/entity/Proton.Common.Entity.csproj", "lib/src/entity/"]
+COPY ["lib/src/standard/Proton.Common.Standard.csproj", "lib/src/standard/"]
+COPY ["src/Common/Standard/Trace.Common.Standard.csproj", "src/Common/Standard/"]
+COPY ["src/Common/Infrastructure/Trace.Common.Infrastructure.csproj", "src/Common/Infrastructure/"]
+COPY ["src/Common/Service/Trace.Common.Service.csproj", "src/Common/Service/"]
+RUN dotnet restore "src/Service/Stream/Trace.Service.Stream.csproj"
 COPY . .
-WORKDIR "/src/src/Service/Track"
+WORKDIR "/src/src/Service/Stream"
 RUN dotnet build "Trace.Service.Stream.csproj" -c Release -o /app/build
 
 FROM build AS publish

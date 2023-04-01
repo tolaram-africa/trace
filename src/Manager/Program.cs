@@ -1,6 +1,6 @@
 using Trace.Common.Infrastructure;
 using Trace.Common.Infrastructure.Extensions;
-using Trace.Service.Manage;
+using Trace.Manager;
 
 var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
 builder.Services.AddControllersWithViews();

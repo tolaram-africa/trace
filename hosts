@@ -22,7 +22,8 @@
 127.0.0.1 service-integration
 127.0.0.1 service-track
 127.0.0.1 service-route
-127.0.0.1 service-manager
+127.0.0.1 manager-app
+127.0.0.1 client-app
 
 ## service dependencies
 127.0.0.1 database_operation

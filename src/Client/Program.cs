@@ -3,7 +3,8 @@ using Trace.Common.Infrastructure.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 builder.RegisterSharedArchitecture();
 builder.Services.AddControllersWithViews();
-// builder.Services.AddReverseProxy();
+builder.Services.AddReverseProxy()
+.LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
 var app = builder.Build();
 
@@ -13,7 +14,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-// app.MapReverseProxy();
+app.MapReverseProxy();
 app.MapFallbackToFile("index.html");
 
 app.Run();
