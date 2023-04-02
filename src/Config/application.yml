@@ -77,3 +77,10 @@ Minio:
   Endpoint: minio:8080
   AccessKey: xxx-xxx-xxx
   SecretKey: xxx-xxx-xxx
+ReverseProxy:
+  Routes:
+  Clusters:
+    gateway:
+      Destinations:
+        main:
+          Address: http://localhost:4570

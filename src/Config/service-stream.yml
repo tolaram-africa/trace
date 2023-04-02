@@ -2,22 +2,6 @@ consul:
   discovery:
     register: true
     healthCheckPath: '/health'
-Logging:
-  LogLevel:
-    Default: Information
-    Microsoft.AspNetCore: Warning
-    Steeltoe: Debug
-    Hangfire: Information
-AllowedHosts: '*'
-Kestrel:
-  Certificates:
-    Default:
-      Path: localhost.pfx
-      Password: ''
-hangfire:
-  endpoint: '/schedule'
-  username: trace
-  password: trace
 Mqtt:
   Port: 1883
   BacklogCount: 100

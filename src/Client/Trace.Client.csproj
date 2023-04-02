@@ -6,23 +6,22 @@
     <Nullable>enable</Nullable>
     <NoWarn>AD0001</NoWarn>
     <LangVersion>preview</LangVersion>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <!-- client configuration  -->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <SpaRoot>..\..\client\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <SpaProxyServerUrl>http://localhost:4582</SpaProxyServerUrl>
-    <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <SpaClientUrl>http://localhost:4582</SpaClientUrl>
+    <SpaLaunchCommand>npm run dev</SpaLaunchCommand>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.0-preview.2.23153.2">
-      <!-- The SPA Proxy is only used at development time -->
+    <PackageReference Include="AspNetCore.SpaYarp" Version="1.1.0">
       <Publish>false</Publish>
     </PackageReference>
+    <PackageReference Include="AutoCrudAdmin" Version="1.1.19" />
     <PackageReference Include="Yarp.ReverseProxy" Version="2.0.0" />
   </ItemGroup>
 
