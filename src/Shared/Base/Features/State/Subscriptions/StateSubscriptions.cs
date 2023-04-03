@@ -1,8 +1,8 @@
 using HotChocolate;
 using HotChocolate.Types;
-using Trace.Common.Infrastructure.GraphqlRoot;
+using Trace.Shared.Base.GraphqlRoot;
 
-namespace Trace.Service.Identity.Features.State.Subscriptions;
+namespace Trace.Shared.Base.Features.State.Subscriptions;
 
 [ExtendObjectType(typeof(SubscriptionRoot))]
 public class StateSubscriptions {

@@ -12,10 +12,12 @@ public static class Nodes {
     };
 
     // Services
+    public const string Gateway = "gateway";
+    public const string Client = "client";
     public const string Identity = "identity";
     public const string Integration = "integration";
     public const string Operation = "operation";
     public const string Route = "route";
     public const string Stream = "stream";
-    public const string Manage = "manage";
+    public const string Manager = "manager";
 }

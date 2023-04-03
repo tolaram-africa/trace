@@ -1,7 +1,7 @@
 using HotChocolate.Types;
-using Trace.Common.Infrastructure.GraphqlRoot;
+using Trace.Shared.Base.GraphqlRoot;
 
-namespace Trace.Service.Identity.Features.State.Mutations;
+namespace Trace.Shared.Base.Features.State.Mutations;
 
 [ExtendObjectType(typeof(MutationRoot))]
 public class StateMutations {

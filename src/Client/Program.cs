@@ -1,27 +1,19 @@
-using Trace.Common.Infrastructure.Extensions;
+using Trace.Common.Infrastructure;
+using Trace.Common.Standard;
+
+var option = new NodeOption {
+    Group = Nodes.GroupName,
+    Name = Nodes.Client,
+    Service = false,
+    Graphql = false,
+    Proxy = true,
+    Scheduler = false
+};
 
 var builder = WebApplication.CreateBuilder(args);
-builder.RegisterSharedArchitecture();
-
-builder.Services.AddControllersWithViews();
-if (builder.Environment.IsDevelopment())
-    builder.Services.AddSpaYarp();
-builder.Services.AddReverseProxy()
-.LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+builder.AddInfrastructure<Program>(option);
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-    app.UseHsts();
-else
-    app.UseSpaYarp();
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
-
-app.MapReverseProxy();
-app.MapFallbackToFile("index.html");
+app.RegisterInfrastructure(option);
 
 app.Run();

@@ -1,4 +1,4 @@
-namespace Trace.Common.Infrastructure.GraphqlRoot;
+namespace Trace.Shared.Base.GraphqlRoot;
 
 /// <summary>
 /// This entity acts as our root node, from here we hang each of subscriptions off it via annotations

@@ -1,29 +1,21 @@
-using HotChocolate;
 using Trace.Common.Infrastructure;
-using Trace.Common.Infrastructure.Extensions;
-using Trace.Service.Route;
+using Trace.Common.Service;
+using Trace.Common.Standard;
 
-var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
+var option = new NodeOption {
+    Group = Nodes.GroupName,
+    Name = Nodes.Route,
+    Service = true,
+    Graphql = true,
+    Spatial = true,
+    Scheduler = true
+};
 
-builder.Services
-.AddAuthorization()
-.RegisterHangfire(Nodes.Route)
-.RegisterSharedDataConnector();
-
-builder.Services
-.AddGraphQLServer()
-.AddGraphqlDefaults(Nodes.Route)
-.AddQueryType<Query>()
-.AddSpatialTypes()
-.AddSpatialFiltering()
-.AddSpatialProjections()
-.AddQueryableCursorPagingProvider()
-.RegisterObjectExtensions(typeof(Program).Assembly);
-
+var builder = WebApplication.CreateBuilder(args);
+builder.AddInfrastructure<Program>(option);
+builder.Services.RegisterService();
 
 var app = builder.Build();
-app.MapGet("/", () => "Service.Route");
-app.UseSharedEndpoint();
-app.UseHangfireDashboard(Nodes.Stream);
+app.RegisterInfrastructure(option);
 
 app.Run();

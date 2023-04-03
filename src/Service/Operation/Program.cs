@@ -1,24 +1,20 @@
 using Trace.Common.Infrastructure;
-using Trace.Common.Infrastructure.Extensions;
-using Trace.Service.Operation;
+using Trace.Common.Service;
+using Trace.Common.Standard;
 
-var builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
+var option = new NodeOption {
+    Group = Nodes.GroupName,
+    Name = Nodes.Operation,
+    Service = true,
+    Graphql = true,
+    Scheduler = true
+};
 
-builder.Services
-.AddAuthorization()
-.RegisterHangfire(Nodes.Operation)
-.RegisterSharedDataConnector();
-
-builder.Services
-.AddGraphQLServer()
-.AddGraphqlDefaults(Nodes.Operation)
-.AddQueryType<Query>()
-.AddQueryableCursorPagingProvider()
-.RegisterObjectExtensions(typeof(Program).Assembly);
+var builder = WebApplication.CreateBuilder(args);
+builder.AddInfrastructure<Program>(option);
+builder.Services.RegisterService();
 
 var app = builder.Build();
-app.MapGet("/", () => "Service.Operation");
-app.UseSharedEndpoint();
-app.UseHangfireDashboard(Nodes.Stream);
+app.RegisterInfrastructure(option);
 
 app.Run();
