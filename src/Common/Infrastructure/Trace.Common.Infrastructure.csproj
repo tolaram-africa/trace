@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.SpaYarp" Version="1.1.0">
+      <Publish>false</Publish>
+    </PackageReference>
     <PackageReference Include="CassandraCSharpDriver" Version="3.19.1" />
     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.0-rc2" />
     <PackageReference Include="Hangfire.Dashboard.Basic.Authentication" Version="5.0.0" />
@@ -29,6 +32,7 @@
     <PackageReference Include="HotChocolate.Subscriptions.Redis" Version="14.0.0-preview.9" />
     <PackageReference Include="HotChocolate.Types" Version="14.0.0-preview.9" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="8.0.0-preview.2.23153.2" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0-preview.2.23153.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.0-preview.2.23153.2" />
     <PackageReference Include="Minio" Version="4.0.7" />
     <PackageReference Include="MQTTnet.AspNetCore" Version="4.1.4.563" />
@@ -44,9 +48,13 @@
     <PackageReference Include="Steeltoe.Management.TracingCore" Version="3.2.3" />
     <PackageReference Include="Steeltoe.Messaging.RabbitMQ" Version="3.2.3" />
     <PackageReference Include="Steeltoe.Security.DataProtection.RedisCore" Version="3.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="6.5.0" />
+    <PackageReference Include="Yarp.ReverseProxy" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Base\Trace.Shared.Base.csproj" />
     <ProjectReference Include="..\Domain\Trace.Common.Domain.csproj" />
   </ItemGroup>
 

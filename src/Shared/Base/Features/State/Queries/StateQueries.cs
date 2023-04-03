@@ -1,7 +1,7 @@
 using HotChocolate.Types;
-using Trace.Common.Infrastructure.GraphqlRoot;
+using Trace.Shared.Base.GraphqlRoot;
 
-namespace Trace.Service.Identity.Features.State.Queries;
+namespace Trace.Shared.Base.Features.State.Queries;
 
 [ExtendObjectType(typeof(QueryRoot))]
 public class StateQueries {

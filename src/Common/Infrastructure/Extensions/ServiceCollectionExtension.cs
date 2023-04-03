@@ -1,8 +1,11 @@
+using HotChocolate.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
 using Steeltoe.Bootstrap.Autoconfig;
 using Steeltoe.Common.Http.Discovery;
@@ -23,7 +26,7 @@ public static class ServiceCollectionExtension {
             services.AddTransient<DiscoveryHttpMessageHandler>();
             services.AddHttpClient(schema.Key, c => {
                 ArgumentNullException.ThrowIfNull(schema.Value, "GraphqlEndpoint");
-                c.BaseAddress = new Uri(schema.Value, "/graphql");
+                c.BaseAddress = new Uri(schema.Value, string.Empty);
             })
             .AddHttpMessageHandler<DiscoveryHttpMessageHandler>();
         }
@@ -45,12 +48,13 @@ public static class ServiceCollectionExtension {
             options.Configuration = sp.GetRequiredService<ConnectionMultiplexer>().Configuration;
             options.InstanceName = "";
         });
-
+        services.AddHttpContextAccessor();
         services.AddSession(o => {
             o.Cookie.Name = Nodes.GroupName;
             o.Cookie.SameSite = SameSiteMode.None;
             o.IdleTimeout = TimeSpan.FromMinutes(10);
-            o.Cookie.HttpOnly = true;
+            o.Cookie.HttpOnly = false;
+            o.Cookie.IsEssential = true;
         });
 
     }
@@ -67,23 +71,15 @@ public static class ServiceCollectionExtension {
         builder.AddSteeltoe();
         builder.Services.AddDiscoveryClient(builder.Configuration);
         builder.Services.AddRedisConnectionMultiplexer(builder.Configuration);
-
         builder.Services.RegisterDistributedCache();
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
         builder.Services.AddDistributedTracingAspNetCore();
         builder.Services.AddAllActuators();
         builder.Services.AddSpringBootAdminClient();
+        builder.Services.Configure<FormOptions>(options => {
+            options.MultipartBodyLengthLimit = 268435456;
+        });
 
         return builder;
-    }
-
-    public static WebApplication UseSharedEndpoint(this WebApplication app) {
-        app.UseRouting();
-        app.UseAuthorization();
-        app.UseWebSockets();
-        app.MapGraphQL();
-        app.MapGraphQLWebSocket();
-
-        return app;
     }
 }

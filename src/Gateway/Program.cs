@@ -1,39 +1,21 @@
-using HotChocolate.Types.Spatial;
-using StackExchange.Redis;
 using Trace.Common.Infrastructure;
-using Trace.Common.Infrastructure.Extensions;
+using Trace.Common.Service;
+using Trace.Common.Standard;
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args).RegisterSharedArchitecture();
+var option = new NodeOption {
+    Group = Nodes.GroupName,
+    Name = Nodes.Gateway,
+    Graphql = true,
+    Gateway = true,
+    Scheduler = false,
+    Service = false
+};
 
-var endpoints = Nodes.All.ToDictionary(schema => schema,
-    schema => new Uri($"http://service-{schema}")
-    );
+var builder = WebApplication.CreateBuilder(args);
+builder.AddInfrastructure<Program>(option);
+builder.Services.RegisterService();
 
-builder.Services
-.AddAuthorization()
-.RegisterSchemaHttpClients(endpoints);
-
-builder.Services
-.AddGraphQLServer()
-.AddRemoteSchemasFromRedis(Nodes.GroupName, sp => sp.GetRequiredService<ConnectionMultiplexer>())
-.AddType<GeoJsonPositionType>()
-.AddType<GeoJsonCoordinatesType>();
-
-// Set Spatial type for route service
-builder.Services
-.AddGraphQL(Nodes.Route)
-.AddType<GeoJsonPositionType>()
-.AddType<GeoJsonCoordinatesType>();
-
-// Set Spatial type for stream service
-builder.Services
-.AddGraphQL(Nodes.Stream)
-.AddType<GeoJsonPositionType>()
-.AddType<GeoJsonCoordinatesType>();
-
-WebApplication app = builder.Build();
-
-app.MapGet("/", () => "Trace.Gateway");
-app.UseSharedEndpoint();
+var app = builder.Build();
+app.RegisterInfrastructure(option);
 
 app.Run();
