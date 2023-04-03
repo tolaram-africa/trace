@@ -44,27 +44,35 @@ interface or mobile app. A few of them are:
 - [ ] Dashboard
 - [ ] Document
 - [ ] Driver
+- [ ] Driver Group
 - [ ] Employee
 - [ ] Event
+- [ ] Expense
 - [ ] Form
 - [ ] Insurance
 - [ ] Invoice
 - [ ] Location
 - [ ] Maintenance
 - [ ] Order
-- [ ] Payments
-- [ ] Products
+- [ ] Payment
+- [ ] Product
 - [ ] Route
 - [ ] Schedule
 - [ ] Shipment
 - [ ] Shortage
 - [ ] Stock
+- [ ] Stock Store
 - [ ] Suppliers
 - [ ] Support
 - [ ] Tags
 - [ ] Tasks
 - [ ] Templates
+- [ ] Tenant
+- [ ] Trailer
+- [ ] Trip Pass
+- [ ] Vehicle
 - [ ] Warehouse
+- [ ] Waybill
 
 
 ## Support
