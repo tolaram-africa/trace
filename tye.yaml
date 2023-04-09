@@ -178,14 +178,8 @@ services:
       - service
     build: true
     project: src/Manager/Trace.Manager.csproj
-    env:
-      - name: ASPNETCORE_HOSTINGSTARTUPASSEMBLIES
-        value: Microsoft.AspNetCore.SpaProxy
   - name: client
     tags:
       - service
     build: true
     project: src/Client/Trace.Client.csproj
-    env:
-      - name: ASPNETCORE_HOSTINGSTARTUPASSEMBLIES
-        value: Microsoft.AspNetCore.SpaProxy
