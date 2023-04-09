@@ -37,16 +37,12 @@
       
   trace.manager:
     image: trace.manager
-    environment:
-      ASPNETCORE_HOSTINGSTARTUPASSEMBLIES: Microsoft.AspNetCore.SpaProxy
     build:
       context: .
       dockerfile: src/Manager/Dockerfile
     
   trace.client:
     image: trace.client
-    environment:
-      ASPNETCORE_HOSTINGSTARTUPASSEMBLIES: Microsoft.AspNetCore.SpaProxy
     build:
       context: .
       dockerfile: src/Client/Dockerfile
