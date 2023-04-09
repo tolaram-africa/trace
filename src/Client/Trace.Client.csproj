@@ -16,14 +16,6 @@
     <SpaClientUrl>http://localhost:4582</SpaClientUrl>
     <SpaLaunchCommand>npm run dev</SpaLaunchCommand>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="AspNetCore.SpaYarp" Version="1.1.0">
-      <Publish>false</Publish>
-    </PackageReference>
-    <PackageReference Include="AutoCrudAdmin" Version="1.1.19" />
-    <PackageReference Include="Yarp.ReverseProxy" Version="2.0.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
