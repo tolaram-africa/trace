@@ -70,6 +70,7 @@ public static class DependencyInjection {
 
         builder.Services.RegisterSchemaHttpClients(endpoints);
         instance.AddRemoteSchemasFromRedis(Nodes.GroupName, sp => sp.GetRequiredService<ConnectionMultiplexer>())
+        .AddHttpRequestInterceptor<RequestInterceptor>()
         .AddType<GeoJsonPositionType>()
         .AddType<GeoJsonCoordinatesType>(); 
         
@@ -91,6 +92,7 @@ public static class DependencyInjection {
     public static WebApplication RegisterInfrastructure(this WebApplication app, NodeOption option) {
         app.UseRouting();
         app.UseAuthorization();
+        app.UseSession();
         app.UseWebSockets();
         app.MapControllers();
         app.MapControllerRoute(
