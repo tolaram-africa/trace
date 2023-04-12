@@ -38,7 +38,7 @@
     "@trace/website": "workspace:*"
   },
   "devDependencies": {
-    "pnpm": "^7.18.2",
+    "pnpm": "^8.2.0",
     "rimraf": "^3.0.2"
   },
   "engines": {

@@ -1,26 +1,23 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0-preview-alpine AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM node:18-alpine AS node
 
-# Install Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
-    && apt-get install -y \
-        nodejs \
-    && curl -fsSL https://get.pnpm.io/install.sh | sh - \
-    && rm -rf /var/lib/apt/lists/*
+FROM mcr.microsoft.com/dotnet/sdk:8.0-preview-alpine AS build
+
+# Import Node.js binaries
+COPY --from=node /usr/lib /usr/lib
+COPY --from=node /usr/local/share /usr/local/share
+COPY --from=node /usr/local/lib /usr/local/lib
+COPY --from=node /usr/local/include /usr/local/include
+COPY --from=node /usr/local/bin /usr/local/bin
+RUN npm i -g pnpm npm @quasar/cli
 
 WORKDIR /src
-COPY ["src/Client/Trace.Client.csproj", "src/Client/"]
-COPY ["src/Common/Infrastructure/Trace.Common.Infrastructure.csproj", "src/Common/Infrastructure/"]
-COPY ["src/Common/Domain/Trace.Common.Domain.csproj", "src/Common/Domain/"]
-COPY ["lib/src/entity/Proton.Common.Entity.csproj", "lib/src/entity/"]
-COPY ["lib/src/standard/Proton.Common.Standard.csproj", "lib/src/standard/"]
-COPY ["src/Common/Standard/Trace.Common.Standard.csproj", "src/Common/Standard/"]
-RUN dotnet restore "src/Client/Trace.Client.csproj"
 COPY . .
+RUN dotnet restore "src/Client/Trace.Client.csproj"
 WORKDIR "/src/src/Client"
 RUN dotnet build "Trace.Client.csproj" -c Release -o /app/build
 

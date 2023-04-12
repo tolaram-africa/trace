@@ -66,10 +66,10 @@ module.exports = configure(function (/* ctx */) {
       // viteVuePluginOptions: {},
 
       vitePlugins: [
-        ['@intlify/vite-plugin-vue-i18n', {
-          // compositionOnly: false,
-          include: path.resolve(__dirname, './src/i18n/**')
-        }],
+        [require('@intlify/unplugin-vue-i18n').default, {
+            include: path.resolve(__dirname, './src/i18n/**'),
+          },
+        ],
         svgLoader(),
         Components({
           dts: true,
@@ -88,38 +88,38 @@ module.exports = configure(function (/* ctx */) {
       open: false,
       port: config.PORT,
       proxy: {
-        '/graphql': {
-          target: config.SERVER_API_ROOT,
-          rewrite: (pathValue) => pathValue.replace(/^\/graphql\//, ''),
-          changeOrigin: true,
-          headers: {
-            'Accept': '*/*',
-          }
-        },
-        '/service/storage': {
-          target: config.SERVER_API_STORAGE,
-          rewrite: (pathValue) => pathValue.replace(/^\/service\/storage\//, ''),
-          changeOrigin: true,
-          headers: {
-            'Accept': '*/*',
-          }
-        },
-        '/service/routing': {
-          target: config.SERVER_API_ROUTING,
-          rewrite: (pathValue) => pathValue.replace(/^\/service\/routing\//, ''),
-          changeOrigin: true,
-          headers: {
-            'Accept': '*/*',
-          }
-        },
-        '/service/geocoding': {
-          target: config.SERVER_API_GEOCODING,
-          rewrite: (pathValue) => pathValue.replace(/^\/service\/geocoding\//, ''),
-          changeOrigin: true,
-          headers: {
-            'Accept': '*/*',
-          }
-        },
+        // '/graphql': {
+        //   target: config.SERVER_API_ROOT,
+        //   rewrite: (pathValue) => pathValue.replace(/^\/graphql\//, ''),
+        //   changeOrigin: true,
+        //   headers: {
+        //     'Accept': '*/*',
+        //   }
+        // },
+        // '/service/storage': {
+        //   target: config.SERVER_API_STORAGE,
+        //   rewrite: (pathValue) => pathValue.replace(/^\/service\/storage\//, ''),
+        //   changeOrigin: true,
+        //   headers: {
+        //     'Accept': '*/*',
+        //   }
+        // },
+        // '/service/routing': {
+        //   target: config.SERVER_API_ROUTING,
+        //   rewrite: (pathValue) => pathValue.replace(/^\/service\/routing\//, ''),
+        //   changeOrigin: true,
+        //   headers: {
+        //     'Accept': '*/*',
+        //   }
+        // },
+        // '/service/geocoding': {
+        //   target: config.SERVER_API_GEOCODING,
+        //   rewrite: (pathValue) => pathValue.replace(/^\/service\/geocoding\//, ''),
+        //   changeOrigin: true,
+        //   headers: {
+        //     'Accept': '*/*',
+        //   }
+        // },
       }
     },
 
@@ -214,7 +214,7 @@ module.exports = configure(function (/* ctx */) {
       // extendBexManifestJson (json) {}
     },
     bin: {
-      linuxAndroidStudio: '/home/leanny/JetBrains/studio'
+      linuxAndroidStudio: config.ANDROID_STUDIO_PATH
     }
   }
 });
