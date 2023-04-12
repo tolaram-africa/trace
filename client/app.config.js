@@ -9,6 +9,7 @@ if (env.MODE === undefined) {
 
 module.exports = {
   NODE_ENV: env.NODE_ENV,
+  ANDROID_STUDIO_PATH: env.ANDROID_STUDIO_PATH || '/usr/local/android-studio/bin/studio.sh',
   API_SECRET: env.API_SECRET || 'secret',
   PORT: env.PORT || 4582,
   APP_VARIANT: env.APP_VARIANT,

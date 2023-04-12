@@ -16,13 +16,14 @@
   "homepage": "https://trace.ng",
   "scripts": {
     "setup": "pnpm install",
-    "dev": "pnpm rimraf ./dist && pnpm quasar dev",
+    "clean": "pnpm rimraf ./quasar",
+    "dev": "pnpm clean && pnpm quasar dev",
     "dev:sass": "APP_VARIANT=default pnpm dev",
     "dev:manager": "APP_VARIANT=manager PORT=4581 pnpm dev",
     "dev:android": "pnpm dev -m capacitor -T android",
     "dev:pwa": "pnpm dev -m pwa",
     "dev:ssr": "pnpm dev -m ssr",
-    "build": "pnpm quasar build",
+    "build": "pnpm clean && pnpm quasar build",
     "build:manager": "APP_VARIANT=manager pnpm build",
     "build:android": "pnpm build -m capacitor -T android",
     "build:pwa": "pnpm build -m pwa",
@@ -36,7 +37,7 @@
     "@geoman-io/leaflet-geoman-free": "^2.13.1",
     "@googlemaps/js-api-loader": "^1.15.1",
     "@mapbox/polyline": "^1.1.1",
-    "@quasar/extras": "^1.15.8",
+    "@quasar/extras": "^1.16.2",
     "@quasar/quasar-ui-qoverlay": "^2.0.1",
     "@turf/center-of-mass": "^6.5.0",
     "@turf/turf": "^6.5.0",
@@ -63,13 +64,13 @@
     "pinia": "^2.0.28",
     "pinia-plugin-persistedstate": "^3.0.1",
     "quasar": "^2.11.1",
-    "vue": "^3.0.0",
+    "vue": "^3.2.25",
     "vue-echarts": "^6.3.2",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@intlify/vite-plugin-vue-i18n": "^6.0.3",
+    "@intlify/unplugin-vue-i18n": "^0.10.0",
     "@quasar/app-vite": "^1.1.3",
     "@quasar/icongenie": "^2.5.4",
     "@types/leaflet": "^1.9.0",
@@ -87,6 +88,7 @@
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
+    "pnpm": "^8.2.0",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.5.4",
@@ -101,6 +103,10 @@
     "workbox-precaching": "^6.5.4",
     "workbox-routing": "^6.5.4",
     "workbox-strategies": "^6.5.4"
+  },
+  "resolutions": {
+    "vite": "^4.0.0",
+    "@vitejs/plugin-vue": "^4.0.0"
   },
   "engines": {
     "node": "^18 || ^16 || ^14",
