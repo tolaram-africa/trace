@@ -19,15 +19,17 @@
         <Nullable>enable</Nullable>
         <NoWarn>AD0001</NoWarn>
         <LangVersion>preview</LangVersion>
-        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <UseArtifactsOutput>true</UseArtifactsOutput>
     </PropertyGroup>
 
     <PropertyGroup>
-        <AspCoreVersion>8.0.0-preview.2.23153.2</AspCoreVersion>
-        <DotnetVersion>8.0.0-preview.2.23128.3</DotnetVersion>
+        <AspCoreVersion>8.0.0-preview.3.23177.8</AspCoreVersion>
+        <DotnetVersion>8.0.0-preview.3.23174.8</DotnetVersion>
+        <NpgsqlVersion>8.0.0-preview.2</NpgsqlVersion>
+        <SwashbuckleVersion>6.5.0</SwashbuckleVersion>
         <SteeltoeVersion>3.2.3</SteeltoeVersion>
-        <HotChocolateVersion>14.0.0-preview.9</HotChocolateVersion>
-        <CassandraVersion>3.19.1</CassandraVersion>
+        <HotChocolateVersion>14.0.0-preview.10.7</HotChocolateVersion>
+        <CassandraVersion>3.19.2</CassandraVersion>
         <MinioVersion>4.0.7</MinioVersion>
         <MQTTnetVersion>4.1.4.563</MQTTnetVersion>
     </PropertyGroup>
