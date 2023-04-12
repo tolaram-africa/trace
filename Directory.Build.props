@@ -1,37 +1,38 @@
 <Project>
-    <PropertyGroup>
-        <Title>Trace</Title>
-        <Version>0.1</Version>
-        <Authors>radioActive DROID</Authors>
-        <Description>An end to end logistic platform</Description>
-        <RepositoryType>git</RepositoryType>
-        <PackageTags>SASS, Logistics, Tracking</PackageTags>
-        <RepositoryUrl>https://github.com/gpproton/trace</RepositoryUrl>
-        <PackageProjectUrl>https://github.com/gpproton/trace</PackageProjectUrl>
-        <LicenseFile>$(MSBuildThisFileDirectory)LICENSE</LicenseFile>
-        <PackageLicenseExpression>RPL-1.5</PackageLicenseExpression>
-        <Copyright>© Trace Contributors. All rights reserved.</Copyright>
-    </PropertyGroup>
+  <PropertyGroup>
+    <Title>Trace</Title>
+    <Version>0.1</Version>
+    <Authors>radioActive DROID</Authors>
+    <Description>An end to end logistic platform</Description>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>SASS, Logistics, Tracking</PackageTags>
+    <RepositoryUrl>https://github.com/gpproton/trace</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/gpproton/trace</PackageProjectUrl>
+    <LicenseFile>$(MSBuildThisFileDirectory)LICENSE</LicenseFile>
+    <PackageLicenseExpression>RPL-1.5</PackageLicenseExpression>
+    <Copyright>© Trace Contributors. All rights reserved.</Copyright>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <NoWarn>AD0001</NoWarn>
-        <LangVersion>preview</LangVersion>
-        <UseArtifactsOutput>true</UseArtifactsOutput>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NoWarn>AD0001</NoWarn>
+    <LangVersion>preview</LangVersion>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <AspCoreVersion>8.0.0-preview.3.23177.8</AspCoreVersion>
-        <DotnetVersion>8.0.0-preview.3.23174.8</DotnetVersion>
-        <NpgsqlVersion>8.0.0-preview.2</NpgsqlVersion>
-        <SwashbuckleVersion>6.5.0</SwashbuckleVersion>
-        <SteeltoeVersion>3.2.3</SteeltoeVersion>
-        <HotChocolateVersion>14.0.0-preview.10.7</HotChocolateVersion>
-        <CassandraVersion>3.19.2</CassandraVersion>
-        <MinioVersion>4.0.7</MinioVersion>
-        <MQTTnetVersion>4.1.4.563</MQTTnetVersion>
-    </PropertyGroup>
+  <PropertyGroup>
+    <AspCoreVersion>8.0.0-preview.3.23177.8</AspCoreVersion>
+    <DotnetVersion>8.0.0-preview.3.23174.8</DotnetVersion>
+    <EfcoreVersion>8.0.0-preview.3.23174.2</EfcoreVersion>
+    <NpgsqlVersion>8.0.0-preview.2</NpgsqlVersion>
+    <SwashbuckleVersion>6.5.0</SwashbuckleVersion>
+    <SteeltoeVersion>3.2.3</SteeltoeVersion>
+    <HotChocolateVersion>14.0.0-preview.10.7</HotChocolateVersion>
+    <CassandraVersion>3.19.2</CassandraVersion>
+    <MinioVersion>4.0.7</MinioVersion>
+    <MQTTnetVersion>4.1.4.563</MQTTnetVersion>
+  </PropertyGroup>
 
 </Project>

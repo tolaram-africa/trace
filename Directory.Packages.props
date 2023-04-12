@@ -1,55 +1,55 @@
 <Project>
-    <PropertyGroup>
-        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    </PropertyGroup>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageVersion Include="Ardalis.Result" Version="7.0.0" />
-        <PackageVersion Include="AspNetCore.SpaYarp" Version="1.1.0" />
-        <PackageVersion Include="CassandraCSharpDriver" Version="$(CassandraVersion)" />
-        <PackageVersion Include="EFCore.NamingConventions" Version="7.0.2" />
-        <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
-        <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.0-rc3" />
-        <PackageVersion Include="Hangfire.Dashboard.Basic.Authentication" Version="5.0.0" />
-        <PackageVersion Include="Hangfire.Redis.StackExchange" Version="1.9.1-beta" />
-        <PackageVersion Include="HotChocolate.Data" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="HotChocolate.Data.EntityFramework" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="HotChocolate.Data.Spatial" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="HotChocolate.Diagnostics" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="HotChocolate.PersistedQueries.InMemory" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="HotChocolate.PersistedQueries.Redis" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="HotChocolate.Stitching" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="HotChocolate.Stitching.Redis" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="HotChocolate.Subscriptions.Redis" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="HotChocolate.Types" Version="$(HotChocolateVersion)" />
-        <PackageVersion Include="MediatR" Version="12.0.1" />
-        <PackageVersion Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="$(AspCoreVersion)" />
-        <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(AspCoreVersion)" />
-        <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0-preview.3.23174.2" />
-        <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="$(AspCoreVersion)" />
-        <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="$(DotnetVersion)" />
-        <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="$(DotnetVersion)" />
-        <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(DotnetVersion)" />
-        <PackageVersion Include="Minio" Version="$(MinioVersion)" />
-        <PackageVersion Include="MQTTnet.AspNetCore" Version="$(MQTTnetVersion)" />
-        <PackageVersion Include="NetTopologySuite" Version="2.5.0" />
-        <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(NpgsqlVersion)" />
-        <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" Version="$(NpgsqlVersion)" />
-        <PackageVersion Include="Riok.Mapperly" Version="2.7.0" />
-        <PackageVersion Include="Steeltoe.Bootstrap.Autoconfig" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Connector.ConnectorCore" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Discovery.ClientCore" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Discovery.Consul" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Connector.EFCore" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Extensions.Logging.DynamicSerilogCore" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Management.TaskCore" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Management.TracingCore" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Messaging.RabbitMQ" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Steeltoe.Security.DataProtection.RedisCore" Version="$(SteeltoeVersion)" />
-        <PackageVersion Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleVersion)" />
-        <PackageVersion Include="Swashbuckle.AspNetCore.ReDoc" Version="$(SwashbuckleVersion)" />
-        <PackageVersion Include="Yarp.ReverseProxy" Version="2.0.0" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageVersion Include="Ardalis.Result" Version="7.0.0" />
+    <PackageVersion Include="AspNetCore.SpaYarp" Version="1.1.0" />
+    <PackageVersion Include="CassandraCSharpDriver" Version="$(CassandraVersion)" />
+    <PackageVersion Include="EFCore.NamingConventions" Version="7.0.2" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
+    <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.0-rc3" />
+    <PackageVersion Include="Hangfire.Dashboard.Basic.Authentication" Version="5.0.0" />
+    <PackageVersion Include="Hangfire.Redis.StackExchange" Version="1.9.1-beta" />
+    <PackageVersion Include="HotChocolate.Data" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Data.EntityFramework" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Data.Spatial" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Diagnostics" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.PersistedQueries.InMemory" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.PersistedQueries.Redis" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Stitching" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Stitching.Redis" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Subscriptions.Redis" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="HotChocolate.Types" Version="$(HotChocolateVersion)" />
+    <PackageVersion Include="MediatR" Version="12.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="$(AspCoreVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(AspCoreVersion)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="$(EfcoreVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="$(AspCoreVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="$(DotnetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="$(DotnetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(DotnetVersion)" />
+    <PackageVersion Include="Minio" Version="$(MinioVersion)" />
+    <PackageVersion Include="MQTTnet.AspNetCore" Version="$(MQTTnetVersion)" />
+    <PackageVersion Include="NetTopologySuite" Version="2.5.0" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(NpgsqlVersion)" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" Version="$(NpgsqlVersion)" />
+    <PackageVersion Include="Riok.Mapperly" Version="2.7.0" />
+    <PackageVersion Include="Steeltoe.Bootstrap.Autoconfig" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Connector.ConnectorCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Discovery.ClientCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Discovery.Consul" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Connector.EFCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Extensions.Logging.DynamicSerilogCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Management.TaskCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Management.TracingCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Messaging.RabbitMQ" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Security.DataProtection.RedisCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleVersion)" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.ReDoc" Version="$(SwashbuckleVersion)" />
+    <PackageVersion Include="Yarp.ReverseProxy" Version="2.0.0" />
+  </ItemGroup>
 </Project>
