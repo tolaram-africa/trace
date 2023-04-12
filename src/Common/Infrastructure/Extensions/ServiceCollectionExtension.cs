@@ -1,11 +1,9 @@
-using HotChocolate.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
 using Steeltoe.Bootstrap.Autoconfig;
 using Steeltoe.Common.Http.Discovery;
@@ -37,7 +35,7 @@ public static class ServiceCollectionExtension {
     private static void RegisterDistributedCache(this IServiceCollection services) {
         var sp = services.BuildServiceProvider();
         var config = sp.GetService<IConfiguration>();
-
+        
         services.AddDistributedRedisCache(config);
         services
         .AddDataProtection()
@@ -50,10 +48,8 @@ public static class ServiceCollectionExtension {
         });
         services.AddHttpContextAccessor();
         services.AddSession(o => {
-            o.Cookie.Name = Nodes.GroupName;
-            o.Cookie.SameSite = SameSiteMode.None;
+            o.Cookie.Name = $"{Nodes.GroupName}.Session";
             o.IdleTimeout = TimeSpan.FromMinutes(10);
-            o.Cookie.HttpOnly = false;
             o.Cookie.IsEssential = true;
         });
 
@@ -73,8 +69,9 @@ public static class ServiceCollectionExtension {
         builder.Services.AddRedisConnectionMultiplexer(builder.Configuration);
         builder.Services.RegisterDistributedCache();
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
+        builder.Services.AddAllActuators(builder.Configuration);
+        builder.Services.ActivateActuatorEndpoints();
         builder.Services.AddDistributedTracingAspNetCore();
-        builder.Services.AddAllActuators();
         builder.Services.AddSpringBootAdminClient();
         builder.Services.Configure<FormOptions>(options => {
             options.MultipartBodyLengthLimit = 268435456;
