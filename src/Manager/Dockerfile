@@ -1,27 +1,23 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0-preview-alpine AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM node:18-alpine AS node
 
-# Install Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
-    && apt-get install -y \
-        nodejs \
-    && curl -fsSL https://get.pnpm.io/install.sh | sh - \
-    && rm -rf /var/lib/apt/lists/*
+FROM mcr.microsoft.com/dotnet/sdk:8.0-preview-alpine AS build
+
+# Import Node.js binaries
+COPY --from=node /usr/lib /usr/lib
+COPY --from=node /usr/local/share /usr/local/share
+COPY --from=node /usr/local/lib /usr/local/lib
+COPY --from=node /usr/local/include /usr/local/include
+COPY --from=node /usr/local/bin /usr/local/bin
+RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 WORKDIR /src
-COPY ["src/Manager/Trace.Manager.csproj", "src/Manager/"]
-COPY ["src/Common/Domain/Trace.Common.Domain.csproj", "src/Common/Domain/"]
-COPY ["lib/src/entity/Proton.Common.Entity.csproj", "lib/src/entity/"]
-COPY ["lib/src/standard/Proton.Common.Standard.csproj", "lib/src/standard/"]
-COPY ["src/Common/Standard/Trace.Common.Standard.csproj", "src/Common/Standard/"]
-COPY ["src/Common/Infrastructure/Trace.Common.Infrastructure.csproj", "src/Common/Infrastructure/"]
-COPY ["src/Common/Service/Trace.Common.Service.csproj", "src/Common/Service/"]
-RUN dotnet restore "src/Manager/Trace.Manager.csproj"
 COPY . .
+RUN dotnet restore "src/Manager/Trace.Manager.csproj"
 WORKDIR "/src/src/Manager"
 RUN dotnet build "Trace.Manager.csproj" -c Release -o /app/build
 

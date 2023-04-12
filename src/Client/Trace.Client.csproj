@@ -14,7 +14,7 @@
     <SpaRoot>..\..\client\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <SpaClientUrl>http://localhost:4582</SpaClientUrl>
-    <SpaLaunchCommand>npm run dev</SpaLaunchCommand>
+    <SpaLaunchCommand>npm run dev:pwa</SpaLaunchCommand>
   </PropertyGroup>
 
   <ItemGroup>
@@ -48,10 +48,10 @@
   <Target Name="PublishRunQuasar" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run setup" />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:pwa" />
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
-      <DistFiles Include="$(SpaRoot)dist\spa\**" />
+      <DistFiles Include="$(SpaRoot)dist\pwa\**" />
       <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>
           wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
