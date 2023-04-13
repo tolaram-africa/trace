@@ -1,4 +1,3 @@
-import paths from './paths';
 import {
   IModule,
   filterMobileMenu,
@@ -8,22 +7,58 @@ import {
 } from '@/libs/Menu';
 
 export const mainModules: Array<IModule> = [
-  paths.overview.root,
-  paths.task.root,
-  paths.track.root,
-  paths.billing.root,
-  paths.shortage.root,
-  paths.payment.root,
-  paths.driver.root,
-  paths.resource.root,
+  {
+    title: 'Overview',
+    name: 'vec.overview',
+    icon: 'bi-grid',
+    path: 'overview',
+  },
+  {
+    name: 'vec.task',
+    title: 'Task',
+    icon: 'bi-list-check',
+    path: 'task',
+  },
+  {
+    name: 'vec.track',
+    title: 'Track',
+    icon: 'bi-pin-map',
+    path: 'track',
+  },
+  {
+    title: 'Billing',
+    icon: 'bi-upc-scan',
+    name: 'vec.billing',
+    path: 'billing',
+  },
+  {
+    title: 'Shortage',
+    icon: 'bi-exclamation-square',
+    name: 'vec.shortage',
+    path: 'shortage',
+  },
+  {
+    title: 'Payments',
+    icon: 'bi-cash-stack',
+    name: 'vec.payment',
+    path: 'payment',
+  },
+  {
+    title: 'Drivers',
+    icon: 'bi-person-workspace',
+    name: 'vec.driver',
+    path: 'driver',
+  },
+  {
+    title: 'Resources',
+    icon: 'bi-hdd-stack',
+    name: 'vec.resource',
+    path: 'resource',
+  },
 ];
 
-const desktopFocusMenuItems = [paths.overview.root.name, paths.task.root.name];
-const mobileFocusMenuItems = [
-  paths.overview.root.name,
-  paths.task.root.name,
-  paths.track.root.name,
-];
+const desktopFocusMenuItems = ['vec.overview', 'vec.task'];
+const mobileFocusMenuItems = ['vec.overview', 'vec.task', 'vec.track'];
 
 export const overviewMenu: Array<IModule> = filterModule(
   mainModules,
@@ -51,9 +86,35 @@ export const appMobileMenuExtended: Array<IModule> = filterExtendedMenu(
 );
 
 export const quickNewItems: Array<IModuleCommands> = [
-  paths.task.taskCreate,
-  paths.billing.billingDocumentCreate,
-  paths.task.taskEventCreate,
-  paths.resource.resourceLocationCreate,
-  paths.resource.resourceRouteCreate,
+  {
+    name: 'vec.task.create',
+    title: 'Task',
+    icon: 'bi-check-circle',
+    command: 'T',
+  },
+  {
+    name: 'vec.billing.document.create',
+    title: 'Document',
+    icon: 'bi-file-earmark-text',
+    path: 'document-create',
+    command: 'D',
+  },
+  {
+    name: 'vec.task.event.create',
+    title: 'Event',
+    icon: 'bi-calendar2',
+    command: 'H',
+  },
+  {
+    name: 'vec.resource.location.create',
+    title: 'Location',
+    icon: 'bi-geo-alt',
+    command: 'L',
+  },
+  {
+    name: 'vec.resource.route.create',
+    title: 'Route',
+    icon: 'bi-compass',
+    command: 'R',
+  },
 ];

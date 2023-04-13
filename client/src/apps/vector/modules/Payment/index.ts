@@ -1,22 +1,20 @@
-import vectorPaths from '@/vector/paths';
-
 export default {
-  path: vectorPaths.payment.root.path,
+  path: 'payment',
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: vectorPaths.payment.root.name,
-      redirect: { name: vectorPaths.payment.summary.name },
+      name: 'vec.payment',
+      redirect: { name: 'vec.payment.summary' },
     },
     {
-      path: vectorPaths.payment.summary.path,
-      name: vectorPaths.payment.summary.name,
+      path: 'summary',
+      name: 'vec.payment.summary',
       component: () => import('./pages/SummaryPage.vue'),
     },
     {
-      path: vectorPaths.payment.history.path,
-      name: vectorPaths.payment.history.name,
+      path: 'history',
+      name: 'vec.payment.history',
       component: () => import('./pages/HistoryPage.vue'),
     },
   ],

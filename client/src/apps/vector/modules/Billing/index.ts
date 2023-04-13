@@ -1,55 +1,54 @@
-import vectorPaths from '@/vector/paths';
 import InvoiceModule from '@/vector/modules/Invoice';
 
 export default {
-  path: vectorPaths.billing.root.path,
+  path: 'billing',
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: vectorPaths.billing.root.name,
-      redirect: { name: vectorPaths.billing.summary.name },
+      name: 'vec.billing',
+      redirect: { name: 'vec.billing.summary' },
     },
     {
-      path: vectorPaths.billing.summary.path,
-      name: vectorPaths.billing.summary.name,
+      path: 'summary',
+      name: 'vec.billing.summary',
       component: () => import('./pages/SummaryPage.vue'),
     },
     {
-      path: vectorPaths.billing.order.path,
-      name: vectorPaths.billing.order.name,
+      path: 'order',
+      name: 'vec.billing.order',
       component: () => import('./pages/LayoutDefault.vue'),
-      redirect: { name: vectorPaths.billing.order.name + '.index' },
+      redirect: { name: 'vec.billing.order' + '.index' },
       children: [
         {
           path: '',
-          name: vectorPaths.billing.order.name + '.index',
+          name: 'vec.billing.order' + '.index',
           component: () => import('./pages/Order/IndexPage.vue'),
         },
       ],
     },
     {
-      path: vectorPaths.billing.override.path,
-      name: vectorPaths.billing.override.name,
+      path: 'ovverride',
+      name: 'vec.billing.override',
       component: () => import('./pages/LayoutDefault.vue'),
-      redirect: { name: vectorPaths.billing.override.name + '.index' },
+      redirect: { name: 'vec.billing.override' + '.index' },
       children: [
         {
           path: '',
-          name: vectorPaths.billing.override.name + '.index',
+          name: 'vec.billing.override' + '.index',
           component: () => import('./pages/Override/IndexPage.vue'),
         },
       ],
     },
     {
-      path: vectorPaths.billing.manifest.path,
-      name: vectorPaths.billing.manifest.name,
+      path: 'manifest',
+      name: 'vec.billing.manifest',
       component: () => import('./pages/LayoutDefault.vue'),
-      redirect: { name: vectorPaths.billing.manifest.name + '.index' },
+      redirect: { name: 'vec.billing.manifest' + '.index' },
       children: [
         {
           path: '',
-          name: vectorPaths.billing.manifest.name + '.index',
+          name: 'vec.billing.manifest' + '.index',
           component: () => import('./pages/Manifest/IndexPage.vue'),
         },
       ],

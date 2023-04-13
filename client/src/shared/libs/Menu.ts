@@ -1,7 +1,8 @@
 export interface IModule {
   name: string;
+  path?: string;
   title: string;
-  icon: string;
+  icon?: string;
   color?: string;
   class?: string;
 }

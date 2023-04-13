@@ -1,8 +1,19 @@
 <script setup lang="ts">
-import vectorMenus from '@/vector/paths';
-const moduleItems = [
-  vectorMenus.overview.dashboard,
-  vectorMenus.overview.trends,
+import { IModule } from '@/libs/Menu';
+
+const moduleItems: Array<IModule> = [
+  {
+    title: 'Overview',
+    name: 'vec.overview.dashboard',
+    icon: 'bi-grid',
+    path: 'dashboard',
+  },
+  {
+    title: 'Trends',
+    name: 'vec.overview.trends',
+    icon: 'bi-compass',
+    path: 'trends',
+  },
 ];
 </script>
 

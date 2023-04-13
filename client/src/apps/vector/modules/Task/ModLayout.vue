@@ -1,12 +1,31 @@
 <script setup lang="ts">
 import { IModule } from '@/libs/Menu';
-import vectorPaths from '@/vector/paths';
 
 const moduleItems: Array<IModule> = [
-  vectorPaths.task.activities,
-  vectorPaths.task.timeline,
-  vectorPaths.task.history,
-  vectorPaths.task.request,
+  {
+    name: 'vec.task.activities',
+    title: 'Activities',
+    icon: 'bi-list-check',
+    path: 'activities',
+  },
+  {
+    name: 'vec.task.timeline',
+    title: 'Timeline',
+    icon: 'bi-list-check',
+    path: 'timeline',
+  },
+  {
+    name: 'vec.task.history',
+    title: 'History',
+    icon: 'bi-list-check',
+    path: 'history',
+  },
+  {
+    name: 'vec.task.request',
+    title: 'Request',
+    icon: 'bi-list-check',
+    path: 'request',
+  },
 ];
 </script>
 

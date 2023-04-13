@@ -1,24 +1,22 @@
-import SharedPaths from '@/libs/paths';
-
 // TODO: Use auth check and conditional redirection later
 export const rootRoute = {
   path: '',
-  name: SharedPaths.root.name,
+  name: 'app.root',
   component: () => import('./pages/RootPage.vue'),
 };
 
 export const NotificationRoute = {
-  path: SharedPaths.notification.root.path,
+  path: 'notifications',
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: SharedPaths.notification.root.name,
+      name: 'app.notifications',
       component: () => import('./pages/NotificationPage.vue'),
     },
     {
-      path: SharedPaths.notification.view.path,
-      name: SharedPaths.notification.view.name,
+      path: 'notifications/:id',
+      name: 'app.notifications.view',
       component: () => import('./pages/NotificationPage.vue'),
     },
   ],
