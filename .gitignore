@@ -476,7 +476,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-.docker
+.docker*
 .logs
 .idea
 .output
