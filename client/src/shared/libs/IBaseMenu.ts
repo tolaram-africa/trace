@@ -1,4 +1,4 @@
-import { IModule, IModuleCommands } from './Menu';
+import { IModule, IModuleCommands } from './IModule';
 
 export interface IBaseMenu {
   apps: Array<IModule>;

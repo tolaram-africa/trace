@@ -1,5 +1,5 @@
 import { IBaseMenu } from './IBaseMenu';
-import { IModule, IModuleCommands } from './Menu';
+import { IModule, IModuleCommands } from './IModule';
 import { ServiceVariant } from './Service';
 
 export default abstract class BaseMenu implements IBaseMenu {

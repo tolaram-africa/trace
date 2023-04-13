@@ -2,7 +2,6 @@
 import { toRefs } from 'vue';
 import { useQuasar } from 'quasar';
 import { sampleUserProfile } from '@/libs/Account/Profile';
-import { identityMenu, sampleRootApps } from '@/libs/Menu';
 import VectorMenu from '@/vector/Menu';
 import { layoutState } from '@/layouts/composables/Layout';
 import DesktopLayout from '@/layouts/components/DesktopLayout.vue';
@@ -24,9 +23,9 @@ export default {
 <template>
   <mobile-layout
     v-if="$q.platform.is.mobile"
-    :identity-items="identityMenu"
+    :identity-items="VectorMenu.identity"
     :user-profile="sampleUserProfile"
-    :root-app-items="sampleRootApps"
+    :root-app-items="VectorMenu.apps"
   >
     <template #header>
       <header-mobile
@@ -49,9 +48,9 @@ export default {
     v-else
     :overview-items="VectorMenu.overview"
     :module-items="VectorMenu.menu"
-    :identity-items="identityMenu"
+    :identity-items="VectorMenu.identity"
     :user-profile="sampleUserProfile"
-    :root-app-items="sampleRootApps"
+    :root-app-items="VectorMenu.apps"
   >
     <template #header>
       <header-large
