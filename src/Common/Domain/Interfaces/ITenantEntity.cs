@@ -14,6 +14,5 @@ using Trace.Common.Domain.Modules.Tenant.Entities;
 namespace Trace.Common.Domain.Interfaces;
 
 public interface ITenantEntity<T> : IHasKey<T> {
-    public Tenant? Tenant { get; set; }
     public T? TenantId { get; set; }
 }

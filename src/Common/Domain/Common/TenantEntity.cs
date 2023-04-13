@@ -14,6 +14,5 @@ using Trace.Common.Domain.Modules.Tenant.Entities;
 namespace Trace.Common.Domain.Common;
 
 public abstract class TenantEntity<T> : ExtendedEntity<T>, ITenantEntity<T> {
-    public Tenant? Tenant { get; set; }
     public T? TenantId { get; set; }
 }

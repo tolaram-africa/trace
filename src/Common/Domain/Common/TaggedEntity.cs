@@ -17,6 +17,5 @@ namespace Trace.Common.Domain.Common;
 public abstract class TaggedEntity<T> : ExtendedEntity<T>, ITenantEntity<T>, ITaggedEntity<T> {
     public ICollection<Tag>? Tags { get; set; }
     public T? TagId { get; set; }
-    public Tenant? Tenant { get; set; }
     public T? TenantId { get; set; }
 }

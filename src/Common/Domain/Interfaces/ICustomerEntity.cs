@@ -14,6 +14,5 @@ using Trace.Common.Domain.Modules.Customer.Entities;
 namespace Trace.Common.Domain.Interfaces;
 
 public interface ICustomerEntity<T> : IHasKey<T> {
-    public Customer? Customer { get; set; }
     public T? CustomerId { get; set; }
 }
