@@ -9,7 +9,6 @@ using Steeltoe.Connector.RabbitMQ;
 using Steeltoe.Messaging.RabbitMQ.Extensions;
 using Trace.Common.Domain.Context;
 using Trace.Common.Domain.Repository;
-using Trace.Common.Infrastructure.Worker;
 
 namespace Trace.Common.Infrastructure.Extensions;
 
@@ -25,7 +24,8 @@ public static class PersistenceExtensions {
         services.AddRabbitTemplate();
         services.AddDbContext<OperationContext>(options =>
         options.UseSnakeCaseNamingConvention()
-        .UseNpgsql(config!.GetConnectionString("Postgres"), b => b
+        .UseNpgsql(config!.GetValue<string>("Postgres:Client:ConnectionString"),
+            b => b
             .MigrationsAssembly(typeof(OperationContext).Assembly.FullName)
             .EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorCodesToAdd: null)
             .UseNetTopologySuite()));
@@ -35,7 +35,6 @@ public static class PersistenceExtensions {
         services.Configure<JsonOptions>(options => {
             options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         });
-        services.AddHostedService<MigrationService>();
 
         return services;
     }

@@ -30,6 +30,7 @@
     <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="$(DotnetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="$(DotnetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(DotnetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="$(DotnetVersion)" />
     <PackageVersion Include="Minio" Version="$(MinioVersion)" />
     <PackageVersion Include="MQTTnet.AspNetCore" Version="$(MQTTnetVersion)" />
     <PackageVersion Include="NetTopologySuite" Version="2.5.0" />
