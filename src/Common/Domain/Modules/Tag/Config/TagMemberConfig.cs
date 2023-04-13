@@ -8,13 +8,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trace.Common.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Trace.Common.Domain.Modules.Tag.Entities;
 
-public enum AlertType {
-    All = 0,
-    Email = 1,
-    Push = 2,
-    Sms = 3,
-    Web = 4,
-    Api = 5
+namespace Trace.Common.Domain.Modules.Tag.Config;
+
+public class TagMemberConfig : IEntityTypeConfiguration<TagMember> {
+    public void Configure(EntityTypeBuilder<TagMember> builder) { }
 }

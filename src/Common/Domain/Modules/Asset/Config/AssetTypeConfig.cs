@@ -8,10 +8,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Trace.Common.Domain.Modules.Asset.Shared;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Trace.Common.Domain.Modules.Asset.Entities;
 
-namespace Trace.Common.Domain.Modules.Asset.Entities;
+namespace Trace.Common.Domain.Modules.Asset.Config;
 
-public class Asset : AssetEntity {
-    public string Name { get; set; } = String.Empty;
+public class AssetTypeConfig : IEntityTypeConfiguration<AssetType> {
+    public void Configure(EntityTypeBuilder<AssetType> builder) {
+        builder.Property(b => b.Id)
+        .IsRequired()
+        .HasMaxLength(256);
+
+        builder.HasOne(b => b.Tenant)
+        .WithOne()
+        .HasForeignKey<AssetType>(k => k.TenantId);
+    }
 }

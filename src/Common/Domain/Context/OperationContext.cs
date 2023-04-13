@@ -9,6 +9,7 @@
 // limitations under the License.
 
 using Microsoft.EntityFrameworkCore;
+using Proton.Common.Entity.Interfaces;
 using Proton.Common.Standard.Helpers;
 using Trace.Common.Domain.Modules;
 
@@ -22,14 +23,30 @@ public sealed class OperationContext : BaseContext {
 
     public OperationContext(DbContextOptions<OperationContext> options) : base(ChangeOptionsType<OperationContext>(options)) { }
 
-    // public OperationContext(DbContextOptions options) : base(options) { }
-
     protected override void OnModelCreating(ModelBuilder builder) {
         // Apply entities configs
-        builder.ApplyConfigurationsFromAssembly(typeof(ITenant).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(ITenantEntity<>).Assembly);
+
+        foreach (var entityType in builder.Model.GetEntityTypes()) {
+            if (typeof(IAuditableEntity<>).IsAssignableFrom(entityType.ClrType)) {
+                
+            }
+            
+            if (typeof(ITenantEntity<>).IsAssignableFrom(entityType.ClrType)) {
+                
+            }
+            
+            if (typeof(ICustomerEntity<>).IsAssignableFrom(entityType.ClrType)) {
+                
+            }
+            
+            if (typeof(ITaggedEntity<>).IsAssignableFrom(entityType.ClrType)) {
+                
+            }
+        }
 
         // Apply Seeds for ISeeder
-        foreach (var seed in FactoryLoader.Load<ISeeder>())
+        foreach (var seed in FactoryLoader.LoadClassInstances<ISeeder>())
             seed.Initialize(builder).Run();
 
         base.OnModelCreating(builder);

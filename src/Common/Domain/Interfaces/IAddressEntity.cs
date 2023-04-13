@@ -8,10 +8,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Trace.Common.Domain.Modules.Asset.Shared;
+namespace Trace.Common.Domain.Interfaces;
 
-namespace Trace.Common.Domain.Modules.Asset.Entities;
+public interface IAddressEntity {
+    public string? AddressLine1 { get; set; }
 
-public class Asset : AssetEntity {
-    public string Name { get; set; } = String.Empty;
+    public string? AddressLine2 { get; set; }
+
+    public string? AddressCity { get; set; }
+
+    public string? AddressCounty { get; set; }
+
+    public string? AddressState { get; set; }
+
+    public string? AddressZip { get; set; }
+
+    public string? AddressCountry { get; set; }
+
+    public string? HomePhone { get; set; }
+
+    public string? MobilePhone { get; set; }
 }

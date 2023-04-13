@@ -10,11 +10,11 @@
 
 using Trace.Common.Domain.Modules.Asset.Enums;
 using Trace.Common.Domain.Modules.Asset.Shared;
+using Trace.Common.Domain.Modules.Beacon.Enums;
 
 namespace Trace.Common.Domain.Modules.Beacon.Entities;
 
 public sealed class BeaconDevice : AssetEntity {
     public BeaconDeviceStatus Status { get; set; }
-
     public DateTimeOffset? LastUpdate { get; set; }
 }

@@ -8,12 +8,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trace.Common.Domain.Common;
+namespace Trace.Common.Domain.Interfaces;
 
-public abstract class TypeEntity<TKey> : TenantEntity<TKey> {
-    public bool Default { get; set; }
+public interface IPersonEntity {
+    public bool Active { get; set; }
 
-    public string Name { get; set; } = String.Empty;
+    public string Phone { get; set; }
+    
+    public string Email { get; set; }
 
-    public string? Description { get; set; }
+    public string Username { get; set; }
+
+    public string FirstName { get; set; }
+
+    public string MiddleName { get; set; }
+
+    public string LastName { get; set; }
 }

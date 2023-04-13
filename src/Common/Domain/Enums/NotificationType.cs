@@ -8,10 +8,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Trace.Common.Domain.Modules.Asset.Shared;
+namespace Trace.Common.Domain.Enums;
 
-namespace Trace.Common.Domain.Modules.Asset.Entities;
-
-public class Asset : AssetEntity {
-    public string Name { get; set; } = String.Empty;
+public enum NotificationType {
+    All = 0,
+    Email = 1,
+    Push = 2,
+    Sms = 3,
+    Web = 4,
+    Api = 5
 }

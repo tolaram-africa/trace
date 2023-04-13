@@ -8,10 +8,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Trace.Common.Domain.Modules.Asset.Shared;
+using Proton.Common.Entity.Base;
+using Trace.Common.Domain.Modules.Tenant.Entities;
 
-namespace Trace.Common.Domain.Modules.Asset.Entities;
+namespace Trace.Common.Domain.Common;
 
-public class Asset : AssetEntity {
-    public string Name { get; set; } = String.Empty;
+public abstract class TypedEntity<T> : ExtendedEntity<T>, ITenantEntity<T>, ITypedEntity {
+    public bool Default { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public Tenant? Tenant { get; set; }
+    public T? TenantId { get; set; }
 }

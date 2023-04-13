@@ -8,12 +8,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Proton.Common.Entity.Base;
+using Trace.Common.Domain.Modules.Tag.Entities;
 using Trace.Common.Domain.Modules.Tenant.Entities;
 
-namespace Trace.Common.Domain.Interfaces;
+namespace Trace.Common.Domain.Common;
 
-public interface ITenant {
-    public Guid? TenantId { get; set; }
-
-    public Tenant Tenant { get; set; }
+public abstract class TaggedEntity<T> : ExtendedEntity<T>, ITenantEntity<T>, ITaggedEntity<T> {
+    public ICollection<Tag>? Tags { get; set; }
+    public T? TagId { get; set; }
+    public Tenant? Tenant { get; set; }
+    public T? TenantId { get; set; }
 }

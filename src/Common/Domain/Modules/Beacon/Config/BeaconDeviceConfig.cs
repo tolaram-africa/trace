@@ -10,10 +10,21 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Trace.Common.Domain.Modules.Asset.Entities;
 using Trace.Common.Domain.Modules.Beacon.Entities;
 
 namespace Trace.Common.Domain.Modules.Beacon.Config;
 
 public class BeaconDeviceConfig : IEntityTypeConfiguration<BeaconDevice> {
-    public void Configure(EntityTypeBuilder<BeaconDevice> builder) { }
+    public void Configure(EntityTypeBuilder<BeaconDevice> builder) {
+        builder.Property(b => b.Id)
+        .IsRequired()
+        .HasMaxLength(256);
+        
+        // builder.HasOne(b => b.Type)
+        // .WithOne()
+        // .HasForeignKey<AssetType>(k => k.Id)
+        // .IsRequired(false);
+
+    }
 }

@@ -8,12 +8,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trace.Common.Domain.Modules.Asset.Enums;
+using Trace.Common.Domain.Modules.Identity.Entities;
 
-public enum BeaconDeviceStatus {
-    Assigned = 0,
-    UnAssigned = 1,
-    Damaged = 2,
-    Lost = 3,
-    Unknown = 4,
+namespace Trace.Common.Domain.Interfaces;
+
+public interface IAccountPermissionEntity {
+    public AccountRoleEntity? Role { get; set; }
+    public string Feature { get; set; }
+    public bool[] Actions { get; set; }
 }

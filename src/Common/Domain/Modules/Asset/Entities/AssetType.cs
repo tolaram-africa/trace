@@ -10,6 +10,6 @@
 
 namespace Trace.Common.Domain.Modules.Asset.Entities;
 
-public sealed class AssetType : TypeEntity<Guid> {
+public sealed class AssetType : TypedEntity<Guid> {
     public string? Color { get; set; }
 }

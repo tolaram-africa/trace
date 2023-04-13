@@ -9,13 +9,14 @@
 // limitations under the License.
 
 using Trace.Common.Domain.Context;
+using Trace.Common.Domain.Modules.Beacon.Entities;
 
 namespace Trace.Common.Domain.Modules.Beacon;
 
 public class BeaconSeeder : DefaultSeeder {
-    new public virtual void Run() {
-        Load(new List<Entities.Beacon> {
-            new Entities.Beacon { Id = Guid.NewGuid(), CreatedAt = DateTimeOffset.Now }
+    public override void Run() {
+        Load(new List<BeaconDevice> {
+            new BeaconDevice { Id = Guid.NewGuid(), CreatedAt = DateTimeOffset.Now,  SerialNumber = "12345", UniqueId = "12345" }
         });
     }
 }
