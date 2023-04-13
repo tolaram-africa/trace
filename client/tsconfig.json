@@ -25,6 +25,7 @@
       "@/composables/*": ["src/shared/composables/*"],
       "@/direct/*": ["src/apps/direct/*"],
       "@/easy/*": ["src/apps/easy/*"],
+      "@/support/*": ["src/apps/support/*"],
       "@/manager/*": ["src/apps/manager/*"],
       "@/vector/*": ["src/apps/vector/*"]
     }

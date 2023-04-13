@@ -4,6 +4,7 @@ export enum ServiceVariant {
   MANAGER = 'manager',
   DIRECT = 'direct',
   VECTOR = 'vector',
+  SUPPORT = 'support',
 }
 
 export interface ITenantProfile {
