@@ -9,7 +9,6 @@
 // limitations under the License.
 
 using Proton.Common.Entity.Interfaces;
-using Trace.Common.Domain.Modules.Customer.Entities;
 
 namespace Trace.Common.Domain.Interfaces;
 
