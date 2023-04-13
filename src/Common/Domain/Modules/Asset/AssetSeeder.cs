@@ -15,8 +15,8 @@ namespace Trace.Common.Domain.Modules.Asset;
 
 public class AssetSeeder : DefaultSeeder {
     public override void Run() {
-        var assetType = Load(new List<AssetType> {
-            new AssetType { Id = Guid.NewGuid(), Name = "Type 00"
+        var assetType = Load(new List<AssetCategory> {
+            new AssetCategory { Id = Guid.NewGuid(), Name = "Type 00"
             }
         });
 
@@ -24,7 +24,7 @@ public class AssetSeeder : DefaultSeeder {
             new Entities.Asset {
                 Id = Guid.NewGuid(),
                 Name = "Asset-001",
-                TypeId = assetType[0].Id,
+                CategoryId = assetType[0].Id,
                 SerialNumber = "12345",
                 UniqueId = "12345"
             }

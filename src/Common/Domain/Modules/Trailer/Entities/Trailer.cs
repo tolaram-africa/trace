@@ -1,9 +1,10 @@
 using Trace.Common.Domain.Modules.Asset.Shared;
+using Trace.Common.Domain.Modules.Trailer.Enums;
 
 namespace Trace.Common.Domain.Modules.Trailer.Entities;
 
 public sealed class Trailer : AssetEntity {
-    public TrailerType Type { get; set; } = null!;
+    public TrailerType Type { get; set; }
 
     public string FleetIdentifier { get; set; } = String.Empty;
 

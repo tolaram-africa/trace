@@ -33,7 +33,7 @@ public abstract class AssetEntity : TaggedEntity<Guid> {
 
     // public Guid? StockId { get; set; }
 
-    public virtual AssetType? Type { get; set; }
+    public virtual AssetCategory? Category { get; set; }
 
-    public Guid TypeId { get; set; }
+    public Guid CategoryId { get; set; }
 }

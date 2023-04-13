@@ -8,12 +8,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.EntityFrameworkCore;
-using Trace.Common.Domain.Modules.Asset.Entities;
-
-namespace Trace.Common.Domain.Modules;
-
-public abstract partial class BaseContext {
-    public DbSet<Asset.Entities.Asset> Assets { get; set; } = default!;
-    public DbSet<AssetCategory> AssetTypes { get; set; } = default!;
+namespace Trace.Common.Domain.Modules.Trailer.Enums {
+    public enum TrailerType {
+        PickUp,
+        LongHaul
+    }
 }

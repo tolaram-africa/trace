@@ -3,7 +3,7 @@ using Trace.Common.Domain.Modules.Location.Enum;
 
 namespace Trace.Common.Domain.Modules.Location.Entities;
 
-public class Location : TenantEntity<Guid> {
+public class Location : TaggedEntity<Guid> {
     public string? OsmId { get; set; }
 
     public bool Default { get; set; }
@@ -21,6 +21,8 @@ public class Location : TenantEntity<Guid> {
     public LocationType? Type { get; set; }
 
     public LocationCategory? Category { get; set; }
+
+    public Guid? CategoryId { get; set; }
 
     public Geometry Shape { get; set; } = null!;
 

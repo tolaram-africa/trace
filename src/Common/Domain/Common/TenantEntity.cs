@@ -9,7 +9,6 @@
 // limitations under the License.
 
 using Proton.Common.Entity.Base;
-using Trace.Common.Domain.Modules.Tenant.Entities;
 
 namespace Trace.Common.Domain.Common;
 
