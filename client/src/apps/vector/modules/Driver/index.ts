@@ -1,22 +1,20 @@
-import vectorPaths from '@/vector/paths';
-
 export default {
-  path: vectorPaths.driver.root.path,
+  path: 'driver',
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: vectorPaths.driver.root.name,
-      redirect: { name: vectorPaths.driver.summary.name },
+      name: 'vec.driver',
+      redirect: { name: 'vec.driver.summary' },
     },
     {
-      path: vectorPaths.driver.summary.path,
-      name: vectorPaths.driver.summary.name,
+      path: 'summary',
+      name: 'vec.driver.summary',
       component: () => import('./pages/SummaryPage.vue'),
     },
     {
-      path: vectorPaths.driver.trips.path,
-      name: vectorPaths.driver.trips.name,
+      path: 'trips',
+      name: 'vec.driver.trips',
       component: () => import('./pages/TripsPage.vue'),
     },
   ],

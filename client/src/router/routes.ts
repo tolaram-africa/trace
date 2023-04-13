@@ -4,6 +4,7 @@ import IdentityRoutes from '@/app/modules/Identity';
 import VectorAppRoutes from '@/vector/routes';
 import DirectAppRoutes from '@/direct/routes';
 import EasyAppRoutes from '@/easy/routes';
+import SupportAppRoutes from '@/support/routes';
 import ManagerAppRoutes from '@/manager/routes';
 
 const routes: RouteRecordRaw[] = [
@@ -16,6 +17,7 @@ const routes: RouteRecordRaw[] = [
       EasyAppRoutes,
       DirectAppRoutes,
       VectorAppRoutes,
+      SupportAppRoutes,
       ManagerAppRoutes,
       // Catch all path
       catchAllRoute,

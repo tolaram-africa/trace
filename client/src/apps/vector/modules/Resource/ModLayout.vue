@@ -1,13 +1,37 @@
 <script setup lang="ts">
-import { IModule } from '@/libs/Menu';
-import vectorPaths from '@/vector/paths';
+import { IModule } from '@/libs/IModule';
 
 const moduleItems: Array<IModule> = [
-  vectorPaths.resource.summary,
-  vectorPaths.resource.location,
-  vectorPaths.resource.route,
-  vectorPaths.resource.asset,
-  vectorPaths.resource.product,
+  {
+    title: 'Summary',
+    icon: 'bi-hdd-stack',
+    name: 'vec.resource.summary',
+    path: 'summary',
+  },
+  {
+    title: 'Locations',
+    icon: 'bi-hdd-stack',
+    name: 'vec.resource.location',
+    path: 'location',
+  },
+  {
+    title: 'Routes',
+    icon: 'bi-hdd-stack',
+    name: 'vec.resource.route',
+    path: 'route',
+  },
+  {
+    title: 'Assets',
+    icon: 'bi-hdd-stack',
+    name: 'vec.resource.asset',
+    path: 'asset',
+  },
+  {
+    title: 'Products',
+    icon: 'bi-hdd-stack',
+    name: 'vec.resource.product',
+    path: 'product',
+  },
 ];
 </script>
 

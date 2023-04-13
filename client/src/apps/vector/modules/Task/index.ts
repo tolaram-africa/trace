@@ -1,65 +1,67 @@
-import vectorPaths from '@/vector/paths';
-
 export default {
-  path: vectorPaths.task.root.path,
+  path: 'task',
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: vectorPaths.task.root.name,
-      redirect: { name: vectorPaths.task.activities.name },
+      name: 'vec.task',
+      redirect: { name: 'vec.task.activities' },
     },
     {
-      path: vectorPaths.task.activities.path,
-      name: vectorPaths.task.activities.name,
+      path: 'activities',
+      name: 'vec.task.activities',
       component: () => import('./pages/Activities/IndexPage.vue'),
       children: [
         {
           path: 'summary',
-          name: vectorPaths.task.activities.name + '.summary',
+          name: 'vec.task.activities.summary',
           component: () => import('./pages/Activities/SummaryPage.vue'),
         },
         {
           path: 'events',
-          name: vectorPaths.task.activities.name + '.events',
+          name: 'vec.task.activities.events',
           component: () => import('./pages/Activities/EventPage.vue'),
         },
         {
           path: 'track',
-          name: vectorPaths.task.activities.name + '.track',
+          name: 'vec.task.activities.track',
           component: () => import('./pages/Activities/TrackPage.vue'),
         },
       ],
     },
     {
-      path: vectorPaths.task.history.path,
-      name: vectorPaths.task.history.name,
-      redirect: { name: vectorPaths.task.history.name + '.index' },
+      path: 'history',
+      name: 'vec.task.history',
+      redirect: {
+        name: 'vec.task.history.index',
+      },
       component: () => import('./pages/History/LayoutDefault.vue'),
       children: [
         {
           path: '',
-          name: vectorPaths.task.history.name + '.index',
+          name: 'vec.task.history.index',
           component: () => import('./pages/History/IndexPage.vue'),
         },
       ],
     },
     {
-      path: vectorPaths.task.request.path,
-      name: vectorPaths.task.request.name,
-      redirect: { name: vectorPaths.task.request.name + '.index' },
+      path: 'request',
+      name: 'vec.task.request',
+      redirect: {
+        name: 'vec.task.request.index',
+      },
       component: () => import('./pages/LayoutDefault.vue'),
       children: [
         {
           path: '',
-          name: vectorPaths.task.request.name + '.index',
+          name: 'vec.task.request.index',
           component: () => import('./pages/Request/IndexPage.vue'),
         },
       ],
     },
     {
-      path: vectorPaths.task.timeline.path,
-      name: vectorPaths.task.timeline.name,
+      path: 'timeline',
+      name: 'vec.task.timeline',
       component: () => import('./pages/TimelinePage.vue'),
     },
   ],

@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { IProfile } from '@/libs/Account/Profile';
-import { IModule } from '@/libs/Menu';
+import { IModule } from '@/libs/IModule';
 import { useLayoutStore } from '@/layouts/stores';
 import MenuList from '@/layouts/navigation/MenuList.vue';
 import MenuUser from '@/layouts/navigation/MenuUser.vue';
 import ThemeSwitcher from '@/layouts/navigation/ThemeSwitcher.vue';
 import MenuGridRoute from '@/layouts/navigation/MenuGridRoute.vue';
+import { IMenu } from '@/libs/constants/Menu';
 
 interface IProps {
   identityItems: Array<IModule>;
@@ -53,7 +54,7 @@ export default {
             </menu-user>
           </div>
           <div class="q-pt-xl">
-            <menu-list :mini="false" :items="props.identityItems"></menu-list>
+            <menu-list :mini="false" :items="props.identityItems as IMenu[]" />
           </div>
           <div class="fixed-bottom column items-center q-mb-lg q-px-lg">
             <div class="q-mb-lg">

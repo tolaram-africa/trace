@@ -21,7 +21,7 @@ public static class DependencyInjection {
             builder.Services.RegisterSharedDataConnector();
         
         if (option.Scheduler)
-            builder.Services .RegisterHangfire(option.Name);
+            builder.Services.RegisterHangfire(option.Name);
         
         if (option.Mqtt)
             builder.RegisterMqttService();

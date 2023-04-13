@@ -9,14 +9,11 @@
 // limitations under the License.
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Trace.Common.Domain.Context;
 
-namespace Trace.Common.Infrastructure.Worker;
+namespace Trace.Worker;
 
-public class MigrationService : IHostedService {
+public class MigrationService : BackgroundService {
     private readonly ILogger<MigrationService> _logger;
     private readonly OperationContext _context;
 
@@ -25,14 +22,9 @@ public class MigrationService : IHostedService {
         _context = factory.CreateScope().ServiceProvider.GetRequiredService<OperationContext>();
     }
 
-    public Task StartAsync(CancellationToken cancellationToken) {
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
         _logger.LogInformation("Starting migration...");
-        _context.Database.Migrate();
+        await _context.Database.MigrateAsync(stoppingToken);
         _logger.LogInformation("Completed migration...");
-        return Task.CompletedTask;
-    }
-
-    public Task StopAsync(CancellationToken cancellationToken) {
-        return Task.CompletedTask;
     }
 }

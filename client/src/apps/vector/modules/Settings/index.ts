@@ -1,27 +1,25 @@
-import vectorPaths from '@/vector/paths';
-
 export default {
-  path: vectorPaths.settings.root.path,
+  path: 'settings',
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: vectorPaths.settings.root.name,
-      redirect: { name: vectorPaths.settings.notification.name },
+      name: 'vec.settings',
+      redirect: { name: 'vec.settings.notification' },
     },
     {
-      path: vectorPaths.settings.notification.path,
-      name: vectorPaths.settings.notification.name,
+      path: 'notification',
+      name: 'vec.settings.notification',
       component: () => import('./pages/NotificationPage.vue'),
     },
     {
-      path: vectorPaths.settings.interface.path,
-      name: vectorPaths.settings.interface.name,
+      path: 'interface',
+      name: 'vec.settings.interface',
       component: () => import('./pages/InterfacePage.vue'),
     },
     {
-      path: vectorPaths.settings.status.path,
-      name: vectorPaths.settings.status.name,
+      path: 'status',
+      name: 'vec.settings.status',
       component: () => import('./pages/StatusPage.vue'),
     },
   ],

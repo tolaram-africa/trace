@@ -1,4 +1,4 @@
-import { IModule } from '@/libs/Menu';
+import { IModule } from '@/libs/IModule';
 
 export default [
   {

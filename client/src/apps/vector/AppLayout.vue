@@ -2,15 +2,7 @@
 import { toRefs } from 'vue';
 import { useQuasar } from 'quasar';
 import { sampleUserProfile } from '@/libs/Account/Profile';
-import { identityMenu, sampleRootApps } from '@/libs/Menu';
-import {
-  overviewMenu,
-  appModuleMenu,
-  appMobileMenu,
-  appMobileMenuExtended,
-  quickNewItems,
-  appMobileMenuString,
-} from '@/vector/Menu';
+import VectorMenu from '@/vector/Menu';
 import { layoutState } from '@/layouts/composables/Layout';
 import DesktopLayout from '@/layouts/components/DesktopLayout.vue';
 import MobileLayout from '@/layouts/components/MobileLayout.vue';
@@ -31,14 +23,14 @@ export default {
 <template>
   <mobile-layout
     v-if="$q.platform.is.mobile"
-    :identity-items="identityMenu"
+    :identity-items="VectorMenu.identity"
     :user-profile="sampleUserProfile"
-    :root-app-items="sampleRootApps"
+    :root-app-items="VectorMenu.apps"
   >
     <template #header>
       <header-mobile
-        :quick-commands="quickNewItems"
-        :module-list="appMobileMenuString"
+        :quick-commands="VectorMenu.quick"
+        :module-list="VectorMenu.mobileStrings"
       ></header-mobile>
     </template>
     <slot>
@@ -46,24 +38,24 @@ export default {
     </slot>
     <template #footer>
       <tab-mobile
-        :tab-items="appMobileMenu"
-        :tab-extended-items="appMobileMenuExtended"
+        :tab-items="VectorMenu.mobileMenu"
+        :tab-extended-items="VectorMenu.mobileMenuExtended"
       ></tab-mobile>
     </template>
   </mobile-layout>
 
   <desktop-layout
     v-else
-    :overview-items="overviewMenu"
-    :module-items="appModuleMenu"
-    :identity-items="identityMenu"
+    :overview-items="VectorMenu.overview"
+    :module-items="VectorMenu.menu"
+    :identity-items="VectorMenu.identity"
     :user-profile="sampleUserProfile"
-    :root-app-items="sampleRootApps"
+    :root-app-items="VectorMenu.apps"
   >
     <template #header>
       <header-large
         v-show="showHeader"
-        :quick-commands="quickNewItems"
+        :quick-commands="VectorMenu.quick"
       ></header-large>
     </template>
     <slot>

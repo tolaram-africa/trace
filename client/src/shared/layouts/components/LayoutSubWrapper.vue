@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRefs, computed, onBeforeMount } from 'vue';
 import { useQuasar } from 'quasar';
-import { IModule } from '@/libs/Menu';
+import { IModule } from '@/libs/IModule';
 import { layoutState } from '@/layouts/composables/Layout';
 import SwitcherTab from '@/layouts/navigation/SwitcherTab.vue';
 

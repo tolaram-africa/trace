@@ -1,22 +1,20 @@
-import vectorPaths from '@/vector/paths';
-
 export default {
-  path: vectorPaths.shortage.root.path,
+  path: 'shortage',
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: vectorPaths.shortage.root.name,
-      redirect: { name: vectorPaths.shortage.summary.name },
+      name: 'vec.shortage',
+      redirect: { name: 'vec.shortage.summary' },
     },
     {
-      path: vectorPaths.shortage.summary.path,
-      name: vectorPaths.shortage.summary.name,
+      path: 'summary',
+      name: 'vec.shortage.summary',
       component: () => import('./pages/SummaryPage.vue'),
     },
     {
-      path: vectorPaths.shortage.history.path,
-      name: vectorPaths.shortage.history.name,
+      path: 'history',
+      name: 'vec.shortage.history',
       component: () => import('./pages/HistoryPage.vue'),
     },
   ],

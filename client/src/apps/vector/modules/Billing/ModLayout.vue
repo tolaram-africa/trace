@@ -1,13 +1,37 @@
 <script setup lang="ts">
-import { IModule } from '@/libs/Menu';
-import vectorPaths from '@/vector/paths';
+import { IModule } from '@/libs/IModule';
 
 const moduleItems: Array<IModule> = [
-  vectorPaths.billing.summary,
-  vectorPaths.billing.order,
-  vectorPaths.invoice.root,
-  vectorPaths.billing.override,
-  vectorPaths.billing.manifest,
+  {
+    title: 'Summary',
+    icon: 'bi-upc-scan',
+    name: 'vec.billing.summary',
+    path: 'summary',
+  },
+  {
+    title: 'Orders',
+    icon: 'bi-upc-scan',
+    name: 'vec.billing.order',
+    path: 'order',
+  },
+  {
+    title: 'Invoice',
+    icon: 'bi-upc-scan',
+    name: 'vec.billing.invoce',
+    path: 'invoice',
+  },
+  {
+    title: 'Overrides',
+    icon: 'bi-upc-scan',
+    name: 'vec.billing.override',
+    path: 'override',
+  },
+  {
+    title: 'Manifest',
+    icon: 'bi-upc-scan',
+    name: 'vec.billing.manifest',
+    path: 'manifest',
+  },
 ];
 </script>
 

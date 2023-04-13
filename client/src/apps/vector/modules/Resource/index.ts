@@ -1,80 +1,84 @@
-import vectorPaths from '@/vector/paths';
-
 export default {
-  path: vectorPaths.resource.root.path,
+  path: 'resource',
   component: () => import('./ModLayout.vue'),
   children: [
     {
       path: '',
-      name: vectorPaths.resource.root.name,
-      redirect: { name: vectorPaths.resource.summary.name },
+      name: 'vec.resource',
+      redirect: { name: 'vec.resource.summary' },
     },
     {
-      path: vectorPaths.resource.summary.path,
-      name: vectorPaths.resource.summary.name,
+      path: 'summary',
+      name: 'vec.resource.summary',
       component: () => import('./pages/SummaryPage.vue'),
     },
     {
-      path: vectorPaths.resource.asset.path,
-      name: vectorPaths.resource.asset.name,
+      path: 'asset',
+      name: 'vec.resource.asset',
       component: () => import('./pages/LayoutDefault.vue'),
-      redirect: { name: vectorPaths.resource.asset.name + '.index' },
+      redirect: {
+        name: 'vec.resource.asset.index',
+      },
       children: [
         {
           path: '',
-          name: vectorPaths.resource.asset.name + '.index',
+          name: 'vec.resource.asset.index',
           component: () => import('./pages/Asset/IndexPage.vue'),
         },
       ],
     },
     {
-      path: vectorPaths.resource.expense.path,
-      name: vectorPaths.resource.expense.name,
+      path: 'expense',
+      name: 'vec.resource.expense',
       component: () => import('./pages/LayoutDefault.vue'),
-      redirect: { name: vectorPaths.resource.expense.name + '.index' },
+      redirect: {
+        name: 'vec.resource.expense.index',
+      },
       children: [
         {
           path: '',
-          name: vectorPaths.resource.expense.name + '.index',
+          name: 'vec.resource.expense.index',
           component: () => import('./pages/Expense/IndexPage.vue'),
         },
       ],
     },
     {
-      path: vectorPaths.resource.location.path,
-      name: vectorPaths.resource.location.name,
+      path: 'location',
+      name: 'vec.resource.location',
       component: () => import('./pages/LayoutDefault.vue'),
-      redirect: { name: vectorPaths.resource.location.name + '.index' },
+      redirect: {
+        name: 'vec.resource.location.index',
+      },
       children: [
         {
           path: '',
-          name: vectorPaths.resource.location.name + '.index',
+          name: 'vec.resource.location.index',
           component: () => import('./pages/Location/IndexPage.vue'),
         },
       ],
     },
     {
-      path: vectorPaths.resource.product.path,
-      name: vectorPaths.resource.product.name,
+      path: 'product',
+      name: 'vec.resource.product',
       component: () => import('./pages/LayoutDefault.vue'),
-      redirect: { name: vectorPaths.resource.product.name + '.index' },
+      redirect: { name: 'vec.resource.product.index' },
       children: [
         {
           path: '',
-          name: vectorPaths.resource.product.name + '.index',
+          name: 'vec.resource.product.index',
           component: () => import('./pages/Product/IndexPage.vue'),
         },
       ],
     },
     {
-      path: vectorPaths.resource.route.path,
-      name: vectorPaths.resource.route.name,
+      path: 'route',
+      name: 'vec.resource.route',
       component: () => import('./pages/LayoutDefault.vue'),
-      redirect: { name: vectorPaths.resource.route.name + '.index' },
+      redirect: { name: 'vec.resource.route.index' },
       children: [
         {
           path: '',
-          name: vectorPaths.resource.route.name + '.index',
+          name: 'vec.resource.route.index',
           component: () => import('./pages/Route/IndexPage.vue'),
         },
       ],

@@ -32,7 +32,7 @@ public static class ServiceCollectionExtension {
         return services;
     }
 
-    private static void RegisterDistributedCache(this IServiceCollection services) {
+    public static void RegisterDistributedCache(this IServiceCollection services) {
         var sp = services.BuildServiceProvider();
         var config = sp.GetService<IConfiguration>();
         

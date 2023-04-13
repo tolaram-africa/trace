@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppLogo from '@/assets/vectors/logo.svg';
-import { IModule } from '@/libs/Menu';
+import { IModule } from '@/libs/IModule';
 
 interface IProps {
   modelValue: boolean;

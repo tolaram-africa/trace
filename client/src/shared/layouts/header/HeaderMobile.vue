@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IModuleCommands } from '@/libs/Menu';
+import { IModuleCommands } from '@/libs/IModule';
 import { ref, toRefs, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
@@ -27,8 +27,8 @@ const { moduleItems, moduleSubItems } = toRefs(layoutState);
 const route = useRoute();
 const router = useRouter();
 
-const swipeModalState = ref(false);
-const subDialogState = ref(false);
+const swipeModalState = ref<boolean>(false);
+const subDialogState = ref<boolean>(false);
 const titleVisibility = computed(() => {
   return showTitle.value || !withMobile.value;
 });
