@@ -14,8 +14,8 @@ using Trace.Common.Domain.Modules.Asset.Entities;
 
 namespace Trace.Common.Domain.Modules.Asset.Config;
 
-public class AssetTypeConfig : IEntityTypeConfiguration<AssetType> {
-    public void Configure(EntityTypeBuilder<AssetType> builder) {
+public class AssetTypeConfig : IEntityTypeConfiguration<AssetCategory> {
+    public void Configure(EntityTypeBuilder<AssetCategory> builder) {
         builder.Property(b => b.Id)
         .IsRequired()
         .HasMaxLength(256);

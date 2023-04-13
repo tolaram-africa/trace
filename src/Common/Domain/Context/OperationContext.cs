@@ -27,6 +27,7 @@ public sealed class OperationContext : BaseContext {
         // Apply entities configs
         builder.ApplyConfigurationsFromAssembly(typeof(ITenantEntity<>).Assembly);
 
+        /*
         foreach (var entityType in builder.Model.GetEntityTypes()) {
             if (typeof(IAuditableEntity<>).IsAssignableFrom(entityType.ClrType)) {
                 
@@ -44,6 +45,7 @@ public sealed class OperationContext : BaseContext {
                 
             }
         }
+        */
 
         // Apply Seeds for ISeeder
         foreach (var seed in FactoryLoader.LoadClassInstances<ISeeder>())
