@@ -1,5 +1,7 @@
+using Proton.Common.Entity.Base;
+
 namespace Trace.Common.Domain.Modules.Tag.Entities;
 
-public class Tag : TypeEntity<Guid> {
-    public string Color { get; set; } = String.Empty;
+public class Tag : TenantEntity<Guid> {
+    public string? Color { get; set; }
 }
