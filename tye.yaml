@@ -65,7 +65,7 @@ services:
       - source: ./.docker.dev/rabbitmq
         target: /var/lib/rabbitmq
   - name: redis
-    image: docker.io/library/redis/redis-stack:6.2.6-v6
+    image: docker.io/redis/redis-stack:6.2.6-v6
     tags:
       - service
       - infra
