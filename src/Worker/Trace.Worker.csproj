@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
     <UserSecretsId>dotnet-Trace.Worker-71aba851-e1a1-4832-b5be-3c223641f0df</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,5 +16,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Common\Domain\Trace.Common.Domain.csproj" />
     <ProjectReference Include="..\Common\Infrastructure\Trace.Common.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
   </ItemGroup>
 </Project>

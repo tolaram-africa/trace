@@ -25,7 +25,6 @@ IHost host = Host.CreateDefaultBuilder(args)
         app.UseRouting();
         app.UseHangfireDashboard();
     });
-    
 })
 .ConfigureServices((context, services) => {
     var config = context.Configuration;

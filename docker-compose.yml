@@ -28,6 +28,12 @@
     build:
       context: .
       dockerfile: src/Service/Stream/Dockerfile
+  
+  trace.worker:
+    image: trace-worker
+    build:
+      context: .
+      dockerfile: src/Worker/Dockerfile
 
   trace.gateway:
     image: trace-gateway

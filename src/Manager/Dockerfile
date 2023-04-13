@@ -13,7 +13,7 @@ COPY --from=node /usr/local/share /usr/local/share
 COPY --from=node /usr/local/lib /usr/local/lib
 COPY --from=node /usr/local/include /usr/local/include
 COPY --from=node /usr/local/bin /usr/local/bin
-RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
+RUN npm i -g pnpm npm @quasar/cli
 
 WORKDIR /src
 COPY . .
