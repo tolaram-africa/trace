@@ -2,7 +2,7 @@ import AccountRoutes from '@/app/modules/Account';
 import { NotificationRoute } from '@/app/modules/System';
 import { ServiceVariant } from '@/shared/libs/Service';
 
-const APP_NAME = 'trk';
+const APP_NAME = 'drt';
 const SharedRoutes = [AccountRoutes, NotificationRoute];
 
 export default {
