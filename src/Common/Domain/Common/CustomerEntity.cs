@@ -9,17 +9,14 @@
 // limitations under the License.
 
 using Proton.Common.Entity.Base;
-using Trace.Common.Domain.Modules.Customer.Entities;
 using Trace.Common.Domain.Modules.Tag.Entities;
 using Trace.Common.Domain.Modules.Tenant.Entities;
 
 namespace Trace.Common.Domain.Common;
 
 public abstract class CustomerEntity<T> : ExtendedEntity<T>, ITenantEntity<T>, ITaggedEntity<T>, ICustomerEntity<T> {
-    public Customer? Customer { get; set; }
     public T? CustomerId { get; set; }
     public Tenant? Tenant { get; set; }
     public T? TenantId { get; set; }
     public ICollection<Tag>? Tags { get; set; }
-    public T? TagId { get; set; }
 }

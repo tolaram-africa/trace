@@ -19,9 +19,5 @@ public class AssetTypeConfig : IEntityTypeConfiguration<AssetType> {
         builder.Property(b => b.Id)
         .IsRequired()
         .HasMaxLength(256);
-
-        builder.HasOne(b => b.Tenant)
-        .WithOne()
-        .HasForeignKey<AssetType>(k => k.TenantId);
     }
 }

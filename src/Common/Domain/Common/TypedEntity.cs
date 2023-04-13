@@ -17,6 +17,5 @@ public abstract class TypedEntity<T> : ExtendedEntity<T>, ITenantEntity<T>, ITyp
     public bool Default { get; set; }
     public string Name { get; set; } = string.Empty;
     public string? Description { get; set; }
-    public Tenant? Tenant { get; set; }
     public T? TenantId { get; set; }
 }
