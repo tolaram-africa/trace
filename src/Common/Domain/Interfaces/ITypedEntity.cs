@@ -8,10 +8,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Trace.Common.Domain.Modules.Asset.Shared;
+namespace Trace.Common.Domain.Interfaces;
 
-namespace Trace.Common.Domain.Modules.Asset.Entities;
-
-public class Asset : AssetEntity {
-    public string Name { get; set; } = String.Empty;
+public interface ITypedEntity {
+    public bool Default { get; set; }
+    public string Name { get; set; }
+    public string? Description { get; set; }
 }

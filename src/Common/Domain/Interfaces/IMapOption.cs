@@ -8,10 +8,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Trace.Common.Domain.Modules.Asset.Shared;
+namespace Trace.Common.Domain.Interfaces;
 
-namespace Trace.Common.Domain.Modules.Asset.Entities;
+public interface IMapOption {
+    public string? MapType { get; set; }
 
-public class Asset : AssetEntity {
-    public string Name { get; set; } = String.Empty;
+    public int? Zoom { get; set; }
+
+    public int? ZoomSelection { get; set; }
+
+    public bool EnableTrip { get; set; }
+
+    public bool AutoRoute { get; set; }
+
+    public bool AutoOrder { get; set; }
+
+    public bool AutoRouteCost { get; set; }
+
+    public bool AutoInvoice { get; set; }
+
+    public bool VerifyOtp { get; set; }
+
+    public bool AutoZoneOtp { get; set; }
 }

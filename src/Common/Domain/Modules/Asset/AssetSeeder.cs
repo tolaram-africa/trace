@@ -8,17 +8,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.EntityFrameworkCore;
 using Trace.Common.Domain.Context;
+using Trace.Common.Domain.Modules.Asset.Entities;
 
 namespace Trace.Common.Domain.Modules.Asset;
 
 public class AssetSeeder : DefaultSeeder {
-    new public virtual void Run() {
-        var assets = new List<Entities.Asset> {
-            new Entities.Asset { Id = Guid.NewGuid(), Name = "Asset-001" }
-        };
+    public override void Run() {
+        var assetType = Load(new List<AssetType> {
+            new AssetType { Id = Guid.NewGuid(), Name = "Type 00"
+            }
+        });
 
-        Builder?.Entity<Entities.Asset>().HasData(assets);
+        Load(new List<Entities.Asset> {
+            new Entities.Asset {
+                Id = Guid.NewGuid(),
+                Name = "Asset-001",
+                TypeId = assetType[0].Id,
+                SerialNumber = "12345",
+                UniqueId = "12345"
+            }
+        });
     }
 }

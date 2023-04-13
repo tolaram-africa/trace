@@ -12,12 +12,12 @@ using Trace.Common.Domain.Modules.Asset.Entities;
 
 namespace Trace.Common.Domain.Modules.Asset.Shared;
 
-public abstract class AssetEntity : TenantEntity<Guid> {
+public abstract class AssetEntity : TaggedEntity<Guid> {
     public string SerialNumber { get; set; } = null!;
 
     public string Barcode { get; set; } = String.Empty;
 
-    public string UniqueId { get; set; } = String.Empty;
+    public string UniqueId { get; set; } = null!;
 
     public string Color { get; set; } = String.Empty;
 
@@ -33,5 +33,7 @@ public abstract class AssetEntity : TenantEntity<Guid> {
 
     // public Guid? StockId { get; set; }
 
-    public virtual AssetType AssetType { get; set; } = null!;
+    public virtual AssetType? Type { get; set; }
+
+    public Guid TypeId { get; set; }
 }

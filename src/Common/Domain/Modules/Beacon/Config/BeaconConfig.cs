@@ -14,5 +14,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Trace.Common.Domain.Modules.Beacon.Config;
 
 public class BeaconConfig : IEntityTypeConfiguration<Entities.Beacon> {
-    public void Configure(EntityTypeBuilder<Entities.Beacon> builder) { }
+    public void Configure(EntityTypeBuilder<Entities.Beacon> builder) {
+        builder.Property(b => b.Id)
+        .IsRequired()
+        .HasMaxLength(256);
+    }
 }
