@@ -6,7 +6,7 @@ import { layoutState } from '@/layouts/composables/Layout';
 import SwitcherButton from '@/layouts/navigation/SwitcherButton.vue';
 import CommandList from '../navigation/CommandList.vue';
 import NotificationList from './NotificationList.vue';
-import { IModuleCommands } from '@/libs/Menu';
+import { IModuleCommands } from '@/libs/IModule';
 
 interface IProps {
   quickCommands: Array<IModuleCommands>;

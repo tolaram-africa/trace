@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { IModule } from '@/libs/Menu';
+import { IModule } from '@/libs/IModule';
 import { useTrackWindowState, WindowTypes } from '../stores';
 import TrackPanelToggle from './TrackPanelToggle.vue';
 import MenuGridValue from '@/layouts/navigation/MenuGridValue.vue';

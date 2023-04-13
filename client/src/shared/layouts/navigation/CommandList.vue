@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IModuleCommands } from '@/libs/Menu';
+import { IModuleCommands } from '@/libs/IModule';
 
 interface IProps {
   items: Array<IModuleCommands>;

@@ -1,4 +1,4 @@
-import BaseMenu from 'src/shared/libs/BaseMenu';
+import BaseMenu from '@/libs/BaseMenu';
 
 export class VectorMenu extends BaseMenu {
   constructor() {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IProfile } from '@/libs/Account/Profile';
-import { IModule } from '@/libs/Menu';
+import { IModule } from '@/libs/IModule';
 import { computed, ref, watch, onUnmounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useLayoutStore } from '@/layouts/stores';

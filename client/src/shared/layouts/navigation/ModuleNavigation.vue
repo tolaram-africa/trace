@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IModule } from '@/libs/Menu';
+import { IModule } from '@/libs/IModule';
 import MenuList from './MenuList.vue';
 
 interface IProps {
