@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Redis.OM;
 using StackExchange.Redis;
 using Steeltoe.Bootstrap.Autoconfig;
 using Steeltoe.Common.Http.Discovery;
@@ -57,19 +57,22 @@ public static class ServiceCollectionExtension {
 
     public static WebApplicationBuilder RegisterSharedArchitecture(this WebApplicationBuilder builder) {
         var env = builder.Environment;
-
-        builder.Configuration.SetBasePath(env.ContentRootPath)
+        var config = builder.Configuration;
+        
+        config.SetBasePath(env.ContentRootPath)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
         .AddConfigServer()
         .AddEnvironmentVariables();
-
+        
         builder.AddSteeltoe();
-        builder.Services.AddDiscoveryClient(builder.Configuration);
-        builder.Services.AddRedisConnectionMultiplexer(builder.Configuration);
+        builder.Services.AddDiscoveryClient(config);
+        builder.Services.AddRedisConnectionMultiplexer(config);
         builder.Services.RegisterDistributedCache();
+        var multiplexer = ConnectionMultiplexer.Connect(config.GetConnectionString("Redis") ?? "localhost");
+        builder.Services.AddSingleton(new RedisConnectionProvider(multiplexer));
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
-        builder.Services.AddAllActuators(builder.Configuration);
+        builder.Services.AddAllActuators(config);
         builder.Services.ActivateActuatorEndpoints();
         builder.Services.AddDistributedTracingAspNetCore();
         builder.Services.AddSpringBootAdminClient();

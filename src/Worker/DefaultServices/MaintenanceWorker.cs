@@ -8,23 +8,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.EntityFrameworkCore;
-using Trace.Common.Domain.Context;
+namespace Trace.Worker.DefaultServices;
 
-namespace Trace.Worker;
+public class MaintenanceWorker : BackgroundService {
+    private readonly ILogger<MaintenanceWorker> _logger;
 
-public class MigrationService : BackgroundService {
-    private readonly ILogger<MigrationService> _logger;
-    private readonly OperationContext _context;
-
-    public MigrationService(ILogger<MigrationService> logger, IServiceScopeFactory factory) {
+    public MaintenanceWorker(ILogger<MaintenanceWorker> logger) {
         _logger = logger;
-        _context = factory.CreateScope().ServiceProvider.GetRequiredService<OperationContext>();
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
-        _logger.LogInformation("Starting migration...");
-        await _context.Database.MigrateAsync(stoppingToken);
-        _logger.LogInformation("Completed migration...");
+        while (!stoppingToken.IsCancellationRequested) {
+            _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+            await Task.Delay(TimeSpan.FromMinutes(5), stoppingToken);
+        }
     }
 }
