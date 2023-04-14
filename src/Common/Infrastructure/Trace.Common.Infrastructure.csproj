@@ -36,6 +36,7 @@
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
     <PackageReference Include="Minio" />
     <PackageReference Include="MQTTnet.AspNetCore" />
+    <PackageReference Include="Redis.OM" />
     <PackageReference Include="Steeltoe.Bootstrap.Autoconfig" />
     <PackageReference Include="Steeltoe.Connector.ConnectorCore" />
     <PackageReference Include="Steeltoe.Discovery.ClientCore" />

@@ -36,6 +36,7 @@
     <PackageVersion Include="NetTopologySuite" Version="2.5.0" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(NpgsqlVersion)" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" Version="$(NpgsqlVersion)" />
+    <PackageVersion Include="Redis.OM" Version="0.4.2" />
     <PackageVersion Include="Riok.Mapperly" Version="2.7.0" />
     <PackageVersion Include="Steeltoe.Bootstrap.Autoconfig" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Connector.ConnectorCore" Version="$(SteeltoeVersion)" />
