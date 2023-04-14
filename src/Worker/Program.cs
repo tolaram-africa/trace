@@ -1,43 +1,38 @@
-using Hangfire;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Steeltoe.Bootstrap.Autoconfig;
-using Steeltoe.Connector.Redis;
-using Steeltoe.Discovery.Client;
-using Steeltoe.Extensions.Configuration.ConfigServer;
-using Steeltoe.Management.Tracing;
-using Trace.Common.Infrastructure.Extensions;
-using Trace.Worker;
+// Copyright 2022 - 2023 Godwin peter .O (me@godwin.dev)
+// 
+// Licensed under the Reciprocal Public License (RPL-1.5) and Trace License;
+// you may not use this file except in compliance with the License.
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
-IHost host = Host.CreateDefaultBuilder(args)
-.ConfigureWebHostDefaults(builder => {
-    builder.ConfigureAppConfiguration(conf => {
-        conf.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-        .AddConfigServer()
-        .AddEnvironmentVariables();
-    });
-    var exclusions = new List<string> {
-        SteeltoeAssemblies.Steeltoe_Connector_ConnectorCore,
-    };
-    
-    builder.AddSteeltoe(exclusions);
-    builder.Configure(app => {
-        app.UseRouting();
-        app.UseHangfireDashboard();
-    });
-})
-.ConfigureServices((context, services) => {
-    var config = context.Configuration;
-    
-    services.AddDiscoveryClient(config);
-    services.AddRedisConnectionMultiplexer(config);
-    services.RegisterDistributedCache();
-    services.AddDistributedTracing();
-    services.RegisterSharedDataConnector();
-    services.RegisterHangfire("Worker");
-    services.AddHostedService<MaintenanceWorker>();
-    services.AddHostedService<MigrationService>();
-})
-.Build();
+using Trace.Common.Infrastructure;
+using Trace.Common.Service;
+using Trace.Common.Standard;
+using Trace.Worker.DefaultServices;
 
-host.Run();
+var option = new NodeOption {
+    Group = Nodes.GroupName,
+    Name = Nodes.Worker,
+    Api = false,
+    Proxy = false,
+    Graphql = false,
+    Service = true,
+    Scheduler = true
+};
+
+var builder = WebApplication.CreateBuilder(args);
+builder.AddInfrastructure<Program>(option);
+builder.Services.RegisterService();
+
+// Hosed services
+builder.Services.AddHostedService<MaintenanceWorker>();
+builder.Services.AddHostedService<MigrationService>();
+builder.Services.AddHostedService<IndexCreationWorker>();
+
+var app = builder.Build();
+app.RegisterInfrastructure(option);
+
+app.Run();

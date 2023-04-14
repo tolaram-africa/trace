@@ -61,7 +61,7 @@ Consul:
     HealthCheckPath: '/health'
 Redis:
   Client:
-    ConnectionString: localhost:6379,abortConnect=false
+    ConnectionString: localhost:6379,abortConnect=false,AllowAdmin=true
 RabbitMq:
   Client:
     Uri: amqp://admin:secret@localhost:5672
