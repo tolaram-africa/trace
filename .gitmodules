@@ -1,6 +1,3 @@
-[submodule "client"]
-path = client
-url = ../trace-client.git
 [submodule "proxy"]
 path = proxy
 url = ../trace-proxy.git
