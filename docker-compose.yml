@@ -8,49 +8,49 @@ services:
       dockerfile: src/Service/Identity/Dockerfile
 
   trace.service.integration:
-    image: ghcr.io/gpproton/trace-service-integration:${VERSION}
+    image: ghcr.io/gpproton/trace.service.integration:${VERSION}
     build:
       context: .
       dockerfile: src/Service/Integration/Dockerfile
 
   trace.service.operation:
-    image: ghcr.io/gpproton/trace-service-operation:${VERSION}
+    image: ghcr.io/gpproton/trace.service.operation:${VERSION}
     build:
       context: .
       dockerfile: src/Service/Operation/Dockerfile
 
   trace.service.route:
-    image: ghcr.io/gpproton/trace-service-route:${VERSION}
+    image: ghcr.io/gpproton/trace.service.route:${VERSION}
     build:
       context: .
       dockerfile: src/Service/Route/Dockerfile
 
   trace.service.stream:
-    image: ghcr.io/gpproton/trace-service-stream:${VERSION}
+    image: ghcr.io/gpproton/trace.service.stream:${VERSION}
     build:
       context: .
       dockerfile: src/Service/Stream/Dockerfile
 
   trace.worker:
-    image: ghcr.io/gpproton/trace-worker:${VERSION}
+    image: ghcr.io/gpproton/trace.worker:${VERSION}
     build:
       context: .
       dockerfile: src/Worker/Dockerfile
 
   trace.gateway:
-    image: ghcr.io/gpproton/trace-gateway:${VERSION}
+    image: ghcr.io/gpproton/trace.gateway:${VERSION}
     build:
       context: .
       dockerfile: src/Gateway/Dockerfile
 
   trace.manager:
-    image: ghcr.io/gpproton/trace-manager:${VERSION}
+    image: ghcr.io/gpproton/trace.manager:${VERSION}
     build:
       context: .
       dockerfile: src/Manager/Dockerfile
 
   trace.client:
-    image: ghcr.io/gpproton/trace-client:${VERSION}
+    image: ghcr.io/gpproton/trace.client:${VERSION}
     build:
       context: .
       dockerfile: src/Client/Dockerfile
