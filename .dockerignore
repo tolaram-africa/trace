@@ -26,5 +26,6 @@
 **/secrets.dev.yaml
 **/values.dev.yaml
 **/.artifacts
+**/.docker
 LICENSE
 README.md
