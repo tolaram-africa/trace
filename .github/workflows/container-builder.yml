@@ -14,15 +14,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - image: '${{ env.IMAGE }}.client'
+          - image: 'ghcr.io/gpproton/trace.client'
             dockerfile: ./src/Client/Dockerfile
-          - image: '${{ env.IMAGE }}.gateway'
+          - image: 'ghcr.io/gpproton/trace.gateway'
             dockerfile: ./src/Gateway/Dockerfile
-          - image: '${{ env.IMAGE }}.worker'
+          - image: 'ghcr.io/gpproton/trace.worker'
             dockerfile: ./src/Worker/Dockerfile
-          - image: '${{ env.IMAGE }}.manager'
+          - image: 'ghcr.io/gpproton/trace.manager'
             dockerfile: ./src/Manager/Dockerfile
-          - image: '${{ env.IMAGE }}.service.identity'
+          - image: 'ghcr.io/gpproton/trace.service.identity'
             dockerfile: ./src/Identity/Dockerfile
     permissions:
       contents: read
