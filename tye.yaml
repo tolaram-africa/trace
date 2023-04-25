@@ -62,7 +62,7 @@ services:
         containerPort: 8080
         protocol: http
     volumes:
-      - source: ./.docker.dev/rabbitmq
+      - source: ./.docker/rabbitmq
         target: /var/lib/rabbitmq
   - name: redis
     image: docker.io/redis/redis-stack:6.2.6-v6
@@ -70,7 +70,7 @@ services:
       - service
       - infra
     volumes:
-      - source: ./.docker.dev/redis
+      - source: ./.docker/redis
         target: /data
     bindings:
       - name: redis-stack-port
@@ -96,7 +96,7 @@ services:
       - name: POSTGRES_DB
         value: trace
     volumes:
-      - source: ./.docker.dev/postgres
+      - source: ./.docker/postgres
         target: /var/lib/postgresql/data/pgdata
     bindings:
       - port: 5432
@@ -116,7 +116,7 @@ services:
       - name: POSTGRES_DB
         value: trace
     volumes:
-      - source: ./.docker.dev/postgres-state
+      - source: ./.docker/postgres-state
         target: /var/lib/postgresql/data/pgdata
     bindings:
       - port: 5433
@@ -133,7 +133,7 @@ services:
       - name: two
         port: 9160
     volumes:
-      - source: ./.docker.dev/scylla
+      - source: ./.docker/scylla
         target: /var/lib/scylla
   - name: zipkin
     image: openzipkin/zipkin:2
