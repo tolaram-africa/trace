@@ -5,7 +5,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io/${{ github.repository }}
+  IMAGE: ghcr.io/${{ github.repository }}
 
 jobs:
   build-and-push-image:
@@ -14,15 +14,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - image: ${{ env.IMAGE_NAME }}.client
+          - image: '${{ env.IMAGE }}.client'
             dockerfile: ./src/Client/Dockerfile
-          - image: ${{ env.IMAGE_NAME }}.gateway
+          - image: '${{ env.IMAGE }}.gateway'
             dockerfile: ./src/Gateway/Dockerfile
-          - image: ${{ env.IMAGE_NAME }}.worker
+          - image: '${{ env.IMAGE }}.worker'
             dockerfile: ./src/Worker/Dockerfile
-          - image: ${{ env.IMAGE_NAME }}.manager
+          - image: '${{ env.IMAGE }}.manager'
             dockerfile: ./src/Manager/Dockerfile
-          - image: ${{ env.IMAGE_NAME }}.service.identity
+          - image: '${{ env.IMAGE }}.service.identity'
             dockerfile: ./src/Identity/Dockerfile
     permissions:
       contents: read
