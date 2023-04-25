@@ -23,7 +23,15 @@ jobs:
           - image: 'ghcr.io/gpproton/trace.manager'
             dockerfile: ./src/Manager/Dockerfile
           - image: 'ghcr.io/gpproton/trace.service.identity'
-            dockerfile: ./src/Identity/Dockerfile
+            dockerfile: ./src/Service/Identity/Dockerfile
+          - image: 'ghcr.io/gpproton/trace.service.integration'
+            dockerfile: ./src/Service/Integration/Dockerfile
+          - image: 'ghcr.io/gpproton/trace.service.operation'
+            dockerfile: ./src/Service/Operation/Dockerfile
+          - image: 'ghcr.io/gpproton/trace.service.route'
+            dockerfile: ./src/Service/Route/Dockerfile
+          - image: 'ghcr.io/gpproton/trace.service.stream'
+            dockerfile: ./src/Service/Stream/Dockerfile
     permissions:
       contents: read
       packages: write
