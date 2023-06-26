@@ -1,5 +1,5 @@
 // Copyright 2022 - 2023 Godwin peter .O (me@godwin.dev)
-// 
+//
 // Licensed under the Reciprocal Public License (RPL-1.5) and Trace License;
 // you may not use this file except in compliance with the License.
 // Unless required by applicable law or agreed to in writing, software
@@ -8,10 +8,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Proton.Common.Entity.Interfaces;
+using Axolotl.EFCore.Interfaces;
 
 namespace Trace.Common.Domain.Interfaces;
 
-public interface ICustomerEntity<T> : IHasKey<T> {
+public interface ICustomerEntity<T> : IHasKey<T> where T : notnull {
     public T? CustomerId { get; set; }
 }

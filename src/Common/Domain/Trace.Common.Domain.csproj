@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Ardalis.Result" />
+    <PackageReference Include="Axolotl.EFCore" />
+    <PackageReference Include="EFCore.NamingConventions" />
     <PackageReference Include="EFCore.NamingConventions" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>
@@ -20,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\lib\src\entity\Proton.Common.Entity.csproj" />
     <ProjectReference Include="..\Standard\Trace.Common.Standard.csproj" />
   </ItemGroup>
 

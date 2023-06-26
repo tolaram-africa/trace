@@ -1,5 +1,5 @@
 // Copyright 2022 - 2023 Godwin peter .O (me@godwin.dev)
-// 
+//
 // Licensed under the Reciprocal Public License (RPL-1.5) and Trace License;
 // you may not use this file except in compliance with the License.
 // Unless required by applicable law or agreed to in writing, software
@@ -8,11 +8,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Proton.Common.Entity.Base;
+using Axolotl.EFCore.Base;
 
 namespace Trace.Common.Domain.Modules.System.Entities;
 
-public class Currency : CoreEntity<Guid>, ITypedEntity {
+public class Currency : BaseEntity<Guid>, ITypedEntity {
     public bool Default { get; set; }
     public string Symbol { get; set; } = String.Empty;
     public string Name { get; set; } = String.Empty;

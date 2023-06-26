@@ -1,9 +1,9 @@
 using System.Text.Json.Serialization;
+using Axolotl.EFCore.Repository;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Proton.Common.Entity.Interfaces;
 using Steeltoe.Connector.PostgreSql;
 using Steeltoe.Connector.RabbitMQ;
 using Steeltoe.Messaging.RabbitMQ.Extensions;
