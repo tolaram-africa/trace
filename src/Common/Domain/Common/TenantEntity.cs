@@ -1,5 +1,5 @@
 // Copyright 2022 - 2023 Godwin peter .O (me@godwin.dev)
-// 
+//
 // Licensed under the Reciprocal Public License (RPL-1.5) and Trace License;
 // you may not use this file except in compliance with the License.
 // Unless required by applicable law or agreed to in writing, software
@@ -8,10 +8,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Proton.Common.Entity.Base;
+using Axolotl.EFCore.Base;
 
 namespace Trace.Common.Domain.Common;
 
-public abstract class TenantEntity<T> : ExtendedEntity<T>, ITenantEntity<T> {
+public abstract class TenantEntity<T> : ExtendedEntity<T>, ITenantEntity<T> where T : notnull {
     public T? TenantId { get; set; }
 }

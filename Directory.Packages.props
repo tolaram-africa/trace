@@ -16,6 +16,15 @@
     <PackageVersion Include="Riok.Mapperly" Version="2.7.0" />
   </ItemGroup>
 
+  <!-- Axolotl packages -->
+  <ItemGroup>
+    <PackageVersion Include="Axolotl" Version="$(AxolotlVersion)" />
+    <PackageVersion Include="Axolotl.Http" Version="$(AxolotlVersion)" />
+    <PackageVersion Include="Axolotl.AspNet" Version="$(AxolotlVersion)" />
+    <PackageVersion Include="Axolotl.EFCore" Version="$(AxolotlVersion)" />
+    <PackageVersion Include="Axolotl.Razor" Version="$(AxolotlVersion)" />
+  </ItemGroup>
+
   <!-- AspNet packages -->
   <ItemGroup>
     <PackageVersion Include="AspNetCore.SpaYarp" Version="1.1.0" />

@@ -1,5 +1,4 @@
-using Proton.Common.Standard.Helpers;
-using Trace.Common.Standard;
+using Axolotl.Helpers;
 
 namespace Trace.Common.Domain.Permission;
 
