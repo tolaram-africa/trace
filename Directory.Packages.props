@@ -54,6 +54,7 @@
     <PackageVersion Include="Steeltoe.Discovery.Consul" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Connector.EFCore" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Extensions.Configuration.KubernetesCore" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Extensions.Logging.DynamicSerilogCore" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Management.TaskCore" Version="$(SteeltoeVersion)" />
