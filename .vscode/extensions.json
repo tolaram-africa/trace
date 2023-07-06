@@ -13,5 +13,11 @@
     "vue.volar",
     "redhat.vscode-yaml",
     "sibiraj-s.vscode-scss-formatter"
+  ],
+  "unwantedRecommendations": [
+    "octref.vetur",
+    "hookyqr.beautify",
+    "dbaeumer.jshint",
+    "ms-vscode.vscode-typescript-tslint-plugin"
   ]
 }

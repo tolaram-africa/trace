@@ -19,13 +19,13 @@
   "homepage": "https://trace.ng",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "client": "pnpm -r --filter ./app/trace.client run",
-    "docs": "pnpm -r --filter ./app/trace.docs run",
-    "website": "pnpm -r --filter ./app/trace.website run",
-    "dev": "pnpm -r --filter ./app --parallel run dev",
+    "client": "pnpm -r --filter ./client run",
+    "docs": "pnpm -r --filter ./docs run",
+    "website": "pnpm -r --filter ./website run",
+    "dev": "pnpm -r --filter ./ --parallel run dev",
     "dev:client": "pnpm run client dev",
     "dev:docs": "pnpm run docs dev",
-    "build": "pnpm -r --filter ./app run build",
+    "build": "pnpm -r --filter ./ run build",
     "clean": " pnpm clean:dist && pnpm clean:packages",
     "clean:packages": "rimraf **/node_modules **/yarn* **/package-lock.* **/.pnpm-debug* **/pnpm-lock.yaml",
     "clean:dist": "rimraf app/**/dist",
@@ -39,7 +39,8 @@
   },
   "devDependencies": {
     "pnpm": "^8.2.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "typescript": "^5.1.6"
   },
   "engines": {
     "node": "^18 || ^16 || ^14",

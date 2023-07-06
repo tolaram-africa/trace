@@ -1,15 +1,14 @@
-.DS_Store
-bin
-obj
-out
-.logs
-.idea
-.output
-.env
-.DS_Store
-.thumbs.db
-node_modules
-.quasar
-dist
-*.lnk
-.docker
+# Ignore everything
+*
+
+# Whitelist what you need
+!.vscodeignore
+!.github
+!.config
+!client
+!docs
+!scripts
+!src
+!stacks
+!tests
+!website
