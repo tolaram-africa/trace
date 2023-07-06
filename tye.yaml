@@ -46,6 +46,7 @@ services:
     image: rabbitmq:3-management-alpine
     tags:
       - infra
+      - data
       - service
     env:
       - name: RABBITMQ_DEFAULT_USER
@@ -68,6 +69,7 @@ services:
     image: docker.io/redis/redis-stack:6.2.6-v6
     tags:
       - service
+      - data
       - infra
     volumes:
       - source: ./.docker/redis
@@ -81,10 +83,11 @@ services:
         port: 8011
         containerPort: 8001
         protocol: http
-  - name: database-operation
+  - name: database
     image: docker.io/postgis/postgis:15-3.3
     tags:
       - service
+      - data
       - infra
     env:
       - name: PGDATA
@@ -102,30 +105,11 @@ services:
       - port: 5432
         containerPort: 5432
         connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
-  - name: database-state
-    image: docker.io/postgis/postgis:15-3.3
-    tags:
-      - service
-    env:
-      - name: PGDATA
-        value: /var/lib/postgresql/data/pgdata
-      - name: POSTGRES_USER
-        value: trace
-      - name: POSTGRES_PASSWORD
-        value: trace
-      - name: POSTGRES_DB
-        value: trace
-    volumes:
-      - source: ./.docker/postgres-state
-        target: /var/lib/postgresql/data/pgdata
-    bindings:
-      - port: 5433
-        containerPort: 5432
-        connectionString: Server=${host};Port=${port};User Id=${env:POSTGRES_USER};Password=${env:POSTGRES_PASSWORD};
   - name: scylla
     image: scylladb/scylla:5.1
     tags:
       - service
+      - data
       - infra
     bindings:
       - name: one
