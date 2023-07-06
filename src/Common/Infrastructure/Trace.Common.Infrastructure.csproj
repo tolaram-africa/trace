@@ -1,11 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <NoWarn>AD0001</NoWarn>
-    <LangVersion>preview</LangVersion>
+    <Title>Trace.Common.Infrastructure</Title>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,6 +39,7 @@
     <PackageReference Include="Steeltoe.Discovery.Consul" />
     <PackageReference Include="Steeltoe.Connector.EFCore" />
     <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" />
+    <PackageReference Include="Steeltoe.Extensions.Configuration.KubernetesCore" />
     <PackageReference Include="Steeltoe.Extensions.Logging.DynamicSerilogCore" />
     <PackageReference Include="Steeltoe.Management.EndpointCore" />
     <PackageReference Include="Steeltoe.Management.TaskCore" />
