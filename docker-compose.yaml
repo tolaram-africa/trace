@@ -7,8 +7,8 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: native
     volumes:
-    - ./src/Config/default:/config
-    - ./src/Config/native-files:/native-files
+    - ./config/default:/config
+    - ./config/native-files:/native-files
     ports:
       - 8888:8888
 
@@ -22,6 +22,7 @@ services:
       SPRING_BOOT_ADMIN_SECURITY_ENABLED: 'false'
     ports:
       - 1111:1111
+    network_mode: host
 
   consul:
     image: hashicorp/consul:1.15
