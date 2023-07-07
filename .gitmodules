@@ -10,6 +10,3 @@ url = ../trace-docs.git
 [submodule "website"]
 path = website
 url = ../trace-website.git
-[submodule "charts"]
-path = charts
-url = ../trace-helm-charts.git
