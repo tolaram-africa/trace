@@ -12,4 +12,4 @@ path = website
 url = ../trace-website.git
 [submodule "charts"]
 path = charts
-url = https://github.com/drolx/trace-helm-charts.git
+url = ../trace-helm-charts.git
