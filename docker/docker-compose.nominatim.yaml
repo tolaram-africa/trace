@@ -1,13 +1,4 @@
-version: '3.9'
-
-networks:
-  nominatim:
-    driver: overlay
-    attachable: true
-    name: nominatim-net
-  gateway:
-    external: true
-    name: gateway-net
+version: '3.7'
 
 services:
   server:
@@ -39,6 +30,4 @@ services:
       interval: 30s
       timeout: 3m
       retries: 10
-    networks:
-      - nominatim
-      - gateway
+

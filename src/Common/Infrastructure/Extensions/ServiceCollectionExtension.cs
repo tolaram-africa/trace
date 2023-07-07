@@ -69,7 +69,7 @@ public static class ServiceCollectionExtension
         var config = builder.Configuration;
 
         config.SetBasePath(env.ContentRootPath)
-        .AddYamlFile("config.yaml", optional: true, reloadOnChange: true)
+        .AddYamlFile("config.yaml", optional: false, reloadOnChange: true)
         .AddYamlFile($"config.{env.EnvironmentName}.yaml", optional: true, reloadOnChange: true)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
