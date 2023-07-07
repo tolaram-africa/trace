@@ -17,7 +17,6 @@ public static class PersistenceExtensions {
         var sp = services.BuildServiceProvider();
         var config = sp.GetService<IConfiguration>();
         services.AddRabbitMQConnection(config);
-        services.AddPostgresConnection(config);
         services.AddPostgresHealthContributor(config);
         services.AddRabbitServices(true);
         services.AddRabbitAdmin();

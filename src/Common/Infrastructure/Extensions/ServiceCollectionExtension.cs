@@ -3,15 +3,14 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Redis.OM;
 using StackExchange.Redis;
-using Steeltoe.Bootstrap.Autoconfig;
 using Steeltoe.Common.Http.Discovery;
 using Steeltoe.Connector.Redis;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery.Consul;
 using Steeltoe.Extensions.Configuration.ConfigServer;
 using Steeltoe.Extensions.Configuration.Kubernetes;
+using Steeltoe.Extensions.Logging.DynamicSerilog;
 using Steeltoe.Management.Endpoint;
 using Steeltoe.Management.Tracing;
 using Steeltoe.Security.DataProtection;
@@ -69,16 +68,14 @@ public static class ServiceCollectionExtension {
         .AddConfigServer()
         .AddEnvironmentVariables();
 
-        builder.AddSteeltoe();
-        builder.Services.AddDiscoveryClient(config);
+        builder.Logging.AddDynamicSerilog();
         builder.Services.AddRedisConnectionMultiplexer(config);
         builder.Services.RegisterDistributedCache();
-        var multiplexer = ConnectionMultiplexer.Connect(config.GetConnectionString("Redis") ?? "localhost");
-        builder.Services.AddSingleton(new RedisConnectionProvider(multiplexer));
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
         builder.Services.AddAllActuators(config);
         builder.Services.ActivateActuatorEndpoints();
         builder.Services.AddDistributedTracingAspNetCore();
+        builder.Services.AddDistributedTracing();
         builder.Services.AddSpringBootAdminClient();
         builder.Services.Configure<FormOptions>(options => {
             options.MultipartBodyLengthLimit = 268435456;

@@ -37,6 +37,7 @@
     <PackageReference Include="Steeltoe.Extensions.Configuration.KubernetesCore" />
     <PackageReference Include="Steeltoe.Extensions.Logging.DynamicSerilogCore" />
     <PackageReference Include="Steeltoe.Management.EndpointCore" />
+    <PackageReference Include="Steeltoe.Management.KubernetesCore" />
     <PackageReference Include="Steeltoe.Management.TaskCore" />
     <PackageReference Include="Steeltoe.Management.TracingCore" />
     <PackageReference Include="Steeltoe.Messaging.RabbitMQ" />
