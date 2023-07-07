@@ -65,6 +65,7 @@
     <PackageVersion Include="Steeltoe.Extensions.Logging.DynamicSerilogCore"
       Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
+    <PackageVersion Include="Steeltoe.Management.KubernetesCore" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Management.TaskCore" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Management.TracingCore" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Messaging.RabbitMQ" Version="$(SteeltoeVersion)" />
