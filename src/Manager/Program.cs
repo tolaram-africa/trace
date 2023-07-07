@@ -1,5 +1,5 @@
 // Copyright 2022 - 2023 Godwin peter .O (me@godwin.dev)
-// 
+//
 // Licensed under the Reciprocal Public License (RPL-1.5) and Trace License;
 // you may not use this file except in compliance with the License.
 // Unless required by applicable law or agreed to in writing, software
@@ -15,11 +15,7 @@ using Trace.Common.Standard;
 var option = new NodeOption {
     Group = Nodes.GroupName,
     Name = Nodes.Manager,
-    Api = true,
-    Proxy = true,
     Service = true,
-    Graphql = true,
-    GraphqlRoot = "/graphql",
     Scheduler = true
 };
 
@@ -29,5 +25,6 @@ builder.Services.RegisterService();
 
 var app = builder.Build();
 app.RegisterInfrastructure(option);
+app.MapGet("/", () => "Hey.");
 
 app.Run();

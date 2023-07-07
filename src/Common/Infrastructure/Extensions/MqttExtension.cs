@@ -28,7 +28,7 @@ public static class MqttExtension {
 
     public static void UseMqtt(this WebApplication app) {
         var config = app.Services.GetService<IConfiguration>();
-        var path = config!.GetValue<string>("Mqtt:Path");
+        var path = config!.GetValue<string?>("MQTT:Path") ?? "/iot";
 
         app.MapMqtt(path);
         app.UseMqttServer(server => {

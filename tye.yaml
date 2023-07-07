@@ -2,7 +2,7 @@ name: trace
 solution: Trace.sln
 services:
   - name: config
-    image: hyness/spring-cloud-config-server
+    image: hyness/spring-cloud-config-server:4.0
     tags:
       - infra
       - service
@@ -10,8 +10,10 @@ services:
       - name: SPRING_PROFILES_ACTIVE
         value: native
     volumes:
-      - source: ./src/Config
+      - source: ./src/Config/default
         target: /config
+      - source: ./src/Config/native-files
+        target: /native-files
     bindings:
       - port: 8888
         containerPort: 8888
@@ -32,7 +34,6 @@ services:
         value: 'false'
     bindings:
       - port: 1111
-        # containerPort: 8080
   - name: consul
     image: hashicorp/consul:1.15
     bindings:

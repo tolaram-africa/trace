@@ -20,7 +20,8 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <NoWarn>AD0001</NoWarn>
     <LangVersion>preview</LangVersion>
-    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <!-- TODO: Activate when out of preview -->
+    <!-- <UseArtifactsOutput>true</UseArtifactsOutput> -->
   </PropertyGroup>
 
   <PropertyGroup>

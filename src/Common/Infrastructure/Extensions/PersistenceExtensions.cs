@@ -24,7 +24,7 @@ public static class PersistenceExtensions {
         services.AddRabbitTemplate();
         services.AddDbContext<OperationContext>(options =>
         options.UseSnakeCaseNamingConvention()
-        .UseNpgsql(config!.GetValue<string>("Postgres:Client:ConnectionString"),
+        .UseNpgsql(config!.GetConnectionString("Postgres"),
             b => b
             .MigrationsAssembly(typeof(OperationContext).Assembly.FullName)
             .EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorCodesToAdd: null)

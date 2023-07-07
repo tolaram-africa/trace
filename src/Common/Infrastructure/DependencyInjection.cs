@@ -19,16 +19,16 @@ public static class DependencyInjection {
 
         if (option.Service)
             builder.Services.RegisterSharedDataConnector();
-        
+
         if (option.Scheduler)
             builder.Services.RegisterHangfire(option.Name);
-        
+
         if (option.Mqtt)
             builder.RegisterMqttService();
-        
+
         if (option.Api)
             builder.Services.AddEndpointsApiExplorer().AddSwaggerGen();
-        
+
         if (option.Proxy) {
             builder.Services.AddControllersWithViews();
 #if DEBUG
@@ -72,14 +72,14 @@ public static class DependencyInjection {
         instance.AddRemoteSchemasFromRedis(Nodes.GroupName, sp => sp.GetRequiredService<ConnectionMultiplexer>())
         .AddHttpRequestInterceptor<RequestInterceptor>()
         .AddType<GeoJsonPositionType>()
-        .AddType<GeoJsonCoordinatesType>(); 
-        
+        .AddType<GeoJsonCoordinatesType>();
+
         // Set Spatial type for route service
         builder.Services
         .AddGraphQL(Nodes.Route)
         .AddType<GeoJsonPositionType>()
         .AddType<GeoJsonCoordinatesType>();
-        
+
         // Set Spatial type for stream service
         builder.Services
         .AddGraphQL(Nodes.Stream)
@@ -102,7 +102,7 @@ public static class DependencyInjection {
 
         if (option.Scheduler) app.UseHangfireDashboard(option.Name);
         if(option.Mqtt) app.UseMqtt();
-        
+
         if (option.Api) {
             app.UseHttpsRedirection();
             app.UseReDoc();
@@ -111,7 +111,7 @@ public static class DependencyInjection {
                 app.UseSwaggerUI();
             }
         }
-        
+
         if (option.Proxy) {
             app.UseHttpsRedirection();
             app.UseStaticFiles();

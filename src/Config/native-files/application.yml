@@ -3,6 +3,7 @@ spring:
   config:
     activate:
       on-profile: Production
+
   Boot:
     Admin:
       Client:
@@ -12,7 +13,7 @@ spring:
           user.name: trace
           user.password: trace
 AppSettings:
-  SiteTitle: trace
+  SiteTitle: Trace
   CacheDbResults: true
 Logging:
   LogLevel:
@@ -35,11 +36,6 @@ Serilog:
         rollOnFileSizeLimit: true
         outputTemplate: '[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext}: {Properties} {NewLine} {EventId} {Message:lj}{NewLine}{Exception}'
 AllowedHosts: '*'
-Kestrel:
-  Certificates:
-    Default:
-      Path: localhost.pfx
-      Password: ''
 Management:
   Endpoints:
     Actuator:

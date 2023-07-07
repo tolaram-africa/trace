@@ -44,6 +44,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" />
     <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
     <PackageReference Include="Yarp.ReverseProxy" />
+    <PackageReference Include="NetEscapades.Configuration.Yaml" />
   </ItemGroup>
 
   <ItemGroup>
