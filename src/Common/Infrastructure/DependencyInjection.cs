@@ -101,7 +101,7 @@ public static class DependencyInjection {
         app.UseAuthorization();
 
         if (option.Scheduler) app.UseHangfireDashboard(option.Name);
-        if(option.Mqtt) app.UseMqtt();
+        if (option.Mqtt) app.UseMqtt();
 
         if (option.Api) {
             app.UseHttpsRedirection();

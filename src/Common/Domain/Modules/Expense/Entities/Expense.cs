@@ -11,5 +11,5 @@
 namespace Trace.Common.Domain.Modules.Expense.Entities;
 
 public class Expense : TenantEntity<Guid> {
-    
+
 }

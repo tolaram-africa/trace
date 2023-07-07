@@ -34,8 +34,8 @@ public class BeaconPosition : TenantEntity<Guid> {
     public DateTimeOffset Time { get; set; }
 
     public DateTimeOffset ServerTime { get; set; }
-    
+
     public Beacon? Beacon { get; set; }
-    
+
     public Guid BeaconId { get; set; }
 }

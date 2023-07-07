@@ -16,11 +16,11 @@ public class Beacon : TenantEntity<Guid> {
     public string FleetNo { get; set; } = String.Empty;
 
     public string Phone { get; set; } = String.Empty;
-    
+
     public BeaconStatus Status { get; set; }
-    
+
     public DateTimeOffset? LastUpdate { get; set; }
-    
+
     public BeaconDevice? Device { get; set; }
 
     public Guid? DeviceId { get; set; }

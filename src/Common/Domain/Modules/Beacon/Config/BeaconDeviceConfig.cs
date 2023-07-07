@@ -20,7 +20,7 @@ public class BeaconDeviceConfig : IEntityTypeConfiguration<BeaconDevice> {
         builder.Property(b => b.Id)
         .IsRequired()
         .HasMaxLength(256);
-        
+
         // builder.HasOne(b => b.Type)
         // .WithOne()
         // .HasForeignKey<AssetType>(k => k.Id)

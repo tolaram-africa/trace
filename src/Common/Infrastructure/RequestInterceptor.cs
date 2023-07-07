@@ -27,7 +27,7 @@ public class RequestInterceptor : DefaultHttpRequestInterceptor {
         string fullUrl = scheme + delimiter + context.Request.Host.Value;
         context.Session.Set("Domain", Encoding.UTF8.GetBytes(domain));
         // TODO: Set session cache with an object
-        
+
         requestBuilder.SetGlobalState("Domain", domain);
         requestBuilder.SetGlobalState("Scheme", scheme);
         requestBuilder.SetGlobalState("BaseUrl", fullUrl);

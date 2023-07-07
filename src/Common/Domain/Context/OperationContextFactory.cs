@@ -22,10 +22,10 @@ public class OperationContextFactory : IDesignTimeDbContextFactory<OperationCont
         .AddJsonFile("appsettings.json")
         .Build();
         var connectionString = config.GetConnectionString("DefaultConnection");
-        optionsBuilder.UseNpgsql(connectionString,b => b
-                .MigrationsAssembly(typeof(OperationContext).Assembly.FullName)
-                .UseNetTopologySuite()
-                .EnableRetryOnFailure())
+        optionsBuilder.UseNpgsql(connectionString, b => b
+                 .MigrationsAssembly(typeof(OperationContext).Assembly.FullName)
+                 .UseNetTopologySuite()
+                 .EnableRetryOnFailure())
                 .UseSnakeCaseNamingConvention();
 
         return new OperationContext(optionsBuilder.Options);

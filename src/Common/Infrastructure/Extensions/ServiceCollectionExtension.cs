@@ -18,16 +18,12 @@ using Steeltoe.Security.DataProtection;
 
 namespace Trace.Common.Infrastructure.Extensions;
 
-public static class ServiceCollectionExtension
-{
+public static class ServiceCollectionExtension {
     public static IServiceCollection RegisterSchemaHttpClients(this IServiceCollection services,
-        IDictionary<string, Uri> schemas)
-    {
-        foreach (var schema in schemas)
-        {
+        IDictionary<string, Uri> schemas) {
+        foreach (var schema in schemas) {
             services.AddTransient<DiscoveryHttpMessageHandler>();
-            services.AddHttpClient(schema.Key, c =>
-            {
+            services.AddHttpClient(schema.Key, c => {
                 ArgumentNullException.ThrowIfNull(schema.Value, "GraphqlEndpoint");
                 c.BaseAddress = new Uri(schema.Value, string.Empty);
             })
@@ -37,8 +33,7 @@ public static class ServiceCollectionExtension
         return services;
     }
 
-    public static void RegisterDistributedCache(this IServiceCollection services)
-    {
+    public static void RegisterDistributedCache(this IServiceCollection services) {
         var sp = services.BuildServiceProvider();
         var config = sp.GetService<IConfiguration>();
 
@@ -48,14 +43,12 @@ public static class ServiceCollectionExtension
         .PersistKeysToRedis()
         .SetApplicationName(Nodes.GroupName);
 
-        services.AddStackExchangeRedisCache(options =>
-        {
+        services.AddStackExchangeRedisCache(options => {
             options.Configuration = sp.GetRequiredService<ConnectionMultiplexer>().Configuration;
             options.InstanceName = "";
         });
         services.AddHttpContextAccessor();
-        services.AddSession(o =>
-        {
+        services.AddSession(o => {
             o.Cookie.Name = $"{Nodes.GroupName}.Session";
             o.IdleTimeout = TimeSpan.FromMinutes(10);
             o.Cookie.IsEssential = true;
@@ -63,8 +56,7 @@ public static class ServiceCollectionExtension
 
     }
 
-    public static WebApplicationBuilder RegisterSharedArchitecture(this WebApplicationBuilder builder)
-    {
+    public static WebApplicationBuilder RegisterSharedArchitecture(this WebApplicationBuilder builder) {
         var env = builder.Environment;
         var config = builder.Configuration;
 
@@ -88,8 +80,7 @@ public static class ServiceCollectionExtension
         builder.Services.ActivateActuatorEndpoints();
         builder.Services.AddDistributedTracingAspNetCore();
         builder.Services.AddSpringBootAdminClient();
-        builder.Services.Configure<FormOptions>(options =>
-        {
+        builder.Services.Configure<FormOptions>(options => {
             options.MultipartBodyLengthLimit = 268435456;
         });
 
