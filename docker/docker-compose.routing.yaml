@@ -1,13 +1,4 @@
-version: '3.9'
-
-networks:
-  routing:
-    driver: overlay
-    attachable: true
-    name: routing-net
-  gateway:
-    external: true
-    name: gateway-net
+version: '3.7'
 
 services:
   server:
@@ -24,9 +15,6 @@ services:
       replicas: 1
     ports:
       - 8072:8002
-    networks:
-      - gateway
-      - routing
     environment:
       tile_urls: 'https://download.geofabrik.de/africa/nigeria-latest.osm.pbf'
       server_threads: 8

@@ -1,14 +1,5 @@
 version: '3.9'
 
-networks:
-  traccar:
-    driver: overlay
-    attachable: true
-    name: traccar-net
-  gateway:
-    external: true
-    name: gateway-net
-
 configs:
   server:
     file: ./configs/iot.config.xml
@@ -93,9 +84,6 @@ services:
         target: /opt/traccar/conf/traccar.xml
     ports:
       - 8082:8082
-    networks:
-      - gateway
-      - traccar
     healthcheck:
       test:
         ['CMD', 'printf', "\"GET / HTTP/1.1\n\n\" > /dev/tcp/127.0.0.1/5055"]

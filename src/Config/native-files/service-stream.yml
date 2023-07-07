@@ -2,7 +2,7 @@ consul:
   discovery:
     register: true
     healthCheckPath: '/health'
-Mqtt:
+MQTT:
   Port: 1883
   BacklogCount: 100
   Path: /mqqt

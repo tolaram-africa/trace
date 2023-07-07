@@ -1,0 +1,21 @@
+$schema: 'https://steeltoe.io/schema/latest/schema.json'
+Spring:
+  Application:
+    Name: manager
+  Cloud:
+    Config:
+      Enabled: false
+      FailFast: true
+      HealthEnabled: true
+      DiscoveryEnabled: true
+    Kubernetes:
+      Reload:
+        ConfigMaps: true
+        Secrets: true
+      Config:
+        Sources:
+          - {"Name":"default","Namespace":"trace"}
+          - {"Name":"manager","Namespace":"trace"}
+      Secrets:
+        Sources:
+          - {"Name":"default","Namespace":"trace"}

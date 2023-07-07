@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Title>Trace</Title>
     <Version>0.0.1-alpha.1</Version>
-    <Authors>radioActive DROID</Authors>
+    <Authors>Godwin peter .O</Authors>
     <Description>An end to end logistic platform</Description>
     <RepositoryType>git</RepositoryType>
     <PackageTags>SASS, Logistics, Tracking</PackageTags>
@@ -17,24 +17,26 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
     <NoWarn>AD0001</NoWarn>
     <LangVersion>preview</LangVersion>
-    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <!-- TODO: Activate when out of preview -->
+    <!-- <UseArtifactsOutput>true</UseArtifactsOutput> -->
   </PropertyGroup>
 
   <PropertyGroup>
-    <AxolotlVersion>8.0-preview.18</AxolotlVersion>
+    <AxolotlVersion>8.0-preview.19</AxolotlVersion>
     <AspCoreVersion>8.0.0-preview.5.23302.2</AspCoreVersion>
     <DotnetVersion>8.0.0-preview.5.23280.8</DotnetVersion>
     <EfcoreVersion>8.0.0-preview.5.23280.1</EfcoreVersion>
     <MauiVersion>8.0.0-preview.5.8529</MauiVersion>
-    <NpgsqlVersion>8.0.0-preview.2</NpgsqlVersion>
+    <NpgsqlVersion>8.0.0-preview.4</NpgsqlVersion>
     <SwashbuckleVersion>6.5.0</SwashbuckleVersion>
     <SteeltoeVersion>3.2.3</SteeltoeVersion>
-    <HotChocolateVersion>14.0.0-preview.10.7</HotChocolateVersion>
+    <HotChocolateVersion>13.3.1</HotChocolateVersion>
     <CassandraVersion>3.19.2</CassandraVersion>
-    <MinioVersion>4.0.7</MinioVersion>
-    <MQTTnetVersion>4.1.4.563</MQTTnetVersion>
+    <MinioVersion>5.0.0</MinioVersion>
+    <MQTTnetVersion>4.2.1.781</MQTTnetVersion>
   </PropertyGroup>
 
 </Project>
