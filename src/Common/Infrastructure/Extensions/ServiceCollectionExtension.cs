@@ -13,6 +13,7 @@ using Steeltoe.Extensions.Configuration.ConfigServer;
 using Steeltoe.Extensions.Configuration.Kubernetes;
 using Steeltoe.Extensions.Logging.DynamicSerilog;
 using Steeltoe.Management.Endpoint;
+using Steeltoe.Management.Endpoint.DbMigrations;
 using Steeltoe.Management.Tracing;
 using Steeltoe.Security.DataProtection;
 
@@ -74,6 +75,7 @@ public static class ServiceCollectionExtension {
         var redisConfig = config.GetValue<string>("Redis:Client:ConnectionString") ?? "localhost";
         var multiplexer = ConnectionMultiplexer.Connect(redisConfig);
 
+        builder.Services.AddDbMigrationsActuator();
         builder.Services.AddSingleton(new RedisConnectionProvider(multiplexer));
         builder.Services.RegisterDistributedCache();
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
