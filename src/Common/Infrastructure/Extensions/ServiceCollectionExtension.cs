@@ -46,7 +46,7 @@ public static class ServiceCollectionExtension {
 
         services.AddStackExchangeRedisCache(options => {
             options.Configuration = sp.GetRequiredService<ConnectionMultiplexer>().Configuration;
-            options.InstanceName = "";
+            options.InstanceName = Nodes.GroupName;
         });
         services.AddHttpContextAccessor();
         services.AddSession(o => {
@@ -54,7 +54,6 @@ public static class ServiceCollectionExtension {
             o.IdleTimeout = TimeSpan.FromMinutes(10);
             o.Cookie.IsEssential = true;
         });
-
     }
 
     public static WebApplicationBuilder RegisterSharedArchitecture(this WebApplicationBuilder builder) {
@@ -62,7 +61,7 @@ public static class ServiceCollectionExtension {
         var config = builder.Configuration;
 
         config.SetBasePath(env.ContentRootPath)
-        .AddYamlFile("config.yaml", optional: false, reloadOnChange: true)
+        .AddYamlFile("config.yaml", optional: true, reloadOnChange: true)
         .AddYamlFile($"config.{env.EnvironmentName}.yaml", optional: true, reloadOnChange: true)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)

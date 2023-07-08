@@ -2,8 +2,10 @@ using HotChocolate;
 using HotChocolate.AspNetCore;
 using HotChocolate.Types.Spatial;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 using Trace.Common.Infrastructure.Extensions;
 using Trace.Common.Standard;
@@ -16,6 +18,7 @@ public static class DependencyInjection {
     public static WebApplicationBuilder AddInfrastructure<T>(this WebApplicationBuilder builder, NodeOption option) where T : class {
         builder.RegisterSharedArchitecture();
         builder.Services.AddControllers();
+        builder.Services.AddControllersWithViews();
 
         if (option.Service)
             builder.Services.RegisterSharedDataConnector();
@@ -29,14 +32,12 @@ public static class DependencyInjection {
         if (option.Api)
             builder.Services.AddEndpointsApiExplorer().AddSwaggerGen();
 
-        if (option.Proxy) {
-            builder.Services.AddControllersWithViews();
+
 #if DEBUG
-            builder.Services.AddSpaYarp();
+        if (option.Spa) builder.Services.AddSpaYarp();
 #endif
-            builder.Services.AddReverseProxy()
+        if (option.Proxy) builder.Services.AddReverseProxy()
             .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
-        }
 
         if (!option.Graphql)
             return builder;
@@ -60,7 +61,6 @@ public static class DependencyInjection {
             .AddSpatialFiltering()
             .AddSpatialProjections();
 
-        // GraphQL gateway
         if (!option.Gateway)
             return builder;
 
@@ -90,21 +90,26 @@ public static class DependencyInjection {
     }
 
     public static WebApplication RegisterInfrastructure(this WebApplication app, NodeOption option) {
-        app.UseRouting();
+
         app.UseAuthorization();
-        app.UseSession();
-        app.UseWebSockets();
         app.MapControllers();
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+        app.UseRouting();
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller}/{action=Index}/{id?}");
-        app.UseAuthorization();
+        app.UseSession();
+        app.UseWebSockets();
+        app.UseCors(x =>
+            x.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
+        if (!app.Environment.IsDevelopment()) app.UseHsts();
         if (option.Scheduler) app.UseHangfireDashboard(option.Name);
         if (option.Mqtt) app.UseMqtt();
-
         if (option.Api) {
-            app.UseHttpsRedirection();
             app.UseReDoc();
             if (app.Environment.IsDevelopment()) {
                 app.UseSwagger();
@@ -112,34 +117,43 @@ public static class DependencyInjection {
             }
         }
 
-        if (option.Proxy) {
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-#if DEBUG
-            app.UseSpaYarp();
-#endif
-            app.MapReverseProxy();
-            app.MapFallbackToFile("index.html");
-            if (!app.Environment.IsDevelopment()) app.UseHsts();
+        if (option.Graphql) {
+            app.MapBananaCakePop().WithOptions(
+                new GraphQLToolOptions {
+                    DisableTelemetry = true
+                });
+            app.MapGraphQL(option.GraphqlRoot).WithOptions(
+                new GraphQLServerOptions {
+                    EnableMultipartRequests = true,
+                    EnableBatching = true,
+                    Tool = {
+                        Enable = app.Environment.IsDevelopment()
+                    }
+                });
         }
 
-        if (!option.Graphql) {
-            return app;
-        }
+        if (option.Proxy) app.MapReverseProxy(proxyBuilder => {
+            proxyBuilder.Use(async (context, next) => {
+                var endpoint = context.GetEndpoint();
+                var path = context.Request.Path.ToString();
 
-        app.MapBananaCakePop().WithOptions(
-            new GraphQLToolOptions {
-                DisableTelemetry = true
-            });
-        app.MapGraphQL(option.GraphqlRoot).WithOptions(
-            new GraphQLServerOptions {
-                EnableMultipartRequests = true,
-                EnableBatching = true,
-                Tool = {
-                    Enable = app.Environment.IsDevelopment()
+                if (path.Contains("swagger")) {
+                    Console.WriteLine($"===========>>> Swagger Here: {endpoint}");
+                    return;
                 }
+
+                await next();
             });
 
-        return app;
+            proxyBuilder.UseLoadBalancing();
+        });
+
+#if DEBUG
+        if (!option.Spa) return app;
+        app.UseSpaYarp();
+        app.MapFallbackToFile("index.html");
+#endif
+
+    return app;
     }
 }

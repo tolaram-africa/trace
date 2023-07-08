@@ -3,7 +3,7 @@
     <Title>Trace</Title>
     <Version>0.0.1-alpha.1</Version>
     <Authors>Godwin peter .O</Authors>
-    <Description>An end to end logistic platform</Description>
+    <Description>An end to end logistic crm platform</Description>
     <RepositoryType>git</RepositoryType>
     <PackageTags>SASS, Logistics, Tracking</PackageTags>
     <RepositoryUrl>https://github.com/gpproton/trace</RepositoryUrl>
@@ -19,7 +19,6 @@
     <Nullable>enable</Nullable>
     <NoWarn>AD0001</NoWarn>
     <LangVersion>preview</LangVersion>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <!-- TODO: Activate when out of preview -->
     <!-- <UseArtifactsOutput>true</UseArtifactsOutput> -->
   </PropertyGroup>

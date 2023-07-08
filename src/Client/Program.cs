@@ -4,7 +4,8 @@ using Trace.Common.Standard;
 var option = new NodeOption {
     Group = Nodes.GroupName,
     Name = Nodes.Client,
-    Service = true
+    Service = true,
+    Spa = true
 };
 
 var builder = WebApplication.CreateBuilder(args);

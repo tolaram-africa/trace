@@ -4,30 +4,26 @@
     <Title>Trace.Common.Infrastructure</Title>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="AspNetCore">
     <PackageReference Include="AspNetCore.SpaYarp">
       <Publish>false</Publish>
     </PackageReference>
-    <PackageReference Include="CassandraCSharpDriver" />
-    <PackageReference Include="Hangfire.AspNetCore" />
-    <PackageReference Include="Hangfire.Dashboard.Basic.Authentication" />
-    <PackageReference Include="Hangfire.Redis.StackExchange" />
-    <PackageReference Include="HotChocolate.Data" />
-    <PackageReference Include="HotChocolate.Data.EntityFramework" />
-    <PackageReference Include="HotChocolate.Data.Spatial" />
-    <PackageReference Include="HotChocolate.Diagnostics" />
-    <PackageReference Include="HotChocolate.PersistedQueries.InMemory" />
-    <PackageReference Include="HotChocolate.PersistedQueries.Redis" />
-    <PackageReference Include="HotChocolate.Stitching" />
-    <PackageReference Include="HotChocolate.Stitching.Redis" />
-    <PackageReference Include="HotChocolate.Subscriptions.Redis" />
-    <PackageReference Include="HotChocolate.Types" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
-    <PackageReference Include="Minio" />
     <PackageReference Include="MQTTnet.AspNetCore" />
-    <PackageReference Include="Redis.OM" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
+    <PackageReference Include="Yarp.ReverseProxy" />
+  </ItemGroup>
+
+  <ItemGroup Label="Hangfire">
+    <PackageReference Include="Hangfire.AspNetCore" />
+    <PackageReference Include="Hangfire.Dashboard.Basic.Authentication" />
+    <PackageReference Include="Hangfire.Redis.StackExchange" />
+  </ItemGroup>
+
+  <ItemGroup Label="Steeltoe">
     <PackageReference Include="Steeltoe.Bootstrap.Autoconfig" />
     <PackageReference Include="Steeltoe.Connector.ConnectorCore" />
     <PackageReference Include="Steeltoe.Discovery.ClientCore" />
@@ -42,9 +38,25 @@
     <PackageReference Include="Steeltoe.Management.TracingCore" />
     <PackageReference Include="Steeltoe.Messaging.RabbitMQ" />
     <PackageReference Include="Steeltoe.Security.DataProtection.RedisCore" />
-    <PackageReference Include="Swashbuckle.AspNetCore" />
-    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
-    <PackageReference Include="Yarp.ReverseProxy" />
+  </ItemGroup>
+
+  <ItemGroup Label="HotChocolate">
+    <PackageReference Include="HotChocolate.Data" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework" />
+    <PackageReference Include="HotChocolate.Data.Spatial" />
+    <PackageReference Include="HotChocolate.Diagnostics" />
+    <PackageReference Include="HotChocolate.PersistedQueries.InMemory" />
+    <PackageReference Include="HotChocolate.PersistedQueries.Redis" />
+    <PackageReference Include="HotChocolate.Stitching" />
+    <PackageReference Include="HotChocolate.Stitching.Redis" />
+    <PackageReference Include="HotChocolate.Subscriptions.Redis" />
+    <PackageReference Include="HotChocolate.Types" />
+  </ItemGroup>
+
+  <ItemGroup Label="Others">
+    <PackageReference Include="CassandraCSharpDriver" />
+    <PackageReference Include="Minio" />
+    <PackageReference Include="Redis.OM" />
     <PackageReference Include="NetEscapades.Configuration.Yaml" />
   </ItemGroup>
 

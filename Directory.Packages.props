@@ -4,7 +4,7 @@
   </PropertyGroup>
 
   <!-- Core packages -->
-  <ItemGroup>
+  <ItemGroup Label="Core">
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
     <PackageVersion Include="MediatR" Version="12.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="$(DotnetVersion)" />
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <!-- Axolotl packages -->
-  <ItemGroup>
+  <ItemGroup Label="Axolotl">
     <PackageVersion Include="Axolotl" Version="$(AxolotlVersion)" />
     <PackageVersion Include="Axolotl.Http" Version="$(AxolotlVersion)" />
     <PackageVersion Include="Axolotl.AspNet" Version="$(AxolotlVersion)" />
@@ -28,8 +28,8 @@
   </ItemGroup>
 
   <!-- AspNet packages -->
-  <ItemGroup>
-    <PackageVersion Include="AspNetCore.SpaYarp" Version="1.1.0" />
+  <ItemGroup Label="AspNetCore">
+    <PackageVersion Include="AspNetCore.SpaYarp" Version="2.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis"
       Version="$(AspCoreVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(AspCoreVersion)" />
@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <!-- Efcore packages -->
-  <ItemGroup>
+  <ItemGroup Label="Efcore">
     <PackageVersion Include="EFCore.NamingConventions" Version="7.0.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(EfcoreVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="$(EfcoreVersion)" />
@@ -52,7 +52,7 @@
 
 
   <!-- Steeltoe packages -->
-  <ItemGroup>
+  <ItemGroup Label="Steeltoe">
     <PackageVersion Include="Steeltoe.Bootstrap.Autoconfig" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Connector.ConnectorCore" Version="$(SteeltoeVersion)" />
     <PackageVersion Include="Steeltoe.Discovery.ClientCore" Version="$(SteeltoeVersion)" />
@@ -74,7 +74,7 @@
   </ItemGroup>
 
   <!-- HotChocolate packages -->
-  <ItemGroup>
+  <ItemGroup Label="HotChocolate">
     <PackageVersion Include="HotChocolate.Data" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Data.EntityFramework" Version="$(HotChocolateVersion)" />
     <PackageVersion Include="HotChocolate.Data.Spatial" Version="$(HotChocolateVersion)" />
@@ -90,7 +90,7 @@
 
 
   <!-- Other packages -->
-  <ItemGroup>
+  <ItemGroup Label="Others">
     <PackageVersion Include="Ardalis.Result" Version="7.0.0" />
     <PackageVersion Include="CassandraCSharpDriver" Version="$(CassandraVersion)" />
     <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.0-rc3" />
