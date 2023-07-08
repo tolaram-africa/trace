@@ -18,6 +18,6 @@ public abstract class DefaultSeeder : ISeeder {
 
         return value;
     }
-    
+
     public virtual void Run() { }
 }

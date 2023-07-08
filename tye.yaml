@@ -10,9 +10,9 @@ services:
       - name: SPRING_PROFILES_ACTIVE
         value: native
     volumes:
-      - source: ./src/Config/default
+      - source: ./config/default
         target: /config
-      - source: ./src/Config/native-files
+      - source: ./config/native-files
         target: /native-files
     bindings:
       - port: 8888
@@ -139,11 +139,11 @@ services:
       - service
     build: true
     project: src/Service/Integration/Trace.Service.Integration.csproj
-  - name: service-operation
+  - name: service-core
     tags:
       - service
     build: true
-    project: src/Service/Operation/Trace.Service.Operation.csproj
+    project: src/Service/Core/Trace.Service.Core.csproj
   - name: service-route
     tags:
       - service

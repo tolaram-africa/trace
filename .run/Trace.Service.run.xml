@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Trace.Service" type="CompoundRunConfigurationType">
     <toRun name="Trace.Gateway: http" type="LaunchSettings" />
+    <toRun name="Trace.Service.Core: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Identity: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Integration: http" type="LaunchSettings" />
-    <toRun name="Trace.Service.Operation: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Route: http" type="LaunchSettings" />
     <toRun name="Trace.Service.Stream: http" type="LaunchSettings" />
     <toRun name="Trace.Worker: http" type="LaunchSettings" />

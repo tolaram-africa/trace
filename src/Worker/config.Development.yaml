@@ -1,0 +1,11 @@
+Logging:
+  LogLevel:
+    Default: Information
+    Microsoft.AspNetCore: Warning
+Spring:
+  Cloud:
+    Config:
+      Enabled: true
+      Uri: 'http://localhost:8888'
+    Kubernetes:
+      Enabled: false

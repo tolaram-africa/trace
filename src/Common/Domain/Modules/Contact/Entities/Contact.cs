@@ -11,5 +11,5 @@
 namespace Trace.Common.Domain.Modules.Contact.Entities;
 
 public class Contact : TaggedEntity<Guid> {
-    
+
 }

@@ -4,10 +4,8 @@ using Trace.Common.Standard;
 var option = new NodeOption {
     Group = Nodes.GroupName,
     Name = Nodes.Client,
-    Service = false,
-    Graphql = false,
-    Proxy = true,
-    Scheduler = false
+    Service = true,
+    Spa = true
 };
 
 var builder = WebApplication.CreateBuilder(args);

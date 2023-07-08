@@ -8,7 +8,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Axolotl.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Trace.Common.Domain.Modules;
 
@@ -26,29 +25,10 @@ public sealed class OperationContext : BaseContext {
         // Apply entities configs
         builder.ApplyConfigurationsFromAssembly(typeof(ITenantEntity<>).Assembly);
 
-        /*
-        foreach (var entityType in builder.Model.GetEntityTypes()) {
-            if (typeof(IAuditableEntity<>).IsAssignableFrom(entityType.ClrType)) {
-
-            }
-
-            if (typeof(ITenantEntity<>).IsAssignableFrom(entityType.ClrType)) {
-
-            }
-
-            if (typeof(ICustomerEntity<>).IsAssignableFrom(entityType.ClrType)) {
-
-            }
-
-            if (typeof(ITaggedEntity<>).IsAssignableFrom(entityType.ClrType)) {
-
-            }
-        }
-        */
-
+        // TODO: RE-implement using simpler approach
         // Apply Seeds for ISeeder
-        foreach (var seed in FactoryLoader.LoadClassInstances<ISeeder>())
-            seed.Initialize(builder).Run();
+        // foreach (var seed in FactoryLoader.LoadClassInstances<ISeeder>())
+        //     seed.Initialize(builder).Run();
 
         base.OnModelCreating(builder);
     }

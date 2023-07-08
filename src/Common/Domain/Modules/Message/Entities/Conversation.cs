@@ -11,5 +11,5 @@
 namespace Trace.Common.Domain.Modules.Message.Entities;
 
 public class Conversation : CustomerEntity<Guid> {
-    
+
 }

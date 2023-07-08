@@ -13,11 +13,11 @@ services:
       context: .
       dockerfile: src/Service/Integration/Dockerfile
 
-  trace.service.operation:
-    image: ghcr.io/gpproton/trace.service.operation:${VERSION}
+  trace.service.Core:
+    image: ghcr.io/gpproton/trace.service.core:${VERSION}
     build:
       context: .
-      dockerfile: src/Service/Operation/Dockerfile
+      dockerfile: src/Service/Core/Dockerfile
 
   trace.service.route:
     image: ghcr.io/gpproton/trace.service.route:${VERSION}

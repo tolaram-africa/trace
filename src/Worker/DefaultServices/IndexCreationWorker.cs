@@ -21,11 +21,11 @@ public class IndexCreationWorker : BackgroundService {
         _provider = provider;
         _logger = logger;
     }
-    
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
         _logger.LogInformation($"Starting redis index creation...");
         var list = await _provider.Connection.ExecuteAsync("FT._LIST");
-        var info = list.ToArray().Select(x=>x.ToString(CultureInfo.InvariantCulture));
+        var info = list.ToArray().Select(x => x.ToString(CultureInfo.InvariantCulture));
         var result = info.All(x => x != "tenant-idx");
         _logger.LogInformation($"Test index check : {result}");
 
@@ -33,7 +33,7 @@ public class IndexCreationWorker : BackgroundService {
         // if (info.All(x => x != "person-idx")) {
         //     await _provider.Connection.CreateIndexAsync(typeof(Person));
         // }
-        
+
         await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
         _logger.LogInformation($"Completed redis index creation.");
     }

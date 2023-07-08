@@ -6,7 +6,7 @@ public static class Nodes {
     public static readonly IReadOnlyList<string> All = new List<string> {
         Identity,
         Integration,
-        Operation,
+        Core,
         Route,
         Stream
     };
@@ -16,7 +16,7 @@ public static class Nodes {
     public const string Client = nameof(Client);
     public const string Identity = nameof(Identity);
     public const string Integration = nameof(Integration);
-    public const string Operation = nameof(Operation);
+    public const string Core = nameof(Core);
     public const string Route = nameof(Route);
     public const string Stream = nameof(Stream);
     public const string Manager = nameof(Manager);

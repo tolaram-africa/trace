@@ -1,5 +1,5 @@
 // Copyright 2022 - 2023 Godwin peter .O (me@godwin.dev)
-// 
+//
 // Licensed under the Reciprocal Public License (RPL-1.5) and Trace License;
 // you may not use this file except in compliance with the License.
 // Unless required by applicable law or agreed to in writing, software
@@ -13,14 +13,9 @@ using Trace.Common.Domain.Context;
 
 namespace Trace.Worker.DefaultServices;
 
-public class MigrationService : BackgroundService {
-    private readonly ILogger<MigrationService> _logger;
-    private readonly OperationContext _context;
-
-    public MigrationService(ILogger<MigrationService> logger, IServiceScopeFactory factory) {
-        _logger = logger;
-        _context = factory.CreateScope().ServiceProvider.GetRequiredService<OperationContext>();
-    }
+public class MigrationService(ILogger<MigrationService> logger, IServiceScopeFactory factory) : BackgroundService {
+    private readonly ILogger<MigrationService> _logger = logger;
+    private readonly OperationContext _context = factory.CreateScope().ServiceProvider.GetRequiredService<OperationContext>();
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
         _logger.LogInformation("Starting migration...");

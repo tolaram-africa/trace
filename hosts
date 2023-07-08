@@ -18,7 +18,7 @@
 ## internal services
 127.0.0.1 service-gateway
 127.0.0.1 service-identity
-127.0.0.1 service-operation
+127.0.0.1 service-core
 127.0.0.1 service-integration
 127.0.0.1 service-track
 127.0.0.1 service-route
@@ -26,8 +26,6 @@
 127.0.0.1 client-app
 
 ## service dependencies
-127.0.0.1 database_operation
-127.0.0.1 database_cache
 127.0.0.1 storage_server
 127.0.0.1 scylla_server
 127.0.0.1 traccar_server

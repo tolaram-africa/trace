@@ -4,7 +4,7 @@ using Trace.Common.Standard;
 
 var option = new NodeOption {
     Group = Nodes.GroupName,
-    Name = Nodes.Operation,
+    Name = Nodes.Core,
     Service = true,
     Graphql = true,
     Scheduler = true

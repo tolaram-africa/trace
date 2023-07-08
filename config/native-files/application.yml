@@ -18,7 +18,10 @@ AppSettings:
 Logging:
   LogLevel:
     Default: Information
+    Microsoft: Warning
     Microsoft.AspNetCore: Warning
+    Microsoft.AspNetCore.SpaProxy: Information
+    Microsoft.Hosting.Lifetime: Information
     Steeltoe: Debug
     Hangfire: Information
 Serilog:
@@ -41,10 +44,7 @@ Management:
     Actuator:
       Exposure:
         Include:
-          - '*'
-        Exclude:
-          - env
-          - refresh
+          - "*"
   Tracing:
     Exporter:
       Zipkin:

@@ -11,5 +11,6 @@ public class NodeOption {
     public bool Spatial { get; set; }
     public bool Mqtt { get; set; }
     public bool Proxy { get; set; }
+    public bool Spa { get; set; }
     public bool Scheduler { get; set; } = true;
 }

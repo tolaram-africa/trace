@@ -11,5 +11,5 @@
 namespace Trace.Common.Domain.Modules.Identity.Entities;
 
 public class AccountMapOption : TenantEntity<Guid> {
-    
+
 }
