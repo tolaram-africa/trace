@@ -1,5 +1,5 @@
 // Copyright 2022 - 2023 Godwin peter .O (me@godwin.dev)
-// 
+//
 // Licensed under the Reciprocal Public License (RPL-1.5) and Trace License;
 // you may not use this file except in compliance with the License.
 // Unless required by applicable law or agreed to in writing, software
@@ -10,16 +10,12 @@
 
 namespace Trace.Worker.DefaultServices;
 
-public class MaintenanceWorker : BackgroundService {
-    private readonly ILogger<MaintenanceWorker> _logger;
-
-    public MaintenanceWorker(ILogger<MaintenanceWorker> logger) {
-        _logger = logger;
-    }
+public class MaintenanceWorker(ILogger<MaintenanceWorker> logger) : BackgroundService {
+    private readonly ILogger<MaintenanceWorker> _logger = logger;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
         while (!stoppingToken.IsCancellationRequested) {
-            _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+            _logger.LogInformation("Worker running at: {Time}", DateTimeOffset.Now);
             await Task.Delay(TimeSpan.FromMinutes(5), stoppingToken);
         }
     }

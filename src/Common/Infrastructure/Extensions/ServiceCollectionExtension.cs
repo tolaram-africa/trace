@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Redis.OM;
 using StackExchange.Redis;
 using Steeltoe.Common.Http.Discovery;
 using Steeltoe.Connector.Redis;
@@ -67,9 +68,13 @@ public static class ServiceCollectionExtension {
         .AddKubernetes()
         .AddConfigServer()
         .AddEnvironmentVariables();
-
         builder.Logging.AddDynamicSerilog();
         builder.Services.AddRedisConnectionMultiplexer(config);
+
+        var redisConfig = config.GetValue<string>("Redis:Client:ConnectionString") ?? "localhost";
+        var multiplexer = ConnectionMultiplexer.Connect(redisConfig);
+
+        builder.Services.AddSingleton(new RedisConnectionProvider(multiplexer));
         builder.Services.RegisterDistributedCache();
         builder.Services.AddServiceDiscovery(o => o.UseConsul());
         builder.Services.AddAllActuators(config);

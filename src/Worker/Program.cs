@@ -16,9 +16,6 @@ using Trace.Worker.DefaultServices;
 var option = new NodeOption {
     Group = Nodes.GroupName,
     Name = Nodes.Worker,
-    Api = false,
-    Proxy = false,
-    Graphql = false,
     Service = true,
     Scheduler = true
 };
