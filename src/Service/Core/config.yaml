@@ -1,7 +1,7 @@
 $schema: 'https://steeltoe.io/schema/latest/schema.json'
 Spring:
   Application:
-    Name: service-operation
+    Name: service-core
   Cloud:
     Config:
       Enabled: false
@@ -12,7 +12,7 @@ Spring:
       Config:
         Sources:
           - {"Name":"default","Namespace":"trace"}
-          - {"Name":"service-operation","Namespace":"trace"}
+          - {"Name":"service-core","Namespace":"trace"}
       Secrets:
         Sources:
           - {"Name":"default","Namespace":"trace"}

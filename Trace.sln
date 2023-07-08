@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Integration",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Manager", "src\Manager\Trace.Manager.csproj", "{1135C0CA-0C67-47FF-B919-9EAA5068B809}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Operation", "src\Service\Operation\Trace.Service.Operation.csproj", "{DEC38774-BFB9-4338-A64A-750F0E5D7B72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Core", "src\Service\Core\Trace.Service.Core.csproj", "{DEC38774-BFB9-4338-A64A-750F0E5D7B72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Service.Route", "src\Service\Route\Trace.Service.Route.csproj", "{51D8B505-4BAB-477A-B818-60C80FA12A92}"
 EndProject
@@ -32,8 +32,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Common.Service", "src\Common\Service\Trace.Common.Service.csproj", "{88496493-6B29-4C28-9258-C0C102F8406A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trace.Client", "src\Client\Trace.Client.csproj", "{416967BF-9637-48DB-A1DF-11026548B843}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A870AF4E-C158-44ED-8D5F-B173FB8944BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A42780EB-1404-4A75-93D1-40A67D233247}"
 EndProject
